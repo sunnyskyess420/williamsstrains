@@ -13,7 +13,7 @@
             margin: 0;
             padding: 20px;
             color: #e0e0e0;
-            background-image: url('https://i.imgur.com/bml0Rym.jpeg'); /* The new background image */
+            background-image: url('https://i.imgur.com/bml0Rym.jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -407,22 +407,21 @@
         </ul>
     </div>
 
-   <script>
-    function searchStrains() {
-        const input = document.getElementById('strainInput').value.toLowerCase();
-        const list = document.getElementById('strainList');
-        const strains = list.getElementsByTagName('li');
+    <script>
+        function searchStrains() {
+            const input = document.getElementById('strainInput').value.toLowerCase();
+            const list = document.getElementById('strainList');
+            const strains = list.getElementsByTagName('li');
 
-        for (let i = 0; i < strains.length; i++) {
-            const strainName = strains[i].textContent.toLowerCase();
-            if (strainName.includes(input)) {
-                strains[i].classList.remove('hidden');
-            } else {
-                strains[i].classList.add('hidden');
+            for (let i = 0; i < strains.length; i++) {
+                const strainName = strains[i].textContent.toLowerCase();
+                if (strainName.includes(input)) {
+                    strains[i].classList.remove('hidden');
+                } else {
+                    strains[i].classList.add('hidden');
+                }
             }
         }
-    }
-</script>
+    </script>
 </body>
-
 </html>
