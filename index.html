@@ -4,89 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strain Search</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            background-color: #282c34;
-            margin: 0;
-            padding: 20px;
-            color: #e0e0e0;
-            background-image: url('https://i.imgur.com/6oSJmFn.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        .container {
-            width: 100%;
-            max-width: 700px;
-            background-color: rgba(30, 30, 30, 0.9);
-            padding: 30px;
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
-            border-radius: 12px;
-            backdrop-filter: blur(5px);
-        }
-        h1 {
-            text-align: center;
-            color: #00ff00;
-            text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
-            margin-bottom: 30px;
-        }
-        #strainInput {
-            width: 96%;
-            padding: 12px;
-            margin-bottom: 25px;
-            border: 1px solid #00ff00;
-            border-radius: 6px;
-            font-size: 18px;
-            background-color: #3a3a3a;
-            color: #e0e0e0;
-            box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        #strainInput:focus {
-            border-color: #00ffff;
-            box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
-            outline: none;
-        }
-        #strainList {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-        #strainList li {
-            padding: 15px 20px;
-            border-bottom: 1px solid #444;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            font-size: 19px;
-            display: flex;
-            align-items: center;
-            color: #c0c0c0;
-        }
-        #strainList li:hover {
-            background-color: #3a3a3a;
-            transform: translateX(5px);
-            color: #00ff00;
-        }
-        #strainList li:last-child {
-            border-bottom: none;
-        }
-        .hidden {
-            display: none;
-        }
-        .hidden-label {
-            position: absolute;
-            left: -9999px;
-        }
-    </style>
+   <style>
+    .search-container {
+        position: relative;
+        width: 100%;
+    }
+    .search-icon {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+        font-size: 18px;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        background-color: #282c34;
+        margin: 0;
+        padding: 20px;
+        color: #e0e0e0;
+        background-image: url('https://i.imgur.com/6oSJmFn.png');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+    .container {
+        width: 100%;
+        max-width: 700px;
+        background-color: rgba(30, 30, 30, 0.9);
+        padding: 30px;
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+        border-radius: 12px;
+        backdrop-filter: blur(5px);
+    }
+    h1 {
+        text-align: center;
+        color: #00ff00;
+        text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+        margin-bottom: 30px;
+    }
+    #strainInput {
+        width: 96%;
+        padding: 12px;
+        margin-bottom: 25px;
+        border: 1px solid #00ff00;
+        border-radius: 6px;
+        font-size: 18px;
+        background-color: #3a3a3a;
+        color: #e0e0e0;
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    #strainInput:focus {
+        border-color: #00ffff;
+        box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+        outline: none;
+    }
+    #strainList {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    #strainList li {
+        padding: 15px 20px;
+        border-bottom: 1px solid #444;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        font-size: 19px;
+        display: flex;
+        align-items: center;
+        color: #c0c0c0;
+    }
+    #strainList li:hover {
+        background-color: #3a3a3a;
+        transform: translateX(5px);
+        color: #00ff00;
+    }
+    #strainList li:last-child {
+        border-bottom: none;
+    }
+    .hidden {
+        display: none;
+    }
+    .hidden-label {
+        position: absolute;
+        left: -9999px;
+    }
+</style>
 </head>
 <body>
     <div class="container">
         <h1>Strain Search</h1>
         <label for="strainInput" class="hidden-label">Search for a strain:</label>
-      <input type="text" id="strainInput" onkeyup="searchStrains()" placeholder="Search for a strain...">
+      <div class="search-container">
+    <label for="strainInput" class="hidden-label">Search for a strain:</label>
+    <input type="text" id="strainInput" onkeyup="searchStrains()" placeholder="Search for a strain...">
+    <span class="search-icon">🔍</span>
+</div>
      <ul id="strainList">
 <li>24k Gold</li>
 <li>91 Octane</li>
