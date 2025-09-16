@@ -46,7 +46,8 @@
         align-items: center;
         gap: 10px;
         margin-bottom: 20px;
-        border-bottom: 2px solid #00ff00; /* Line below search box is now green */
+        border-bottom: 2px solid #00ff00;
+        /* Line below search box is now green */
         padding-bottom: 15px;
     }
     .search-container label {
@@ -81,7 +82,8 @@
         background: #262626;
     }
     .strain-list-container::-webkit-scrollbar-thumb {
-        background-color: #00ff00; /* Scrollbar thumb is now green */
+        background-color: #00ff00;
+        /* Scrollbar thumb is now green */
         border-radius: 20px;
         border: 2px solid #262626;
     }
@@ -121,7 +123,7 @@
     .unknown-strain {
         background-color: yellow;
     }
-</style>
+    </style>
 </head>
 <body>
     <div class="container">
@@ -1326,22 +1328,13 @@
     <li class="hybrid-strain">
         <div class="strain-name">White Runtz</div>
     </li>
+    <li class="indica-strain">
+        <div class="strain-name">White Walker Kush</div>
+    </li>
     <li class="hybrid-strain">
-        <div class="strain-name">White Tahoe Cookies</div>
-    </li>
-    <li class="unknown-strain">
-        <div class="strain-name">White Truffle</div>
-    </li>
-    <li class="unknown-strain">
-        <div class="strain-name">White Widow</div>
-    </li>
-    <li class="unknown-strain">
-        <div class="strain-name">Wild Cherry</div>
+        <div class="strain-name">White Wedding</div>
     </li>
     <li class="indica-strain">
-        <div class="strain-name">Willie's Kush Cake</div>
-    </li>
-    <li class="unknown-strain">
         <div class="strain-name">Witches Breath</div>
     </li>
     <li class="unknown-strain">
@@ -1377,7 +1370,7 @@
         for (let i = 0; i < strainList.length; i++) {
             const strainName = strainList[i].textContent.toLowerCase();
             if (strainName.includes(input)) {
-                strainList[i].style.display = 'flex';
+                strainList[i].style.display = '';
             } else {
                 strainList[i].style.display = 'none';
             }
