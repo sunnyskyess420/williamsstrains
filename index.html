@@ -76,18 +76,23 @@
         .hidden {
             display: none;
         }
+        .hidden-label {
+            position: absolute;
+            left: -9999px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Strain Search</h1>
+        <label for="strainInput" class="hidden-label">Search for a strain:</label>
         <input type="text" id="strainInput" onkeyup="searchStrains()" placeholder="Search for a strain...">
         <ul id="strainList">
             <li>91 Octane</li>
             <li>9lb Hammer</li>
             <li>Abominable Snowman</li>
             <li>AC/DC</li>
-            <li>Acapolco Gold</li>
+            <li>Acapulco Gold</li>
             <li>Ace Killer OG</li>
             <li>Ace of Spades</li>
             <li>Afghani</li>
@@ -100,7 +105,7 @@
             <li>Alien Rift</li>
             <li>Apple Fritter</li>
             <li>Atom Splitter</li>
-            <li>Auora Borealis</li>
+            <li>Aurora Borealis</li>
             <li>Bakerstreet</li>
             <li>Beast Mode Skittles</li>
             <li>Big Cat Kush</li>
@@ -242,7 +247,7 @@
             <li>Italian Ice</li>
             <li>Jack Frost</li>
             <li>Jager</li>
-            <li>Jamacian Gold</li>
+            <li>Jamaican Gold</li>
             <li>Jean Guy</li>
             <li>Jelly Cocktail</li>
             <li>Jet Fuel</li>
@@ -267,7 +272,7 @@
             <li>Lions Milk</li>
             <li>Liquid Imagination</li>
             <li>Lucky Charms</li>
-            <li>Lyeche Kush</li>
+            <li>Lychee Kush</li>
             <li>MAC Donut</li>
             <li>Macmosa</li>
             <li>Mandarin Mints</li>
@@ -333,7 +338,7 @@
             <li>Sleepy Joe</li>
             <li>Slow Lane</li>
             <li>Slurricane</li>
-            <li>Slurricane x Geleto</li>
+            <li>Slurricane x Gelato</li>
             <li>Slurry Crasher</li>
             <li>Snoop Dogg</li>
             <li>Sonic Lemon Fuel</li>
@@ -342,7 +347,6 @@
             <li>Sour Diesel</li>
             <li>Sour Dream</li>
             <li>Space Goblins</li>
-            <li>Space Queen</li>
             <li>Space Queen</li>
             <li>Stankasaurus</li>
             <li>Stinky Pinky</li>
@@ -357,7 +361,7 @@
             <li>Super Silver Haze</li>
             <li>Super Sonic Blizzard</li>
             <li>Super Sour Widow</li>
-            <li>Sweet Deep Gratefruit</li>
+            <li>Sweet Deep Grapefruit</li>
             <li>Sweet Pink Grapefruit</li>
             <li>Sweet Tooth</li>
             <li>Tally Mon</li>
@@ -374,12 +378,12 @@
             <li>Top Crop</li>
             <li>Train Wreck</li>
             <li>Triceratops</li>
-            <li>Tripple Burger</li>
+            <li>Triple Burger</li>
             <li>Trophy Wife</li>
             <li>Tsunami</li>
             <li>Tuna Kush</li>
             <li>Turbo Mind Warp</li>
-            <li>Tutti fruiti</li>
+            <li>Tutti Frutti</li>
             <li>TWA Lot #6</li>
             <li>UK Cheese</li>
             <li>Vanilla Ice</li>
@@ -390,7 +394,7 @@
             <li>Wappa</li>
             <li>Watermelon Breath</li>
             <li>Wedding Crasher</li>
-            <li>Wheres my bike</li>
+            <li>Where's My Bike</li>
             <li>White Lightning</li>
             <li>White Rhino</li>
             <li>White Runtz</li>
@@ -409,7 +413,7 @@
 
     <script>
         function searchStrains() {
-            const input = document.getElementById('strainInput').value.toLowerCase();
+            const input = document.getElementById('strainInput').value.trim().toLowerCase();
             const list = document.getElementById('strainList');
             const strains = list.getElementsByTagName('li');
 
