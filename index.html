@@ -427,20 +427,5 @@
             }
         }
     </script>
-    <script>
-    function searchStrains() {
-        const input = document.getElementById('strainInput').value.trim().toLowerCase();
-        const list = document.getElementById('strainList');
-        const strains = list.getElementsByTagName('li');
-        for (let i = 0; i < strains.length; i++) {
-            const strainName = strains[i].textContent.toLowerCase();
-            if (strainName.includes(input)) {
-                strains[i].classList.remove('hidden');
-            } else {
-                strains[i].classList.add('hidden');
-            }
-        }
-    }
-</script>
 </body>
 </html>
