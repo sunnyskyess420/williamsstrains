@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strain Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            background-color: #282c34;
+            margin: 0;
+            padding: 20px;
+            color: #e0e0e0;
+            background-image: url('https://i.imgur.com/bml0Rym.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background-color: rgba(30, 30, 30, 0.9);
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+        }
+        h1 {
+            text-align: center;
+            color: #00ff00;
+            text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+            margin-bottom: 30px;
+        }
+        #strainInput {
+            width: 96%;
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #00ff00;
+            border-radius: 6px;
+            font-size: 18px;
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+            box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        #strainInput:focus {
+            border-color: #00ffff;
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+            outline: none;
+        }
+        #strainList {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        #strainList li {
+            padding: 15px 20px;
+            border-bottom: 1px solid #444;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            font-size: 19px;
+            display: flex;
+            align-items: center;
+            color: #c0c0c0;
+        }
+        #strainList li:hover {
+            background-color: #3a3a3a;
+            transform: translateX(5px);
+            color: #00ff00;
+        }
+        #strainList li:last-child {
+            border-bottom: none;
+        }
+        .hidden {
+            display: none;
+        }
+        .hidden-label {
+            position: absolute;
+            left: -9999px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Strain Search</h1>
+        <label for="strainInput" class="hidden-label">Search for a strain:</label>
+        <input type="text" id="strainInput" onkeyup="searchStrains()" placeholder="Search for a strain...">
+        <ul id="strainList">
+            <li>91 Octane</li>
+            <li>9lb Hammer</li>
+            <li>Abominable Snowman</li>
+            <li>AC/DC</li>
+            <li>Acapulco Gold</li>
+            <li>Ace Killer OG</li>
+            <li>Ace of Spades</li>
+            <li>Afghani</li>
+            <li>Afghaniskunk</li>
+            <li>Afgoo</li>
+            <li>AK 47</li>
+            <li>AK Kush</li>
+            <li>Alaskan Thunder Fuck</li>
+            <li>Alien Guy</li>
+            <li>Alien Rift</li>
+            <li>Apple Fritter</li>
+            <li>Atom Splitter</li>
+            <li>Aurora Borealis</li>
+            <li>Bakerstreet</li>
+            <li>Beast Mode Skittles</li>
+            <li>Big Cat Kush</li>
+            <li>Big Mac</li>
+            <li>Blackberry Moonrocks</li>
+            <li>Blood Orange Haze</li>
+            <li>Brainstorm Haze</li>
+            <li>Brownie Scout</li>
+            <li>Bruce Banner</li>
+            <li>Bubba Breath</li>
+            <li>Bubba Kush</li>
+            <li>Bubble Bath</li>
+            <li>Buddah Cheese</li>
+            <li>Buttered Toast</li>
+            <li>Cali 47</li>
+            <li>Cali Bubba</li>
+            <li>Cali Cookies</li>
+            <li>Cali Dragon</li>
+            <li>Cali Gas</li>
+            <li>Cali Gold</li>
+            <li>Candy Land</li>
+            <li>Cannalope Haze</li>
+            <li>Cap Junky</li>
+            <li>Caribbean Cream</li>
+            <li>Cashmere</li>
+            <li>Cereal Milk</li>
+            <li>Chem Dog #4</li>
+            <li>Chem Fire</li>
+            <li>Chem La Chem</li>
+            <li>Chemdawg</li>
+            <li>Chemdog</li>
+            <li>Chernobyl</li>
+            <li>Cherry Cosmo</li>
+            <li>Cherry Cough</li>
+            <li>Chocolope</li>
+            <li>Chronic Thunder</li>
+            <li>Cinderella 99</li>
+            <li>Cobra Lips</li>
+            <li>Coffee Creamer</li>
+            <li>Cold Creek Kush</li>
+            <li>Colt 45</li>
+            <li>Comatose</li>
+            <li>Compact Crushers</li>
+            <li>Confidential Cheese</li>
+            <li>Cosmic Clusters</li>
+            <li>Cosmic Cream</li>
+            <li>Crab Cakes</li>
+            <li>Crazy Glue</li>
+            <li>Critical Orange Punch</li>
+            <li>Critical Purple Kush</li>
+            <li>Crypto Chrome</li>
+            <li>Crystal Mountain Kush</li>
+            <li>Cuban Linx</li>
+            <li>Dalato</li>
+            <li>Dank Schrader</li>
+            <li>Dank Sinatra</li>
+            <li>Dankey Kong</li>
+            <li>Devils Triangle</li>
+            <li>Do Si Dos</li>
+            <li>Donkey Butter</li>
+            <li>Donny Burger</li>
+            <li>Dopamine</li>
+            <li>Dos Diablos</li>
+            <li>Dosi Face</li>
+            <li>Dosi Punch</li>
+            <li>Double Kush Breath</li>
+            <li>Dragon's Breath</li>
+            <li>Dragonfruit Gelato</li>
+            <li>Duke Nukem</li>
+            <li>El Chapo</li>
+            <li>El Chemino</li>
+            <li>El Jefe</li>
+            <li>El Padrino</li>
+            <li>Electric Honeydew</li>
+            <li>Electric Mountaindew</li>
+            <li>Emancipator</li>
+            <li>Event Horizon</li>
+            <li>Fire Breath</li>
+            <li>Flo</li>
+            <li>Formula 1</li>
+            <li>French Toast</li>
+            <li>Frost'd Flakes</li>
+            <li>Frosted Cherry Cookies</li>
+            <li>Frosted Cream Puffs</li>
+            <li>Fruit Loopz</li>
+            <li>Fruity Chronic Juice</li>
+            <li>Funk Master</li>
+            <li>Funky Charms</li>
+            <li>Galactic Glue</li>
+            <li>Galactic Haze</li>
+            <li>Garlic Breath</li>
+            <li>Garlic Fingers</li>
+            <li>Gary Payton</li>
+            <li>Gas Chamber</li>
+            <li>Gas Mask</li>
+            <li>Gastro Pop</li>
+            <li>Gelato</li>
+            <li>Gelato 33</li>
+            <li>Ghost Gelato</li>
+            <li>Ghost Train Haze</li>
+            <li>God Bud</li>
+            <li>Gods Gift</li>
+            <li>Gods Green Crack</li>
+            <li>Goldberry</li>
+            <li>Golden Goat</li>
+            <li>Golden Pineapple</li>
+            <li>Gorilla Bomb</li>
+            <li>Grand Daddy Bruce</li>
+            <li>Grandi Guava</li>
+            <li>Grape Ape</li>
+            <li>Grape Crush</li>
+            <li>Grape God</li>
+            <li>Grape Pie</li>
+            <li>Grape Runtz</li>
+            <li>Grape Soda</li>
+            <li>Grape Stomper</li>
+            <li>Grapes and Cream</li>
+            <li>Greasy Bubba</li>
+            <li>Great White Shark</li>
+            <li>Green Crack</li>
+            <li>Green Widow</li>
+            <li>Gushers</li>
+            <li>Gypsy Kush</li>
+            <li>Hash Bar</li>
+            <li>Hawaiian Snow</li>
+            <li>Hawaiin Headband</li>
+            <li>Headbanger</li>
+            <li>Hella Jelly</li>
+            <li>High Octane</li>
+            <li>Hindu Kush</li>
+            <li>Holy Grail</li>
+            <li>Huckleberry DesStar</li>
+            <li>I Pot</li>
+            <li>Ice Cream</li>
+            <li>Ice Wine</li>
+            <li>Ice Wreck</li>
+            <li>Inzane in the Membrane</li>
+            <li>Island Pink Kush</li>
+            <li>Italian Ice</li>
+            <li>Jack Frost</li>
+            <li>Jager</li>
+            <li>Jamaican Gold</li>
+            <li>Jean Guy</li>
+            <li>Jelly Cocktail</li>
+            <li>Jet Fuel</li>
+            <li>Juicy Fruit</li>
+            <li>Jungle Fumes</li>
+            <li>K Train</li>
+            <li>Kali Mist</li>
+            <li>Khalifa Mintz</li>
+            <li>Killer OG</li>
+            <li>King Bubba</li>
+            <li>King Tut</li>
+            <li>Krypto Kronic</li>
+            <li>LA Wedding Pop</li>
+            <li>Lady Boss</li>
+            <li>Larry Bird</li>
+            <li>Lazer Wolf</li>
+            <li>Lemon Haze</li>
+            <li>Lemon Meringue</li>
+            <li>Lemon Skunk</li>
+            <li>Lemon Slushie</li>
+            <li>Lemon Zkittlez</li>
+            <li>Lions Milk</li>
+            <li>Liquid Imagination</li>
+            <li>Lucky Charms</li>
+            <li>Lychee Kush</li>
+            <li>MAC Donut</li>
+            <li>Macmosa</li>
+            <li>Mandarin Mints</li>
+            <li>Maple Leaf</li>
+            <li>Master Jedi</li>
+            <li>Master Kush</li>
+            <li>Master Pink</li>
+            <li>Master Yoda</li>
+            <li>Mataro Blue</li>
+            <li>MC Pie Face</li>
+            <li>McFlurry</li>
+            <li>McFritter</li>
+            <li>Meat Breath</li>
+            <li>Med Head</li>
+            <li>Megaton</li>
+            <li>Melon #4</li>
+            <li>Mimosa</li>
+            <li>Mint Froyo</li>
+            <li>Miracle Alien Cookies</li>
+            <li>MK Ultra</li>
+            <li>Mob Boss</li>
+            <li>Monkey Breath</li>
+            <li>Monster Mass</li>
+            <li>Morning Sun</li>
+            <li>Mountain Mimosa</li>
+            <li>Munson</li>
+            <li>Nirvana</li>
+            <li>Northern Lights</li>
+            <li>Nuken</li>
+            <li>Ogopogo Gold</li>
+            <li>Okanagan Frost</li>
+            <li>One Punch</li>
+            <li>Orange Creamsicle</li>
+            <li>Orange Crush</li>
+            <li>Outlaw</li>
+            <li>Pablo Escobar</li>
+            <li>Pablo's Revenge</li>
+            <li>Panama Red</li>
+            <li>Peach Runtz</li>
+            <li>Peanut Butter Breath</li>
+            <li>Peyote Cookies</li>
+            <li>Pie Face</li>
+            <li>Pie Hoe</li>
+            <li>Pine Tar Kush</li>
+            <li>Platinum Jelly Breath</li>
+            <li>Ponderosa Pine</li>
+            <li>Poontang Pie</li>
+            <li>Pot of Gold</li>
+            <li>Race Car</li>
+            <li>Revolver</li>
+            <li>Rockstar</li>
+            <li>Rockstar Peanut Butter</li>
+            <li>Romulan</li>
+            <li>Royal Highness</li>
+            <li>Scoops</li>
+            <li>SFV</li>
+            <li>Shark Bite</li>
+            <li>Shark Shock</li>
+            <li>Shipwreck</li>
+            <li>Shishkaberry</li>
+            <li>Silver Surfer</li>
+            <li>Sirius Black</li>
+            <li>Sleepy Joe</li>
+            <li>Slow Lane</li>
+            <li>Slurricane</li>
+            <li>Slurricane x Gelato</li>
+            <li>Slurry Crasher</li>
+            <li>Snoop Dogg</li>
+            <li>Sonic Lemon Fuel</li>
+            <li>Sophies Breath</li>
+            <li>Sour Cheese</li>
+            <li>Sour Diesel</li>
+            <li>Sour Dream</li>
+            <li>Space Goblins</li>
+            <li>Space Queen</li>
+            <li>Stankasaurus</li>
+            <li>Stinky Pinky</li>
+            <li>Stinky Pussy</li>
+            <li>Sundae Driver</li>
+            <li>Sunflower</li>
+            <li>Sunshine</li>
+            <li>Sunset Sherbert</li>
+            <li>Sunshine Bubble Kush</li>
+            <li>Super Glue</li>
+            <li>Super Pink</li>
+            <li>Super Silver Haze</li>
+            <li>Super Sonic Blizzard</li>
+            <li>Super Sour Widow</li>
+            <li>Sweet Deep Grapefruit</li>
+            <li>Sweet Pink Grapefruit</li>
+            <li>Sweet Tooth</li>
+            <li>Tally Mon</li>
+            <li>Tangerine Dream</li>
+            <li>Tart Pop</li>
+            <li>Tear Gas</li>
+            <li>The Force</li>
+            <li>The Fudd</li>
+            <li>The Glove</li>
+            <li>The Undercaker</li>
+            <li>The Za</li>
+            <li>Tom Ford</li>
+            <li>Tootsie Roll</li>
+            <li>Top Crop</li>
+            <li>Train Wreck</li>
+            <li>Triceratops</li>
+            <li>Triple Burger</li>
+            <li>Trophy Wife</li>
+            <li>Tsunami</li>
+            <li>Tuna Kush</li>
+            <li>Turbo Mind Warp</li>
+            <li>Tutti Frutti</li>
+            <li>TWA Lot #6</li>
+            <li>UK Cheese</li>
+            <li>Vanilla Ice</li>
+            <li>Vanilla Kush</li>
+            <li>Velvet Apple #14</li>
+            <li>Velvet Rose</li>
+            <li>Violet Delight</li>
+            <li>Wappa</li>
+            <li>Watermelon Breath</li>
+            <li>Wedding Crasher</li>
+            <li>Where's My Bike</li>
+            <li>White Lightning</li>
+            <li>White Rhino</li>
+            <li>White Runtz</li>
+            <li>White Tahoe Cookies</li>
+            <li>White Truffle</li>
+            <li>White Widow</li>
+            <li>Witches Breath</li>
+            <li>Xach's Breath</li>
+            <li>Yellow Fin Tuna</li>
+            <li>ZaZa</li>
+            <li>Zombie Breath</li>
+            <li>Zombie Kush</li>
+            <li>Zsweet</li>
+        </ul>
+    </div>
+
+    <script>
+        function searchStrains() {
+            const input = document.getElementById('strainInput').value.trim().toLowerCase();
+            const list = document.getElementById('strainList');
+            const strains = list.getElementsByTagName('li');
+
+            for (let i = 0; i < strains.length; i++) {
+                const strainName = strains[i].textContent.toLowerCase();
+                if (strainName.includes(input)) {
+                    strains[i].classList.remove('hidden');
+                } else {
+                    strains[i].classList.add('hidden');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
