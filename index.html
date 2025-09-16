@@ -91,7 +91,6 @@
         margin: 0;
     }
     .strain-list-container ul li {
-        background-color: rgba(60, 60, 60, 0.7);
         border: 1px solid #444;
         margin-bottom: 8px;
         padding: 15px;
@@ -110,29 +109,18 @@
         color: #00cc00;
         font-size: 1.2em;
     }
-    .strain-details {
-        font-size: 0.9em;
-        color: #ccc;
-        margin-top: 5px;
+    /* New styles for background colors */
+    .indica-strain {
+        background-color: green;
     }
-    .classification, .notes {
-        display: block;
+    .sativa-strain {
+        background-color: purple;
     }
-    .classification {
-        font-style: italic;
-        color: #999;
+    .hybrid-strain {
+        background-color: orange;
     }
-    .sativa .classification {
-        color: #90ee90;
-    }
-    .indica .classification {
-        color: #8a2be2;
-    }
-    .hybrid .classification {
-        color: #ff9900;
-    }
-    .unknown .classification {
-        color: #808080;
+    .unknown-strain {
+        background-color: blue;
     }
   </style>
 </head>
@@ -145,2042 +133,194 @@
         </div>
         <div class="strain-list-container">
 <ul id="sativaStrains">
-    <li>
+    <li class="sativa-strain">
         <div class="strain-name">Acapolco Gold</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-        </div>
     </li>
-    <li>
+    <li class="sativa-strain">
         <div class="strain-name">Blood Orange Haze</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-        </div>
     </li>
-    <li>
+    <li class="sativa-strain">
         <div class="strain-name">Brainstorm Haze</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-        </div>
     </li>
-    <li>
+    <li class="sativa-strain">
         <div class="strain-name">Cannalope Haze</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-        </div>
     </li>
-    <li>
+    <li class="sativa-strain">
         <div class="strain-name">Galactic Haze</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-        </div>
     </li>
-    <li>
+    <li class="sativa-strain">
         <div class="strain-name">Green Crack</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-        </div>
     </li>
-    <li>
+    <li class="sativa-strain">
         <div class="strain-name">Haze</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-        </div>
     </li>
-    <li>
+    <li class="sativa-strain">
         <div class="strain-name">Lemon Haze</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-        </div>
     </li>
-    <li>
+    <li class="sativa-strain">
         <div class="strain-name">Snoop Dogg</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-        </div>
     </li>
-    <li>
+    <li class="sativa-strain">
         <div class="strain-name">Sour Diesel</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-        </div>
     </li>
-    <li>
+    <li class="sativa-strain">
         <div class="strain-name">Sour Jack</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-        </div>
     </li>
-    <li>
+    <li class="sativa-strain">
         <div class="strain-name">Sour Power</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-        </div>
     </li>
-    <li>
+    <li class="sativa-strain">
         <div class="strain-name">Super Lemon Haze</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-        </div>
     </li>
-    <li>
+    <li class="sativa-strain">
         <div class="strain-name">Tangerine Dream</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-        </div>
     </li>
-    <li>
+    <li class="sativa-strain">
         <div class="strain-name">Trainwreck</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-        </div>
     </li>
-    <li>
+    <li class="sativa-strain">
         <div class="strain-name">White Widow</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-        </div>
     </li>
 </ul>
-
 <ul id="indicaStrains">
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">BC Rockstar</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Bubba Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Death Bubba</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">God's Green Crack</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">God's OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Grandaddy Purple</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Grease Monkey</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Grizzly Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">King Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Lindsay OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Lucky Charms</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Master Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">MK Ultra</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Nuken</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">OG Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">OG Shark</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Pink Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Pink Panties</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Pink Rhino</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Pink Starburst</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Pink Tuna</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Platinum OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Rockstar Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Romulan</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Sweet Tooth</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Tom Ford Pink Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Tuna Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Violator Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
-    <li>
+    <li class="indica-strain">
         <div class="strain-name">Zombie Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Indica</span>
-        </div>
     </li>
 </ul>
-
 <ul id="hybridStrains">
-    <li>
-        <div class="strain-name">Animal Face</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
+    <li class="hybrid-strain">
+        <div class="strain-name">AK 47</div>
     </li>
-    <li>
+    <li class="hybrid-strain">
+        <div class="strain-name">Animal Cookies</div>
+    </li>
+    <li class="hybrid-strain">
         <div class="strain-name">Apple Fritter</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
     </li>
-    <li>
-        <div class="strain-name">Banana Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
+    <li class="hybrid-strain">
+        <div class="strain-name">Black Cherry Gelato</div>
     </li>
-    <li>
-        <div class="strain-name">Black Cherry Punch</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
+    <li class="hybrid-strain">
+        <div class="strain-name">Blackberry Cheesecake</div>
     </li>
-    <li>
-        <div class="strain-name">Black Tuna</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
+    <li class="hybrid-strain">
+        <div class="strain-name">Birthday Cake Kush</div>
     </li>
-    <li>
-        <div class="strain-name">Blue Dream</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
+    <li class="hybrid-strain">
+        <div class="strain-name">Blue Gelato</div>
     </li>
-    <li>
-        <div class="strain-name">Blue Hawaiian</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Blue Iguana</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Blue Magoo</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Blue Raspberry</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Bred</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Bubba God</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Bubblegum</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Burnt Toast</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Carbon Fiber</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Candy Apple</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cheetah Piss</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cherry AK</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cherry Pie</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cherry Punch</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cherry Runtz</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cherry Vanilla</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Chewbacca</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Chronic</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Clementine</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cookies and Cream</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Death Star</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Dirty Banana</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Do-Si-Do</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Durban Poison</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">E.T.</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">East Coast Diesel</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">El Diablo</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Face Off OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Fatso</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Forum Cut</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Fruity Pebbles</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Ghost OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">GMO Cookies</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Godzilla Glue</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Gorilla Glue</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Grease Monkey</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Grapefruit Diesel</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Headband</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Hindu Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Jack Herer</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Jager</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Jet Fuel</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Jet Fuel Gelato</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Jokerz</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Killer Queen</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Kush Mints</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">LSD</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">LA Kush Cake</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Laughing Buddha</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Lemon Jack</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Lemon Meringue</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Lemon OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Lemon Skunk</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Lemon Tree</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Loud</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Mandarin Cookies</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Mango Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Moby Dick</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Monkey Berries</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Monkey Tits</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Motor Breath</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Orange Crush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Orange Sherbert</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Peyote Cookies</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Pineapple Express</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Pink Panties</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Pink Rhino</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Pink Starburst</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Pink Tuna</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Platinum OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Purple City Genetics</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Purple Haze</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Purple Punch</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Purple Rhino</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Purple Tuna</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Rainbow Cookies</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Rainbow Sherbert</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Romulan</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Runtz</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Snoop Dogg</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sour Cookies</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sour Diesel</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sour Jack</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sour Power</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Space Cake</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Strawberry Cough</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Strawberry Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sugar Cookies</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sunset Sherbert</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sweet Tooth</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Tangerine Dream</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Tuna Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">White Rhino</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
-    </li>
-    <li>
+    <li class="hybrid-strain">
         <div class="strain-name">White Widow</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-        </div>
+    </li>
+    <li class="hybrid-strain">
+        <div class="strain-name">Tropicana Cookies</div>
+    </li>
+    <li class="hybrid-strain">
+        <div class="strain-name">Wedding Cake</div>
     </li>
 </ul>
-
 <ul id="unknownStrains">
-    <li>
+    <li class="unknown-strain">
         <div class="strain-name">91 Octane</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
     </li>
-    <li>
+    <li class="unknown-strain">
         <div class="strain-name">Abominable Snowman</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
     </li>
-    <li>
+    <li class="unknown-strain">
         <div class="strain-name">AC/DC</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
     </li>
-    <li>
+    <li class="unknown-strain">
         <div class="strain-name">Ace Killer OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
     </li>
-    <li>
+    <li class="unknown-strain">
         <div class="strain-name">Ace of Spades</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
     </li>
-    <li>
-        <div class="strain-name">Afghaniskunk</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Alaskan Thunder Fuck</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Alien Guy</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Alien Rift</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Animal Face</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Animal Mints</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Animal Sundae</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Atom Splitter</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Auora Borealis</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Bad Azz OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Bakerstreet</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Batman OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Beast Mode Skittles</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Big Mac</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Black Biscotti</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Black Cheese</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Black Diamond</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Black Gas</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Black Jelly</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Black Kyber Crystal</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Black Maple</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Black Mamba</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Black Tuna</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Blackberry Pie</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Blue Cheese</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Blue Fin Tuna</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Blue Guava</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Blue Iguana</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Blue Light</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Blue Rhino</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Blueberry Frosting</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Blueberry Yum Yum</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Brace Face</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Brainstorm</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Breakfast Cereal</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Burnt Toast</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Butter</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cake Batter</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cannalope</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Carbon Fiber</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Caramel</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cereal Milk</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cheech & Chong</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Chem</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Chemobomba</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cherry Vanilla</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cinderalla 99</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cinnamon</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Clementine</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Clementine Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Clockwork Orange</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Coastal Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cookie Dough</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cookies and Cream</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cowboy</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Creme Brulee</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Crepes</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Crescendo</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Cross Eyed</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Crumble</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Crunch Berries</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Durban Poison</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">East Coast Sour Diesel</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Fatso</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Forum</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Gelato</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Ghost OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">GMO Cookies</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">God Bud</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">God's Cherry Pie</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">God's OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Godzilla</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Gorilla Cake</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Gorilla Glue</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Grapefruit</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Grapefruit Diesel</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Green Apple</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Green Apple Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Green Goblin</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Grizzly</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Headband</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Hindu Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Holy Grail</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Honey</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Hulk</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Jack Herer</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Joker</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Kandy Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">King</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Kish</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Kush Mints</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Kushadelic</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">LA</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Lemon</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Lemon Diesel</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Lemon Gelato</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Lemon Meringue</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Lemon Runtz</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Lemon Skunk</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Lime Sorbet</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Loud</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">LSD</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Mango</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Mango OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Mango Tango</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Master Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Moby Dick</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Mochi</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Monkey Berries</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Monkey Mints</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Motorbreath</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Mula</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Nuken</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">OG Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Orange</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Orange Cookies</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Orange Creamsicle</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Orange Crush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Orange Sherbert</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Peyote Cookies</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Pink Panties</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Pink Rhino</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Pink Starburst</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Pink Tuna</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Pineapple</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Pineapple Express</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Platinum</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Platinum OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Platinum Punch</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Poison</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Purple</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Purple City Genetics</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Purple Haze</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Purple Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Purple Punch</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Purple Rhino</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Purple Tuna</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Rainbow Cookies</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Rainbow Sherbert</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Romulan</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Royal Cheese</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Runtz</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Scoops</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sour</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sour Jack</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sour Power</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Strawberry</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Strawberry Diesel</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Strawberry Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sugar Cookies</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sunset Sherbert</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Super Lemon Haze</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sweet</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sweet & Sour</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sweet Tooth</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Tangerine Dream</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Tangerine Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">THC Bomb</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Tom Ford Pink Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Trainwreck</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Tuna Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Tutti fruiti</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">TWA Lot #6</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Tyson Og</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">UK Cheese</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Vanilla Ice</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Velvet Rose</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Venom OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Violator OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Violet Delight</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Wappa</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Watermelon Breath</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Wedding Crasher</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Wheres my bike</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">White Death</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">White Lightning</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">White Rhino</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">White Truffle</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Wild Cherry</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Witches Breath</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Wooly Mammoth</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Xach's Breath</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Yellow Fin Tuna</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">ZaZa</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Zombie Breath</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Zookies</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
-    </li>
-    <li>
+    <li class="unknown-strain">
         <div class="strain-name">Zsweet</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-        </div>
     </li>
 </ul>
 <script>
