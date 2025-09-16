@@ -9,10 +9,10 @@
         font-family: Arial, sans-serif;
         display: flex;
         justify-content: center;
-        background-color: #282c34;
+        background-color: #262626;
         margin: 0;
         padding: 20px;
-        color: #e0e0e0;
+        color: #e8e8e8;
         background-image: url('https://i.imgur.com/6oSJmFn.png');
         background-size: cover;
         background-position: center;
@@ -23,22 +23,22 @@
         max-width: 700px;
         background-color: rgba(30, 30, 30, 0.9);
         padding: 30px;
-        box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+        box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
         border-radius: 12px;
         backdrop-filter: blur(5px);
     }
     h1 {
         text-align: center;
-        color: #00cc00;
-        text-shadow: 0 0 10px #00cc00, 0 0 20px #00cc00, 0 0 30px #00ff00;
+        color: #e8e8e8;
+        text-shadow: 0 0 10px #ff0000, 0 0 20px #00ff00, 0 0 30px #0000ff;
         animation: glow 1.5s ease-in-out infinite alternate;
     }
     @keyframes glow {
         from {
-            text-shadow: 0 0 10px #00cc00, 0 0 20px #00cc00;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #00ff00;
         }
         to {
-            text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
+            text-shadow: 0 0 20px #00ff00, 0 0 30px #0000ff;
         }
     }
     .search-container {
@@ -46,17 +46,17 @@
         align-items: center;
         gap: 10px;
         margin-bottom: 20px;
-        border-bottom: 2px solid #00cc00;
+        border-bottom: 2px solid #e8e8e8;
         padding-bottom: 15px;
     }
     .search-container label {
         font-size: 1.2em;
-        color: #00cc00;
+        color: #e8e8e8;
     }
     #strainInput {
         flex-grow: 1;
         padding: 12px;
-        border: 2px solid #00cc00;
+        border: 2px solid #e8e8e8;
         border-radius: 8px;
         background-color: rgba(255, 255, 255, 0.05);
         color: #e0e0e0;
@@ -65,25 +65,25 @@
     }
     #strainInput:focus {
         outline: none;
-        box-shadow: 0 0 10px #00ff00;
+        box-shadow: 0 0 10px #ff0000;
     }
     .strain-list-container {
         overflow-y: scroll;
         max-height: 500px;
         padding-right: 15px;
         scrollbar-width: thin;
-        scrollbar-color: #00ff00 #282c34;
+        scrollbar-color: #e8e8e8 #262626;
     }
     .strain-list-container::-webkit-scrollbar {
         width: 8px;
     }
     .strain-list-container::-webkit-scrollbar-track {
-        background: #282c34;
+        background: #262626;
     }
     .strain-list-container::-webkit-scrollbar-thumb {
-        background-color: #00ff00;
+        background-color: #e8e8e8;
         border-radius: 20px;
-        border: 2px solid #282c34;
+        border: 2px solid #262626;
     }
     .strain-list-container ul {
         list-style: none;
@@ -102,24 +102,24 @@
     }
     .strain-list-container ul li:hover {
         transform: translateY(-3px);
-        box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
+        box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
     }
     .strain-name {
         font-weight: bold;
-        color: #00cc00;
+        color: #1a1a1a;
         font-size: 1.2em;
     }
     .indica-strain {
-        background-color: green;
+        background-color: blue;
     }
     .sativa-strain {
-        background-color: purple;
+        background-color: red;
     }
     .hybrid-strain {
-        background-color: orange;
+        background-color: green;
     }
     .unknown-strain {
-        background-color: blue;
+        background-color: yellow;
     }
   </style>
 </head>
