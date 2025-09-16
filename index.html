@@ -4,18 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strain Search</title>
-   <style>
-    .search-container {
-        position: relative;
-        width: 100%;
-    }
-    .search-icon {
-        position: absolute;
-        top: 50%;
-        left: 15px;
-        transform: translateY(-50%);
-        font-size: 18px;
-    }
+  <style>
     body {
         font-family: Arial, sans-serif;
         display: flex;
@@ -97,12 +86,8 @@
     <div class="container">
         <h1>Strain Search</h1>
         <label for="strainInput" class="hidden-label">Search for a strain:</label>
-      <div class="search-container">
-    <label for="strainInput" class="hidden-label">Search for a strain:</label>
-    <input type="text" id="strainInput" onkeyup="searchStrains()" placeholder="Search for a strain...">
-    <span class="search-icon">🔍</span>
-</div>
-     <ul id="strainList">
+        <input type="text" id="strainInput" onkeyup="searchStrains()" placeholder="Search for a strain...">
+        <ul id="strainList">
 <li>24k Gold</li>
 <li>91 Octane</li>
 <li>9lb Hammer</li>
