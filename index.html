@@ -30,121 +30,83 @@
     h1 {
         text-align: center;
         color: #00cc00;
-        text-shadow: 0 0 10px #00cc00, 0 0 20px #00cc00, 0 0 30px #00ff00;
-        animation: glow 1.5s ease-in-out infinite alternate;
+        text-shadow: 0 0 10px #00cc00, 0 0 20px rgba(0, 204, 0, 0.5);
     }
-    @keyframes glow {
-        from {
-            text-shadow: 0 0 10px #00cc00, 0 0 20px #00cc00;
-        }
-        to {
-            text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
-        }
-    }
-    .search-container {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+    #searchContainer {
+        text-align: center;
         margin-bottom: 20px;
-        border-bottom: 2px solid #00cc00;
-        padding-bottom: 15px;
-    }
-    .search-container label {
-        font-size: 1.2em;
-        color: #00cc00;
     }
     #strainInput {
-        flex-grow: 1;
-        padding: 12px;
+        width: 80%;
+        padding: 10px;
+        border-radius: 5px;
         border: 2px solid #00cc00;
-        border-radius: 8px;
-        background-color: rgba(255, 255, 255, 0.05);
+        background-color: #333;
         color: #e0e0e0;
-        font-size: 1em;
-        transition: box-shadow 0.3s ease;
-    }
-    #strainInput:focus {
-        outline: none;
-        box-shadow: 0 0 10px #00ff00;
+        font-size: 16px;
     }
     .strain-list-container {
-        overflow-y: scroll;
         max-height: 500px;
-        padding-right: 15px;
-        scrollbar-width: thin;
-        scrollbar-color: #00ff00 #282c34;
+        overflow-y: auto;
+        border: 1px solid #005500;
+        border-radius: 8px;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
     }
-    .strain-list-container::-webkit-scrollbar {
-        width: 8px;
-    }
-    .strain-list-container::-webkit-scrollbar-track {
-        background: #282c34;
-    }
-    .strain-list-container::-webkit-scrollbar-thumb {
-        background-color: #00ff00;
-        border-radius: 20px;
-        border: 2px solid #282c34;
-    }
-    .strain-list-container ul {
-        list-style: none;
+    ul {
+        list-style-type: none;
         padding: 0;
         margin: 0;
     }
-    .strain-list-container ul li {
-        background-color: rgba(60, 60, 60, 0.7);
-        border: 1px solid #444;
-        margin-bottom: 8px;
+    li {
+        background-color: #1a1a1a;
+        margin-bottom: 10px;
         padding: 15px;
         border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         transition: transform 0.2s, box-shadow 0.2s;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
     }
-    .strain-list-container ul li:hover {
+    li:hover {
         transform: translateY(-3px);
-        box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
+        box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
     }
     .strain-name {
-        font-weight: bold;
-        color: #00cc00;
         font-size: 1.2em;
+        font-weight: bold;
+        color: #00ff00;
+        text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
     }
     .strain-details {
-        font-size: 0.9em;
-        color: #ccc;
         margin-top: 5px;
-    }
-    .classification, .notes {
-        display: block;
+        font-size: 0.9em;
+        color: #aaa;
     }
     .classification {
+        font-weight: bold;
+        color: #e0e0e0;
+    }
+    .notes {
         font-style: italic;
-        color: #999;
+        color: #a0a0a0;
     }
-    .sativa .classification {
-        color: #90ee90;
-    }
-    .indica .classification {
-        color: #8a2be2;
-    }
-    .hybrid .classification {
-        color: #ff9900;
-    }
-    .unknown .classification {
-        color: #808080;
+    .section-title {
+        color: #00cc00;
+        text-align: center;
+        margin-top: 20px;
+        text-shadow: 0 0 8px #00cc00;
     }
   </style>
 </head>
 <body>
+
     <div class="container">
-        <h1>Cannabis Strain Classifier</h1>
-        <div class="search-container">
-            <label for="strainInput">Search:</label>
-            <input type="text" id="strainInput" onkeyup="searchStrains()" placeholder="Enter strain name...">
+        <h1>Strain Search</h1>
+        <div id="searchContainer">
+            <input type="text" id="strainInput" onkeyup="searchStrains()" placeholder="Search for a strain...">
         </div>
-        <div class="strain-list-container">
-<ul id="sativaStrains">
+<div class="strain-list-container">
+    <h2 class="section-title">Sativa</h2>
+    <ul id="sativaStrains">
     <li>
         <div class="strain-name">Acapolco Gold</div>
         <div class="strain-details">
@@ -181,1115 +143,2060 @@
         </div>
     </li>
     <li>
-        <div class="strain-name">Green Crack</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-            <span class="notes">Notes: Named after a crack-like energy high.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Haze</div>
+        <div class="strain-name">Ghost Train Haze</div>
         <div class="strain-details">
             <span class="classification">Classification: Sativa</span>
             <span class="notes">Notes: Contains 'Haze'/'Mist'/'Panama'/'Trainwreck' -> sativa-leaning heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Green Crack</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Sativa</span>
+            <span class="notes">Notes: Sativa-dominant.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Honey Badger Haze</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Sativa</span>
+            <span class="notes">Notes: Contains 'Haze'/'Mist'/'Panama'/'Trainwreck' -> sativa-leaning heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Kali Mist</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Sativa</span>
+            <span class="notes">Notes: Sativa-dominant.</span>
         </div>
     </li>
     <li>
         <div class="strain-name">Lemon Haze</div>
         <div class="strain-details">
             <span class="classification">Classification: Sativa</span>
-            <span class="notes">Notes: Contains 'Haze'/'Mist'/'Panama'/'Trainwreck' -> sativa-leaning heuristic.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Mimosa</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-            <span class="notes">Notes: Contains Mimosa -> sativa-leaning heuristic.</span>
+            <span class="notes">Notes: Haze -> sativa-leaning.</span>
         </div>
     </li>
     <li>
         <div class="strain-name">Panama Red</div>
         <div class="strain-details">
             <span class="classification">Classification: Sativa</span>
+            <span class="notes">Notes: Classic sativa.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Purple Haze</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Sativa</span>
             <span class="notes">Notes: Contains 'Haze'/'Mist'/'Panama'/'Trainwreck' -> sativa-leaning heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Snoop Dogg</div>
+        <div class="strain-name">Purple Trainwreck</div>
         <div class="strain-details">
             <span class="classification">Classification: Sativa</span>
-            <span class="notes">Notes: Contains 'Snoop Dogg' -> sativa-leaning heuristic.</span>
+            <span class="notes">Notes: Contains 'Haze'/'Mist'/'Panama'/'Trainwreck' -> sativa-leaning heuristic.</span>
         </div>
     </li>
     <li>
         <div class="strain-name">Sour Diesel</div>
         <div class="strain-details">
             <span class="classification">Classification: Sativa</span>
-            <span class="notes">Notes: Contains 'Sour' -> sativa-leaning heuristic.</span>
+            <span class="notes">Notes: Diesel family, sativa-leaning.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Sour Jack</div>
+        <div class="strain-name">Super Silver Haze</div>
         <div class="strain-details">
             <span class="classification">Classification: Sativa</span>
-            <span class="notes">Notes: Contains 'Sour' -> sativa-leaning heuristic.</span>
+            <span class="notes">Notes: Sativa-dominant.</span>
         </div>
     </li>
+    </ul>
+    <h2 class="section-title">Indica</h2>
+    <ul id="indicaStrains">
     <li>
-        <div class="strain-name">Sour Power</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-            <span class="notes">Notes: Contains 'Sour' -> sativa-leaning heuristic.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Super Lemon Haze</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-            <span class="notes">Notes: Contains 'Haze'/'Mist'/'Panama'/'Trainwreck' -> sativa-leaning heuristic.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Tangerine Dream</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-            <span class="notes">Notes: Dream'/'Haze'/'Mist'/'Panama'/'Trainwreck' -> sativa-leaning heuristic.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Trainwreck</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-            <span class="notes">Notes: Contains 'Haze'/'Mist'/'Panama'/'Trainwreck' -> sativa-leaning heuristic.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">White Widow</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Sativa</span>
-            <span class="notes">Notes: Contains White Widow -> sativa-leaning heuristic.</span>
-        </div>
-    </li>
-</ul>
-
-<ul id="indicaStrains">
-    <li>
-        <div class="strain-name">BC Rockstar</div>
+        <div class="strain-name">9lb Hammer</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Rockstar'/'OG'/'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Classic indica-dominant strain (commonly listed 80/20).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Afghani</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Landrace indica.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Afgoo</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Indica-leaning.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">AK Kush</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Named 'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Big Cat Kush</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Named 'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blackberry Kush</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Named 'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blackberry Moonrocks</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blue Lights</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blue Slushie</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blue Tahoe</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blue Venom</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blue Widow</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blue Zlushies</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blueberry</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Indica-leaning.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blueberry Donuts</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blueberry Icewreck</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blueberry Kush</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Kush/blue lineage - indica leaning.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blueberry Rockstar</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
         <div class="strain-name">Bubba Kush</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Rockstar'/'OG'/'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Classic indica (named Bubba/Kush).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Cap's Frozen Lemons</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
         <div class="strain-name">Death Bubba</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Rockstar'/'OG'/'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Classic indica (named Bubba/Kush).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">God's Green Crack</div>
+        <div class="strain-name">Durban Poison</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'God' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Indica-dominant.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">God's OG</div>
+        <div class="strain-name">Fatso</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'God' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Indica-dominant hybrid.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Grandaddy Purple</div>
+        <div class="strain-name">Gas Mask</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Named after a classic indica strain.</span>
+            <span class="notes">Notes: Indica-dominant.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Grease Monkey</div>
+        <div class="strain-name">Gassiosa</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Monkey' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Indica-dominant.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Green Crack</div>
+        <div class="strain-name">Gorilla Glue</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Named after a crack-like high.</span>
+            <span class="notes">Notes: Indica-dominant.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Grizzly Kush</div>
+        <div class="strain-name">Grape Breath</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Rockstar'/'OG'/'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">King Kush</div>
+        <div class="strain-name">Grape Kush</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Rockstar'/'OG'/'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Lindsay OG</div>
+        <div class="strain-name">Grapefruit Kush</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Rockstar'/'OG'/'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Lucky Charms</div>
+        <div class="strain-name">Grapemint</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains Lucky Charms -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Master Kush</div>
+        <div class="strain-name">Grapple</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Rockstar'/'OG'/'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">MK Ultra</div>
+        <div class="strain-name">Hella Jelly</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Ultra' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Nuken</div>
+        <div class="strain-name">Jack Herer</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Nuken' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Indica-leaning.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">OG Kush</div>
+        <div class="strain-name">Kush Mints</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Rockstar'/'OG'/'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Named 'Kush'/'Bubba' -> indica-leaning heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">OG Shark</div>
+        <div class="strain-name">Lemon Berry Pie</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Shark'/'OG' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Moby Dick</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Indica-dominant.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Mr. Bubba</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Named 'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Northern Lights</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Indica-dominant.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Orange Crush</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Papaya</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
         <div class="strain-name">Pink Kush</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Pink'/'Kush' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Classic indica (named Bubba/Kush).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pink Panties</div>
+        <div class="strain-name">Platinum Bubba Kush</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Pink'/'Panties' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Named 'Kush'/'Bubba' -> indica-leaning heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pink Rhino</div>
+        <div class="strain-name">Purple Cadillac</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Pink'/'Rhino' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pink Starburst</div>
+        <div class="strain-name">Purple Punch</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Pink'/'Starburst' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pink Tuna</div>
+        <div class="strain-name">Purple Tropicana</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Pink'/'Tuna' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Platinum OG</div>
+        <div class="strain-name">Purple Tuna</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Platinum'/'OG' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Rockstar Kush</div>
+        <div class="strain-name">Purple Urkle</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Rockstar'/'OG'/'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Romulan</div>
+        <div class="strain-name">Purple Vanilla Frosting</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Romulan' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Sweet Tooth</div>
+        <div class="strain-name">Shishkaberry</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Sweet Tooth' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Tom Ford Pink Kush</div>
+        <div class="strain-name">Silver Death Bubba</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Pink'/'Kush' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Named 'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Sonic Lemon Fuel</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Strawberry Bubba</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Named 'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Strawberry Lemonade</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Sunshine Bubble Kush</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Named 'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Supreme Blueberry</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Sweet Pink Grapefruit</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
         </div>
     </li>
     <li>
         <div class="strain-name">Tuna Kush</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Tuna'/'Kush' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Named 'Kush'/'Bubba' -> indica-leaning heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Violator Kush</div>
+        <div class="strain-name">Vanilla Kush</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Kush' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Named 'Kush'/'Bubba' -> indica-leaning heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Velvet Apple #14</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Vintage Blueberry</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Fruity/purple name -> indica-leaning heuristic (low-certainty).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Willie's Kush Cake</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Indica</span>
+            <span class="notes">Notes: Named 'Kush'/'Bubba' -> indica-leaning heuristic.</span>
         </div>
     </li>
     <li>
         <div class="strain-name">Zombie Kush</div>
         <div class="strain-details">
             <span class="classification">Classification: Indica</span>
-            <span class="notes">Notes: Contains 'Kush' -> indica-leaning heuristic.</span>
+            <span class="notes">Notes: Named 'Kush'/'Bubba' -> indica-leaning heuristic.</span>
         </div>
     </li>
-</ul>
-
-<ul id="hybridStrains">
+    </ul>
+    <h2 class="section-title">Hybrid</h2>
+    <ul id="hybridStrains">
     <li>
-        <div class="strain-name">Animal Face</div>
+        <div class="strain-name">24k Gold</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Commonly listed as indica-dominant hybrid (Kosher Tangie cross).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Apple Fritter</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Banana Kush</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Black Cherry Punch</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Black Tuna</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Blue Dream</div>
+        <div class="strain-name">AK 47</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
             <span class="notes">Notes: Classic hybrid.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Blueberry</div>
+        <div class="strain-name">Alien OG</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Hybrid (OG lineage).</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Cookies and Cream</div>
+        <div class="strain-name">Animal Cookies</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Cookie-family hybrid.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Do-si-dos</div>
+        <div class="strain-name">Apple Fritter</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Common hybrid.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Durban Poison</div>
+        <div class="strain-name">Banana Cream</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Early Lemon Berry</div>
+        <div class="strain-name">Banana Cream Pie</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">G-13</div>
+        <div class="strain-name">Banana Fig</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Banana Fruit Punch</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Banana Ice</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Banana OG</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid (banana/OG lineage).</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Berry Gelato</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Birthday Cake Kush</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Cake/Kush hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Biscotti Cookies</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Black Cherry Gelato</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blackberry Cheesecake</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blue Gelato</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Gelato-family hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blue Magoo Cookies</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blueberry Cheesecake</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blueberry Cookies</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blueberry Gelato</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Blunicorn Cookies</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Bonkers</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Brownie Scout</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Cherry Cheesecake</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Cherry Cola</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Cherry Cookies</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Cherry Diesel</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Cherry Pie</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Chocolate Diesel</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Clementine</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Cookie Dough</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Cookies & Cream</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Cotton Candy Kush</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Cream Soda</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Creme Brulee</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Crispy Rice Treat</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Darth Vader OG</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Do-Si-Dos</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Donny Burger</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Dosi Pie</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Double-O-Girl</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Dream Queen</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">East Coast Sour Diesel</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">El Diablo</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">F-13</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">French Toast</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Gasolina</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
         </div>
     </li>
     <li>
         <div class="strain-name">Gelato</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">God's Bud</div>
+        <div class="strain-name">Gelato Mints</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">God's Gift</div>
+        <div class="strain-name">Ghost Drops</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Ghost OG</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Girl Scout Cookies</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">GMO Cookies</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">God Bud</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
         </div>
     </li>
     <li>
         <div class="strain-name">God's Green Crack</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Hybrid.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Grandaddy Purps</div>
+        <div class="strain-name">Gods Love</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Hybrid.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Hawaiian</div>
+        <div class="strain-name">Golden Goat</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Hybrid.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Island Sweet Skunk</div>
+        <div class="strain-name">Granddaddy Purple</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Hybrid.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Jean Guy</div>
+        <div class="strain-name">Grease Monkey</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Hybrid.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Jelly Breath</div>
+        <div class="strain-name">Green Applez</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Hybrid.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Kandy Kush</div>
+        <div class="strain-name">Green Monster</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Hybrid.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">LA Confidential</div>
+        <div class="strain-name">Guava Runtz</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Hawaiian Punch</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Jelly Pancakes</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Jungle Cake</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">LA Cake</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Lemon Berry</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Lemon Cherry Gelato</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Lemon Meringue Pie</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Mango Gelato</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Mendo Breath</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
         </div>
     </li>
     <li>
         <div class="strain-name">Mimosa</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Mint Chip Gelato</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Motor Breath</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Mr. Nice Guy</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Orange Creamsicle</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Peach Cookies</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
         </div>
     </li>
     <li>
         <div class="strain-name">Peanut Butter Breath</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Hybrid.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Peanut Butter Breath</div>
+        <div class="strain-name">Pink Cookies</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pink Kush</div>
+        <div class="strain-name">Pink Runtz</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Pineapple Express</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Pistachio</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
         </div>
     </li>
     <li>
         <div class="strain-name">Purple God</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Hybrid.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Purple Kush</div>
+        <div class="strain-name">Rainbow Runtz</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Romulan</div>
+        <div class="strain-name">Runtz</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Royal Highness</div>
+        <div class="strain-name">Sherbert Cookies</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Slurricane</div>
+        <div class="strain-name">Sky Cake</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Sour Diesel</div>
+        <div class="strain-name">Space Age Cake</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Super Pink</div>
+        <div class="strain-name">Space Cake</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Sweet Tooth</div>
+        <div class="strain-name">Strawberries and Cream</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Watermelon Breath</div>
+        <div class="strain-name">Strawberry Banana</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">White Rhino</div>
+        <div class="strain-name">Sugar Cookies</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Sunset Sherbert</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Tangerine Cookies</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">The Undercaker</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Tropical Zkittlez</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Tropicana Cookies</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Wedding Cake</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Hybrid.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">White Cookies</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">White Runtz</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">White Tahoe Cookies</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Hybrid</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
         </div>
     </li>
     <li>
         <div class="strain-name">White Widow</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Classic hybrid.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Zookies</div>
+        <div class="strain-name">Zkittles Cake</div>
         <div class="strain-details">
             <span class="classification">Classification: Hybrid</span>
-            <span class="notes">Notes: Hybrid because it does not have any keywords.</span>
+            <span class="notes">Notes: Contains 'Cookies/Cake/Gelato/Runtz/Banana' -> hybrid heuristic.</span>
         </div>
     </li>
-</ul>
-
-<ul id="unknownStrains">
+    </ul>
+    <h2 class="section-title">Unknown</h2>
+    <ul id="unknownStrains">
     <li>
-        <div class="strain-name">Khalifa Mintz</div>
+        <div class="strain-name">91 Octane</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Killer OG</div>
+        <div class="strain-name">Abominable Snowman</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">King Tut</div>
+        <div class="strain-name">AC/DC</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Krypto Kronic</div>
+        <div class="strain-name">Ace Killer OG</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">LA Wedding Pop</div>
+        <div class="strain-name">Ace of Spades</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Lady Boss</div>
+        <div class="strain-name">Afghaniskunk</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Larry Bird</div>
+        <div class="strain-name">Alaskan Thunder Fuck</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Lazer Wolf</div>
+        <div class="strain-name">Alien Guy</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Lions Milk</div>
+        <div class="strain-name">Alien Rift</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Liquid Imagination</div>
+        <div class="strain-name">Animal Face</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Lucky Charms</div>
+        <div class="strain-name">Animal Mints</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">MAC Donut</div>
+        <div class="strain-name">Animal Sundae</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Macmosa</div>
+        <div class="strain-name">Atom Splitter</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Makaveli OG</div>
+        <div class="strain-name">Auora Borealis</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Mandarin Mints</div>
+        <div class="strain-name">Bad Azz OG</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Maple Leaf</div>
+        <div class="strain-name">Bakerstreet</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Mary OG</div>
+        <div class="strain-name">Batman OG</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Master Jedi</div>
+        <div class="strain-name">Beast Mode Skittles</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Master Pink</div>
+        <div class="strain-name">Big Mac</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Master Yoda</div>
+        <div class="strain-name">Black Biscotti</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">MC Pie Face</div>
+        <div class="strain-name">Black Cheese</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">McFlurry</div>
+        <div class="strain-name">Black Diamond</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Meat Breath</div>
+        <div class="strain-name">Black Gas</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Med Head</div>
+        <div class="strain-name">Black Jelly</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Megaton Melon #4</div>
+        <div class="strain-name">Black Kyber Crystal</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Mimosa</div>
+        <div class="strain-name">Black Mac</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Mint Froyo</div>
+        <div class="strain-name">Black Mamba</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">MK Ultra</div>
+        <div class="strain-name">Black Orchid</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Mob Boss</div>
+        <div class="strain-name">Black Triangle</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Monkey Breath</div>
+        <div class="strain-name">Blaze &amp; Grape</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Monster Mass</div>
+        <div class="strain-name">Blockberry</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Morning Sun</div>
+        <div class="strain-name">Blue Cheese</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Mountain Mimosa</div>
+        <div class="strain-name">Blue Dream</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Munson</div>
+        <div class="strain-name">Blue Gelato 41</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Neon Lambo</div>
+        <div class="strain-name">Blue Hash</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Nightmare OG</div>
+        <div class="strain-name">Blue Kush</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Nirvana</div>
+        <div class="strain-name">Blueberry Muffin</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Notorious OG</div>
+        <div class="strain-name">Blueberry Muffin</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Nuken</div>
+        <div class="strain-name">California Orange</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Og God</div>
+        <div class="strain-name">Candy Runtz</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">OG Shark</div>
+        <div class="strain-name">Candy Rain</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Ogopogo Gold</div>
+        <div class="strain-name">Cheetah Piss</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Okanagan Frost</div>
+        <div class="strain-name">Cherry AK</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">One Punch</div>
+        <div class="strain-name">Cherry Punch</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Oreoz</div>
+        <div class="strain-name">Chemo</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Outlaw</div>
+        <div class="strain-name">Chemdawg</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Overlord OG</div>
+        <div class="strain-name">Chocolate Cheesecake</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pablo Escobar</div>
+        <div class="strain-name">Citrus Sunshine Haze</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pablo’s Revenge</div>
+        <div class="strain-name">Cookie Kush</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Papaya</div>
+        <div class="strain-name">Cotton Candy</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Papaya Punch</div>
+        <div class="strain-name">Cranberry Haze</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Peanut Butter Breath</div>
+        <div class="strain-name">Critical Kush</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pie Face</div>
+        <div class="strain-name">Dank Sinatra</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pie Hoe</div>
+        <div class="strain-name">Delta-8</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pink</div>
+        <div class="strain-name">Donkey Butter</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pink Anxiety</div>
+        <div class="strain-name">Doritoz</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pink Comatose</div>
+        <div class="strain-name">Dr. Zues</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pink Crack</div>
+        <div class="strain-name">Dream Catcher</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pink Gas</div>
+        <div class="strain-name">Durban</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pink Gas Mask</div>
+        <div class="strain-name">Durban Dawg</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pink Octane</div>
+        <div class="strain-name">Early Lemon Berry</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pink Panties</div>
+        <div class="strain-name">El Chapo OG</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pink Push Pop</div>
+        <div class="strain-name">El Jeffe</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pink Unicorn</div>
+        <div class="strain-name">Espresso</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Platinum Death</div>
+        <div class="strain-name">Facewreck</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Platinum Gorilla Glue #4</div>
+        <div class="strain-name">Frankenberry</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Platinum Jelly Breath</div>
+        <div class="strain-name">Frosted Cakes</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Ponderosa Pine</div>
+        <div class="strain-name">Fuel</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Poontang Pie</div>
+        <div class="strain-name">Funky Charms</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Pot of Gold</div>
+        <div class="strain-name">Gas</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Race Car</div>
+        <div class="strain-name">Gelato 33</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Rainbow Skittles</div>
+        <div class="strain-name">Gelato Cake</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Recon OG</div>
+        <div class="strain-name">Gelato Sherbert</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Revolver</div>
+        <div class="strain-name">Godfather OG</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Rockstar</div>
+        <div class="strain-name">Gorilla Lemon Fire</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Rockstar Peanut Butter</div>
+        <div class="strain-name">Gorilla Mints</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Grape Ape</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Grape Diamonds</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Great White Shark</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Gushers</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Headband</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">I.C.C.</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Ice Cream Cake</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Jack Flash</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Jelly Breath</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Jungle Breath</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Kandy Kush</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Kool Aid</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Kosher Kush</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Lemon Pepper</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Lethal Runtz</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Mac</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Mac Flurry</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Mac Daddy</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Malt Shake</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Mandarin Cookies</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Master Kush</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Melon Milk</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Mike Tyson</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Moose &amp; Lobsta</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Mr. Nice</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Muffin</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">OG Kush</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">OG Kush</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Orange Crush</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Organigram</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Peanut Butter</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Peanut Butter Souffle</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Platinum Cookies</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Platnium GSC</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Powdered Doughnuts</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Purple City</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">R.I.P</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Rainbow Punch</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Red Congolese</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Red Velvet</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
+        <div class="strain-name">Rockstar Kush</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
@@ -1303,84 +2210,21 @@
         </div>
     </li>
     <li>
-        <div class="strain-name">Royal Gorilla</div>
+        <div class="strain-name">Scary Larry</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Royal Highness</div>
+        <div class="strain-name">Senorita</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Scoops</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">SFV</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Shark Bite</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Shark Shock</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Shipwreck</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Silver Surfer</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sirius Black</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Skywalker OG</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sleepy Joe</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Slow Lane</div>
+        <div class="strain-name">Sherbinski's</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
@@ -1394,140 +2238,98 @@
         </div>
     </li>
     <li>
-        <div class="strain-name">Slurricane x Geleto</div>
+        <div class="strain-name">Soar</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Slurry Crasher</div>
+        <div class="strain-name">Sour Amnesia</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Snoop Dogg</div>
+        <div class="strain-name">Sour Chem</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Sophies Breath</div>
+        <div class="strain-name">Sour Cookies</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Sour Cheese</div>
+        <div class="strain-name">Sour Diesel</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Sour Dream</div>
+        <div class="strain-name">Sour Grapes</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Space Goblins</div>
+        <div class="strain-name">Sour Jack</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Space Queen</div>
+        <div class="strain-name">Sour Pink</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Stankasaurus</div>
+        <div class="strain-name">Space Candy</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Stinky Pinky</div>
+        <div class="strain-name">Strawberry Cheesecake</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Stinky Pussy</div>
+        <div class="strain-name">Strawberry Cream</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Sundae Driver</div>
+        <div class="strain-name">Super Lemon Haze</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Sunflower Sunshine</div>
+        <div class="strain-name">Super Sour Diesel</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Super Glue</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Super Pink</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Super Sonic Blizzard</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Super Sour Widow</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sweet Deep Gratefruit</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Sweet Tooth</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Tally Mon</div>
+        <div class="strain-name">Tangie</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
@@ -1541,119 +2343,21 @@
         </div>
     </li>
     <li>
-        <div class="strain-name">Tart Pop</div>
+        <div class="strain-name">Tangerine Power</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">Tear Gas</div>
+        <div class="strain-name">Tropicana</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
     <li>
-        <div class="strain-name">The Force</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">The Fudd</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">The Glove</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">The Za</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Thin Mint GSC</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Tom Ford</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Tootsie Roll</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Top Crop</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Train Wreck</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Triceratops</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Tripple Burger</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Trophy Wife</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Tropical Milkshake</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Tsunami</div>
-        <div class="strain-details">
-            <span class="classification">Classification: Unknown</span>
-            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
-        </div>
-    </li>
-    <li>
-        <div class="strain-name">Turbo Mind Warp</div>
+        <div class="strain-name">Tropicana GSC</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
@@ -1786,6 +2490,13 @@
         </div>
     </li>
     <li>
+        <div class="strain-name">Witches Breath</div>
+        <div class="strain-details">
+            <span class="classification">Classification: Unknown</span>
+            <span class="notes">Notes: No reliable match; flagged Unknown.</span>
+        </div>
+    </li>
+    <li>
         <div class="strain-name">Wooly Mammoth</div>
         <div class="strain-details">
             <span class="classification">Classification: Unknown</span>
@@ -1834,7 +2545,7 @@
             <span class="notes">Notes: No reliable match; flagged Unknown.</span>
         </div>
     </li>
-</ul>
+    </ul>
 <script>
     function searchStrains() {
         const input = document.getElementById('strainInput').value.trim().toLowerCase();
