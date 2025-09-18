@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wildcats Strain List</title>
 <style>
-/* --- Your CSS from before --- */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -39,11 +38,16 @@ h1 {
     to { text-shadow: 0 0 20px #adff2f, 0 0 30px #006400; }
 }
 .description {
-  text-align: center;
-  color: #b0e0b0;
-  margin-top: -10px;
-  margin-bottom: 20px;
-  font-style: italic;
+    text-align: center;
+    color: #ffffff; /* bright white for visibility */
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-style: normal; /* remove italics */
+    font-size: 1.2em; /* larger text */
+    line-height: 1.5; /* better spacing */
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .legend {
     display: flex;
@@ -136,7 +140,7 @@ h1 {
 }
 .strain-name {
     font-weight: bold;
-    color: #fff; /* better contrast */
+    color: #fff;
     font-size: 1.2em;
 }
 .indica-strain { background-color: blue; }
@@ -148,7 +152,7 @@ h1 {
 <body>
 <div class="container">
     <h1>Wildcats Wonderful Weed List</h1>
-    <p class="description">This website is a custom list of all the different strains of cannabis that William has already tried...</p>
+    <p class="description">This website is a custom list of all the different strains of cannabis that William has already tried. It acts as his personal database, so he can easily check what's on his list. The main purpose is for him to use the search feature to quickly see if a strain is a new one he should try or if it's already a familiar favorite.</p>
     <div class="legend">
         <div class="legend-item" data-filter="indica-strain">
             <div class="legend-color" style="background-color: blue;"></div>
@@ -175,9 +179,9 @@ h1 {
         <label for="strainInput">Search:</label>
         <input type="text" id="strainInput" oninput="searchStrains()" placeholder="Enter strain name...">
     </div>
-    <div class="strain-list-container">
+ <div class="strain-list-container">
         <ul>
-            <li class="hybrid-strain">
+<li class="hybrid-strain">
     <div class="strain-name">24k Gold</div>
 </li>
 <li class="hybrid-strain">
@@ -1749,7 +1753,7 @@ h1 {
 <li class="hybrid-strain">
     <div class="strain-name">Zsweet</div>
 </li>
-        </ul>
+</ul>
     </div>
 </div>
 <script>
@@ -1761,21 +1765,16 @@ function searchStrains() {
         strain.style.display = name.includes(input) ? 'flex' : 'none';
     });
 }
-
 let activeFilter = null;
-
 document.querySelectorAll('.legend-item').forEach(item => {
     item.addEventListener('click', () => {
         const filterClass = item.getAttribute('data-filter');
         const strains = document.querySelectorAll('.strain-list-container ul li');
-
-        // If clicking the same active filter OR "Show All", reset to show all
         if (activeFilter === filterClass || filterClass === 'all') {
             strains.forEach(strain => strain.style.display = 'flex');
             activeFilter = null;
             document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
         } else {
-            // Apply new filter
             strains.forEach(strain => {
                 strain.style.display = strain.classList.contains(filterClass) ? 'flex' : 'none';
             });
@@ -1783,13 +1782,10 @@ document.querySelectorAll('.legend-item').forEach(item => {
             document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
             item.classList.add('active');
         }
-
-        // Clear search box when filtering
         document.getElementById('strainInput').value = '';
-    });
+ });
 });
 </script>
 
 </body>
 </html>
-
