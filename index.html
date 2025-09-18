@@ -1780,7 +1780,7 @@ h1 {
 <li class="hybrid-strain">
     <div class="strain-name">Zsweet</div>
 </li>
-                                        </ul>
+                                            </ul>
 </div> <!-- closes .strain-list-container -->
 
 <!-- Center popup -->
@@ -1930,6 +1930,7 @@ updateCounts();
 </script>
 
 <style>
+/* Center popup styling */
 #noResultsPopup {
     display: none;
     justify-content: center;
@@ -1950,6 +1951,7 @@ updateCounts();
     box-shadow: 0 0 20px #00ff00;
 }
 
+/* Pulse + Glow for the popup */
 .pulse-glow {
     animation: pulse 1s infinite;
     text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
@@ -1960,6 +1962,7 @@ updateCounts();
     50% { transform: translate(-50%, -50%) scale(1.1); }
 }
 
+/* Fireworks */
 .firework {
     position: fixed;
     width: 5px;
@@ -1968,9 +1971,18 @@ updateCounts();
     pointer-events: none;
     z-index: 9999;
 }
+
+/* Default strain text color */
+.strain-list-container li {
+    color: #fff;
+}
+
+/* Yellow background strains get black text */
+.unknown-strain {
+    background-color: yellow; /* your yellow */
+    color: #000 !important;
+}
 </style>
 
 </body>
 </html>
-
-
