@@ -138,28 +138,16 @@ h1 {
     transform: translateY(-3px);
     box-shadow: 0 4px 15px rgba(0, 128, 0, 0.3);
 }
-/* Base style for all strain names */
 .strain-name {
     font-weight: bold;
+    color: #fff;
     font-size: 1.2em;
 }
-
-/* Per-category text colors for best contrast */
-.indica-strain .strain-name {
-    color: #ffffff; /* white on blue */
-}
-
-.sativa-strain .strain-name {
-    color: #ffffff; /* white on red */
-}
-
-.hybrid-strain .strain-name {
-    color: #ffffff; /* white on green */
-}
-
-.unknown-strain .strain-name {
-    color: #000000; /* black on yellow */
-}</style>
+.indica-strain { background-color: blue; }
+.sativa-strain { background-color: red; }
+.hybrid-strain { background-color: green; }
+.unknown-strain { background-color: yellow; }
+</style>
 </head>
 <body>
 <div class="container">
