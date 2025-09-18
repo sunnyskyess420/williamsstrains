@@ -1780,15 +1780,16 @@ h1 {
 <li class="hybrid-strain">
     <div class="strain-name">Zsweet</div>
 </li>
-                </ul>
+                        </ul>
         <!-- Fun message for when no strains match -->
-        <div id="noResults" class="fade-in" style="display:none; text-align:center; color:#00ff00; font-size:1.2em; margin:15px 0;">
+        <div id="noResults" style="display:none; text-align:center; color:#00ff00; font-size:1.5em; margin:15px 0;">
             oOo a new one!
         </div>
     </div>
 </div>
 
 <script>
+// ===== COUNT FUNCTION =====
 function updateCounts() {
     document.getElementById('indicaCount').textContent =
         document.querySelectorAll('.indica-strain:not(.hidden)').length;
@@ -1800,20 +1801,57 @@ function updateCounts() {
         document.querySelectorAll('.unknown-strain:not(.hidden)').length;
 }
 
+// ===== FIREWORKS =====
+function createFirework(x, y, color) {
+    for (let i = 0; i < 20; i++) {
+        const fw = document.createElement('div');
+        fw.className = 'firework';
+        fw.style.background = color;
+        fw.style.left = x + 'px';
+        fw.style.top = y + 'px';
+        document.body.appendChild(fw);
+
+        const angle = Math.random() * 2 * Math.PI;
+        const radius = Math.random() * 80;
+        const dx = Math.cos(angle) * radius;
+        const dy = Math.sin(angle) * radius;
+
+        fw.animate([
+            { transform: `translate(0,0)`, opacity: 1 },
+            { transform: `translate(${dx}px, ${dy}px)`, opacity: 0 }
+        ], {
+            duration: 1000,
+            easing: 'ease-out'
+        });
+
+        setTimeout(() => fw.remove(), 1000);
+    }
+}
+
+// ===== MESSAGE SHOW/HIDE =====
 function showMessage() {
     const msg = document.getElementById('noResults');
-    msg.classList.remove('fade-out');
     msg.style.display = 'block';
-    requestAnimationFrame(() => msg.classList.add('fade-in'));
+    msg.classList.add('pulse-glow');
+
+    // Fireworks from center of screen
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00', '#ff6600'];
+    for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+            createFirework(centerX, centerY, colors[Math.floor(Math.random() * colors.length)]);
+        }, i * 200);
+    }
 }
 
 function hideMessage() {
     const msg = document.getElementById('noResults');
-    msg.classList.remove('fade-in');
-    msg.classList.add('fade-out');
-    setTimeout(() => { msg.style.display = 'none'; }, 300);
+    msg.style.display = 'none';
+    msg.classList.remove('pulse-glow');
 }
 
+// ===== FADE HELPERS =====
 function hideWithFade(el) {
     el.classList.remove('fade-in');
     el.classList.add('fade-out');
@@ -1829,6 +1867,7 @@ function showWithFade(el) {
     updateCounts();
 }
 
+// ===== SEARCH =====
 function searchStrains() {
     const input = document.getElementById('strainInput').value.toLowerCase();
     const strains = document.querySelectorAll('.strain-list-container ul li');
@@ -1847,6 +1886,7 @@ function searchStrains() {
     visibleCount === 0 ? showMessage() : hideMessage();
 }
 
+// ===== FILTER =====
 let activeFilter = null;
 document.querySelectorAll('.legend-item').forEach(item => {
     item.addEventListener('click', () => {
@@ -1880,9 +1920,32 @@ document.querySelectorAll('.legend-item').forEach(item => {
     });
 });
 
-// run once on page load
+// ===== INITIAL COUNT =====
 updateCounts();
 </script>
+
+<style>
+/* Pulse + Glow for the message */
+.pulse-glow {
+    animation: pulse 1s infinite;
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Fireworks */
+.firework {
+    position: fixed;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+}
+</style>
 
 </body>
 </html>
