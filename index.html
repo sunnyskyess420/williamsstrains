@@ -1780,16 +1780,15 @@ h1 {
 <li class="hybrid-strain">
     <div class="strain-name">Zsweet</div>
 </li>
-                                  </ul>
+                                     </ul>
 </div> <!-- closes .strain-list-container -->
 
-<!-- Fun message for when no strains match -->
-<div id="noResults" style="display:none; text-align:center; color:#00ff00; font-size:1.5em; margin:15px 0; background-color:rgba(30,30,30,0.95); padding:10px 0; width:100%;">
-    oOo a new one!
+<!-- Center popup -->
+<div id="noResultsPopup">
+    oOo A NEW ONE!
 </div>
 
 </div> <!-- closes .container -->
-</div> <!-- closes body wrapper -->
 
 <script>
 function updateCounts() {
@@ -1832,16 +1831,16 @@ function createFirework(x, y, color, spread = 80, particles = 20) {
 
 // ===== MESSAGE SHOW/HIDE =====
 function showMessage() {
-    const msg = document.getElementById('noResults');
-    msg.style.display = 'block';
-    msg.classList.add('pulse-glow');
+    const popup = document.getElementById('noResultsPopup');
+    popup.style.display = 'flex';
+    popup.classList.add('pulse-glow');
 
-    const rect = msg.getBoundingClientRect();
+    const rect = popup.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00', '#ff6600', '#ff0000', '#ffffff'];
 
-    // Burst from message
+    // Burst from popup
     for (let i = 0; i < 5; i++) {
         setTimeout(() => {
             createFirework(centerX, centerY, colors[Math.floor(Math.random() * colors.length)], 120, 30);
@@ -1860,9 +1859,9 @@ function showMessage() {
 }
 
 function hideMessage() {
-    const msg = document.getElementById('noResults');
-    msg.style.display = 'none';
-    msg.classList.remove('pulse-glow');
+    const popup = document.getElementById('noResultsPopup');
+    popup.style.display = 'none';
+    popup.classList.remove('pulse-glow');
 }
 
 // ===== FADE HELPERS =====
@@ -1939,15 +1938,36 @@ updateCounts();
 </script>
 
 <style>
-/* Pulse + Glow for the message */
+/* Center popup styling */
+#noResultsPopup {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    background-color: rgba(30,30,30,0.95);
+    color: #00ff00;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 12px;
+    z-index: 10000;
+    box-shadow: 0 0 20px #00ff00;
+}
+
+/* Pulse + Glow for the popup */
 .pulse-glow {
     animation: pulse 1s infinite;
     text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
 }
 
 @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
 }
 
 /* Fireworks */
@@ -1963,3 +1983,4 @@ updateCounts();
 
 </body>
 </html>
+
