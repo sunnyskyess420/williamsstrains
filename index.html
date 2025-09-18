@@ -1780,8 +1780,32 @@ h1 {
 <li class="hybrid-strain">
     <div class="strain-name">Zsweet</div>
 </li>
-                                           </ul>
+                                          </ul>
 </div> <!-- closes .strain-list-container -->
+
+<!-- Filter legend with live counts -->
+<div class="legend">
+    <div class="legend-item" data-filter="indica">
+        <span class="legend-color" style="background-color: blue;"></span>
+        Indica (<span id="indicaCount">0</span>)
+    </div>
+    <div class="legend-item" data-filter="sativa">
+        <span class="legend-color" style="background-color: red;"></span>
+        Sativa (<span id="sativaCount">0</span>)
+    </div>
+    <div class="legend-item" data-filter="hybrid">
+        <span class="legend-color" style="background-color: green;"></span>
+        Hybrid (<span id="hybridCount">0</span>)
+    </div>
+    <div class="legend-item" data-filter="unknown">
+        <span class="legend-color" style="background-color: yellow;"></span>
+        Unknown (<span id="unknownCount">0</span>)
+    </div>
+    <div class="legend-item" data-filter="all">
+        <span class="legend-color" style="background-color: gray;"></span>
+        Show All
+    </div>
+</div>
 
 <!-- Center popup -->
 <div id="noResultsPopup">
@@ -1789,6 +1813,147 @@ h1 {
 </div>
 
 </div> <!-- closes .container -->
+
+<script>
+function updateCounts() {
+    document.getElementById('indicaCount').textContent =
+        document.querySelectorAll('.indica-strain:not(.hidden)').length;
+    document.getElementById('sativaCount').textContent =
+        document.querySelectorAll('.sativa-strain:not(.hidden)').length;
+    document.getElementById('hybridCount').textContent =
+        document.querySelectorAll('.hybrid-strain:not(.hidden)').length;
+    document.getElementById('unknownCount').textContent =
+        document.querySelectorAll('.unknown-strain:not(.hidden)').length;
+}
+
+function createFirework(x, y, color, spread = 80, particles = 20) {
+    for (let i = 0; i < particles; i++) {
+        const fw = document.createElement('div');
+        fw.className = 'firework';
+        fw.style.background = color;
+        fw.style.left = x + 'px';
+        fw.style.top = y + 'px';
+        document.body.appendChild(fw);
+
+        const angle = Math.random() * 2 * Math.PI;
+        const radius = Math.random() * spread;
+        const dx = Math.cos(angle) * radius;
+        const dy = Math.sin(angle) * radius;
+
+        fw.animate([
+            { transform: `translate(0,0)`, opacity: 1 },
+            { transform: `translate(${dx}px, ${dy}px)`, opacity: 0 }
+        ], {
+            duration: 1500,
+            easing: 'ease-out'
+        });
+
+        setTimeout(() => fw.remove(), 1500);
+    }
+}
+
+function showMessage() {
+    const popup = document.getElementById('noResultsPopup');
+    popup.style.display = 'flex';
+    popup.classList.add('pulse-glow');
+
+    const rect = popup.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00', '#ff6600', '#ff0000', '#ffffff'];
+
+    // Burst from popup
+    for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+            createFirework(centerX, centerY, colors[Math.floor(Math.random() * colors.length)], 120, 30);
+        }, i * 200);
+    }
+
+    // Random bursts all over the screen
+    let bursts = 0;
+    const interval = setInterval(() => {
+        const randX = Math.random() * window.innerWidth;
+        const randY = Math.random() * window.innerHeight;
+        createFirework(randX, randY, colors[Math.floor(Math.random() * colors.length)], 100, 25);
+        bursts++;
+        if (bursts > 15) clearInterval(interval);
+    }, 150);
+}
+
+function hideMessage() {
+    const popup = document.getElementById('noResultsPopup');
+    popup.style.display = 'none';
+    popup.classList.remove('pulse-glow');
+}
+
+function hideWithFade(el) {
+    el.classList.remove('fade-in');
+    el.classList.add('fade-out');
+    setTimeout(() => {
+        el.classList.add('hidden');
+        updateCounts();
+    }, 300);
+}
+
+function showWithFade(el) {
+    el.classList.remove('hidden', 'fade-out');
+    el.classList.add('fade-in');
+    updateCounts();
+}
+
+function searchStrains() {
+    const input = document.getElementById('strainInput').value.toLowerCase();
+    const strains = document.querySelectorAll('.strain-list-container ul li');
+    let visibleCount = 0;
+
+    strains.forEach(strain => {
+        const name = strain.textContent.toLowerCase();
+        if (name.includes(input)) {
+            showWithFade(strain);
+            visibleCount++;
+        } else {
+            hideWithFade(strain);
+        }
+    });
+
+    visibleCount === 0 ? showMessage() : hideMessage();
+}
+
+let activeFilter = null;
+document.querySelectorAll('.legend-item').forEach(item => {
+    item.addEventListener('click', () => {
+        const filterClass = item.getAttribute('data-filter');
+        const strains = document.querySelectorAll('.strain-list-container ul li');
+        let visibleCount = 0;
+
+        if (activeFilter === filterClass || filterClass === 'all') {
+            strains.forEach(strain => {
+                showWithFade(strain);
+                visibleCount++;
+            });
+            activeFilter = null;
+            document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
+        } else {
+            strains.forEach(strain => {
+                if (strain.classList.contains(filterClass)) {
+                    showWithFade(strain);
+                    visibleCount++;
+                } else {
+                    hideWithFade(strain);
+                }
+            });
+            activeFilter = filterClass;
+            document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+        }
+
+        visibleCount === 0 ? showMessage() : hideMessage();
+        document.getElementById('strainInput').value = '';
+    });
+});
+
+updateCounts();
+</script>
 
 <style>
 /* Center popup styling */
@@ -1836,17 +2001,17 @@ h1 {
 /* Default strain text color */
 .strain-list-container li {
     color: #fff;
-    display: flex;          /* keeps icon + text in one line */
-    align-items: center;    /* vertically centers icon with text */
+    display: flex;
+    align-items: center;
 }
 
 /* Yellow background strains get black text */
 .unknown-strain {
-    background-color: yellow; /* your yellow */
+    background-color: yellow;
     color: #000 !important;
 }
 
-/* === Category-specific icons === */
+/* Category-specific icons */
 .indica-strain::before {
     content: "🌿";
 }
@@ -1864,84 +2029,7 @@ h1 {
 .strain-list-container li::before {
     font-size: 1.2em;
     margin-right: 6px;
-    display: inline-block;  /* ensures it stays inline */
-}
-</style>
-
-
-<style>
-/* Center popup styling */
-#noResultsPopup {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 250px;
-    height: 250px;
-    background-color: rgba(30,30,30,0.95);
-    color: #00ff00;
-    font-size: 1.8em;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 12px;
-    z-index: 10000;
-    box-shadow: 0 0 20px #00ff00;
-}
-
-/* Pulse + Glow for the popup */
-.pulse-glow {
-    animation: pulse 1s infinite;
-    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-50%, -50%) scale(1.1); }
-}
-
-/* Fireworks */
-.firework {
-    position: fixed;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-}
-
-/* Default strain text color */
-.strain-list-container li {
-    color: #fff;
-}
-
-/* Yellow background strains get black text */
-.unknown-strain {
-    background-color: yellow; /* your yellow */
-    color: #000 !important;
-}
-
-/* === Category-specific icons === */
-.indica-strain::before {
-    content: "🌿 ";
-}
-.sativa-strain::before {
-    content: "☀️ ";
-}
-.hybrid-strain::before {
-    content: "🔄 ";
-}
-.unknown-strain::before {
-    content: "❓ ";
-}
-
-/* Icon alignment */
-.strain-list-container li::before {
-    font-size: 1.2em;
-    vertical-align: middle;
-    margin-right: 6px;
+    display: inline-block;
 }
 </style>
 
