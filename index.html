@@ -1780,20 +1780,24 @@ h1 {
 <li class="hybrid-strain">
     <div class="strain-name">Zsweet</div>
 </li>
-        </ul>
+                </ul>
+        <!-- Fun message for when no strains match -->
+        <div id="noResults" style="display:none; text-align:center; color:#00ff00; font-size:1.2em; margin:15px 0;">
+            oOo a new one!
+        </div>
     </div>
 </div>
 
 <script>
 function updateCounts() {
     document.getElementById('indicaCount').textContent =
-        document.querySelectorAll('.indica-strain').length;
+        document.querySelectorAll('.indica-strain:not(.hidden)').length;
     document.getElementById('sativaCount').textContent =
-        document.querySelectorAll('.sativa-strain').length;
+        document.querySelectorAll('.sativa-strain:not(.hidden)').length;
     document.getElementById('hybridCount').textContent =
-        document.querySelectorAll('.hybrid-strain').length;
+        document.querySelectorAll('.hybrid-strain:not(.hidden)').length;
     document.getElementById('unknownCount').textContent =
-        document.querySelectorAll('.unknown-strain').length;
+        document.querySelectorAll('.unknown-strain:not(.hidden)').length;
 }
 updateCounts();
 
@@ -1813,14 +1817,20 @@ function showWithFade(el) {
 function searchStrains() {
     const input = document.getElementById('strainInput').value.toLowerCase();
     const strains = document.querySelectorAll('.strain-list-container ul li');
+    let visibleCount = 0;
+
     strains.forEach(strain => {
         const name = strain.textContent.toLowerCase();
         if (name.includes(input)) {
             showWithFade(strain);
+            visibleCount++;
         } else {
             hideWithFade(strain);
         }
     });
+
+    document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
+    updateCounts();
 }
 
 let activeFilter = null;
@@ -1845,6 +1855,10 @@ document.querySelectorAll('.legend-item').forEach(item => {
             document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
             item.classList.add('active');
         }
+
+        const visibleCount = document.querySelectorAll('.strain-list-container ul li:not(.hidden)').length;
+        document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
+        updateCounts();
 
         document.getElementById('strainInput').value = '';
     });
