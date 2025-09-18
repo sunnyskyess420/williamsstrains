@@ -1780,13 +1780,16 @@ h1 {
 <li class="hybrid-strain">
     <div class="strain-name">Zsweet</div>
 </li>
-                               </ul>
-        <!-- Fun message for when no strains match -->
-        <div id="noResults" style="display:none; text-align:center; color:#00ff00; font-size:1.5em; margin:15px 0;">
-            oOo a new one!
-        </div>
-    </div>
+                                  </ul>
+</div> <!-- closes .strain-list-container -->
+
+<!-- Fun message for when no strains match -->
+<div id="noResults" style="display:none; text-align:center; color:#00ff00; font-size:1.5em; margin:15px 0; background-color:rgba(30,30,30,0.95); padding:10px 0; width:100%;">
+    oOo a new one!
 </div>
+
+</div> <!-- closes .container -->
+</div> <!-- closes body wrapper -->
 
 <script>
 function updateCounts() {
@@ -1801,8 +1804,8 @@ function updateCounts() {
 }
 
 // ===== FIREWORKS =====
-function createFirework(x, y, color) {
-    for (let i = 0; i < 20; i++) {
+function createFirework(x, y, color, spread = 80, particles = 20) {
+    for (let i = 0; i < particles; i++) {
         const fw = document.createElement('div');
         fw.className = 'firework';
         fw.style.background = color;
@@ -1811,7 +1814,7 @@ function createFirework(x, y, color) {
         document.body.appendChild(fw);
 
         const angle = Math.random() * 2 * Math.PI;
-        const radius = Math.random() * 80;
+        const radius = Math.random() * spread;
         const dx = Math.cos(angle) * radius;
         const dy = Math.sin(angle) * radius;
 
@@ -1819,11 +1822,11 @@ function createFirework(x, y, color) {
             { transform: `translate(0,0)`, opacity: 1 },
             { transform: `translate(${dx}px, ${dy}px)`, opacity: 0 }
         ], {
-            duration: 1000,
+            duration: 1500,
             easing: 'ease-out'
         });
 
-        setTimeout(() => fw.remove(), 1000);
+        setTimeout(() => fw.remove(), 1500);
     }
 }
 
@@ -1833,18 +1836,27 @@ function showMessage() {
     msg.style.display = 'block';
     msg.classList.add('pulse-glow');
 
-    // Get message position on screen
     const rect = msg.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
+    const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00', '#ff6600', '#ff0000', '#ffffff'];
 
-    // Fireworks from message location
-    const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00', '#ff6600'];
+    // Burst from message
     for (let i = 0; i < 5; i++) {
         setTimeout(() => {
-            createFirework(centerX, centerY, colors[Math.floor(Math.random() * colors.length)]);
+            createFirework(centerX, centerY, colors[Math.floor(Math.random() * colors.length)], 120, 30);
         }, i * 200);
     }
+
+    // Random bursts all over the screen
+    let bursts = 0;
+    const interval = setInterval(() => {
+        const randX = Math.random() * window.innerWidth;
+        const randY = Math.random() * window.innerHeight;
+        createFirework(randX, randY, colors[Math.floor(Math.random() * colors.length)], 100, 25);
+        bursts++;
+        if (bursts > 15) clearInterval(interval);
+    }, 150);
 }
 
 function hideMessage() {
