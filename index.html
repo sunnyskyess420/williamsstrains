@@ -1780,7 +1780,7 @@ h1 {
 <li class="hybrid-strain">
     <div class="strain-name">Zsweet</div>
 </li>
-                        </ul>
+                               </ul>
         <!-- Fun message for when no strains match -->
         <div id="noResults" style="display:none; text-align:center; color:#00ff00; font-size:1.5em; margin:15px 0;">
             oOo a new one!
@@ -1789,7 +1789,6 @@ h1 {
 </div>
 
 <script>
-// ===== COUNT FUNCTION =====
 function updateCounts() {
     document.getElementById('indicaCount').textContent =
         document.querySelectorAll('.indica-strain:not(.hidden)').length;
@@ -1834,9 +1833,12 @@ function showMessage() {
     msg.style.display = 'block';
     msg.classList.add('pulse-glow');
 
-    // Fireworks from center of screen
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
+    // Get message position on screen
+    const rect = msg.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    // Fireworks from message location
     const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00', '#ff6600'];
     for (let i = 0; i < 5; i++) {
         setTimeout(() => {
