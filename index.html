@@ -1780,7 +1780,7 @@ h1 {
 <li class="hybrid-strain">
     <div class="strain-name">Zsweet</div>
 </li>
-                                     </ul>
+                                        </ul>
 </div> <!-- closes .strain-list-container -->
 
 <!-- Center popup -->
@@ -1802,7 +1802,6 @@ function updateCounts() {
         document.querySelectorAll('.unknown-strain:not(.hidden)').length;
 }
 
-// ===== FIREWORKS =====
 function createFirework(x, y, color, spread = 80, particles = 20) {
     for (let i = 0; i < particles; i++) {
         const fw = document.createElement('div');
@@ -1829,7 +1828,6 @@ function createFirework(x, y, color, spread = 80, particles = 20) {
     }
 }
 
-// ===== MESSAGE SHOW/HIDE =====
 function showMessage() {
     const popup = document.getElementById('noResultsPopup');
     popup.style.display = 'flex';
@@ -1840,14 +1838,12 @@ function showMessage() {
     const centerY = rect.top + rect.height / 2;
     const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00', '#ff6600', '#ff0000', '#ffffff'];
 
-    // Burst from popup
     for (let i = 0; i < 5; i++) {
         setTimeout(() => {
             createFirework(centerX, centerY, colors[Math.floor(Math.random() * colors.length)], 120, 30);
         }, i * 200);
     }
 
-    // Random bursts all over the screen
     let bursts = 0;
     const interval = setInterval(() => {
         const randX = Math.random() * window.innerWidth;
@@ -1864,7 +1860,6 @@ function hideMessage() {
     popup.classList.remove('pulse-glow');
 }
 
-// ===== FADE HELPERS =====
 function hideWithFade(el) {
     el.classList.remove('fade-in');
     el.classList.add('fade-out');
@@ -1880,7 +1875,6 @@ function showWithFade(el) {
     updateCounts();
 }
 
-// ===== SEARCH =====
 function searchStrains() {
     const input = document.getElementById('strainInput').value.toLowerCase();
     const strains = document.querySelectorAll('.strain-list-container ul li');
@@ -1899,7 +1893,6 @@ function searchStrains() {
     visibleCount === 0 ? showMessage() : hideMessage();
 }
 
-// ===== FILTER =====
 let activeFilter = null;
 document.querySelectorAll('.legend-item').forEach(item => {
     item.addEventListener('click', () => {
@@ -1933,12 +1926,10 @@ document.querySelectorAll('.legend-item').forEach(item => {
     });
 });
 
-// ===== INITIAL COUNT =====
 updateCounts();
 </script>
 
 <style>
-/* Center popup styling */
 #noResultsPopup {
     display: none;
     justify-content: center;
@@ -1959,7 +1950,6 @@ updateCounts();
     box-shadow: 0 0 20px #00ff00;
 }
 
-/* Pulse + Glow for the popup */
 .pulse-glow {
     animation: pulse 1s infinite;
     text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
@@ -1970,7 +1960,6 @@ updateCounts();
     50% { transform: translate(-50%, -50%) scale(1.1); }
 }
 
-/* Fireworks */
 .firework {
     position: fixed;
     width: 5px;
@@ -1983,4 +1972,5 @@ updateCounts();
 
 </body>
 </html>
+
 
