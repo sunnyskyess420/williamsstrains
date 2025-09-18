@@ -1780,7 +1780,7 @@ h1 {
 <li class="hybrid-strain">
     <div class="strain-name">Zsweet</div>
 </li>
-                                            </ul>
+                                           </ul>
 </div> <!-- closes .strain-list-container -->
 
 <!-- Center popup -->
@@ -1981,6 +1981,27 @@ updateCounts();
 .unknown-strain {
     background-color: yellow; /* your yellow */
     color: #000 !important;
+}
+
+/* === Category-specific icons === */
+.indica-strain::before {
+    content: "🌿 ";
+}
+.sativa-strain::before {
+    content: "☀️ ";
+}
+.hybrid-strain::before {
+    content: "🔄 ";
+}
+.unknown-strain::before {
+    content: "❓ ";
+}
+
+/* Icon alignment */
+.strain-list-container li::before {
+    font-size: 1.2em;
+    vertical-align: middle;
+    margin-right: 6px;
 }
 </style>
 
