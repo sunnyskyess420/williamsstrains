@@ -39,12 +39,12 @@ h1 {
 }
 .description {
     text-align: center;
-    color: #ffffff; /* bright white for visibility */
+    color: #ffffff;
     margin-top: 10px;
     margin-bottom: 20px;
-    font-style: normal; /* remove italics */
-    font-size: 1.2em; /* larger text */
-    line-height: 1.5; /* better spacing */
+    font-style: normal;
+    font-size: 1.2em;
+    line-height: 1.5;
     max-width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -138,11 +138,27 @@ h1 {
     transform: translateY(-3px);
     box-shadow: 0 4px 15px rgba(0, 128, 0, 0.3);
 }
+
+/* Base strain name style */
 .strain-name {
     font-weight: bold;
-    color: #fff;
     font-size: 1.2em;
 }
+
+/* Per-category text colors for contrast */
+.indica-strain .strain-name {
+    color: #ffffff; /* white on blue */
+}
+.sativa-strain .strain-name {
+    color: #ffffff; /* white on red */
+}
+.hybrid-strain .strain-name {
+    color: #ffffff; /* white on green */
+}
+.unknown-strain .strain-name {
+    color: #000000; /* black on yellow */
+}
+
 .indica-strain { background-color: blue; }
 .sativa-strain { background-color: red; }
 .hybrid-strain { background-color: green; }
@@ -179,7 +195,7 @@ h1 {
         <label for="strainInput">Search:</label>
         <input type="text" id="strainInput" oninput="searchStrains()" placeholder="Enter strain name...">
     </div>
- <div class="strain-list-container">
+    <div class="strain-list-container">
         <ul>
 <li class="hybrid-strain">
     <div class="strain-name">24k Gold</div>
