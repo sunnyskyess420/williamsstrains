@@ -1987,28 +1987,45 @@ updateCounts();
     color: #000 !important;
 }
 
-/* Category-specific icons */
+/* Category-specific cannabis leaf icons */
 .indica-strain::before {
-    content: "🌿";
-}
-.sativa-strain::before {
-    content: "☀️";
-}
-.hybrid-strain::before {
-    content: "🔄";
-}
-.unknown-strain::before {
-    content: "❓";
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background: url('images/indica-leaf.png') no-repeat center/contain;
+    margin-right: 6px;
 }
 
-/* Icon alignment */
-.strain-list-container li::before {
-    font-size: 1.2em;
-    margin-right: 6px;
+.sativa-strain::before {
+    content: "";
     display: inline-block;
+    width: 22px;
+    height: 22px;
+    background: url('images/sativa-leaf.png') no-repeat center/contain;
+    margin-right: 6px;
+}
+
+.hybrid-strain::before {
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background: url('images/hybrid-leaf.png') no-repeat center/contain;
+    margin-right: 6px;
+}
+
+.unknown-strain::before {
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background: url('images/ruderalis-leaf.png') no-repeat center/contain;
+    margin-right: 6px;
 }
 </style>
 
 </body>
 </html>
+
 
