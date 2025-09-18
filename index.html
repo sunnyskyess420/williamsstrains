@@ -1988,40 +1988,54 @@ updateCounts();
 }
 
 /* Category-specific cannabis leaf icons — updated sizes and filenames */
-.sativa-strain::before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 24px;
-    background: url('images/sativa-leaf.png') no-repeat center/contain;
-    margin-right: 6px;
+/* Strain list layout */
+.strain-list-container li {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin: 4px;
 }
 
-.indica-strain::before {
-    content: "";
+/* Inner strain name stays inline */
+.strain-name {
     display: inline-block;
-    width: 20px;
-    height: 24px;
-    background: url('images/indica-leaf.png') no-repeat center/contain;
-    margin-right: 6px;
 }
 
-.hybrid-strain::before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 24px;
-    background: url('images/hybrid-leaf.png') no-repeat center/contain;
-    margin-right: 6px;
-}
-
+/* Leaf icons inline with strain name */
+.sativa-strain::before,
+.indica-strain::before,
+.hybrid-strain::before,
 .unknown-strain::before {
     content: "";
     display: inline-block;
     width: 20px;
     height: 24px;
-    background: url('images/unknown-leaf.png') no-repeat center/contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
     margin-right: 6px;
+    vertical-align: middle;
+}
+
+/* Specific icons */
+.sativa-strain::before {
+    background-image: url('images/sativa-leaf.png');
+}
+
+.indica-strain::before {
+    background-image: url('images/indica-leaf.png');
+}
+
+.hybrid-strain::before {
+    background-image: url('images/hybrid-leaf.png');
+}
+
+.unknown-strain::before {
+    background-image: url('images/unknown-leaf.png');
 }
 </style>
 
