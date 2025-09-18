@@ -1782,7 +1782,7 @@ h1 {
 </li>
                 </ul>
         <!-- Fun message for when no strains match -->
-        <div id="noResults" style="display:none; text-align:center; color:#00ff00; font-size:1.2em; margin:15px 0;">
+        <div id="noResults" class="fade-in" style="display:none; text-align:center; color:#00ff00; font-size:1.2em; margin:15px 0;">
             oOo a new one!
         </div>
     </div>
@@ -1799,19 +1799,34 @@ function updateCounts() {
     document.getElementById('unknownCount').textContent =
         document.querySelectorAll('.unknown-strain:not(.hidden)').length;
 }
-updateCounts();
+
+function showMessage() {
+    const msg = document.getElementById('noResults');
+    msg.classList.remove('fade-out');
+    msg.style.display = 'block';
+    requestAnimationFrame(() => msg.classList.add('fade-in'));
+}
+
+function hideMessage() {
+    const msg = document.getElementById('noResults');
+    msg.classList.remove('fade-in');
+    msg.classList.add('fade-out');
+    setTimeout(() => { msg.style.display = 'none'; }, 300);
+}
 
 function hideWithFade(el) {
     el.classList.remove('fade-in');
     el.classList.add('fade-out');
     setTimeout(() => {
         el.classList.add('hidden');
-    }, 300); // match CSS transition time
+        updateCounts();
+    }, 300);
 }
 
 function showWithFade(el) {
     el.classList.remove('hidden', 'fade-out');
     el.classList.add('fade-in');
+    updateCounts();
 }
 
 function searchStrains() {
@@ -1829,8 +1844,7 @@ function searchStrains() {
         }
     });
 
-    document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
-    updateCounts();
+    visibleCount === 0 ? showMessage() : hideMessage();
 }
 
 let activeFilter = null;
@@ -1838,15 +1852,20 @@ document.querySelectorAll('.legend-item').forEach(item => {
     item.addEventListener('click', () => {
         const filterClass = item.getAttribute('data-filter');
         const strains = document.querySelectorAll('.strain-list-container ul li');
+        let visibleCount = 0;
 
         if (activeFilter === filterClass || filterClass === 'all') {
-            strains.forEach(showWithFade);
+            strains.forEach(strain => {
+                showWithFade(strain);
+                visibleCount++;
+            });
             activeFilter = null;
             document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
         } else {
             strains.forEach(strain => {
                 if (strain.classList.contains(filterClass)) {
                     showWithFade(strain);
+                    visibleCount++;
                 } else {
                     hideWithFade(strain);
                 }
@@ -1856,13 +1875,13 @@ document.querySelectorAll('.legend-item').forEach(item => {
             item.classList.add('active');
         }
 
-        const visibleCount = document.querySelectorAll('.strain-list-container ul li:not(.hidden)').length;
-        document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
-        updateCounts();
-
+        visibleCount === 0 ? showMessage() : hideMessage();
         document.getElementById('strainInput').value = '';
     });
 });
+
+// run once on page load
+updateCounts();
 </script>
 
 </body>
