@@ -127,24 +127,27 @@ h1 {
     border-radius: 20px;
     border: 2px solid #262626;
 }
-.strain-list-container ul {
-    list-style: none;
+ul {
+    list-style-type: none; /* Removes the bullet points */
     padding: 0;
-    margin: 0;
-}
-.strain-list-container ul li {
-    border: 1px solid #444;
-    margin-bottom: 8px;
-    padding: 15px;
-    border-radius: 8px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    flex-wrap: wrap; /* Allows cards to wrap to the next line */
+    justify-content: center; /* Centers the cards horizontally */
+    gap: 15px; /* Adds space between the cards */
 }
-.strain-list-container ul li:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(0, 128, 0, 0.3);
+li {
+    background-color: #ffffff; /* A clean white background for the card */
+    border-radius: 12px; /* Rounds the corners of the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for a 3D effect */
+    padding: 20px;
+    width: 250px; /* Sets a fixed width for each card */
+    text-align: center; /* Centers the text inside the card */
+    transition: transform 0.3s ease-in-out; /* Adds a smooth transition for hover effect */
+}
+li:hover {
+    transform: translateY(-5px); /* Moves the card up slightly on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Makes the shadow more prominent on hover */
+}
 }
 .strain-list-container ul li:hover .strain-name {
     text-shadow: 0 0 5px #fff, 0 0 10px #00ff00;
