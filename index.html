@@ -932,7 +932,7 @@ updateCounts();
 .strain-list-container li {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* Change this line */
     color: #fff;
     text-align: left;
     padding: 8px 12px;
@@ -942,7 +942,6 @@ updateCounts();
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Add this entire block back in */
 .strain-list-container li:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 15px rgba(0, 128, 0, 0.3);
@@ -954,6 +953,7 @@ updateCounts();
     align-items: center;
     gap: 8px;
 }
+
 /* Strain name */
 .strain-name {
     font-weight: bold;
