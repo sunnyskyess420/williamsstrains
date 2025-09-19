@@ -930,25 +930,29 @@ updateCounts();
 
 /* Strain list layout */
 .strain-list-container li {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Change this line */
-    color: #fff;
-    text-align: left;
-    padding: 8px 12px;
-    border-radius: 8px;
-    margin: 4px;
-    border: 1px solid #444;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: left;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin: 4px;
+    border: 1px solid #444;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* Add this entire block back in */
 .strain-list-container li:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 15px rgba(0, 128, 0, 0.3);
 }
+
 /* Wrapper to align logo and strain name side-by-side */
 .strain-content {
-    align-items: center;
-    gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 /* Strain name */
 .strain-name {
