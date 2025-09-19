@@ -53,14 +53,10 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-bottom: 0;
-    padding: 10px 0;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
     border-bottom: 2px solid #00ff00;
     flex-wrap: wrap;
-    position: sticky;
-    top: 0;
-    background-color: rgba(30, 30, 30, 0.95);
-    z-index: 10;
 }
 .legend-item {
     display: flex;
@@ -85,11 +81,7 @@ h1 {
     gap: 10px;
     margin-bottom: 20px;
     border-bottom: 2px solid #00ff00;
-    padding: 10px 0;
-    position: sticky;
-    top: 60px;
-    background-color: rgba(30, 30, 30, 0.95);
-    z-index: 9;
+    padding-bottom: 15px;
 }
 .search-container label {
     font-size: 1.2em;
@@ -137,45 +129,40 @@ h1 {
     margin-bottom: 8px;
     padding: 15px;
     border-radius: 8px;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    background-color: transparent;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .strain-list-container ul li:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 15px rgba(0, 128, 0, 0.3);
 }
-.strain-content {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.strain-icon {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    flex-shrink: 0;
-}
+
+/* Base strain name style */
 .strain-name {
     font-weight: bold;
     font-size: 1.2em;
 }
-.indica-strain { background-color: blue; color: #fff; }
-.sativa-strain { background-color: red; color: #fff; }
-.hybrid-strain { background-color: green; color: #fff; }
-.unknown-strain { background-color: yellow; color: #000; }
-.fade-out {
-    opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+
+/* Per-category text colors for contrast */
+.indica-strain .strain-name {
+    color: #ffffff; /* white on blue */
 }
-.fade-in {
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+.sativa-strain .strain-name {
+    color: #ffffff; /* white on red */
 }
-.hidden {
-    display: none !important;
+.hybrid-strain .strain-name {
+    color: #ffffff; /* white on green */
 }
+.unknown-strain .strain-name {
+    color: #000000; /* black on yellow */
+}
+
+.indica-strain { background-color: blue; }
+.sativa-strain { background-color: red; }
+.hybrid-strain { background-color: green; }
+.unknown-strain { background-color: yellow; }
 </style>
 </head>
 <body>
@@ -185,19 +172,19 @@ h1 {
     <div class="legend">
         <div class="legend-item" data-filter="indica-strain">
             <div class="legend-color" style="background-color: blue;"></div>
-            <span style="color: #b0e0b0;">Indica (<span id="indicaCount"></span>)</span>
+            <span style="color: #b0e0b0;">Indica</span>
         </div>
         <div class="legend-item" data-filter="sativa-strain">
             <div class="legend-color" style="background-color: red;"></div>
-            <span style="color: #b0e0b0;">Sativa (<span id="sativaCount"></span>)</span>
+            <span style="color: #b0e0b0;">Sativa</span>
         </div>
         <div class="legend-item" data-filter="hybrid-strain">
             <div class="legend-color" style="background-color: green;"></div>
-            <span style="color: #b0e0b0;">Hybrid (<span id="hybridCount"></span>)</span>
+            <span style="color: #b0e0b0;">Hybrid</span>
         </div>
         <div class="legend-item" data-filter="unknown-strain">
             <div class="legend-color" style="background-color: yellow;"></div>
-            <span style="color: #b0e0b0;">Unknown (<span id="unknownCount"></span>)</span>
+            <span style="color: #b0e0b0;">Unknown</span>
         </div>
         <div class="legend-item" data-filter="all">
             <div class="legend-color" style="background-color: gray;"></div>
@@ -211,2988 +198,1610 @@ h1 {
     <div class="strain-list-container">
         <ul>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">24k Gold</span>
-  </span>
+    <div class="strain-name">24k Gold</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">91 Octane</span>
-  </span>
+    <div class="strain-name">91 Octane</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">9lb Hammer</span>
-  </span>
+    <div class="strain-name">9lb Hammer</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Abominable Snowman</span>
-  </span>
+    <div class="strain-name">Abominable Snowman</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">AC/DC</span>
-  </span>
+    <div class="strain-name">AC/DC</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Acapulco Gold</span>
-  </span>
+    <div class="strain-name">Acapulco Gold</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Ace Killer OG</span>
-  </span>
+    <div class="strain-name">Ace Killer OG</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Ace of Spades</span>
-  </span>
+    <div class="strain-name">Ace of Spades</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Afghani</span>
-  </span>
+    <div class="strain-name">Afghani</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Afghaniskunk</span>
-  </span>
+    <div class="strain-name">Afghaniskunk</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Afgoo</span>
-  </span>
+    <div class="strain-name">Afgoo</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">AK-47</span>
-  </span>
+    <div class="strain-name">AK-47</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">AK Kush</span>
-  </span>
+    <div class="strain-name">AK Kush</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Alaskan Thunder Fuck</span>
-  </span>
+    <div class="strain-name">Alaskan Thunder Fuck</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Alien Guy</span>
-  </span>
+    <div class="strain-name">Alien Guy</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Alien OG</span>
-  </span>
+    <div class="strain-name">Alien OG</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Alien Rift</span>
-  </span>
+    <div class="strain-name">Alien Rift</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Animal Cookies</span>
-  </span>
+    <div class="strain-name">Animal Cookies</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Animal Face</span>
-  </span>
+    <div class="strain-name">Animal Face</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Animal Mints</span>
-  </span>
+    <div class="strain-name">Animal Mints</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Animal Sundae</span>
-  </span>
+    <div class="strain-name">Animal Sundae</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Apple Fritter</span>
-  </span>
+    <div class="strain-name">Apple Fritter</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Atom Splitter</span>
-  </span>
+    <div class="strain-name">Atom Splitter</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Aurora Borealis</span>
-  </span>
+    <div class="strain-name">Aurora Borealis</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Bad Azz OG</span>
-  </span>
+    <div class="strain-name">Bad Azz OG</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Bakerstreet</span>
-  </span>
+    <div class="strain-name">Bakerstreet</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Banana Cream</span>
-  </span>
+    <div class="strain-name">Banana Cream</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Banana Cream Pie</span>
-  </span>
+    <div class="strain-name">Banana Cream Pie</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Banana Fig</span>
-  </span>
+    <div class="strain-name">Banana Fig</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Banana Fruit Punch</span>
-  </span>
+    <div class="strain-name">Banana Fruit Punch</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Banana Ice</span>
-  </span>
+    <div class="strain-name">Banana Ice</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Banana OG</span>
-  </span>
+    <div class="strain-name">Banana OG</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Batman OG</span>
-  </span>
+    <div class="strain-name">Batman OG</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Beast Mode Skittles</span>
-  </span>
+    <div class="strain-name">Beast Mode Skittles</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Berry Gelato</span>
-  </span>
+    <div class="strain-name">Berry Gelato</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Big Cat Kush</span>
-  </span>
+    <div class="strain-name">Big Cat Kush</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Big Mac</span>
-  </span>
+    <div class="strain-name">Big Mac</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Birthday Cake Kush</span>
-  </span>
+    <div class="strain-name">Birthday Cake Kush</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Biscotti Cookies</span>
-  </span>
+    <div class="strain-name">Biscotti Cookies</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Black Biscotti</span>
-  </span>
+    <div class="strain-name">Black Biscotti</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Black Cheese</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Black Biscotti</span>
-  </span>
+    <div class="strain-name">Black Cherry Gelato</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Black Cheese</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Black Cherry Gelato</span>
-  </span>
+    <div class="strain-name">Black Diamond</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Black Diamond</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Black Gas</span>
-  </span>
+    <div class="strain-name">Black Gas</div>
 </li>
 <li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Black Jelly</span>
-  </span>
+    <div class="strain-name">Black Jelly</div>
 </li>
 <li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Black Kyber Crystal</span>
-  </span>
+    <div class="strain-name">Black Kyber Crystal</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Black Mamba</span>
-  </span>
+    <div class="strain-name">Black Mamba</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Black Rose</span>
-  </span>
+    <div class="strain-name">Black Rose</div>
 </li>
 <li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Black Scout</span>
-  </span>
+    <div class="strain-name">Black Scout</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Blackberry Cheesecake</span>
-  </span>
+    <div class="strain-name">Blackberry Cheesecake</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Blackberry Kush</span>
-  </span>
+    <div class="strain-name">Blackberry Kush</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Blackberry Moonrocks</span>
-  </span>
+    <div class="strain-name">Blackberry Moonrocks</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Blood Orange Haze</span>
-  </span>
+    <div class="strain-name">Blood Orange Haze</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Blue Gelato</span>
-  </span>
+    <div class="strain-name">Blue Gelato</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Blue Lights</span>
-  </span>
+    <div class="strain-name">Blue Lights</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Blue Magoo Cookies</span>
-  </span>
+    <div class="strain-name">Blue Magoo Cookies</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Blue Slushie</span>
-  </span>
+    <div class="strain-name">Blue Slushie</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Blue Tahoe</span>
-  </span>
+    <div class="strain-name">Blue Tahoe</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Blue Venom</span>
-  </span>
+    <div class="strain-name">Blue Venom</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Blue Widow</span>
-  </span>
+    <div class="strain-name">Blue Widow</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Blue Zlushies</span>
-  </span>
+    <div class="strain-name">Blue Zlushies</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Blueberry</span>
-  </span>
+    <div class="strain-name">Blueberry</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Blueberry Cheesecake</span>
-  </span>
+    <div class="strain-name">Blueberry Cheesecake</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Blueberry Donuts</span>
-  </span>
+    <div class="strain-name">Blueberry Donuts</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Blueberry Icewreck</span>
-  </span>
+    <div class="strain-name">Blueberry Icewreck</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Blueberry Kush</span>
-  </span>
+    <div class="strain-name">Blueberry Kush</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Blueberry Rockstar</span>
-  </span>
+    <div class="strain-name">Blueberry Rockstar</div>
 </li>
 <li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Blueberry Seagal</span>
-  </span>
+    <div class="strain-name">Blueberry Seagal</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Brainstorm Haze</span>
-  </span>
+    <div class="strain-name">Brainstorm Haze</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Brownie Scout</span>
-  </span>
+    <div class="strain-name">Brownie Scout</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Bruce Banner</span>
-  </span>
+    <div class="strain-name">Bruce Banner</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Bubba Breath</span>
-  </span>
+    <div class="strain-name">Bubba Breath</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Bubba Kush</span>
-  </span>
+    <div class="strain-name">Bubba Kush</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Bubble Bath</span>
-  </span>
+    <div class="strain-name">Bubble Bath</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Buddah Cheese</span>
-  </span>
+    <div class="strain-name">Buddah Cheese</div>
 </li>
 <li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Buttered Toast</span>
-  </span>
+    <div class="strain-name">Buttered Toast</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Cake Pop</span>
-  </span>
+    <div class="strain-name">Cake Pop</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Cali 47</span>
-  </span>
+    <div class="strain-name">Cali 47</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Cali Bubba</span>
-  </span>
+    <div class="strain-name">Cali Bubba</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Cali Cookies</span>
-  </span>
+    <div class="strain-name">Cali Cookies</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Cali Dragon</span>
-  </span>
+    <div class="strain-name">Cali Dragon</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Cali Gas</span>
-  </span>
+    <div class="strain-name">Cali Gas</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Cali Gold</span>
-  </span>
+    <div class="strain-name">Cali Gold</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Candy Land</span>
-  </span>
+    <div class="strain-name">Candy Land</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Cannalope Haze</span>
-  </span>
+    <div class="strain-name">Cannalope Haze</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Cap Junky</span>
-  </span>
+    <div class="strain-name">Cap Junky</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Caramel Cookies</span>
-  </span>
+    <div class="strain-name">Caramel Cookies</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Caribbean Cream</span>
-  </span>
+    <div class="strain-name">Caribbean Cream</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Cashmere</span>
-  </span>
+    <div class="strain-name">Cashmere</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Cat Piss</span>
-  </span>
+    <div class="strain-name">Cat Piss</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Cereal Milk</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Chem Dog #4</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Chem Fire</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Chem La Chem</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Chemdawg</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Chemdog</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Chernobyl</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Cherry Cosmo</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Cherry Cough</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Cherry OG</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Death Vader OG</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Death Wish</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Devils Triangle</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Diablo Death Bubba</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Divorce Cake</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Do Si Cake</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Do Si Dos</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Donkey Butter</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Donny Burger</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Dopamine</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Dos Diablos</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Dosi Cookies</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Dosi Face</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Dosi Punch</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Double Death Canopy</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Double Kush Breath</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Dragon's Breath</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Dragonfruit Gelato</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Duke Nukem</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Dutch Cake</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">El Chapo</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">El Chemino</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">El Jefe</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">El Padrino</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Electric Honeydew</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Electric Mountaindew</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Emancipator</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Event Horizon</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Face Off OG</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Fat Banana</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Fire Breath</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Fire OG</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Flo</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Formula 1</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">French Toast</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Frost’d Flakes</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Frosted Cherry Cake</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Frosted Cherry Cookies</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Frosted Cream Puffs</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Fruit Loopz</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Fruity Chronic Juice</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Funk Master</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Funky Charms</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Galactic Death Star</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Galactic Glue</span>
-  </span>
+    <div class="strain-name">Chocolate OG</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Galactic Haze</span>
-  </span>
+    <div class="strain-name">Chocolope</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Garlic Breath</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Garlic Cake</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Garlic Cookies</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Garlic Fingers</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gary Payton</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Gas Chamber</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Gas Mask</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gasberry Pie</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gastro Pop</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gelato</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gelato 33</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gelato Cake</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gelato Cookies</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Ghost Gelato</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Ghost OG</span>
-  </span>
+    <div class="strain-name">Chronic Thunder</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Ghost Train Haze</span>
-  </span>
+    <div class="strain-name">Cinderella 99</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Giesel Cookies</span>
-  </span>
+    <div class="strain-name">Cobra Lips</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Coffee Creamer</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Girl Scout Cookies</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Glookies</span>
-  </span>
+    <div class="strain-name">Cold Creek Kush</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">GMO Cookies</span>
-  </span>
+    <div class="strain-name">Colt 45</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">God Bud</span>
-  </span>
+    <div class="strain-name">Comatose</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Compact Crushers</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Godfather OG</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Gods Gift</span>
-  </span>
+    <div class="strain-name">Confidential Cheese</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gods Green Crack</span>
-  </span>
+    <div class="strain-name">Cookie Dough</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Goldberry</span>
-  </span>
+    <div class="strain-name">Cookie God</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Cookie Kush</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Cosmic Clusters</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Cosmic Cream</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Crab Cakes</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Crazy Glue</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Critical Orange Punch</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Critical Purple Kush</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Crypto Chrome</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Crystal Lights</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Crystal Mountain Kush</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Cuban Linx</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Dairy Queen LSD</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Dalato</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Dank Schrader</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Dank Sinatra</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Dankey Kong</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Dark Angel</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Darth Vader</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Death Bubba</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Death Butter Breath</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Death Cookies</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Death Gas</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Death Reaper</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Death Vader OG</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Death Wish</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Devils Triangle</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Diablo Death Bubba</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Divorce Cake</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Do Si Cake</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Do Si Dos</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Donkey Butter</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Donny Burger</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Dopamine</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Dos Diablos</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Dosi Cookies</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Dosi Face</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Dosi Punch</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Double Death Canopy</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Double Kush Breath</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Dragon's Breath</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Dragonfruit Gelato</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Duke Nukem</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Dutch Cake</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">El Chapo</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">El Chemino</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">El Jefe</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">El Padrino</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Electric Honeydew</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Electric Mountaindew</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Emancipator</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Event Horizon</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Face Off OG</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Fat Banana</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Fire Breath</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Fire OG</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Flo</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Formula 1</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">French Toast</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Frost’d Flakes</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Frosted Cherry Cake</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Frosted Cherry Cookies</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Frosted Cream Puffs</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Fruit Loopz</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Fruity Chronic Juice</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Funk Master</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Funky Charms</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Galactic Death Star</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Galactic Glue</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Golden Goat</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Golden Pineapple</span>
-  </span>
+    <div class="strain-name">Galactic Haze</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Gooberry</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gorilla Berry</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gorilla Bomb</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gorilla Cookies</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gorilla Glue</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gorilla Glue #4</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gorilla Goo</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gorilla Za</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gouda Berry</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Grand Daddy Bruce</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Grandi Guava</span>
-  </span>
+    <div class="strain-name">Garlic Breath</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Grape Ape</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Grape Cake</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Grape Cream Cake</span>
-  </span>
+    <div class="strain-name">Garlic Cake</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Grape Crush</span>
-  </span>
+    <div class="strain-name">Garlic Cookies</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Grape God</span>
-  </span>
+    <div class="strain-name">Garlic Fingers</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Grape Kush</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Grape Pie</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Grape Runtz</span>
-  </span>
+    <div class="strain-name">Gary Payton</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Grape Soda</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Grape Stomper</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Grapes and Cream</span>
-  </span>
+    <div class="strain-name">Gas Chamber</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Greasy Bubba</span>
-  </span>
+    <div class="strain-name">Gas Mask</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Great White Shark</span>
-  </span>
+    <div class="strain-name">Gasberry Pie</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Gastro Pop</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Gelato</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Gelato 33</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Gelato Cake</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Gelato Cookies</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Ghost Gelato</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Ghost OG</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Green Crack</span>
-  </span>
+    <div class="strain-name">Ghost Train Haze</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Green Widow</span>
-  </span>
+    <div class="strain-name">Giesel Cookies</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Gushers</span>
-  </span>
+    <div class="strain-name">Girl Scout Cookies</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Glookies</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Gypsy Kush</span>
-  </span>
+    <div class="strain-name">GMO Cookies</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Hash Bar</span>
-  </span>
+    <div class="strain-name">God Bud</div>
 </li>
-<li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Hawaiian Snow</span>
-  </span>
+<li class="indica-strain">
+    <div class="strain-name">Godfather OG</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Gods Gift</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Gods Green Crack</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Goldberry</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Hawaiin</span>
-  </span>
+    <div class="strain-name">Golden Goat</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Headband</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Headbanger</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Hella Jelly</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Hells OG 2.0</span>
-  </span>
+    <div class="strain-name">Golden Pineapple</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">High Octane</span>
-  </span>
+    <div class="strain-name">Gooberry</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Gorilla Berry</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Gorilla Bomb</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Gorilla Cookies</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Gorilla Glue</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Gorilla Glue #4</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Gorilla Goo</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Gorilla Za</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Gouda Berry</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Grand Daddy Bruce</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Grandi Guava</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Hindu Kush</span>
-  </span>
+    <div class="strain-name">Grape Ape</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Holy Grail</span>
-  </span>
+    <div class="strain-name">Grape Cake</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Honey Badger</span>
-  </span>
-</li>
-<li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Honey Badger Haze</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Huckleberry</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Huckleberry DesStar</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">I Pot</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Ice Cream</span>
-  </span>
+    <div class="strain-name">Grape Cream Cake</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Ice Cream Cake</span>
-  </span>
+    <div class="strain-name">Grape Crush</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">K Train</span>
-  </span>
+    <div class="strain-name">Grape God</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Grape Kush</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Grape Pie</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Grape Runtz</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Grape Soda</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Grape Stomper</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Grapes and Cream</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Greasy Bubba</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Great White Shark</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Kali Mist</span>
-  </span>
+    <div class="strain-name">Green Crack</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Khalifa Mintz</span>
-  </span>
+    <div class="strain-name">Green Widow</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Killer OG</span>
-  </span>
+    <div class="strain-name">Gushers</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">King Bubba</span>
-  </span>
+    <div class="strain-name">Gypsy Kush</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Hash Bar</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">King Tut</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Krypto Kronic</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">LA Confidential</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">LA Wedding Pop</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Lady Boss</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Larry Bird</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Layer Cake</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Lazer Wolf</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Lazy Berry Blaze</span>
-  </span>
+    <div class="strain-name">Hawaiian Snow</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Lemon Haze</span>
-  </span>
+    <div class="strain-name">Hawaiin</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Headband</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Headbanger</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Hella Jelly</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Hells OG 2.0</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">High Octane</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Hindu Kush</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Holy Grail</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Honey Badger</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Lemon Meringue</span>
-  </span>
+    <div class="strain-name">Honey Badger Haze</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Lemon OG Kush</span>
-  </span>
+    <div class="strain-name">Huckleberry</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Lemon Skunk</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Lemon Slushie</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Lemon Zkittlez</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Lions Milk</span>
-  </span>
+    <div class="strain-name">Huckleberry DesStar</div>
 </li>
 <li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Liquid Imagination</span>
-  </span>
+    <div class="strain-name">I Pot</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Ice Cream</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">London Pound Cake</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Lucky Charms</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Lyeche Kush</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">MAC Donut</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Macmosa</span>
-  </span>
+    <div class="strain-name">Ice Cream Cake</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Makaveli OG</span>
-  </span>
+    <div class="strain-name">Ice Wine</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Mandarin Mints</span>
-  </span>
+    <div class="strain-name">Ice Wreck</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Mango</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Mango Kush</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Maple Leaf</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Mary OG</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Master Jedi</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Master Kush</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Master Pink</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Master Yoda</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Mataro Blue</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Maui Berry</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">MC Pie Face</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">McFlurry</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">McFritter</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Meat Breath</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Med Head</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Megaton Melon #4</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Mimosa</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Mimosa Cookies</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Mint Froyo</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Miracle Alien Cookies</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">MK Ultra</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Mob Boss</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Monkey Breath</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Monster Mass</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Moon Cookies</span>
-  </span>
+    <div class="strain-name">Incredible Hulk</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Morning Sun</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Mountain Mimosa</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Munson</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Neon Lambo</span>
-  </span>
+    <div class="strain-name">Inzane in the Membrane</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Nightmare OG</span>
-  </span>
+    <div class="strain-name">Island Pink Kush</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Nirvana</span>
-  </span>
+    <div class="strain-name">Italian Ice</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Jack Frost</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Northern Lights</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Notorious OG</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Nuken</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Og God</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">OG Kush</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">OG Shark</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Ogopogo Gold</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Okanagan Frost</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">One Punch</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Orange Creamsicle</span>
-  </span>
+    <div class="strain-name">Jager</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Orange Crush</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Oreoz</span>
-  </span>
+    <div class="strain-name">Jamacian Gold</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Outlaw</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Overlord OG</span>
-  </span>
+    <div class="strain-name">Jean Guy</div>
 </li>
 <li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Pablo Escobar</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Pablo’s Revenge</span>
-  </span>
+    <div class="strain-name">Jelly Cocktail</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Panama Red</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Papaya</span>
-  </span>
+    <div class="strain-name">Jet Fuel</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Papaya Cake</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Papaya Punch</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Peach Runtz</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Peanut Butter Breath</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Peyote Cookies</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Pie Face</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Pie Hoe</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Pine Tar Kush</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Pineapple Express</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Pineapple Kush</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Pineapple Mimosa</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Pineapple Punch</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Pink</span>
-  </span>
+    <div class="strain-name">Juicy Fruit</div>
 </li>
 <li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Pink Anxiety</span>
-  </span>
-</li>
-
-
-
-
-
-
-
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Pink Bubba</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Pink Candy Kush</span>
-  </span>
+    <div class="strain-name">Jungle Fumes</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Pink Comatose</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Pink Crack</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Pink Gas</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Pink Gas Mask</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Pink Kush</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Pink Kush Mints</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Pink Octane</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Pink Panties</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Pink Push Pop</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Pink Unicorn</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Platimun Girl Scout Cookies</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Platinum Death</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Platinum Gorilla Glue #4</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Platinum Jelly Breath</span>
-  </span>
+    <div class="strain-name">K Train</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Ponderosa Pine</span>
-  </span>
+    <div class="strain-name">Kali Mist</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Poontang Pie</span>
-  </span>
+    <div class="strain-name">Khalifa Mintz</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Killer OG</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Pot of Gold</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Purple Afghan</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Purple Bruce Banner</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Purple Bubba</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Purple Caviar</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Purple Certz</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Purple Cheese</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Purple Churro</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Purple Crack</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Purple Dank</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Purple Death Star</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Purple Drank Breath</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Purple Dream</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Purple Elephant</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Purple God</span>
-  </span>
-<li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Purple Haze</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Purple Huckleberry</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Purple Kush</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Purple Panty Dropper</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Purple Pornstar</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Purple Rose</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Purple Space Cookies</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Purple Trainwreck</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Purple Tropicana</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Purple Tuna</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Purple Urkle</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Purple Vanilla Frosting</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Race Car</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Rainbow Cupcake</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Rainbow Skittles</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Recon OG</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Revolver</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Rockstar</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Rockstar Peanut Butter</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Romulan</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Royal Gorilla</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Royal Highness</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Scoops</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">SFV</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Shark Bite</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Shark Shock</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Sherbert Cookies</span>
-  </span>
+    <div class="strain-name">King Bubba</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Shipwreck</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Shishkaberry</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Silver Death Bubba</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Silver Surfer</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Sirius Black</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Sky Cake</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Skywalker OG</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Sleepy Joe</span>
-  </span>
+    <div class="strain-name">King Tut</div>
 </li>
 <li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Slow Lane</span>
-  </span>
+    <div class="strain-name">Krypto Kronic</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Slurricane</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Slurricane x Geleto</span>
-  </span>
+    <div class="strain-name">LA Confidential</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Slurry Crasher</span>
-  </span>
+    <div class="strain-name">LA Wedding Pop</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Lady Boss</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Snoop Dogg</span>
-  </span>
+    <div class="strain-name">Larry Bird</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Layer Cake</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Lazer Wolf</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Lazy Berry Blaze</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Sonic Lemon Fuel</span>
-  </span>
+    <div class="strain-name">Lemon Haze</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Sophies Breath</span>
-  </span>
+    <div class="strain-name">Lemon Meringue</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Sour Cheese</span>
-  </span>
+    <div class="strain-name">Lemon OG Kush</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Lemon Skunk</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Lemon Slushie</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Lemon Zkittlez</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Lions Milk</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Liquid Imagination</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">London Pound Cake</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Lucky Charms</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Lyeche Kush</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">MAC Donut</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Macmosa</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Makaveli OG</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Mandarin Mints</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Sour Diesel</span>
-  </span>
+    <div class="strain-name">Mango</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Mango Kush</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Maple Leaf</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Mary OG</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Master Jedi</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Master Kush</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Master Pink</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Master Yoda</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Mataro Blue</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Maui Berry</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">MC Pie Face</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">McFlurry</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">McFritter</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Meat Breath</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Med Head</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Megaton Melon #4</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Mimosa</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Mimosa Cookies</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Mint Froyo</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Miracle Alien Cookies</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">MK Ultra</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Mob Boss</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Monkey Breath</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Monster Mass</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Moon Cookies</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Sour Dream</span>
-  </span>
+    <div class="strain-name">Morning Sun</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Space Age Cake</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Space Cake</span>
-  </span>
+    <div class="strain-name">Mountain Mimosa</div>
 </li>
 <li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Space Goblins</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Space Queen</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Stankasaurus</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Stinky Pinky</span>
-  </span>
+    <div class="strain-name">Munson</div>
 </li>
 <li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Stinky Pussy</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Strawberries and Cream</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Strawberry Banana</span>
-  </span>
+    <div class="strain-name">Neon Lambo</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Strawberry Bubba</span>
-  </span>
+    <div class="strain-name">Nightmare OG</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Nirvana</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Northern Lights</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Notorious OG</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Nuken</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Og God</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">OG Kush</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">OG Shark</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Ogopogo Gold</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Okanagan Frost</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">One Punch</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Orange Creamsicle</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Strawberry Lemonade</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Sugar Cookies</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Sundae Driver</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Sunflower Sunshine</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Sunset Sherbert</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Sunshine Bubble Kush</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Super Glue</span>
-  </span>
+    <div class="strain-name">Orange Crush</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Super Pink</span>
-  </span>
+    <div class="strain-name">Oreoz</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Super Silver Haze</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Super Sonic Blizzard</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Super Sour Widow</span>
-  </span>
+    <div class="strain-name">Outlaw</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Supreme Blueberry</span>
-  </span>
+    <div class="strain-name">Overlord OG</div>
 </li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Sweet Deep Gratefruit</span>
-  </span>
+<li class="unknown-strain">
+    <div class="strain-name">Pablo Escobar</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Pablo’s Revenge</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Sweet Pink Grapefruit</span>
-  </span>
+    <div class="strain-name">Panama Red</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Sweet Tooth</span>
-  </span>
+    <div class="strain-name">Papaya</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Tally Mon</span>
-  </span>
+    <div class="strain-name">Papaya Cake</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Tangerine Cookies</span>
-  </span>
+    <div class="strain-name">Papaya Punch</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Peach Runtz</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Peanut Butter Breath</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Peyote Cookies</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Pie Face</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Pie Hoe</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Pine Tar Kush</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Pineapple Express</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Pineapple Kush</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Pineapple Mimosa</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Pineapple Punch</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Pink</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Pink Anxiety</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Pink Bubba</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Pink Candy Kush</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Pink Comatose</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Pink Crack</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Pink Gas</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Pink Gas Mask</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Pink Kush</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Pink Kush Mints</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Pink Octane</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Pink Panties</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Pink Push Pop</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Pink Unicorn</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Platimun Girl Scout Cookies</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Platinum Death</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Platinum Gorilla Glue #4</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Platinum Jelly Breath</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Tangerine Dream</span>
-  </span>
+    <div class="strain-name">Ponderosa Pine</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Tart Pop</span>
-  </span>
+    <div class="strain-name">Poontang Pie</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Tear Gas</span>
-  </span>
+    <div class="strain-name">Pot of Gold</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">The Force</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">The Fudd</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">The Glove</span>
-  </span>
+    <div class="strain-name">Purple Afghan</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">The Undercaker</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">The Za</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Thin Mint GSC</span>
-  </span>
+    <div class="strain-name">Purple Bruce Banner</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Tom Ford</span>
-  </span>
+    <div class="strain-name">Purple Bubba</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Purple Caviar</div>
 </li>
 <li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Tootsie Roll</span>
-  </span>
+    <div class="strain-name">Purple Certz</div>
 </li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Top Crop</span>
-  </span>
+<li class="indica-strain">
+    <div class="strain-name">Purple Cheese</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Purple Churro</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Purple Crack</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Purple Dank</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Purple Death Star</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Purple Drank Breath</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Purple Dream</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Purple Elephant</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Purple God</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Train Wreck</span>
-  </span>
+    <div class="strain-name">Purple Haze</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Purple Huckleberry</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Purple Kush</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Purple Panty Dropper</div>
 </li>
 <li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Triceratops</span>
-  </span>
+    <div class="strain-name">Purple Pornstar</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Purple Rose</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Tripple Burger</span>
-  </span>
+    <div class="strain-name">Purple Space Cookies</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Trophy Wife</span>
-  </span>
+    <div class="strain-name">Purple Trainwreck</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Tropical Milkshake</span>
-  </span>
+    <div class="strain-name">Purple Tropicana</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Purple Tuna</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Purple Urkle</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Tropical Zkittlez</span>
-  </span>
+    <div class="strain-name">Purple Vanilla Frosting</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Tropicana Cookies</span>
-  </span>
+    <div class="strain-name">Race Car</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Rainbow Cupcake</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Rainbow Skittles</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Recon OG</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Revolver</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Rockstar</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Rockstar Peanut Butter</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Romulan</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Royal Gorilla</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Royal Highness</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Scoops</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">SFV</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Shark Bite</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Shark Shock</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Sherbert Cookies</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Tsunami</span>
-  </span>
+    <div class="strain-name">Shipwreck</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Tuna Kush</span>
-  </span>
+    <div class="strain-name">Shishkaberry</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Silver Death Bubba</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Silver Surfer</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Sirius Black</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Sky Cake</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Skywalker OG</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Sleepy Joe</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Slow Lane</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Slurricane</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Slurricane x Geleto</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Slurry Crasher</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Snoop Dogg</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Turbo Mind Warp</span>
-  </span>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Tutti fruiti</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">TWA Lot #6</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Tyson Og</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">UK Cheese</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Vanilla Ice</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Vanilla Kush</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Velvet Apple #14</span>
-  </span>
-</li>
-<li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Velvet Rose</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Venom OG</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Vintage Blueberry</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Violator OG</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Violet Delight</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Wappa</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Watermelon Breath</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Wedding Cake</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Wedding Crasher</span>
-  </span>
+    <div class="strain-name">Sonic Lemon Fuel</div>
 </li>
 <li class="sativa-strain">
-  <span class="strain-content">
-    <img src="images/sativa-leaf.png" alt="Sativa Icon" class="strain-icon">
-    <span class="strain-name">Wheres my bike</span>
-  </span>
+    <div class="strain-name">Sophies Breath</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">White Cookies</span>
-  </span>
+    <div class="strain-name">Sour Cheese</div>
 </li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">White Death</span>
-  </span>
+<li class="sativa-strain">
+    <div class="strain-name">Sour Diesel</div>
+</li>
+<li class="sativa-strain">
+    <div class="strain-name">Sour Dream</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">White Lightning</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">White Rhino</span>
-  </span>
+    <div class="strain-name">Space Age Cake</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">White Runtz</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">White Tahoe Cookies</span>
-  </span>
-</li>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">White Truffle</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">White Widow</span>
-  </span>
+    <div class="strain-name">Space Cake</div>
 </li>
 <li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Wild Cherry</span>
-  </span>
+    <div class="strain-name">Space Goblins</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Willie's Kush Cake</span>
-  </span>
+    <div class="strain-name">Space Queen</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Stankasaurus</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Stinky Pinky</div>
 </li>
 <li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Witches Breath</span>
-  </span>
+    <div class="strain-name">Stinky Pussy</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Strawberries and Cream</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Strawberry Banana</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Wooly Mammoth</span>
-  </span>
+    <div class="strain-name">Strawberry Bubba</div>
+</li>
+<li class="sativa-strain">
+    <div class="strain-name">Strawberry Lemonade</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Sugar Cookies</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Sundae Driver</div>
 </li>
 <li class="unknown-strain">
-  <span class="strain-content">
-    <img src="images/unknown-leaf.png" alt="Unknown Icon" class="strain-icon">
-    <span class="strain-name">Xach's Breath</span>
-  </span>
+    <div class="strain-name">Sunflower Sunshine</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Sunset Sherbert</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Sunshine Bubble Kush</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Super Glue</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Yellow Fin Tuna</span>
-  </span>
+    <div class="strain-name">Super Pink</div>
+</li>
+<li class="sativa-strain">
+    <div class="strain-name">Super Silver Haze</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Super Sonic Blizzard</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">ZaZa</span>
-  </span>
-</li>
-<li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Zkittles Cake</span>
-  </span>
-<li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Zombie Breath</span>
-  </span>
+    <div class="strain-name">Super Sour Widow</div>
 </li>
 <li class="indica-strain">
-  <span class="strain-content">
-    <img src="images/indica-leaf.png" alt="Indica Icon" class="strain-icon">
-    <span class="strain-name">Zombie Kush</span>
-  </span>
+    <div class="strain-name">Supreme Blueberry</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Zookies</span>
-  </span>
+    <div class="strain-name">Sweet Deep Gratefruit</div>
+</li>
+<li class="sativa-strain">
+    <div class="strain-name">Sweet Pink Grapefruit</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Sweet Tooth</div>
 </li>
 <li class="hybrid-strain">
-  <span class="strain-content">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Icon" class="strain-icon">
-    <span class="strain-name">Zsweet</span>
-  </span>
-
+    <div class="strain-name">Tally Mon</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Tangerine Cookies</div>
+</li>
+<li class="sativa-strain">
+    <div class="strain-name">Tangerine Dream</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Tart Pop</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Tear Gas</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">The Force</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">The Fudd</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">The Glove</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">The Undercaker</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">The Za</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Thin Mint GSC</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Tom Ford</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Tootsie Roll</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Top Crop</div>
+</li>
+<li class="sativa-strain">
+    <div class="strain-name">Train Wreck</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Triceratops</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Tripple Burger</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Trophy Wife</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Tropical Milkshake</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Tropical Zkittlez</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Tropicana Cookies</div>
+</li>
+<li class="sativa-strain">
+    <div class="strain-name">Tsunami</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Tuna Kush</div>
+</li>
+<li class="sativa-strain">
+    <div class="strain-name">Turbo Mind Warp</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Tutti fruiti</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">TWA Lot #6</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Tyson Og</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">UK Cheese</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Vanilla Ice</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Vanilla Kush</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Velvet Apple #14</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Velvet Rose</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Venom OG</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Vintage Blueberry</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Violator OG</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Violet Delight</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Wappa</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Watermelon Breath</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Wedding Cake</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Wedding Crasher</div>
+</li>
+<li class="sativa-strain">
+    <div class="strain-name">Wheres my bike</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">White Cookies</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">White Death</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">White Lightning</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">White Rhino</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">White Runtz</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">White Tahoe Cookies</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">White Truffle</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">White Widow</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Wild Cherry</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Willie's Kush Cake</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Witches Breath</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Wooly Mammoth</div>
+</li>
+<li class="unknown-strain">
+    <div class="strain-name">Xach's Breath</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Yellow Fin Tuna</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">ZaZa</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Zkittles Cake</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Zombie Breath</div>
+</li>
+<li class="indica-strain">
+    <div class="strain-name">Zombie Kush</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Zookies</div>
+</li>
+<li class="hybrid-strain">
+    <div class="strain-name">Zsweet</div>
+</li>
 </ul>
-</div> <!-- closes .strain-list-container -->
-
-<!-- Center popup -->
-<div id="noResultsPopup">
-    oOo A NEW ONE!
+    </div>
 </div>
-
-</div> <!-- closes .container -->
-
 <script>
-function updateCounts() {
-    document.getElementById('indicaCount').textContent =
-        document.querySelectorAll('.indica-strain:not(.hidden)').length;
-    document.getElementById('sativaCount').textContent =
-        document.querySelectorAll('.sativa-strain:not(.hidden)').length;
-    document.getElementById('hybridCount').textContent =
-        document.querySelectorAll('.hybrid-strain:not(.hidden)').length;
-    document.getElementById('unknownCount').textContent =
-        document.querySelectorAll('.unknown-strain:not(.hidden)').length;
-}
-
-function createFirework(x, y, color, spread = 80, particles = 20) {
-    for (let i = 0; i < particles; i++) {
-        const fw = document.createElement('div');
-        fw.className = 'firework';
-        fw.style.background = color;
-        fw.style.left = x + 'px';
-        fw.style.top = y + 'px';
-        document.body.appendChild(fw);
-
-        const angle = Math.random() * 2 * Math.PI;
-        const radius = Math.random() * spread;
-        const dx = Math.cos(angle) * radius;
-        const dy = Math.sin(angle) * radius;
-
-        fw.animate([
-            { transform: `translate(0,0)`, opacity: 1 },
-            { transform: `translate(${dx}px, ${dy}px)`, opacity: 0 }
-        ], {
-            duration: 1500,
-            easing: 'ease-out'
-        });
-
-        setTimeout(() => fw.remove(), 1500);
-    }
-}
-
-function showMessage() {
-    const popup = document.getElementById('noResultsPopup');
-    popup.style.display = 'flex';
-    popup.classList.add('pulse-glow');
-
-    const rect = popup.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00', '#ff6600', '#ff0000', '#ffffff'];
-
-    for (let i = 0; i < 5; i++) {
-        setTimeout(() => {
-            createFirework(centerX, centerY, colors[Math.floor(Math.random() * colors.length)], 120, 30);
-        }, i * 200);
-    }
-
-    let bursts = 0;
-    const interval = setInterval(() => {
-        const randX = Math.random() * window.innerWidth;
-        const randY = Math.random() * window.innerHeight;
-        createFirework(randX, randY, colors[Math.floor(Math.random() * colors.length)], 100, 25);
-        bursts++;
-        if (bursts > 15) clearInterval(interval);
-    }, 150);
-}
-
-function hideMessage() {
-    const popup = document.getElementById('noResultsPopup');
-    popup.style.display = 'none';
-    popup.classList.remove('pulse-glow');
-}
-
-function hideWithFade(el) {
-    el.classList.remove('fade-in');
-    el.classList.add('fade-out');
-    setTimeout(() => {
-        el.classList.add('hidden');
-        updateCounts();
-    }, 300);
-}
-
-function showWithFade(el) {
-    el.classList.remove('hidden', 'fade-out');
-    el.classList.add('fade-in');
-    updateCounts();
-}
-
 function searchStrains() {
     const input = document.getElementById('strainInput').value.toLowerCase();
     const strains = document.querySelectorAll('.strain-list-container ul li');
-    let visibleCount = 0;
-
     strains.forEach(strain => {
         const name = strain.textContent.toLowerCase();
-        if (name.includes(input)) {
-            showWithFade(strain);
-            visibleCount++;
-        } else {
-            hideWithFade(strain);
-        }
+        strain.style.display = name.includes(input) ? 'flex' : 'none';
     });
-
-    visibleCount === 0 ? showMessage() : hideMessage();
 }
-
 let activeFilter = null;
 document.querySelectorAll('.legend-item').forEach(item => {
     item.addEventListener('click', () => {
         const filterClass = item.getAttribute('data-filter');
         const strains = document.querySelectorAll('.strain-list-container ul li');
-        let visibleCount = 0;
-
         if (activeFilter === filterClass || filterClass === 'all') {
-            strains.forEach(strain => {
-                showWithFade(strain);
-                visibleCount++;
-            });
+            strains.forEach(strain => strain.style.display = 'flex');
             activeFilter = null;
             document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
         } else {
             strains.forEach(strain => {
-                if (strain.classList.contains(filterClass)) {
-                    showWithFade(strain);
-                    visibleCount++;
-                } else {
-                    hideWithFade(strain);
-                }
+                strain.style.display = strain.classList.contains(filterClass) ? 'flex' : 'none';
             });
             activeFilter = filterClass;
             document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
             item.classList.add('active');
         }
-
-        visibleCount === 0 ? showMessage() : hideMessage();
         document.getElementById('strainInput').value = '';
-    });
+ });
 });
-
-updateCounts();
 </script>
-
-<style>
-#noResultsPopup {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 250px;
-    height: 250px;
-    background-color: rgba(30,30,30,0.95);
-    color: #00ff00;
-    font-size: 1.8em;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 12px;
-    z-index: 10000;
-    box-shadow: 0 0 20px #00ff00;
-}
-
-.pulse-glow {
-    animation: pulse 1s infinite;
-    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-50%, -50%) scale(1.1); }
-}
-
-.firework {
-    position: fixed;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-}
-</style>
 
 </body>
 </html>
