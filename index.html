@@ -174,10 +174,19 @@ li:hover {
     font-weight: bold;
     font-size: 1.2em;
 }
-.indica-strain .strain-name { color: #fff; }
-.sativa-strain .strain-name { color: #fff; }
-.hybrid-strain .strain-name { color: #fff; }
-.unknown-strain .strain-name { color: #000; }
+.indica-strain .strain-name, .indica-strain .strain-name a { color: #fff !important; }
+.sativa-strain .strain-name, .sativa-strain .strain-name a { color: #fff !important; }
+.hybrid-strain .strain-name, .hybrid-strain .strain-name a { color: #fff !important; }
+.unknown-strain .strain-name, .unknown-strain .strain-name a { color: #000 !important; }
+
+.strain-name a { 
+    text-decoration: none !important; 
+}
+.strain-name a:hover { 
+    text-shadow: 0 0 5px #fff, 0 0 10px #00ff00; 
+}
+
+    
 .indica-strain { background-color: blue; }
 .sativa-strain { background-color: red; }
 .hybrid-strain { background-color: green; }
