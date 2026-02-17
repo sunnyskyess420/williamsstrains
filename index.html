@@ -219,23 +219,6 @@ li:hover {
     margin-left: 20px;
 }
 
-.visitor-badge-overlay {
-  position: relative; display: inline-block;
-}
-.visitor-badge-overlay::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, rgba(0,200,0,0.6), rgba(0,255,0,0.4));
-  border-radius: 8px;
-  mix-blend-mode: multiply;
-  z-index: 1;
-}
-.visitor-badge {
-  position: relative; z-index: 2; max-width: 140px !important;
-  box-shadow: 0 0 15px rgba(0,255,0,0.6) !important;
-}
-
-
 
 </style>
 </head>
@@ -244,13 +227,27 @@ li:hover {
 <div class="container">
     <h1>Wildcats Wonderful Weed List</h1>
     
-<div style="display: flex; justify-content: center; align-items: center; padding: 10px 0; margin: 10px 0;">
-  <img
-    src="https://visitor-badge.one9x.com/badge?page_id=wildcats-weed-list&left_color=black&right_color=lime&left_text=Visitors"
-    alt="Visitors"
-    style="max-width: 180px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);"
-  />
+<div style="display: flex; justify-content: center; margin: 15px 0;">
+  <div
+    style="
+      background-color: #00aa00;
+      border-radius: 12px;
+      padding: 18px 40px;
+      min-width: 260px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+    "
+  >
+    <img
+      src="https://visitor-badge.one9x.com/badge?page_id=wildcats-weed-list&left_color=000000&right_color=00ff00&left_text=Visitors"
+      alt="Visitors"
+      style="height: 32px; width: auto;"
+    />
+  </div>
 </div>
+
 
     <p class="description">Welcome to William’s ultimate cannabis strain log — a personalized collection of every strain he’s tried so far. Think of it as his own stash tracker and discovery guide rolled into one. Use the built-in search to quickly find out whether a strain is a brand-new experience waiting to happen or one of his well-loved classics.</p>
     <div class="legend">
