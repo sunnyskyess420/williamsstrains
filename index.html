@@ -220,16 +220,20 @@ li:hover {
 }
 
 .visitor-badge {
-  max-width: 120px !important;
+  max-width: 140px !important;  /* Slightly larger for readability */
   height: auto !important;
-  filter: brightness(0.8) sepia(0.2) hue-rotate(90deg) saturate(0.5);
-  opacity: 0.85;
-  transition: filter 0.3s ease, transform 0.3s ease;
+  filter: hue-rotate(120deg) saturate(0.6) brightness(1.1);  /* Orange → bright green, no darkness */
+  opacity: 0.9;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.3);  /* Matches h1 glow */
+  transition: all 0.3s ease;
 }
 .visitor-badge:hover {
-  filter: brightness(1) sepia(0.1) hue-rotate(90deg) saturate(0.8);
-  transform: scale(1.05);
+  filter: hue-rotate(120deg) saturate(0.8) brightness(1.2);
+  box-shadow: 0 0 12px rgba(0, 255, 0, 0.5);
+  transform: scale(1.03);
 }
+
 </style>
 </head>
 
