@@ -220,19 +220,20 @@ li:hover {
 }
 
 .visitor-badge {
-  max-width: 140px !important;  /* Slightly larger for readability */
+  max-width: 140px !important;
   height: auto !important;
-  filter: hue-rotate(120deg) saturate(0.6) brightness(1.1);  /* Orange → bright green, no darkness */
-  opacity: 0.9;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 255, 0, 0.3);  /* Matches h1 glow */
-  transition: all 0.3s ease;
+  filter: hue-rotate(130deg) saturate(0.9) brightness(1.15) !important;  /* Stronger green */
+  opacity: 0.92 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.4) !important;  /* Green glow */
+  transition: all 0.3s ease !important;
 }
 .visitor-badge:hover {
-  filter: hue-rotate(120deg) saturate(0.8) brightness(1.2);
-  box-shadow: 0 0 12px rgba(0, 255, 0, 0.5);
-  transform: scale(1.03);
+  filter: hue-rotate(130deg) saturate(1.1) brightness(1.3) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.6) !important;
+  transform: scale(1.03) !important;
 }
+
 
 </style>
 </head>
