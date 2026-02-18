@@ -1126,19 +1126,21 @@ updateCounts();
 <div id="swed-footer">
   <div class="swed-wrapper" style="text-align: center;">
     <div style="position: relative; display: inline-block; width: 300px; height: 150px; margin: 0 auto;">
-      <!-- Transparent full-overlay link to main page -->
+      <!-- Transparent full-overlay link to main page (reduced interference) -->
       <a href="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/" 
          target="_blank" 
          rel="noopener noreferrer"
-         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; text-decoration: none; cursor: pointer;"></a>
+         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; text-decoration: none; cursor: pointer; pointer-events: auto;"
+         onmouseover="this.style.pointerEvents='none';" 
+         onmouseout="this.style.pointerEvents='auto';"></a>
       
-      <!-- Purple button: plays sound (adjusted iframe) -->
+      <!-- Purple button: plays sound (optimized iframe) -->
       <iframe width="300" 
               height="150" 
               src="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/embed/" 
               frameborder="0" 
               scrolling="no"
-             allow="autoplay"
+              allow="autoplay"
               style="position: absolute; top: 0; left: 0; z-index: 1; border: 0;"></iframe>
     </div>
   </div>
