@@ -220,10 +220,17 @@ li:hover {
 }
 #swed-footer {
     position: fixed;
-    top: 55%;            /* vertical position; tweak 50–60% if needed */
+    top: 55%;              /* vertical position; tweak 50–60% to move up/down */
+    right: 6vw;            /* distance from the right edge; tweak 4–8vw */
     transform: translateY(-50%);
-    right: 6vw;          /* distance from right edge; tweak 4–8vw */
     z-index: 200;
+}
+
+#swed-footer .swed-wrapper {
+    position: relative;
+    width: 110px;
+    height: 200px;
+}
 }
 
 </style>
@@ -1115,45 +1122,45 @@ updateCounts();
 
 <script src="https://readmecodegen.com/view-tracker.js" data-user="user_mlr1poql_rf44cn"></script>
 
-<!-- Right-side S.W.E.D. button next to strain list -->
-<div id="swed-footer" style="position: relative; width: 110px; height: 200px;">
-  <!-- Invisible overlay link that opens MyInstants in a new tab -->
-  <a
-    href="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/"
-    target="_blank"
-    rel="noopener noreferrer"
-    style="
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      display: block;
-      text-indent: -9999px; /* hide text */
-      overflow: hidden;
-    "
-  >
-    Smoke Weed Everyday Dota 2
-  </a>
+<!-- Right-side S.W.E.D. button next to strain list, outside frosted background -->
+<div id="swed-footer">
+  <div class="swed-wrapper">
+    <!-- Invisible overlay link that opens MyInstants in a new tab -->
+    <a
+      href="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/"
+      target="_blank"
+      rel="noopener noreferrer"
+      style="
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: block;
+        text-indent: -9999px; /* hide text */
+        overflow: hidden;
+      "
+    >
+      Smoke Weed Everyday Dota 2
+    </a>
 
-  <!-- Required MyInstants embed code (kept exactly as provided) -->
-  <iframe
-    width="110"
-    height="200"
-    src="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/embed/"
-    frameborder="0"
-    scrolling="no"
-    style="
-      border: 0;
-      width: 110px;
-      height: 200px;
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-    "
-  ></iframe>
+    <!-- Required MyInstants embed code (kept exactly as provided) -->
+    <iframe
+      width="110"
+      height="200"
+      src="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/embed/"
+      frameborder="0"
+      scrolling="no"
+      style="
+        border: 0;
+        width: 110px;
+        height: 200px;
+      "
+    ></iframe>
+  </div>
 </div>
 
 </body>
 </html>
+
 
 
 
