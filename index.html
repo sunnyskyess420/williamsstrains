@@ -1100,13 +1100,32 @@ updateCounts();
 }
 </style>
 
-    <script src="https://readmecodegen.com/view-tracker.js" data-user="user_mlr1poql_rf44cn"></script>
+<script src="https://readmecodegen.com/view-tracker.js" data-user="user_mlr1poql_rf44cn"></script>
 
-    
- <!-- Footer Iframe -->
-<div style="display: flex; justify-content: center; padding: 20px 0; background: linear-gradient(rgba(0,100,0,0.8), rgba(0,50,0,0.9)); border-top: 2px solid #00ff00; text-align: center;">
-  <iframe width="110" height="200" src="https://www.myinstants.com/instant/smoke-weed-everyday-song-remix/embed/" frameborder="0" scrolling="no" title="S.W.E.D. Remix"></iframe>
+<!-- Simple Play Button Footer (REPLACE iframe div HERE) -->
+<div style="display: flex; justify-content: center; padding: 20px 0; text-align: center;">
+  <button id="playSwed" style="background: transparent; border: 2px solid #00ff00; color: #00ff00; padding: 15px 30px; font-size: 18px; font-weight: bold; border-radius: 50px; cursor: pointer; text-shadow: 0 0 10px #00ff00; box-shadow: 0 0 20px rgba(0,255,0,0.5); transition: all 0.3s ease; font-family: Arial, sans-serif;">▶ Play S.W.E.D. Remix</button>
 </div>
+
+<audio id="swedAudio" preload="auto" style="display: none;">
+  <source src="https://www.myinstants.com/media/sounds/smoke-weed-everyday-song-remix.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.getElementById('playSwed').addEventListener('click', function() {
+  var audio = document.getElementById('swedAudio');
+  if (audio.paused) {
+    audio.play();
+    this.textContent = '⏸ Pause S.W.E.D.';
+    this.style.background = 'rgba(0,255,0,0.2)';
+  } else {
+    audio.pause();
+    this.textContent = '▶ Play S.W.E.D. Remix';
+    this.style.background = 'transparent';
+  }
+});
+</script>
+
 </body>
 </html>
 
