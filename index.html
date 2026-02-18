@@ -1130,53 +1130,22 @@ updateCounts();
 <div id="swed-footer">
   <div class="swed-wrapper" style="text-align: center;">
     <div style="position: relative; display: inline-block; width: 110px; height: 200px; margin: 0 auto;">
-      <!-- SWED Button: authentic look + sound, no navigation -->
-      <iframe id="swed-iframe" 
-              width="110" 
+      <!-- Invisible full-overlay: forces redirect to main site (z-index highest) -->
+      <a href="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/" 
+         target="_blank" 
+         rel="noopener noreferrer"
+         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 3; 
+                text-decoration: none; display: block; cursor: pointer;"
+         title="Smoke Weed Everyday"></a>
+      
+      <!-- Authentic purple button visual ONLY (iframe behind overlay, smaller size) -->
+      <iframe width="110" 
               height="200" 
               src="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/embed/" 
               frameborder="0" 
               scrolling="no"
-              allow="autoplay"
-              style="position: absolute; top: 0; left: 0; z-index: 1; border: 0;"></iframe>
+              style="position: absolute; top: 0; left: 0; z-index: 1; border: 0; pointer-events: none;"></iframe>
     </div>
   </div>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const iframe = document.getElementById('swed-iframe');
-  let iframeDoc;
-  
-  // Wait for iframe load, then block links/popups
-  iframe.onload = function() {
-    try {
-      iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-      // Block all links from navigating
-      const links = iframeDoc.querySelectorAll('a');
-      links.forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          return false;
-        });
-      });
-      // Optional: Block window.open/popups
-      iframe.contentWindow.addEventListener('beforeunload', function(e) { e.preventDefault(); });
-    } catch (e) {
-      // Cross-origin block: use postMessage if needed, but visual/sound works
-      console.log('SWED iframe ready for clicks');
-    }
-  };
-  
-  // Click handler on iframe for sound trigger (user gesture)
-  iframe.addEventListener('click', function() {
-    // Simulate button press if possible (for sound)
-    try {
-      const playBtn = iframeDoc.querySelector('button, .play-button'); // Adjust selector if known
-      if (playBtn) playBtn.click();
-    } catch (e) {}
-  });
-});
-</script>
 
