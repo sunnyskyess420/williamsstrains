@@ -1122,21 +1122,61 @@ updateCounts();
 
 <script src="https://readmecodegen.com/view-tracker.js" data-user="user_mlr1poql_rf44cn"></script>
 
+<!-- keep any of your existing JS above this line, e.g. updateCounts(), filter code, etc. -->
+
+<script src="https://readmecodegen.com/view-tracker.js" data-user="user_mlr1poql_rf44cn"></script>
+
 <!-- Right-side S.W.E.D. button next to strain list, outside frosted background -->
 <div id="swed-footer">
   <div class="swed-wrapper" style="text-align: center;">
-    <a href="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       style="position: relative; display: inline-block; width: 300px; height: 150px; margin: 0 auto; 
-              background: linear-gradient(145deg, #8a2be2, #9932cc); border-radius: 15px; 
-              box-shadow: 0 8px 16px rgba(138,43,226,0.3); cursor: pointer; text-decoration: none;"
-       title="Smoke Weed Everyday - Play Sound">
-      <!-- Optional: Add icon or text overlay -->
-      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-                  color: white; font-weight: bold; font-size: 14px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">
-        SWED
-      </div>
-    </a>
+    <div style="position: relative; display: inline-block; width: 110px; height: 200px; margin: 0 auto;">
+      <!-- SWED Button: authentic look + sound, no navigation -->
+      <iframe id="swed-iframe" 
+              width="110" 
+              height="200" 
+              src="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/embed/" 
+              frameborder="0" 
+              scrolling="no"
+              allow="autoplay"
+              style="position: absolute; top: 0; left: 0; z-index: 1; border: 0;"></iframe>
+    </div>
   </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const iframe = document.getElementById('swed-iframe');
+  let iframeDoc;
+  
+  // Wait for iframe load, then block links/popups
+  iframe.onload = function() {
+    try {
+      iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+      // Block all links from navigating
+      const links = iframeDoc.querySelectorAll('a');
+      links.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        });
+      });
+      // Optional: Block window.open/popups
+      iframe.contentWindow.addEventListener('beforeunload', function(e) { e.preventDefault(); });
+    } catch (e) {
+      // Cross-origin block: use postMessage if needed, but visual/sound works
+      console.log('SWED iframe ready for clicks');
+    }
+  };
+  
+  // Click handler on iframe for sound trigger (user gesture)
+  iframe.addEventListener('click', function() {
+    // Simulate button press if possible (for sound)
+    try {
+      const playBtn = iframeDoc.querySelector('button, .play-button'); // Adjust selector if known
+      if (playBtn) playBtn.click();
+    } catch (e) {}
+  });
+});
+</script>
+
