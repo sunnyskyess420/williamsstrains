@@ -1125,23 +1125,18 @@ updateCounts();
 <!-- Right-side S.W.E.D. button next to strain list, outside frosted background -->
 <div id="swed-footer">
   <div class="swed-wrapper" style="text-align: center;">
-    <div style="position: relative; display: inline-block; width: 300px; height: 150px; margin: 0 auto;">
-      <!-- Transparent full-overlay link to main page (reduced interference) -->
-      <a href="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/" 
-         target="_blank" 
-         rel="noopener noreferrer"
-         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; text-decoration: none; cursor: pointer; pointer-events: auto;"
-         onmouseover="this.style.pointerEvents='none';" 
-         onmouseout="this.style.pointerEvents='auto';"></a>
-      
-      <!-- Purple button: plays sound (optimized iframe) -->
-      <iframe width="300" 
-              height="150" 
-              src="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/embed/" 
-              frameborder="0" 
-              scrolling="no"
-              allow="autoplay"
-              style="position: absolute; top: 0; left: 0; z-index: 1; border: 0;"></iframe>
-    </div>
+    <a href="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       style="position: relative; display: inline-block; width: 300px; height: 150px; margin: 0 auto; 
+              background: linear-gradient(145deg, #8a2be2, #9932cc); border-radius: 15px; 
+              box-shadow: 0 8px 16px rgba(138,43,226,0.3); cursor: pointer; text-decoration: none;"
+       title="Smoke Weed Everyday - Play Sound">
+      <!-- Optional: Add icon or text overlay -->
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                  color: white; font-weight: bold; font-size: 14px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">
+        SWED
+      </div>
+    </a>
   </div>
 </div>
