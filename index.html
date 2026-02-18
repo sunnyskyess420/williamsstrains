@@ -1122,6 +1122,42 @@ updateCounts();
 
 <script src="https://readmecodegen.com/view-tracker.js" data-user="user_mlr1poql_rf44cn"></script>
 
+    <audio id="popupSound" preload="auto">
+  <source src="small-fireworks.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const popup = document.getElementById('noResultsPopup');
+  const sound = document.getElementById('popupSound');
+
+  if (!popup || !sound) return;
+
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && 
+          (mutation.attributeName === 'style' || mutation.attributeName === 'class')) {
+        // Check if popup is now visible
+        const isVisible = popup.style.display !== 'none' && 
+                          getComputedStyle(popup).visibility !== 'hidden' && 
+                          popup.offsetParent !== null;
+        if (isVisible) {
+          sound.currentTime = 0;  // Restart sound
+          sound.play().catch(e => console.error('Sound play failed:', e));  // Logs errors, handles autoplay blocks
+        }
+      }
+    });
+  });
+
+  observer.observe(popup, { 
+    attributes: true, 
+    attributeFilter: ['style', 'class'] 
+  });
+});
+</script>
+
+    
 <!-- Right-side S.W.E.D. button next to strain list, outside frosted background -->
 <div id="swed-footer">
   <div class="swed-wrapper" style="text-align: center;">
