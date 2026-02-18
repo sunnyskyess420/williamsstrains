@@ -218,6 +218,13 @@ li:hover {
     .legend-item span {
     margin-left: 20px;
 }
+#swed-footer {
+    position: fixed;
+    top: 55%;            /* vertical position; tweak 50–60% if needed */
+    transform: translateY(-50%);
+    right: 6vw;          /* distance from right edge; tweak 4–8vw */
+    z-index: 200;
+}
 
 </style>
 </head>
@@ -1100,9 +1107,11 @@ updateCounts();
 }
 </style>
 
+<!-- keep any of your existing JS above this line, e.g. updateCounts(), filter code, etc. -->
+
 <script src="https://readmecodegen.com/view-tracker.js" data-user="user_mlr1poql_rf44cn"></script>
 
-<!-- Bottom-center S.W.E.D. button -->
+<!-- Right-side S.W.E.D. button next to strain list -->
 <div id="swed-footer">
   <iframe
     width="110"
