@@ -868,7 +868,10 @@ function updateCounts() {
         document.querySelectorAll('.hybrid-strain:not(.hidden)').length;
     document.getElementById('unknownCount').textContent =
         document.querySelectorAll('.unknown-strain:not(.hidden)').length;
+    document.getElementById('totalCount').textContent =
+        document.querySelectorAll('li:not(.hidden)').length;
 }
+
 
 function createFirework(x, y, color, spread = 80, particles = 20) {
     for (let i = 0; i < particles; i++) {
