@@ -299,6 +299,9 @@ li:hover {
     <span style="color: #b0e0b0;">Show All (<span id="totalCount"></span>)</span>
 </div>
     </div>
+
+    <button id="randomStrain" style="background: linear-gradient(135deg, #666, #888); color: white; border: none; padding: 10px 20px; border-radius: 8px; margin-left: 10px; cursor: pointer; font-weight: bold;">🎲 Random</button>
+    
     <div class="search-container">
         <label for="strainInput">Search:</label>
         <input type="text" id="strainInput" oninput="searchStrains()" placeholder="Enter strain name...">
@@ -871,6 +874,22 @@ function updateCounts() {
     document.getElementById('totalCount').textContent =
         document.querySelectorAll('li:not(.hidden)').length;
 }
+           
+document.getElementById('randomStrain').addEventListener('click', () => {
+  const visibleStrains = document.querySelectorAll('li:not(.hidden)');
+  if (visibleStrains.length === 0) return;
+  
+  // Pick random + highlight
+  const randomStrain = visibleStrains[Math.floor(Math.random() * visibleStrains.length)];
+  document.querySelectorAll('li').forEach(li => li.classList.remove('random-highlight'));
+  randomStrain.classList.add('random-highlight');
+  
+  // Scroll smooth to it
+  randomStrain.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  
+  // Fade highlight after 3s
+  setTimeout(() => randomStrain.classList.remove('random-highlight'), 3000);
+});
 
 
 function createFirework(x, y, color, spread = 80, particles = 20) {
@@ -1119,6 +1138,19 @@ updateCounts();
 .hidden {
     display: none !important;
 }
+
+    .random-highlight {
+  box-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00 !important;
+  transform: scale(1.05);
+  z-index: 10;
+  animation: pulse 1s infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00; }
+  50% { box-shadow: 0 0 30px #ffff00, 0 0 60px #ffff00; }
+}
+
+    
 </style>
 
 <!-- keep any of your existing JS above this line, e.g. updateCounts(), filter code, etc. -->
