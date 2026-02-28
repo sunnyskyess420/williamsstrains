@@ -179,21 +179,6 @@ li:hover {
 .hybrid-strain .strain-name, .hybrid-strain .strain-name a { color: #fff !important; }
 .unknown-strain .strain-name, .unknown-strain .strain-name a { color: #000 !important; }
 
-text
-.tried-btn {
-  background: rgba(0,255,0,0.7) !important;
-  border: none;
-  padding: 2px 6px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.8em;
-  margin-right: 4px;
-  vertical-align: middle;
-}
-.tried-btn:hover { box-shadow: 0 0 10px #00ff00 !important; background: rgba(0,255,0,0.9) !important; }
-.tried { border-left: 4px solid #00ff00 !important; }
-.tried .strain-name { text-shadow: 0 0 5px #00ff00; }
-
 .strain-name a { 
     text-decoration: none !important; 
 }
@@ -235,8 +220,8 @@ text
 }
 #swed-footer {
     position: fixed;
-    top: 55%;              /* vertical position; tweak 50â€“60% to move up/down */
-    right: 6vw;            /* distance from the right edge; tweak 4â€“8vw */
+    top: 55%;              /* vertical position; tweak 50–60% to move up/down */
+    right: 6vw;            /* distance from the right edge; tweak 4–8vw */
     transform: translateY(-50%);
     z-index: 200;
 }
@@ -256,7 +241,7 @@ text
    <h1>Wildcats Wonderful Weed List</h1>
 
 <p class="description">
-  WWWL is a searchable log of every strain Iâ€™ve tried, with quick links to learn
+  WWWL is a searchable log of every strain I’ve tried, with quick links to learn
   about each strain and filters for indica/sativa/hybrid.
 </p>
 
@@ -309,22 +294,21 @@ text
             <div class="legend-color" style="background-color: yellow;"></div>
             <span style="color: #b0e0b0;">Unknown (<span id="unknownCount"></span>)</span>
         </div>
-<!-- NEW TRIED BUTTON --> <div class="legend-item" data-filter="tried"> <div class="legend-color" style="background-color: lime;"></div> <span style="color: #90ee90;">Tried (<span id="triedCount">0</span>)</span> </div> 
         <div class="legend-item" data-filter="all">
     <div class="legend-color" style="background-color: gray;"></div>
     <span style="color: #b0e0b0;">Show All (<span id="totalCount"></span>)</span>
 </div>
     </div>
+
 <div style="display: flex; justify-content: center; margin: 10px 0;">
-  <button id="randomStrain" style="background: linear-gradient(135deg, #666, #888); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;">ðŸŽ² Random</button>
+  <button id="randomStrain" style="background: linear-gradient(135deg, #666, #888); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;">🎲 Random</button>
 </div>
 
     
     <div class="search-container">
         <label for="strainInput">Search:</label>
         <input type="text" id="strainInput" oninput="searchStrains()" placeholder="Enter strain name...">
-    </div> <script>loadTriedStrains();</script> 
-
+    </div>
 
    
     
@@ -872,12 +856,7 @@ text
        
 
 </ul>
-</div> 
-</div>
-    
-    
-    
-    <div id="noResultsPopup">
+</div> <div id="noResultsPopup">
     OoO A NEW ONE!
 </div>
 
@@ -887,19 +866,17 @@ text
     
        <script>
 function updateCounts() {
-    document.getElementById('indicaCount').textContent = document.querySelectorAll('.indica-strain:not(.hidden)').length;
-    document.getElementById('sativaCount').textContent = document.querySelectorAll('.sativa-strain:not(.hidden)').length;
-    document.getElementById('hybridCount').textContent = document.querySelectorAll('.hybrid-strain:not(.hidden)').length;
-    document.getElementById('unknownCount').textContent = document.querySelectorAll('.unknown-strain:not(.hidden)').length;
-    document.getElementById('triedCount').textContent = document.querySelectorAll('.tried:not(.hidden)').length;
-    document.getElementById('totalCount').textContent = document.querySelectorAll('li:not(.hidden)').length;
+    document.getElementById('indicaCount').textContent =
+        document.querySelectorAll('.indica-strain:not(.hidden)').length;
+    document.getElementById('sativaCount').textContent =
+        document.querySelectorAll('.sativa-strain:not(.hidden)').length;
+    document.getElementById('hybridCount').textContent =
+        document.querySelectorAll('.hybrid-strain:not(.hidden)').length;
+    document.getElementById('unknownCount').textContent =
+        document.querySelectorAll('.unknown-strain:not(.hidden)').length;
+    document.getElementById('totalCount').textContent =
+        document.querySelectorAll('li:not(.hidden)').length;
 }
-
-function toggleTried(btn) { const li = btn.closest('li'); li.classList.toggle('tried'); const strainName = li.querySelector('.strain-name').textContent.trim(); const tried = JSON.parse(localStorage.triedStrains || '[]'); const index = tried.indexOf(strainName); if (li.classList.contains('tried')) { if (index === -1) tried.push(strainName); } else if (index > -1) { tried.splice(index, 1); } localStorage.triedStrains = JSON.stringify(tried); updateCounts(); } 
-
-function loadTriedStrains() { const tried = JSON.parse(localStorage.triedStrains || '[]'); document.querySelectorAll('li').forEach(li => { const name = li.querySelector('.strain-name').textContent.trim(); if (tried.includes(name)) li.classList.add('tried'); }); } 
-
-
            
 document.getElementById('randomStrain').addEventListener('click', () => {
   const visibleStrains = document.querySelectorAll('li:not(.hidden)');
