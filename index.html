@@ -34,12 +34,8 @@ h1 {
     text-shadow: 0 0 10px #00ff00, 0 0 20px #adff2f, 0 0 30px #006400;
     animation: glow 1.5s ease-in-out infinite alternate;
 }
-@keyframes glow {
-    from { text-shadow: 0 0 10px #00ff00, 0 0 20px #adff2f;
-}
-    to { text-shadow: 0 0 20px #adff2f, 0 0 30px #006400;
-}
-}
+@keyframes glow { from { text-shadow: 0 0 10px #00ff00, 0 0 20px #adff2f; } to { text-shadow: 0 0 20px #adff2f, 0 0 30px #006400; } } 
+
 .description {
     text-align: center;
     color: #ffffff;
@@ -179,6 +175,23 @@ li:hover {
 .hybrid-strain .strain-name, .hybrid-strain .strain-name a { color: #fff !important; }
 .unknown-strain .strain-name, .unknown-strain .strain-name a { color: #000 !important; }
 
+
+
+
+.tried-btn {
+  background: rgba(0,255,0,0.7) !important;
+  border: none;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8em;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.tried-btn:hover { box-shadow: 0 0 10px #00ff00 !important; background: rgba(0,255,0,0.9) !important; }
+.tried { border-left: 4px solid #00ff00 !important; }
+.tried .strain-name { text-shadow: 0 0 5px #00ff00; }
+
 .strain-name a { 
     text-decoration: none !important; 
 }
@@ -215,13 +228,10 @@ li:hover {
 .legend-item span {
     margin-left: 20px;
 }
-    .legend-item span {
-    margin-left: 20px;
-}
 #swed-footer {
     position: fixed;
-    top: 55%;              /* vertical position; tweak 50–60% to move up/down */
-    right: 6vw;            /* distance from the right edge; tweak 4–8vw */
+    top: 55%;              /* vertical position; tweak 50&ndash;60% to move up/down */
+    right: 6vw;            /* distance from the right edge; tweak 4&ndash;8vw */
     transform: translateY(-50%);
     z-index: 200;
 }
@@ -231,7 +241,7 @@ li:hover {
     width: 110px;
     height: 200px;
 }
-}
+
 
 </style>
 </head>
@@ -294,21 +304,24 @@ li:hover {
             <div class="legend-color" style="background-color: yellow;"></div>
             <span style="color: #b0e0b0;">Unknown (<span id="unknownCount"></span>)</span>
         </div>
+
+
+
+<!-- NEW TRIED BUTTON --> <div class="legend-item" data-filter="tried"> <img src="images/tried-leaf.png" alt="Tried Leaf" class="legend-leaf"> <!-- optional leaf --> <div class="legend-color" style="background-color: lime;"></div> <span style="color: #90ee90;">Tried (<span id="triedCount">0</span>)</span> </div>  
         <div class="legend-item" data-filter="all">
     <div class="legend-color" style="background-color: gray;"></div>
     <span style="color: #b0e0b0;">Show All (<span id="totalCount"></span>)</span>
 </div>
     </div>
-
 <div style="display: flex; justify-content: center; margin: 10px 0;">
-  <button id="randomStrain" style="background: linear-gradient(135deg, #666, #888); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;">🎲 Random</button>
+  <button id="randomStrain" style="background: linear-gradient(135deg, #666, #888); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;"> Random</button>
 </div>
 
     
     <div class="search-container">
         <label for="strainInput">Search:</label>
         <input type="text" id="strainInput" oninput="searchStrains()" placeholder="Enter strain name...">
-    </div>
+    </div> 
 
    
     
@@ -860,23 +873,23 @@ li:hover {
     OoO A NEW ONE!
 </div>
 
-</div> 
-
 
     
        <script>
 function updateCounts() {
-    document.getElementById('indicaCount').textContent =
-        document.querySelectorAll('.indica-strain:not(.hidden)').length;
-    document.getElementById('sativaCount').textContent =
-        document.querySelectorAll('.sativa-strain:not(.hidden)').length;
-    document.getElementById('hybridCount').textContent =
-        document.querySelectorAll('.hybrid-strain:not(.hidden)').length;
-    document.getElementById('unknownCount').textContent =
-        document.querySelectorAll('.unknown-strain:not(.hidden)').length;
-    document.getElementById('totalCount').textContent =
-        document.querySelectorAll('li:not(.hidden)').length;
+    document.getElementById('indicaCount').textContent = document.querySelectorAll('.indica-strain:not(.hidden)').length;
+    document.getElementById('sativaCount').textContent = document.querySelectorAll('.sativa-strain:not(.hidden)').length;
+    document.getElementById('hybridCount').textContent = document.querySelectorAll('.hybrid-strain:not(.hidden)').length;
+    document.getElementById('unknownCount').textContent = document.querySelectorAll('.unknown-strain:not(.hidden)').length;
+    document.getElementById('triedCount').textContent = document.querySelectorAll('.tried:not(.hidden)').length;
+    document.getElementById('totalCount').textContent = document.querySelectorAll('li:not(.hidden)').length;
 }
+
+function toggleTried(btn) { const li = btn.closest('li'); li.classList.toggle('tried'); const strainName = li.querySelector('.strain-name').textContent.trim(); const tried = JSON.parse(localStorage.triedStrains || '[]'); const index = tried.indexOf(strainName); if (li.classList.contains('tried')) { if (index === -1) tried.push(strainName); } else if (index > -1) { tried.splice(index, 1); } localStorage.triedStrains = JSON.stringify(tried); updateCounts(); } 
+
+function loadTriedStrains() { const tried = JSON.parse(localStorage.triedStrains || '[]'); document.querySelectorAll('li').forEach(li => { const name = li.querySelector('.strain-name').textContent.trim(); if (tried.includes(name)) li.classList.add('tried'); }); } 
+
+
            
 document.getElementById('randomStrain').addEventListener('click', () => {
   const visibleStrains = document.querySelectorAll('li:not(.hidden)');
@@ -1160,13 +1173,14 @@ updateCounts();
 
 <script src="https://readmecodegen.com/view-tracker.js" data-user="user_mlr1poql_rf44cn"></script>
 
-    <audio id="popupSound" preload="auto">
+<audio id="popupSound" preload="auto">
   <source src="small-fireworks.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Existing popup sound code
   const popup = document.getElementById('noResultsPopup');
   const sound = document.getElementById('popupSound');
 
@@ -1176,13 +1190,12 @@ document.addEventListener('DOMContentLoaded', function() {
     mutations.forEach(function(mutation) {
       if (mutation.type === 'attributes' && 
           (mutation.attributeName === 'style' || mutation.attributeName === 'class')) {
-        // Check if popup is now visible
         const isVisible = popup.style.display !== 'none' && 
                           getComputedStyle(popup).visibility !== 'hidden' && 
                           popup.offsetParent !== null;
         if (isVisible) {
-          sound.currentTime = 0;  // Restart sound
-          sound.play().catch(e => console.error('Sound play failed:', e));  // Logs errors, handles autoplay blocks
+          sound.currentTime = 0;
+          sound.play().catch(e => console.error('Sound play failed:', e));
         }
       }
     });
@@ -1192,26 +1205,15 @@ document.addEventListener('DOMContentLoaded', function() {
     attributes: true, 
     attributeFilter: ['style', 'class'] 
   });
+
+  // **ADD THIS: Your loadTriedStrains call**
+  loadTriedStrains();
 });
 </script>
 
-    
-<!-- Right-side S.W.E.D. button next to strain list, outside frosted background -->
+<!-- Right-side S.W.E.D. button -->
 <div id="swed-footer">
-  <div class="swed-wrapper" style="text-align: center;">
-    <a href="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/"
-       target="_blank"
-       rel="noopener noreferrer"
-       title="Smoke Weed Everyday">
-      <iframe
-        width="110"
-        height="200"
-        src="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/embed/"
-        frameborder="0"
-        scrolling="no">
-      </iframe>
-    </a>
-  </div>
+  <!-- your iframe content -->
 </div>
 </body>
 </html>
