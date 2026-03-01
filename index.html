@@ -34,16 +34,12 @@ h1 {
     text-shadow: 0 0 10px #00ff00, 0 0 20px #adff2f, 0 0 30px #006400;
     animation: glow 1.5s ease-in-out infinite alternate;
 }
-
 @keyframes glow {
-    from { 
-        text-shadow: 0 0 10px #00ff00, 0 0 20px #adff2f; 
-    }
-    to { 
-        text-shadow: 0 0 20px #adff2f, 0 0 30px #006400; 
-    }
+    from { text-shadow: 0 0 10px #00ff00, 0 0 20px #adff2f;
 }
-
+    to { text-shadow: 0 0 20px #adff2f, 0 0 30px #006400;
+}
+}
 .description {
     text-align: center;
     color: #ffffff;
@@ -183,23 +179,6 @@ li:hover {
 .hybrid-strain .strain-name, .hybrid-strain .strain-name a { color: #fff !important; }
 .unknown-strain .strain-name, .unknown-strain .strain-name a { color: #000 !important; }
 
-
-
-
-.tried-btn {
-  background: rgba(0,255,0,0.7) !important;
-  border: none;
-  padding: 2px 6px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.8em;
-  margin-right: 4px;
-  vertical-align: middle;
-}
-.tried-btn:hover { box-shadow: 0 0 10px #00ff00 !important; background: rgba(0,255,0,0.9) !important; }
-.tried { border-left: 4px solid #00ff00 !important; }
-.tried .strain-name { text-shadow: 0 0 5px #00ff00; }
-
 .strain-name a { 
     text-decoration: none !important; 
 }
@@ -236,15 +215,23 @@ li:hover {
 .legend-item span {
     margin-left: 20px;
 }
- 
-#swed-footer { position: fixed; top: 55%; /* vertical position; tweak 50-60% to move up/down */ right: 6vw; /* distance from the right edge; tweak 4-8vw */ transform: translateY(-50%); z-index: 200; } 
+    .legend-item span {
+    margin-left: 20px;
+}
+#swed-footer {
+    position: fixed;
+    top: 55%;              /* vertical position; tweak 50–60% to move up/down */
+    right: 6vw;            /* distance from the right edge; tweak 4–8vw */
+    transform: translateY(-50%);
+    z-index: 200;
+}
 
 #swed-footer .swed-wrapper {
     position: relative;
     width: 110px;
     height: 200px;
 }
-
+}
 
 </style>
 </head>
@@ -254,7 +241,7 @@ li:hover {
    <h1>Wildcats Wonderful Weed List</h1>
 
 <p class="description">
-  WWWL is a searchable log of every strain I've tried, with quick links to learn
+  WWWL is a searchable log of every strain I’ve tried, with quick links to learn
   about each strain and filters for indica/sativa/hybrid.
 </p>
 
@@ -272,123 +259,64 @@ li:hover {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     "
   >
-   <img src="https://visitor-badge.one/badge?page_id=wildcats-weed-list&left_color=000000&right_color=00ff00&left_text=Visitors" alt="Visitors" style="height: 26px; width: auto;" /> </div> </div> 
+    <img
+      src="https://visitor-badge.one9x.com/badge?page_id=wildcats-weed-list&left_color=000000&right_color=00ff00&left_text=Visitors"
+      alt="Visitors"
+      style="height: 26px; width: auto;"
+    />
+  </div>
+</div>
 
 <p class="description">
-  Tip: Use the search bar for strain names, or click Indica / Sativa / Hybrid below to filter the cards.
+  Tip: Use the search bar for strain names, or click Indica / Sativa / Hybrid
+  below to filter the cards.
 </p>
 
     
-<div class="legend">
- <div class="legend-item" data-filter="indica-strain">
- <img src="https://raw.githubusercontent.com/sunnyskyess420/williamsstrains/main/images/indica-leaf.png" alt="Indica Leaf" class="legend-leaf">
- <div class="legend-color" style="background-color: blue;"></div> <span style="color: #b0e0b0;">Indica (<span id="indicaCount"></span>)</span> </div> 
-
-
-    <div class="legend-item" data-filter="sativa-strain">
- <img src="https://raw.githubusercontent.com/sunnyskyess420/williamsstrains/main/images/sativa-leaf.png" alt="Sativa Leaf" class="legend-leaf"> 
-<div class="legend-color" style="background-color: red;"></div> 
-<span style="color: #b0e0b0;">Sativa (<span id="sativaCount"></span>)</span> </div> 
-
-
-    <div class="legend-item" data-filter="hybrid-strain"> 
-<img src="https://raw.githubusercontent.com/sunnyskyess420/williamsstrains/main/images/hybrid-leaf.png" alt="Hybrid Leaf" class="legend-leaf">
- <div class="legend-color" style="background-color: green;"></div> 
-<span style="color: #b0e0b0;">Hybrid (<span id="hybridCount"></span>)</span> </div>
-
- <div class="legend-item" data-filter="unknown-strain">
- <img src="https://raw.githubusercontent.com/sunnyskyess420/williamsstrains/main/images/unknown-leaf.png" alt="Unknown Leaf" class="legend-leaf"> 
-<div class="legend-color" style="background-color: yellow;"></div>
-
- <span style="color: #b0e0b0;">Unknown (<span id="unknownCount"></span>)</span> </div> 
-
-    <!-- NEW TRIED BUTTON -->
-    <div class="legend-item" data-filter="tried">
-        <div class="legend-color" style="background-color: lime;"></div>
-        <span style="color: #90ee90;">Tried (<span id="triedCount">0</span>)</span>
+    <div class="legend">
+        <div class="legend-item" data-filter="indica-strain">
+            <img src="images/indica-leaf.png" alt="Indica Leaf" class="legend-leaf">
+            <div class="legend-color" style="background-color: blue;"></div>
+            <span style="color: #b0e0b0;">Indica (<span id="indicaCount"></span>)</span>
+        </div>
+        <div class="legend-item" data-filter="sativa-strain">
+            <img src="images/sativa-leaf.png" alt="Sativa Leaf" class="legend-leaf">
+            <div class="legend-color" style="background-color: red;"></div>
+            <span style="color: #b0e0b0;">Sativa (<span id="sativaCount"></span>)</span>
+        </div>
+        <div class="legend-item" data-filter="hybrid-strain">
+            <img src="images/hybrid-leaf.png" alt="Hybrid Leaf" class="legend-leaf">
+            <div class="legend-color" style="background-color: green;"></div>
+            <span style="color: #b0e0b0;">Hybrid (<span id="hybridCount"></span>)</span>
+        </div>
+        <div class="legend-item" data-filter="unknown-strain">
+            <img src="images/unknown-leaf.png" alt="Unknown Leaf" class="legend-leaf">
+            <div class="legend-color" style="background-color: yellow;"></div>
+            <span style="color: #b0e0b0;">Unknown (<span id="unknownCount"></span>)</span>
+        </div>
+        <div class="legend-item" data-filter="all">
+    <div class="legend-color" style="background-color: gray;"></div>
+    <span style="color: #b0e0b0;">Show All (<span id="totalCount"></span>)</span>
+</div>
     </div>
-    <div class="legend-item" data-filter="all">
-        <div class="legend-color" style="background-color: gray;"></div>
-        <span style="color: #b0e0b0;">Show All (<span id="totalCount"></span>)</span>
-    </div>
-</div> <!-- SINGLE legend closing -->
 
 <div style="display: flex; justify-content: center; margin: 10px 0;">
-  <button id="randomStrain" style="background: linear-gradient(135deg, #666, #888); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;"> Random</button>
+  <button id="randomStrain" style="background: linear-gradient(135deg, #666, #888); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;">🎲 Random</button>
 </div>
 
-<div class="search-container">
-    <label for="strainInput">Search:</label>
-    <input type="text" id="strainInput" oninput="searchStrains()" placeholder="Enter strain name...">
-</div> 
-<script>loadTriedStrains();</script>
+    
+    <div class="search-container">
+        <label for="strainInput">Search:</label>
+        <input type="text" id="strainInput" oninput="searchStrains()" placeholder="Enter strain name...">
+    </div>
 
-<script>
-// Placeholder stubs - EXPAND with your real logic later
-function searchStrains() {
-    const input = document.getElementById('strainInput').value.toLowerCase();
-    const strains = document.querySelectorAll('#strainList li');
-    strains.forEach(strain => {
-        const name = strain.textContent.toLowerCase();
-        strain.style.display = name.includes(input) ? '' : 'none';
-    });
-}
+   
+    
+    <div class="strain-list-container">
+        <ul>
 
-function loadTriedStrains() {
-    // Simulate loading tried - update counts (real: fetch localStorage/AJAX)
-    document.getElementById('triedCount').textContent = '5'; // Example
-    // Call init after
-    initFilters();
-}
-
-// Core filter logic for legend clicks + counts + random
-function initFilters() {
-    // Update counts (dummy data - replace with real strain scan)
-    document.getElementById('indicaCount').textContent = '42';
-    document.getElementById('sativaCount').textContent = '33';
-    document.getElementById('hybridCount').textContent = '120';
-    document.getElementById('unknownCount').textContent = '2';
-    document.getElementById('totalCount').textContent = '197';
-
-    // Legend clicks
-    document.querySelectorAll('.legend-item').forEach(item => {
-        item.addEventListener('click', () => {
-            const filter = item.dataset.filter;
-            document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
             
-            const strains = document.querySelectorAll('#strainList li');
-            strains.forEach(strain => {
-                if (filter === 'all' || strain.classList.contains(filter)) {
-                    strain.classList.remove('hidden');
-                    strain.classList.add('fade-in');
-                } else {
-                    strain.classList.add('fade-out', 'hidden');
-                }
-            });
-        });
-    });
-
-    // Random button
-    document.getElementById('randomStrain').addEventListener('click', () => {
-        const strains = document.querySelectorAll('#strainList li:not(.hidden)');
-        if (strains.length) {
-            strains[Math.floor(Math.random() * strains.length)].scrollIntoView({ behavior: 'smooth' });
-        }
-    });
-}
-
-// Auto-init on load
-document.addEventListener('DOMContentLoaded', initFilters);
-</script>
-
-</div> <!-- Closes opening <div class="container"> -->
-
-
-    
-    
-    <div class="strain-list-container"> 
- <ul id="strainList">           
+            
 <li class="hybrid-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.leafly.com/strains/24k-gold" target="_blank" rel="noopener noreferrer">24k Gold</a></span></span></li>	
 <li class="hybrid-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.leafly.com/strains/91-octane" target="_blank" rel="noopener noreferrer">91 Octane</a></span></span></li>	
 <li class="indica-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.leafly.com/strains/9-pound-hammer" target="_blank" rel="noopener noreferrer">9lb Hammer</a></span></span></li>	
@@ -560,7 +488,7 @@ document.addEventListener('DOMContentLoaded', initFilters);
 <li class="hybrid-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.leafly.com/strains/flo" target="_blank" rel="noopener noreferrer">Flo</a></span></span></li>	
 <li class="hybrid-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.leafly.com/strains/formula-one" target="_blank" rel="noopener noreferrer">Formula 1</a></span></span></li>	
 <li class="indica-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.leafly.com/strains/french-toast" target="_blank" rel="noopener noreferrer">French Toast</a></span></span></li>	
-<li class="indica-strain"><span class="strain-content"><span class="strain-name"><a href="https://weedmaps.com/strains/frosted-flakes" target="_blank" rel="noopener noreferrer">Frostâ€™d Flakes</a></span></span></li>	
+<li class="indica-strain"><span class="strain-content"><span class="strain-name"><a href="https://weedmaps.com/strains/frosted-flakes" target="_blank" rel="noopener noreferrer">Frost’d Flakes</a></span></span></li>	
 <li class="indica-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.allbud.com/marijuana-strains/indica-dominant-hybrid/frosted-cakes" target="_blank" rel="noopener noreferrer">Frosted Cherry Cake</a></span></span></li>	
 <li class="indica-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.leafly.com/strains/frosted-cherry-cookies" target="_blank" rel="noopener noreferrer">Frosted Cherry Cookies</a></span></span></li>	
 <li class="hybrid-strain"><span class="strain-content"><span class="strain-name"><a href="https://buylowgreen.com/product/frosted-cream-puffs/" target="_blank" rel="noopener noreferrer">Frosted Cream Puffs</a></span></span></li>	
@@ -737,7 +665,7 @@ document.addEventListener('DOMContentLoaded', initFilters);
 <li class="indica-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.leafly.com/strains/outlaw" target="_blank" rel="noopener noreferrer">Outlaw</a></span></span></li>	
 <li class="indica-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.allbud.com/marijuana-strains/indica-dominant-hybrid/overlord-og" target="_blank" rel="noopener noreferrer">Overlord OG</a></span></span></li>	
 <li class="indica-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.allbud.com/marijuana-strains/sativa-dominant-hybrid/pablo-escobar" target="_blank" rel="noopener noreferrer">Pablo Escobar</a></span></span></li>	
-<li class="indica-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.leafly.com/strains/pablos-revenge" target="_blank" rel="noopener noreferrer">Pabloâ€™s Revenge</a></span></span></li>	
+<li class="indica-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.leafly.com/strains/pablos-revenge" target="_blank" rel="noopener noreferrer">Pablo’s Revenge</a></span></span></li>	
 <li class="sativa-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.leafly.com/strains/panama-red" target="_blank" rel="noopener noreferrer">Panama Red</a></span></span></li>	
 <li class="hybrid-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.leafly.com/strains/papaya" target="_blank" rel="noopener noreferrer">Papaya</a></span></span></li>	
 <li class="indica-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.leafly.com/strains/papaya-cake" target="_blank" rel="noopener noreferrer">Papaya Cake</a></span></span></li>	
@@ -924,47 +852,48 @@ document.addEventListener('DOMContentLoaded', initFilters);
 <li class="hybrid-strain"><span class="strain-content"><span class="strain-name"><a href="https://www.leafly.com/strains/zookies" target="_blank" rel="noopener noreferrer">Zookies</a></span></span></li>	
 <li class="hybrid-strain"><span class="strain-content"><span class="strain-name"><a href="https://doobiecannabis.ca/products/er-what-zsweet" target="_blank" rel="noopener noreferrer">Zsweet</a></span></span></li>	
 
-</ul>
-</div>
-
 
        
 
-    
-    <div id="noResultsPopup">
+</ul>
+</div> <div id="noResultsPopup">
     OoO A NEW ONE!
 </div>
 
-<script>
-function toggleTried(btn) {
-    const li = btn.closest('li');
-    li.classList.toggle('tried');
-    const strainName = li.querySelector('.strain-name').textContent.trim();
-    const tried = JSON.parse(localStorage.triedStrains || '[]');
-    const index = tried.indexOf(strainName);
-    
-    if (li.classList.contains('tried')) {
-        if (index === -1) tried.push(strainName);
-    } else if (index > -1) {
-        tried.splice(index, 1);
-    }
-    
-    localStorage.triedStrains = JSON.stringify(tried);
-    updateCounts();
-}
+</div> 
 
+
+    
+       <script>
+function updateCounts() {
+    document.getElementById('indicaCount').textContent =
+        document.querySelectorAll('.indica-strain:not(.hidden)').length;
+    document.getElementById('sativaCount').textContent =
+        document.querySelectorAll('.sativa-strain:not(.hidden)').length;
+    document.getElementById('hybridCount').textContent =
+        document.querySelectorAll('.hybrid-strain:not(.hidden)').length;
+    document.getElementById('unknownCount').textContent =
+        document.querySelectorAll('.unknown-strain:not(.hidden)').length;
+    document.getElementById('totalCount').textContent =
+        document.querySelectorAll('li:not(.hidden)').length;
+}
+           
 document.getElementById('randomStrain').addEventListener('click', () => {
   const visibleStrains = document.querySelectorAll('li:not(.hidden)');
   if (visibleStrains.length === 0) return;
   
+  // Pick random + highlight
   const randomStrain = visibleStrains[Math.floor(Math.random() * visibleStrains.length)];
   document.querySelectorAll('li').forEach(li => li.classList.remove('random-highlight'));
   randomStrain.classList.add('random-highlight');
   
+  // Scroll smooth to it
   randomStrain.scrollIntoView({ behavior: 'smooth', block: 'center' });
   
+  // Fade highlight after 3s
   setTimeout(() => randomStrain.classList.remove('random-highlight'), 3000);
 });
+
 
 function createFirework(x, y, color, spread = 80, particles = 20) {
     for (let i = 0; i < particles; i++) {
@@ -1019,6 +948,72 @@ function hideMessage() {
     popup.style.display = 'none';
     popup.classList.remove('pulse-glow');
 }
+
+function hideWithFade(el) {
+    el.classList.remove('fade-in');
+    el.classList.add('fade-out');
+    setTimeout(() => {
+        el.classList.add('hidden');
+        updateCounts();
+    }, 300);
+}
+
+function showWithFade(el) {
+    el.classList.remove('hidden', 'fade-out');
+    el.classList.add('fade-in');
+    updateCounts();
+}
+
+function searchStrains() {
+    const input = document.getElementById('strainInput').value.toLowerCase();
+    const strains = document.querySelectorAll('.strain-list-container ul li');
+    let visibleCount = 0;
+    strains.forEach(strain => {
+        const name = strain.textContent.toLowerCase();
+        if (name.includes(input)) {
+            showWithFade(strain);
+            visibleCount++;
+        } else {
+            hideWithFade(strain);
+        }
+    });
+    visibleCount === 0 ? showMessage() : hideMessage();
+}
+
+let activeFilter = null;
+document.querySelectorAll('.legend-item').forEach(item => {
+    item.addEventListener('click', () => {
+        const filterClass = item.getAttribute('data-filter');
+        const strains = document.querySelectorAll('.strain-list-container ul li');
+        let visibleCount = 0;
+
+        if (activeFilter === filterClass || filterClass === 'all') {
+            strains.forEach(strain => {
+                showWithFade(strain);
+                visibleCount++;
+            });
+            activeFilter = null;
+            document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
+        } else {
+            strains.forEach(strain => {
+                if (strain.classList.contains(filterClass)) {
+                    showWithFade(strain);
+                    visibleCount++;
+                } else {
+                    hideWithFade(strain);
+                }
+            });
+            activeFilter = filterClass;
+            document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+        }
+
+        visibleCount === 0 ? showMessage() : hideMessage();
+        document.getElementById('strainInput').value = '';
+    });
+});
+
+updateCounts();
 </script>
 
 <style>
@@ -1044,11 +1039,11 @@ function hideMessage() {
 }
 
 .pulse-glow {
-    animation: popupPulse 1s infinite;
+    animation: pulse 1s infinite;
     text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
 }
 
-@keyframes popupPulse {
+@keyframes pulse {
     0%, 100% { transform: translate(-50%, -50%) scale(1); }
     50% { transform: translate(-50%, -50%) scale(1.1); }
 }
@@ -1060,6 +1055,25 @@ function hideMessage() {
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
+}
+
+/* Strain list layout */
+.strain-list-container li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: left;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin: 4px;
+    border: 1px solid #444;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.strain-list-container li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 128, 0, 0.3);
 }
 
 /* Wrapper to align logo and strain name side-by-side */
@@ -1128,30 +1142,31 @@ function hideMessage() {
     display: none !important;
 }
 
-.random-highlight {
-    box-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00 !important;
-    transform: scale(1.05);
-    z-index: 10;
-    animation: pulse 1s infinite;
+    .random-highlight {
+  box-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00 !important;
+  transform: scale(1.05);
+  z-index: 10;
+  animation: pulse 1s infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00; }
+  50% { box-shadow: 0 0 30px #ffff00, 0 0 60px #ffff00; }
 }
 
-@keyframes pulse {
-    0%, 100% { box-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00; }
-    50% { box-shadow: 0 0 30px #ffff00, 0 0 60px #ffff00; }
-}
+    
 </style>
+
 <!-- keep any of your existing JS above this line, e.g. updateCounts(), filter code, etc. -->
 
 <script src="https://readmecodegen.com/view-tracker.js" data-user="user_mlr1poql_rf44cn"></script>
 
-<audio id="popupSound" preload="auto">
+    <audio id="popupSound" preload="auto">
   <source src="small-fireworks.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Existing popup sound code
   const popup = document.getElementById('noResultsPopup');
   const sound = document.getElementById('popupSound');
 
@@ -1161,12 +1176,13 @@ document.addEventListener('DOMContentLoaded', function() {
     mutations.forEach(function(mutation) {
       if (mutation.type === 'attributes' && 
           (mutation.attributeName === 'style' || mutation.attributeName === 'class')) {
+        // Check if popup is now visible
         const isVisible = popup.style.display !== 'none' && 
                           getComputedStyle(popup).visibility !== 'hidden' && 
                           popup.offsetParent !== null;
         if (isVisible) {
-          sound.currentTime = 0;
-          sound.play().catch(e => console.error('Sound play failed:', e));
+          sound.currentTime = 0;  // Restart sound
+          sound.play().catch(e => console.error('Sound play failed:', e));  // Logs errors, handles autoplay blocks
         }
       }
     });
@@ -1176,15 +1192,26 @@ document.addEventListener('DOMContentLoaded', function() {
     attributes: true, 
     attributeFilter: ['style', 'class'] 
   });
-
-  // **ADD THIS: Your loadTriedStrains call**
-  loadTriedStrains();
 });
 </script>
 
-<!-- Right-side S.W.E.D. button -->
+    
+<!-- Right-side S.W.E.D. button next to strain list, outside frosted background -->
 <div id="swed-footer">
-  <!-- your iframe content -->
+  <div class="swed-wrapper" style="text-align: center;">
+    <a href="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/"
+       target="_blank"
+       rel="noopener noreferrer"
+       title="Smoke Weed Everyday">
+      <iframe
+        width="110"
+        height="200"
+        src="https://www.myinstants.com/instant/smoke-weed-everyday-dota-2/embed/"
+        frameborder="0"
+        scrolling="no">
+      </iframe>
+    </a>
+  </div>
 </div>
 </body>
 </html>
