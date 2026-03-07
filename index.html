@@ -80,7 +80,7 @@ h1 {
 .legend {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 2px;
     margin-bottom: 0;
     padding: 10px 0;
     border-bottom: 2px solid #00ff00;
@@ -383,41 +383,45 @@ a.gradient-btn:active {
   <button id="randomStrain" style="background: transparent; border: 2px solid #00ff00; color: #00ff00; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; white-space: nowrap;">Pick random?</button>
 </div>
 
+<button id="exportTried" class="gradient-btn">💾 Save My Strains</button>
+
 
 <div class="legend">
-    <div class="legend-item" data-filter="indica-strain">
-        <img src="images/indica-leaf.png" alt="Indica Leaf" class="legend-leaf">
-        <div class="legend-color" style="background-color: blue;"></div>
-        <span style="color: #b0e0b0;">Indica (<span id="indicaCount"></span>)</span>
-    </div>
-    <div class="legend-item" data-filter="sativa-strain">
-        <img src="images/sativa-leaf.png" alt="Sativa Leaf" class="legend-leaf">
-        <div class="legend-color" style="background-color: red;"></div>
-        <span style="color: #b0e0b0;">Sativa (<span id="sativaCount"></span>)</span>
-    </div>
-    <div class="legend-item" data-filter="hybrid-strain">
-        <img src="images/hybrid-leaf.png" alt="Hybrid Leaf" class="legend-leaf">
-        <div class="legend-color" style="background-color: green;"></div>
-        <span style="color: #b0e0b0;">Hybrid (<span id="hybridCount"></span>)</span>
-    </div>
-    <div class="legend-item" data-filter="unknown-strain">
-        <img src="images/unknown-leaf.png" alt="Unknown Leaf" class="legend-leaf">
-        <div class="legend-color" style="background-color: yellow;"></div>
-        <span style="color: #b0e0b0;">Unknown (<span id="unknownCount"></span>)</span>
-    </div>
-    <div class="legend-item" data-filter="all">
-  <div class="legend-color" style="background-color: gray;"></div>
-  <span style="color: #b0e0b0;">Show All (<span id="totalCount"></span>)</span>
+  <div class="legend-item" data-filter="indica-strain">
+    <img src="images/indica-leaf.png" alt="Indica Leaf" class="legend-leaf">
+    <div class="legend-color" style="background-color: blue;"></div>
+    <span style="color: #b0e0b0;">Indica (<span id="indicaCount"></span>)</span>
+  </div>
+  <div class="legend-item" data-filter="sativa-strain">
+    <img src="images/sativa-leaf.png" alt="Sativa Leaf" class="legend-leaf">
+    <div class="legend-color" style="background-color: red;"></div>
+    <span style="color: #b0e0b0;">Sativa (<span id="sativaCount"></span>)</span>
+  </div>
+  <div class="legend-item" data-filter="hybrid-strain">
+    <img src="images/hybrid-leaf.png" alt="Hybrid Leaf" class="legend-leaf">
+    <div class="legend-color" style="background-color: green;"></div>
+    <span style="color: #b0e0b0;">Hybrid (<span id="hybridCount"></span>)</span>
+  </div>
+  <div class="legend-item" data-filter="unknown-strain">
+    <img src="images/unknown-leaf.png" alt="Unknown Leaf" class="legend-leaf">
+    <div class="legend-color" style="background-color: yellow;"></div>
+    <span style="color: #b0e0b0;">Unknown (<span id="unknownCount"></span>)</span>
+  </div>
+  <div class="legend-item" data-filter="all">
+    <div class="legend-color" style="background-color: gray;"></div>
+    <span style="color: #b0e0b0;">Show All (<span id="totalCount"></span>)</span>
   </div>
   <div class="legend-item" data-filter="tried">
-  <span style="color: #00ff00; font-weight: bold; font-size: 1.1em;">Tried</span>
-  <span id="triedCount" style="color: #fff; font-weight: bold;">0</span>
+    <div class="legend-color" style="background-color: #00aa00;"></div>
+    <span style="color: #b0e0b0;">Tried (<span id="triedCount">0</span>)</span>
   </div>
   </div>
 
-<p class="description" style="color: #00ff00; font-weight: bold;">
-    💚 <strong>Track strains you've tried:</strong> Click the black circle on any card to mark green (tried). Click again to unmark!
-  </p>
+
+  <p class="description" style="color: #00ff00; font-weight: bold;">
+    💚 <strong>Track tried strains:</strong> Click black circle on cards to mark green (tried). Click again to unmark. 
+    💾 <strong>Download list:</strong> Hit "Save My Strains" button to export CSV of your tried strains!
+</p>
   
 
 <div style="display: flex; justify-content: center; margin: 10px 0 18px 0;">
@@ -444,11 +448,22 @@ a.gradient-btn:active {
 
 <p class="description">
   Tip: Use the search bar for strain names, or click Indica / Sativa / Hybrid
-  above to filter the cards.
+  below to filter the cards.
 </p>
+
+    
+
+
+
+
+    
+  
+    
     <div class="strain-list-container">
         <ul>
-           
+
+            
+            
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/24k-gold" target="_blank" rel="noopener noreferrer">24k Gold</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/91-octane" target="_blank" rel="noopener noreferrer">91 Octane</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/9-pound-hammer" target="_blank" rel="noopener noreferrer">9lb Hammer</a></span></span></span></li>	
@@ -997,15 +1012,15 @@ a.gradient-btn:active {
 
     
 <script>
-    function updateCounts() {
-      document.getElementById('indicaCount').textContent = document.querySelectorAll('.indica-strain:not(.hidden)').length;
-      document.getElementById('sativaCount').textContent = document.querySelectorAll('.sativa-strain:not(.hidden)').length;
-      document.getElementById('hybridCount').textContent = document.querySelectorAll('.hybrid-strain:not(.hidden)').length;
-      document.getElementById('unknownCount').textContent = document.querySelectorAll('.unknown-strain:not(.hidden)').length;
-      document.getElementById('triedCount').textContent = document.querySelectorAll('li.tried-toggle input[type="checkbox"]:checked').length;
-      document.getElementById('totalCount').textContent = document.querySelectorAll('li:not(.hidden)').length;
-    }
-    
+function updateCounts() {
+  document.getElementById('indicaCount').textContent = document.querySelectorAll('.indica-strain:not(.hidden)').length;
+  document.getElementById('sativaCount').textContent = document.querySelectorAll('.sativa-strain:not(.hidden)').length;
+  document.getElementById('hybridCount').textContent = document.querySelectorAll('.hybrid-strain:not(.hidden)').length;
+  document.getElementById('unknownCount').textContent = document.querySelectorAll('.unknown-strain:not(.hidden)').length;
+  document.getElementById('totalCount').textContent = document.querySelectorAll('li:not(.hidden)').length;
+  document.getElementById('triedCount').textContent = document.querySelectorAll('.tried:not(.hidden)').length;
+}
+
     document.getElementById('randomStrain').addEventListener('click', () => {
       const visibleStrains = document.querySelectorAll('li:not(.hidden)');
       if (visibleStrains.length === 0) return;
@@ -1095,48 +1110,35 @@ a.gradient-btn:active {
     }
     
     let activeFilter = null;
-    
+
 document.querySelectorAll('.legend-item').forEach(item => {
   item.addEventListener('click', () => {
     const filterClass = item.getAttribute('data-filter');
+    const strains = document.querySelectorAll('.strain-list-container ul li');
     
-    // Keep your tried logic exactly
-    if (filterClass === 'tried-strain' || filterClass === 'tried') {
-      document.querySelectorAll('.strain-list-container ul li.tried-toggle').forEach(strain => {
-        const checkbox = strain.querySelector('input[type="checkbox"]');
-        if (checkbox && checkbox.checked) {
+    if (filterClass === 'tried') {
+      strains.forEach(strain => {
+        if (strain.classList.contains('tried')) {
           showWithFade(strain);
         } else {
           hideWithFade(strain);
         }
       });
-      document.querySelectorAll('.strain-list-container ul li:not(.tried-toggle)').forEach(strain => {
-        hideWithFade(strain);
+    } else if (filterClass === 'all') {
+      strains.forEach(strain => showWithFade(strain));
+    } else {
+      strains.forEach(strain => {
+        if (strain.classList.contains(filterClass)) {
+          showWithFade(strain);
+        } else {
+          hideWithFade(strain);
+        }
       });
-      document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-      updateCounts();
-      return;
     }
-    
-// FIXED Indica - Method 2
-document.querySelectorAll('.strain-list-container ul li').forEach(strain => {
-  if (filterClass === 'all' || strain.classList.contains(filterClass)) {
-    strain.style.display = 'block';
-    strain.style.height = 'auto';
-    strain.style.visibility = 'visible';
-    showWithFade(strain);
-  } else {
-    strain.style.height = '0';
-    strain.style.overflow = 'hidden';
-    strain.style.visibility = 'hidden';
-    hideWithFade(strain);
-  }
-});
-
     
     document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
     item.classList.add('active');
+    activeFilter = filterClass;
     updateCounts();
   });
 });
@@ -1152,44 +1154,91 @@ document.querySelectorAll('.strain-list-container li').forEach(li => {
     });
 });
 
+// CREATE HEARTS + Heart click handlers
+document.querySelectorAll('.strain-list-container li').forEach(li => {
+  if (!li.querySelector('.heart')) {
+    const heart = document.createElement('span');
+    heart.className = 'heart';
+    heart.innerHTML = '🖤';
+    heart.style.cssText = 'position:absolute;top:8px;right:8px;font-size:20px;z-index:3;cursor:pointer;display:none;opacity:0.7;transition:all 0.2s;';
+    li.appendChild(heart);
+    
+    // Heart click toggle
+    heart.addEventListener('click', function(e) {
+      e.stopPropagation();
+      li.classList.toggle('tried');
+      this.innerHTML = li.classList.contains('tried') ? '💚' : '🖤';
+      this.style.opacity = li.classList.contains('tried') ? '1' : '0.7';
+      updateCounts();
+    });
+  }
+});
 
     </script>
     
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Restore saved (optional)
-  const saved = JSON.parse(localStorage.getItem('triedStrains') || '[]');
-  
-  document.querySelectorAll('.tried-toggle').forEach(toggle => {
-    const checkbox = toggle.querySelector('input[type="checkbox"]');
-    
-    // Restore saved state
-    const name = toggle.querySelector('.strain-name').textContent.trim();
-    if (saved.includes(name)) {
-      toggle.classList.add('checked');
-      checkbox.checked = true;
-    }
-    
-    // Toggle click
-    toggle.addEventListener('click', (e) => {
-      if (e.target.closest('a')) return;
-      checkbox.checked = !checkbox.checked;
-      toggle.classList.toggle('checked', checkbox.checked);
+    <script>
+      // Load saved hearts
+      document.addEventListener('DOMContentLoaded', () => {
+        const saved = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
+        saved.forEach(name => {
+          document.querySelectorAll('li').forEach(li => {
+            if (li.textContent.includes(name)) {
+              li.classList.add('tried');
+              const heart = li.querySelector('.heart');
+              if (heart) {
+                heart.innerHTML = '💚';
+                heart.style.display = 'block';
+                heart.style.opacity = '1';
+              }
+            }
+          });
+        });
+        updateCounts();
+      });
       
-      // Save & update counts
-      const tried = Array.from(document.querySelectorAll('.tried-toggle.checked')).map(li => 
-        li.querySelector('.strain-name').textContent.trim()
-      );
-      localStorage.setItem('triedStrains', JSON.stringify(tried));
-      updateCounts();
-    });
-  });
-});
-
-
-
-</script>
+      // Save on toggle
+      document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('heart')) {
+          setTimeout(() => {
+            const triedNames = Array.from(document.querySelectorAll('.tried')).map(li => li.textContent.trim());
+            localStorage.setItem('wildcatTried', JSON.stringify(triedNames));
+          }, 100);
+        }
+      });
+      
+      // Export tried strains
+      document.getElementById('exportTried').addEventListener('click', () => {
+        const tried = Array.from(document.querySelectorAll('li.tried'))
+          .map(li => {
+            const link = li.querySelector('a');
+            const name = link ? link.textContent.trim() : li.textContent.trim();
+            const leafly = link ? link.href : '';
+            let type = 'Unknown';
+            if (li.classList.contains('indica-strain')) type = 'Indica';
+            else if (li.classList.contains('sativa-strain')) type = 'Sativa';
+            else if (li.classList.contains('hybrid-strain')) type = 'Hybrid';
+            return { name, type, leafly };
+          });
+        
+        if (tried.length === 0) {
+          alert('No tried strains yet!');
+          return;
+        }
+        
+        const csv = 'Strain,Type,Leafly\n' + 
+          tried.map(s => `"${s.name}","${s.type}","${s.leafly}"`).join('\n');
+        
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'my-tried-strains.csv';
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+      </script>
+      
 
 <style>
 /* Popup styling */
@@ -1355,6 +1404,27 @@ document.addEventListener('DOMContentLoaded', function() {
     /* your existing height/grid stuff stays */
 }
 
+#exportTried {
+  display: block !important;
+  margin: 24px auto 0 !important;
+  max-width: 280px;
+  padding: 16px 24px !important;
+  background: linear-gradient(135deg, #228B22, #006400) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 12px !important;
+  font-weight: bold !important;
+  box-shadow: 0 4px 12px rgba(34,139,34,0.3) !important;
+  cursor: pointer !important;
+}
+
+#exportTried:hover {
+  box-shadow: 0 0 20px rgba(34,139,34,0.6) !important;
+  transform: translateY(-2px) !important;
+}
+
+
+
 </style>
 
 
@@ -1398,9 +1468,146 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
+<script>
+  let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
+  
+  function toggleTried(li) {
+    const checkbox = li.querySelector('input[type="checkbox"]');
+    const toggle = li.querySelector('.tried-toggle');
+    const name = li.querySelector('.strain-name a') ? li.querySelector('.strain-name a').textContent.trim() : li.querySelector('.strain-name').textContent.trim();
+    checkbox.checked = !checkbox.checked;
+    toggle.classList.toggle('checked');
+    li.classList.toggle('tried'); // For existing heart logic
+    if (checkbox.checked) {
+      triedStrains.push(name);
+    } else {
+      triedStrains = triedStrains.filter(s => s !== name);
+    }
+    localStorage.setItem('wildcatTried', JSON.stringify(triedStrains));
+    updateCounts(); // Your existing function
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    // Load saved states
+    document.querySelectorAll('.tried-toggle').forEach(toggle => {
+      const li = toggle.closest('li');
+      const name = li.querySelector('.strain-name a') ? li.querySelector('.strain-name a').textContent.trim() : li.querySelector('.strain-name').textContent.trim();
+      if (triedStrains.includes(name)) {
+        toggle.classList.add('checked');
+        li.querySelector('input[type="checkbox"]').checked = true;
+        li.classList.add('tried');
+      }
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleTried(li);
+      });
+    });
+    updateCounts();
+  });
+  </script>
+
+<script>
+  let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
+  
+  function toggleTried(li) {
+    const checkbox = li.querySelector('input[type="checkbox"]');
+    const toggle = li.querySelector('.tried-toggle');
+    const name = li.querySelector('.strain-name a') ? li.querySelector('.strain-name a').textContent.trim() : li.querySelector('.strain-name').textContent.trim();
+    checkbox.checked = !checkbox.checked;
+    li.classList.toggle('tried');
+    toggle.classList.toggle('checked');
+    if (checkbox.checked) {
+      if (!triedStrains.includes(name)) triedStrains.push(name);
+    } else {
+      triedStrains = triedStrains.filter(s => s !== name);
+    }
+    localStorage.setItem('wildcatTried', JSON.stringify(triedStrains));
+    if (typeof updateCounts === 'function') updateCounts();
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    // Re-attach listeners to ALL toggles
+    document.querySelectorAll('.tried-toggle').forEach(toggle => {
+      toggle.style.cursor = 'pointer'; // Ensure clickable
+      toggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (e.target.tagName === 'A') return;
+        const li = this.closest('li');
+        toggleTried(li);
+      });
+    });
+  
+    // Load saved states
+    document.querySelectorAll('.tried-toggle').forEach(toggle => {
+      const li = toggle.closest('li');
+      const name = li.querySelector('.strain-name a') ? li.querySelector('.strain-name a').textContent.trim() : li.querySelector('.strain-name').textContent.trim();
+      if (triedStrains.includes(name)) {
+        const checkbox = li.querySelector('input[type="checkbox"]');
+        checkbox.checked = true;
+        li.classList.add('tried');
+        toggle.classList.add('checked');
+      }
+    });
+    if (typeof updateCounts === 'function') updateCounts();
+  });
+  </script>
+  
+  <script>
+    (function() {
+      let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
+      function initTried() {
+        document.querySelectorAll('.tried-checkmark').forEach(checkmark => {
+          checkmark.style.cursor = 'pointer';
+          checkmark.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const toggle = this.parentElement.parentElement; // .strain-content > .tried-checkmark -> .tried-toggle (li)
+            const li = toggle.closest('li');
+            const checkbox = toggle.querySelector('input[type="checkbox"]');
+            const name = li.querySelector('.strain-name').textContent.trim();
+            const isChecked = checkbox.checked = !checkbox.checked;
+            toggle.classList.toggle('checked', isChecked);
+            li.classList.toggle('tried', isChecked);
+            if (isChecked) {
+              if (!triedStrains.includes(name)) triedStrains.push(name);
+            } else {
+              triedStrains = triedStrains.filter(s => s !== name);
+            }
+            localStorage.setItem('wildcatTried', JSON.stringify(triedStrains));
+            updateTriedCount();
+          });
+        });
+        // Restore saved
+        document.querySelectorAll('.tried-toggle').forEach(toggle => {
+          const li = toggle.closest('li');
+          const name = li.querySelector('.strain-name').textContent.trim();
+          if (triedStrains.includes(name)) {
+            const checkbox = toggle.querySelector('input');
+            checkbox.checked = true;
+            toggle.classList.add('checked');
+            li.classList.add('tried');
+          }
+        });
+      }
+      function updateTriedCount() {
+        const count = document.querySelectorAll('.tried-toggle.checked').length;
+        const el = document.getElementById('triedCount');
+        if (el) el.textContent = count;
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTried);
+      } else {
+        initTried();
+      }
+    })();
+    </script>
     
+    
+   
 </body>
 </html>
+
 
 
 
