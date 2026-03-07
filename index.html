@@ -1400,6 +1400,22 @@ document.querySelectorAll('.strain-list-container li').forEach(li => {
 }
 
 .strain-list-container li {
+  position: relative !important;
+  overflow: hidden !important; /* Traps hearts inside each card */
+}
+.tried::after {
+  z-index: 10 !important; /* Hearts above content but contained */
+}
+.tried-checkmark {
+  z-index: 20 !important; /* Circles always clickable over hearts */
+  pointer-events: auto !important;
+}
+.heart {
+  pointer-events: none !important; /* Hearts visual only, no click interference */
+}
+
+
+.strain-list-container li {
     position: relative !important;
     /* your existing height/grid stuff stays */
 }
@@ -1603,7 +1619,54 @@ document.addEventListener('DOMContentLoaded', function() {
     })();
     </script>
     
-    
+    <script>
+      // BULLETPROOF TRIED TOGGLE - Overrides everything, no deletes needed
+      document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('tried-checkmark')) {
+          e.preventDefault(); e.stopPropagation();
+          const toggle = e.target.closest('.tried-toggle');
+          const li = toggle.closest('li');
+          const checkbox = toggle.querySelector('input[type="checkbox"]');
+          const name = li.querySelector('.strain-name').textContent.trim().replace(/\s+/g, ' ').trim();
+          let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
+          const isChecked = checkbox.checked = !checkbox.checked;
+          toggle.classList.toggle('checked', isChecked);
+          li.classList.toggle('tried', isChecked);
+          if (isChecked) {
+            if (!triedStrains.includes(name)) triedStrains.push(name);
+          } else {
+            triedStrains = triedStrains.filter(s => s !== name);
+          }
+          localStorage.setItem('wildcatTried', JSON.stringify(triedStrains));
+          const countEl = document.getElementById('triedCount');
+          if (countEl) countEl.textContent = document.querySelectorAll('.tried-toggle.checked').length;
+          return false;
+        }
+        if (e.target.classList.contains('heart')) {
+          e.stopPropagation(); // Block heart interference
+        }
+      }, true); // Capture phase - highest priority
+      
+      // Restore on load
+      document.addEventListener('DOMContentLoaded', function() {
+        const triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
+        document.querySelectorAll('.tried-toggle').forEach(toggle => {
+          const li = toggle.closest('li');
+          const name = li.querySelector('.strain-name').textContent.trim().replace(/\s+/g, ' ').trim();
+          if (triedStrains.includes(name)) {
+            toggle.querySelector('input').checked = true;
+            toggle.classList.add('checked');
+            li.classList.add('tried');
+          }
+        });
+      });
+      </script>
+      <style>
+      /* Anti-bleed */
+      .strain-list-container li { overflow: hidden !important; position: relative !important; }
+      .tried-checkmark { z-index: 999 !important; position: relative !important; }
+      </style>
+        
    
 </body>
 </html>
