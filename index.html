@@ -337,31 +337,49 @@ a.gradient-btn:active {
     transform: scale(0.96) !important;
     transition: transform 0.1s !important;
 }
-/* UL GRID FIX */
+/* UL GRID FIX - Spaced Out Cards */
 .strain-list-container ul {
   display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
-  gap: 16px !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  gap: 30px !important;
   max-width: 1400px !important;
   margin: 0 auto !important;
-  padding: 20px !important;
+  padding: 30px !important;
   list-style: none !important;
 }
 
 @media (max-width: 768px) {
-  .strain-list-container ul { grid-template-columns: 1fr !important; gap: 12px !important; padding: 10px !important; }
-  .legend { flex-wrap: wrap; gap: 8px; }
-  #strainInput { width: 100%; }
-  h1 { font-size: 28px; }
+  .strain-list-container ul {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    padding: 20px !important;
+  }
+  .legend {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  #strainInput {
+    width: 100%;
+  }
+  h1 {
+    font-size: 28px;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  .strain-list-container ul { grid-template-columns: repeat(2, 1fr) !important; }
+  .strain-list-container ul {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 25px !important;
+  }
 }
 
 @media (min-width: 1025px) {
-  .strain-list-container ul { grid-template-columns: repeat(2, 1fr) !important; }
+  .strain-list-container ul {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 30px !important;
+  }
 }
+
 </style>
 
 
@@ -1094,20 +1112,26 @@ function updateCounts() {
     }
     
     function searchStrains() {
-      const input = document.getElementById('strainInput').value.toLowerCase();
-      const strains = document.querySelectorAll('.strain-list-container ul li');
-      let visibleCount = 0;
-      strains.forEach(strain => {
-        const name = strain.textContent.toLowerCase();
-        if (name.includes(input)) {
-          showWithFade(strain);
-          visibleCount++;
-        } else {
-          hideWithFade(strain);
-        }
-      });
-      visibleCount === 0 ? showMessage() : hideMessage();
+  const input = document.getElementById('strainInput').value.toLowerCase().trim();
+  const strains = document.querySelectorAll('.strain-list-container ul li');
+  let visibleCount = 0;
+  
+  strains.forEach(strain => {
+    const name = strain.querySelector('.strain-name').textContent.toLowerCase();
+    const words = input.split(/\s+/).filter(w => w.length > 0);
+    const isMatch = words.length === 0 || words.every(word => name.includes(word));
+    
+    if (isMatch) {
+      showWithFade(strain);
+      visibleCount++;
+    } else {
+      hideWithFade(strain);
     }
+  });
+  
+  visibleCount === 0 ? showMessage() : hideMessage();
+}
+
     
     let activeFilter = null;
 
@@ -1670,7 +1694,5 @@ document.addEventListener('DOMContentLoaded', function() {
    
 </body>
 </html>
-
-
 
 
