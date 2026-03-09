@@ -1508,11 +1508,11 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
   let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
   
-  function updateTriedCount() {
-    const count = document.querySelectorAll('.tried-toggle input:checked').length;
-    const el = document.getElementById('triedCount');
-    if (el) el.textContent = count;
-  }
+function updateTriedCount() {
+  const triedCount = document.querySelectorAll('.tried-toggle.checked input:checked').length;
+  document.getElementById('triedCount').textContent = triedCount;
+}
+
   
   function toggleTried(li) {
     const checkbox = li.querySelector('input[type="checkbox"]');
