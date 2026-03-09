@@ -18,17 +18,17 @@
 
 
 <style>
-  /* Base body styles */
-  body {
+
+body {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  }
-  
-  /* Main layout and background */
-  body {
+    /* keep your existing background, margin, etc. */
+}
+
+body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; /* This is the new line you are adding */
     background-color: #262626;
     margin: 0;
     padding: 20px;
@@ -37,15 +37,16 @@
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    body {
     opacity: 0;
     animation: fadeIn 0.6s ease forwards;
-  }
-  
-  @keyframes fadeIn {
+}
+
+@keyframes fadeIn {
     to { opacity: 1; }
-  }
-  
-  .container {
+}
+
+.container {
     width: 100%;
     max-width: 700px;
     background-color: rgba(30, 30, 30, 0.3);
@@ -53,35 +54,30 @@
     box-shadow: 0 0 15px rgba(0, 128, 0, 0.4);
     border-radius: 12px;
     backdrop-filter: blur(5px);
-  }
-  
-  h1 {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+h1 {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     text-align: center;
     color: #00ff00;
     text-shadow: 0 0 10px #00ff00, 0 0 20px #adff2f, 0 0 30px #006400;
     animation: glow 1.5s ease-in-out infinite alternate;
-  }
-  
-  @keyframes glow {
-    from {
-      text-shadow: 0 0 10px #00ff00, 0 0 20px #adff2f;
-    }
-    to {
-      text-shadow: 0 0 20px #adff2f, 0 0 30px #006400;
-    }
-  }
-  
-  .description {
+}
+@keyframes glow {
+    from { text-shadow: 0 0 10px #00ff00, 0 0 20px #adff2f;
+}
+    to { text-shadow: 0 0 20px #adff2f, 0 0 30px #006400;
+}
+}
+.description {
     font-size: 16px;
     line-height: 1.6;
     color: #e5e5e5;
     text-align: center;
     margin-top: 4px;
     margin-bottom: 16px;
-  }
-  
-  .legend {
+}
+
+.legend {
     display: flex;
     justify-content: center;
     gap: 2px;
@@ -89,14 +85,14 @@
     padding: 10px 0;
     border-bottom: 2px solid #00ff00;
     flex-wrap: wrap;
-    position: static; /* fixed typo */
+    position: ststatic;
     top: 80px;
     background-color: rgba(30, 30, 30, 0.95);
     z-index: 11;
     font-size: 14px;
-  }
-  
-  .legend-item {
+}
+
+.legend-item {
     display: flex;
     align-items: center;
     gap: 4px;
@@ -111,34 +107,34 @@
     margin: 4px;
     transition: all 0.2s;
     font-size: 14px;
-  }
-  
-  .legend-item:hover,
-  .legend-item.active {
+}
+
+.legend-item:hover,
+.legend-item.active {
     background: #228B22 !important;
     box-shadow: 0 0 12px rgba(34,139,34,0.6) !important;
     transform: scale(1.05) !important;
-  }
-  
-  .legend-color {
+}
+
+
+.legend-color {
     width: 20px;
     height: 20px;
     border-radius: 4px;
     border: 1px solid #e8e8e8;
     z-index: 1;
-  }
-  
-  .legend-item span {
+}
+
+.legend-item span {
     font-size: 14px;
-    margin-left: 20px;
-  }
-  
-  .legend-item.active span {
+}
+
+.legend-item.active span {
     text-decoration: underline;
     font-weight: bold;
-  }
-  
-  .search-container {
+}
+
+.search-container {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
@@ -150,76 +146,67 @@
     top: 20px;
     background-color: rgba(30, 30, 30, 0.95);
     z-index: 12;
-  }
-  
-  .search-container label {
+}
+
+.search-container label {
     font-size: 1.2em;
     color: #00ff00;
-  }
-  
-  /* Random strain button */
-  #randomStrain {
+    #randomStrain {
     background: rgba(30,30,30,0.95) !important;
     border: 2px solid #00ff00 !important;
     color: #00ff00 !important;
     flex-shrink: 0;
     min-width: 110px;
     white-space: nowrap;
-  }
-  
-  .search-container #randomStrain:hover {
+}
+
+.search-container #randomStrain:hover {
     background: #228B22 !important;
     transform: scale(1.02);
-  }
-  
-  #strainInput {
+}
+
+}
+#strainInput {
     flex-grow: 1;
     padding: 12px;
     border: 2px solid #00ff00;
     border-radius: 8px;
     background-color: rgba(255, 255, 255, 0.05);
     color: #e0e0e0;
-    font-size: 16px;
+    font-size: 16;
     transition: box-shadow 0.3s ease;
-  }
-  
-  #strainInput:focus {
+}
+#strainInput:focus {
     outline: none;
     box-shadow: 0 0 10px #00ff00;
-  }
-  
-  .strain-list-container {
+}
+.strain-list-container {
     overflow-y: scroll;
     max-height: 500px;
     padding-right: 15px;
     scrollbar-width: thin;
     scrollbar-color: #00ff00 #262626;
-  }
-  
-  .strain-list-container::-webkit-scrollbar {
+}
+.strain-list-container::-webkit-scrollbar {
     width: 8px;
-  }
-  
-  .strain-list-container::-webkit-scrollbar-track {
+}
+.strain-list-container::-webkit-scrollbar-track {
     background: #262626;
-  }
-  
-  .strain-list-container::-webkit-scrollbar-thumb {
+}
+.strain-list-container::-webkit-scrollbar-thumb {
     background-color: #00ff00;
     border-radius: 20px;
     border: 2px solid #262626;
-  }
-  
-  ul {
+}
+ul {
     list-style-type: none;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
-  }
-  
-  li {
+}
+li {
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -227,64 +214,54 @@
     width: 250px;
     text-align: center;
     transition: transform 0.3s ease-in-out;
-  }
-  
-  li:hover {
+}
+li:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  .strain-list-container ul li:hover .strain-name {
+}
+.strain-list-container ul li:hover .strain-name {
     text-shadow: 0 0 5px #fff, 0 0 10px #00ff00;
-  }
-  
-  .fade-out {
+}
+.fade-out {
     opacity: 0;
     transform: scale(0.95);
     transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  
-  .fade-in {
+}
+.fade-in {
     opacity: 1;
     transform: scale(1);
     transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  
-  .hidden {
+}
+.hidden {
     display: none !important;
-  }
-  
-  .strain-name {
+}
+.strain-name {
     font-weight: bold;
     font-size: 1.2em;
-  }
-  
-  .indica-strain .strain-name,
-  .indica-strain .strain-name a { color: #fff !important; }
-  
-  .sativa-strain .strain-name,
-  .sativa-strain .strain-name a { color: #fff !important; }
-  
-  .hybrid-strain .strain-name,
-  .hybrid-strain .strain-name a { color: #fff !important; }
-  
-  .unknown-strain .strain-name,
-  .unknown-strain .strain-name a { color: #000 !important; }
-  
-  .strain-name a {
-    text-decoration: none !important;
-  }
-  
-  .strain-name a:hover {
-    text-shadow: 0 0 5px #fff, 0 0 10px #00ff00;
-  }
-  
-  .indica-strain { background-color: blue; }
-  .sativa-strain { background-color: red; }
-  .hybrid-strain { background-color: green; }
-  .unknown-strain { background-color: yellow; }
-  
-  .legend-leaf {
+}
+.indica-strain .strain-name, .indica-strain .strain-name a { color: #fff !important; }
+.sativa-strain .strain-name, .sativa-strain .strain-name a { color: #fff !important; }
+.hybrid-strain .strain-name, .hybrid-strain .strain-name a { color: #fff !important; }
+.unknown-strain .strain-name, .unknown-strain .strain-name a { color: #000 !important; }
+
+.strain-name a { 
+    text-decoration: none !important; 
+}
+.strain-name a:hover { 
+    text-shadow: 0 0 5px #fff, 0 0 10px #00ff00; 
+}
+
+    
+.indica-strain { background-color: blue; }
+.sativa-strain { background-color: red; }
+.hybrid-strain { background-color: green; }
+.unknown-strain { background-color: yellow; }
+
+.legend-item {
+    position: relative;
+    overflow: visible;
+}
+.legend-leaf {
     position: absolute;
     width: 30px;
     height: auto;
@@ -292,95 +269,118 @@
     top: 50%;
     transform: translateY(-50%);
     z-index: 2;
-  }
-  
-  /* Tried toggle styles */
-  .tried-toggle {
-    margin-top: 8px;
-    font-size: 0.9em;
-    color: #333;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-  }
-  
-  .tried-toggle input[type="checkbox"] {
-    display: none;
-  }
-  
-  .tried-checkmark {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 2px solid #00aa00;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    color: #00ff00;
-    background-color: #111;
-  }
-  
-  .tried-toggle.checked .tried-checkmark {
-    background-color: #00aa00;
-    color: #fff;
-  }
-  
-  .tried-toggle.checked span.tried-label {
-    font-weight: bold;
-    color: #00aa00;
-  }
-  
-  /* Ensure hidden strains truly hide */
-  .strain-list-container ul {
-    display: block !important;
-  }
-  
-  .strain-list-container li.hidden {
-    display: none !important;
-    height: 0 !important;
-  }
-  
-  /* Click squish */
-  .legend-item:active,
-  #randomStrain:active,
-  .strain-list-container li:active,
-  a.gradient-btn:active {
+}
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid #e8e8e8;
+    z-index: 1;
+}
+.legend-item span {
+    margin-left: 20px;
+}
+    .legend-item span {
+    margin-left: 20px;
+}
+
+.tried-toggle {
+  margin-top: 8px;
+  font-size: 0.9em;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.tried-toggle input[type="checkbox"] {
+  display: none;
+}
+
+.tried-checkmark {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #00aa00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #00ff00;
+  background-color: #111;
+}
+
+.tried-toggle.checked .tried-checkmark {
+  background-color: #00aa00;
+  color: #fff;
+}
+
+.tried-toggle.checked span.tried-label {
+  font-weight: bold;
+  color: #00aa00;
+}
+.strain-list-container ul {
+  display: block !important;  /* Kill flex/grid */
+}
+.strain-list-container li.hidden {
+  display: none !important;  /* FORCE vanish */
+  height: 0 !important;
+}
+
+/* Click squish */
+.legend-item:active,
+#randomStrain:active,
+.strain-list-container li:active,
+a.gradient-btn:active {
     transform: scale(0.96) !important;
     transition: transform 0.1s !important;
-  }
-  
-/* NUKE FLEX - FORCE 2 COLS EVERYWHERE */
-.strain-list-container > ul {
+}
+/* UL GRID FIX - Spaced Out Cards */
+.strain-list-container ul {
   display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap: 25px !important;
-  padding: 0 !important;
-  margin: 0 !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  gap: 30px !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  padding: 30px !important;
   list-style: none !important;
 }
 
-.strain-list-container > ul > li {
-  width: 100% !important;
-  margin: 0 !important;
-}
-
-@media (max-width: 600px) {
-  .strain-list-container > ul {
+@media (max-width: 768px) {
+  .strain-list-container ul {
     grid-template-columns: 1fr !important;
-    gap: 15px !important;
+    gap: 20px !important;
+    padding: 20px !important;
+  }
+  .legend {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  #strainInput {
+    width: 100%;
+  }
+  h1 {
+    font-size: 28px;
   }
 }
 
-#triedCount { font-weight: bold !important; }
-li.tried:not(.hidden) { display: block !important; }
+@media (min-width: 769px) and (max-width: 1024px) {
+  .strain-list-container ul {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 25px !important;
+  }
+}
 
-  
+@media (min-width: 1025px) {
+  .strain-list-container ul {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 30px !important;
+  }
+}
 
-  </style>
-  
+</style>
 
 
 </head>
@@ -1513,69 +1513,185 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
   let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
   
-function updateTriedCount() {
-  const triedCount = document.querySelectorAll('.tried-toggle.checked input:checked').length;
-  document.getElementById('triedCount').textContent = triedCount;
-}
+  function toggleTried(li) {
+    const checkbox = li.querySelector('input[type="checkbox"]');
+    const toggle = li.querySelector('.tried-toggle');
+    const name = li.querySelector('.strain-name a') ? li.querySelector('.strain-name a').textContent.trim() : li.querySelector('.strain-name').textContent.trim();
+    checkbox.checked = !checkbox.checked;
+    toggle.classList.toggle('checked');
+    li.classList.toggle('tried'); // For existing heart logic
+    if (checkbox.checked) {
+      triedStrains.push(name);
+    } else {
+      triedStrains = triedStrains.filter(s => s !== name);
+    }
+    localStorage.setItem('wildcatTried', JSON.stringify(triedStrains));
+    updateCounts(); // Your existing function
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    // Load saved states
+    document.querySelectorAll('.tried-toggle').forEach(toggle => {
+      const li = toggle.closest('li');
+      const name = li.querySelector('.strain-name a') ? li.querySelector('.strain-name a').textContent.trim() : li.querySelector('.strain-name').textContent.trim();
+      if (triedStrains.includes(name)) {
+        toggle.classList.add('checked');
+        li.querySelector('input[type="checkbox"]').checked = true;
+        li.classList.add('tried');
+      }
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleTried(li);
+      });
+    });
+    updateCounts();
+  });
+  </script>
 
+<script>
+  let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
   
   function toggleTried(li) {
     const checkbox = li.querySelector('input[type="checkbox"]');
-    const name = li.querySelector('.strain-name a, .strain-name')?.textContent.trim().replace(/<[^>]*>/g, '') || '';
+    const toggle = li.querySelector('.tried-toggle');
+    const name = li.querySelector('.strain-name a') ? li.querySelector('.strain-name a').textContent.trim() : li.querySelector('.strain-name').textContent.trim();
     checkbox.checked = !checkbox.checked;
     li.classList.toggle('tried');
-    li.closest('.tried-toggle')?.classList.toggle('checked');
+    toggle.classList.toggle('checked');
     if (checkbox.checked) {
       if (!triedStrains.includes(name)) triedStrains.push(name);
     } else {
       triedStrains = triedStrains.filter(s => s !== name);
     }
     localStorage.setItem('wildcatTried', JSON.stringify(triedStrains));
-    updateTriedCount();
+    if (typeof updateCounts === 'function') updateCounts();
   }
   
-  // Init on load
   document.addEventListener('DOMContentLoaded', function() {
-    triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
+    // Re-attach listeners to ALL toggles
     document.querySelectorAll('.tried-toggle').forEach(toggle => {
-      const li = toggle.closest('li');
-      const name = li.querySelector('.strain-name a, .strain-name')?.textContent.trim().replace(/<[^>]*>/g, '') || '';
-      if (triedStrains.includes(name)) {
-        li.classList.add('tried');
-        toggle.classList.add('checked');
-        li.querySelector('input[type="checkbox"]').checked = true;
-      }
-      toggle.addEventListener('click', e => {
+      toggle.style.cursor = 'pointer'; // Ensure clickable
+      toggle.addEventListener('click', function(e) {
         e.stopPropagation();
         if (e.target.tagName === 'A') return;
+        const li = this.closest('li');
         toggleTried(li);
       });
     });
-    updateTriedCount();
-  });
   
-  // Bulletproof global click handler (overrides everything)
-  document.addEventListener('click', e => {
-    if (e.target.closest('.tried-checkmark')) {
-      e.preventDefault();
-      e.stopPropagation();
-      const toggle = e.target.closest('.tried-toggle');
-      if (toggle) toggleTried(toggle.closest('li'));
-    }
+    // Load saved states
+    document.querySelectorAll('.tried-toggle').forEach(toggle => {
+      const li = toggle.closest('li');
+      const name = li.querySelector('.strain-name a') ? li.querySelector('.strain-name a').textContent.trim() : li.querySelector('.strain-name').textContent.trim();
+      if (triedStrains.includes(name)) {
+        const checkbox = li.querySelector('input[type="checkbox"]');
+        checkbox.checked = true;
+        li.classList.add('tried');
+        toggle.classList.add('checked');
+      }
+    });
+    if (typeof updateCounts === 'function') updateCounts();
   });
   </script>
   
-  <style>
-    /* Anti-bleed fixes */
-    .strain-list-container li { overflow: hidden !important; position: relative !important; }
-    .tried-checkmark { z-index: 999 !important; position: relative !important; cursor: pointer; }
-    .tried-toggle { cursor: pointer; }
-    .tried-toggle.checked .tried-checkmark::after { content: '♥'; color: #ff4d4d; font-size: 1.2em; }
-    </style>
+  <script>
+    (function() {
+      let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
+      function initTried() {
+        document.querySelectorAll('.tried-checkmark').forEach(checkmark => {
+          checkmark.style.cursor = 'pointer';
+          checkmark.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const toggle = this.parentElement.parentElement; // .strain-content > .tried-checkmark -> .tried-toggle (li)
+            const li = toggle.closest('li');
+            const checkbox = toggle.querySelector('input[type="checkbox"]');
+            const name = li.querySelector('.strain-name').textContent.trim();
+            const isChecked = checkbox.checked = !checkbox.checked;
+            toggle.classList.toggle('checked', isChecked);
+            li.classList.toggle('tried', isChecked);
+            if (isChecked) {
+              if (!triedStrains.includes(name)) triedStrains.push(name);
+            } else {
+              triedStrains = triedStrains.filter(s => s !== name);
+            }
+            localStorage.setItem('wildcatTried', JSON.stringify(triedStrains));
+            updateTriedCount();
+          });
+        });
+        // Restore saved
+        document.querySelectorAll('.tried-toggle').forEach(toggle => {
+          const li = toggle.closest('li');
+          const name = li.querySelector('.strain-name').textContent.trim();
+          if (triedStrains.includes(name)) {
+            const checkbox = toggle.querySelector('input');
+            checkbox.checked = true;
+            toggle.classList.add('checked');
+            li.classList.add('tried');
+          }
+        });
+      }
+      function updateTriedCount() {
+        const count = document.querySelectorAll('.tried-toggle.checked').length;
+        const el = document.getElementById('triedCount');
+        if (el) el.textContent = count;
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTried);
+      } else {
+        initTried();
+      }
+    })();
+    </script>
     
+    <script>
+      // BULLETPROOF TRIED TOGGLE - Overrides everything, no deletes needed
+      document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('tried-checkmark')) {
+          e.preventDefault(); e.stopPropagation();
+          const toggle = e.target.closest('.tried-toggle');
+          const li = toggle.closest('li');
+          const checkbox = toggle.querySelector('input[type="checkbox"]');
+          const name = li.querySelector('.strain-name').textContent.trim().replace(/\s+/g, ' ').trim();
+          let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
+          const isChecked = checkbox.checked = !checkbox.checked;
+          toggle.classList.toggle('checked', isChecked);
+          li.classList.toggle('tried', isChecked);
+          if (isChecked) {
+            if (!triedStrains.includes(name)) triedStrains.push(name);
+          } else {
+            triedStrains = triedStrains.filter(s => s !== name);
+          }
+          localStorage.setItem('wildcatTried', JSON.stringify(triedStrains));
+          const countEl = document.getElementById('triedCount');
+          if (countEl) countEl.textContent = document.querySelectorAll('.tried-toggle.checked').length;
+          return false;
+        }
+        if (e.target.classList.contains('heart')) {
+          e.stopPropagation(); // Block heart interference
+        }
+      }, true); // Capture phase - highest priority
+      
+      // Restore on load
+      document.addEventListener('DOMContentLoaded', function() {
+        const triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
+        document.querySelectorAll('.tried-toggle').forEach(toggle => {
+          const li = toggle.closest('li');
+          const name = li.querySelector('.strain-name').textContent.trim().replace(/\s+/g, ' ').trim();
+          if (triedStrains.includes(name)) {
+            toggle.querySelector('input').checked = true;
+            toggle.classList.add('checked');
+            li.classList.add('tried');
+          }
+        });
+      });
+      </script>
+      <style>
+      /* Anti-bleed */
+      .strain-list-container li { overflow: hidden !important; position: relative !important; }
+      .tried-checkmark { z-index: 999 !important; position: relative !important; }
+      </style>
         
    
 </body>
 </html>
-
-
