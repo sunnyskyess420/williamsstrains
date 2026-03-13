@@ -1811,18 +1811,18 @@ li {
   #strainInput { width: 100%; }
   h1 { font-size: 28px; }
   /* ONLY move/center Save My Strains button */
-  #exportTried {
-    position: relative !important;
-    order: 10 !important; /* After input/random in flex */
-    margin-top: 12px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    flex-basis: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    min-width: 220px !important;
-  }
+ #exportTried {
+  margin-top: 16px !important;
+  margin-bottom: -8px !important; /* Pulls up to hug green line from above */
+  align-self: center !important;
+  order: 5 !important; /* Positions after input/random */
+  flex: 0 1 100% !important; /* Full width line break */
+  max-width: 240px !important;
 }
+.search-container {
+  flex-wrap: wrap !important; /* Allows button to wrap below */
+}
+
 
 
 
