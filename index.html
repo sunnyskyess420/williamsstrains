@@ -1526,6 +1526,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </style>
 
+
 <!-- keep any of your existing JS above this line, e.g. updateCounts(), filter code, etc. -->
 
 <script src="https://readmecodegen.com/view-tracker.js" data-user="user_mlr1poql_rf44cn"></script>
@@ -1763,6 +1764,8 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     </script>
     
+    
+    
     <style>
       /* SCROLL BUTTON CSS */
       #scrollTopBtn {
@@ -1807,17 +1810,29 @@ li {
   .legend { flex-wrap: wrap; gap: 8px; }
   #strainInput { width: 100%; }
   h1 { font-size: 28px; }
-  /* NEW: Center Save My Strains button below search */
+  /* NEW mobile-only: Stack search vertically, center Save button below */
+  .search-container {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
   #exportTried {
-    display: block !important;
-    margin: 12px auto 16px !important;
+    order: 99 !important;
+    align-self: center !important;
+    margin-top: 8px !important;
     min-width: 220px !important;
     width: 90% !important;
-    max-width: 280px !important;
+    max-width: 260px !important;
   }
-  /* Keep your other mobile rules here, e.g. */
-  li .tried-toggle { justify-content: flex-start !important; /* etc. */ }
 }
+
+
+
+
+
+
+
+
 
 .strain-list-container ul {
   grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)) !important;
