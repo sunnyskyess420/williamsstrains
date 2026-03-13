@@ -16,372 +16,470 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
-
 <style>
-
 body {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    /* keep your existing background, margin, etc. */
-}
-
-body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
     display: flex;
     justify-content: center;
-    align-items: center; /* This is the new line you are adding */
+    align-items: center;
     background-color: #262626;
     margin: 0;
-    padding: 20px;
+    padding: 10px;  /* CHANGED: was 20px */
     color: #1a1a1a;
     background-image: url('https://i.imgur.com/0bk5g7X.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    body {
+    min-height: 100vh;  /* ADDED */
     opacity: 0;
     animation: fadeIn 0.6s ease forwards;
 }
 
+
 @keyframes fadeIn {
-    to { opacity: 1; }
+  to { opacity: 1; }
 }
 
 .container {
     width: 100%;
-    max-width: 700px;
+    max-width: 1600px;
     background-color: rgba(30, 30, 30, 0.3);
-    padding: 30px;
+    padding: 20px;  /* CHANGED: was 30px */
+    overscroll-behavior-y: auto !important;
+    margin-top: 10px;  /* ADDED */
     box-shadow: 0 0 15px rgba(0, 128, 0, 0.4);
     border-radius: 12px;
     backdrop-filter: blur(5px);
 }
+
+
 h1 {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    text-align: center;
-    color: #00ff00;
-    text-shadow: 0 0 10px #00ff00, 0 0 20px #adff2f, 0 0 30px #006400;
-    animation: glow 1.5s ease-in-out infinite alternate;
+  text-align: center;
+  color: #00ff00;
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #adff2f, 0 0 30px #006400;
+  animation: glow 1.5s ease-in-out infinite alternate;
 }
+
 @keyframes glow {
-    from { text-shadow: 0 0 10px #00ff00, 0 0 20px #adff2f;
+  from { text-shadow: 0 0 10px #00ff00, 0 0 20px #adff2f; }
+  to { text-shadow: 0 0 20px #adff2f, 0 0 30px #006400; }
 }
-    to { text-shadow: 0 0 20px #adff2f, 0 0 30px #006400;
-}
-}
+
 .description {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #e5e5e5;
-    text-align: center;
-    margin-top: 4px;
-    margin-bottom: 16px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #e5e5e5;
+  text-align: center;
+  margin-top: 4px;
+  margin-bottom: 24px;
 }
 
 .legend {
     display: flex;
     justify-content: center;
     gap: 2px;
-    margin-bottom: 0;
-    padding: 10px 0;
+    margin-bottom: 8px;  /* CHANGED: was 0 */
+    padding: 8px 0;  /* CHANGED: was 10px */
     border-bottom: 2px solid #00ff00;
     flex-wrap: wrap;
-    position: ststatic;
-    top: 80px;
+    position: sticky;
+    top: 60px;  /* CHANGED: was 80px / ststatic */
     background-color: rgba(30, 30, 30, 0.95);
     z-index: 11;
+    overscroll-behavior: contain;
     font-size: 14px;
 }
 
+
 .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    cursor: pointer;
-    user-select: none;
-    position: relative;
-    overflow: visible;
-    border-radius: 24px;
-    padding: 8px 12px;
-    background: rgba(0,0,0,0.4);
-    border: 1px solid rgba(0,255,0,0.3);
-    margin: 4px;
-    transition: all 0.2s;
-    font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  overflow: visible;
+  border-radius: 24px;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(0,255,0,0.3);
+  margin: 4px;
+  transition: all 0.2s;
+  font-size: 14px;
 }
 
 .legend-item:hover,
 .legend-item.active {
-    background: #228B22 !important;
-    box-shadow: 0 0 12px rgba(34,139,34,0.6) !important;
-    transform: scale(1.05) !important;
+  background: #228B22 !important;
+  box-shadow: 0 0 12px rgba(34,139,34,0.6) !important;
+  transform: scale(1.05) !important;
 }
 
-
 .legend-color {
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    border: 1px solid #e8e8e8;
-    z-index: 1;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid #e8e8e8;
+  z-index: 1;
 }
 
 .legend-item span {
-    font-size: 14px;
+  font-size: 14px;
+  margin-left: 20px;
 }
 
 .legend-item.active span {
-    text-decoration: underline;
-    font-weight: bold;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.legend-item[data-filter="tried"] .legend-color {
+  background-color: #20B2AA !important;
+  position: relative;
 }
 
 .search-container {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-bottom: 16px;  /* CHANGED: was 20px/32px */
     border-bottom: 2px solid #00ff00;
-    padding: 10px 0;
+    padding: 12px 0;  /* CHANGED: was 10px/16px */
     position: sticky;
-    top: 20px;
+    top: 0px;
     background-color: rgba(30, 30, 30, 0.95);
     z-index: 12;
 }
 
-.search-container label {
-    font-size: 1.2em;
-    color: #00ff00;
-    #randomStrain {
-    background: rgba(30,30,30,0.95) !important;
-    border: 2px solid #00ff00 !important;
-    color: #00ff00 !important;
-    flex-shrink: 0;
-    min-width: 110px;
-    white-space: nowrap;
+.search-container button,
+.search-container #exportTried,
+#exportTried {
+  height: 48px !important;
+  min-height: 48px !important;
+  line-height: 1 !important;
+  padding: 8px 20px !important;
+  margin: 0 !important;
+  border-radius: 8px !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  min-width: 140px !important;
+  box-sizing: border-box !important;
 }
 
-.search-container #randomStrain:hover {
-    background: #228B22 !important;
-    transform: scale(1.02);
+
+#randomStrain {
+  background: rgba(30,30,30,0.95) !important;
+  border: 2px solid #00ff00 !important;
+  color: #00ff00 !important;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  min-width: 160px;
+  white-space: nowrap;
+  transition: all 0.3s ease;
 }
 
+#randomStrain:hover {
+  background: #228B22 !important;
+  transform: scale(1.05);
 }
+
 #strainInput {
-    flex-grow: 1;
-    padding: 12px;
-    border: 2px solid #00ff00;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.05);
-    color: #e0e0e0;
-    font-size: 16;
-    transition: box-shadow 0.3s ease;
+  flex-grow: 1;
+  padding: 12px;
+  border: 2px solid #00ff00;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+  font-size: 16px;
+  transition: box-shadow 0.3s ease;
 }
+
 #strainInput:focus {
-    outline: none;
-    box-shadow: 0 0 10px #00ff00;
+  outline: none;
+  box-shadow: 0 0 10px #00ff00;
 }
+
 .strain-list-container {
-    overflow-y: scroll;
-    max-height: 500px;
-    padding-right: 15px;
-    scrollbar-width: thin;
-    scrollbar-color: #00ff00 #262626;
+  overflow-y: auto !important;
+  max-height: 70vh !important;
+  overscroll-behavior-y: auto !important;
+  padding: 24px !important;
+  padding-right: 15px;
+  scrollbar-width: thin;
+  scrollbar-color: #00ff00 #262626;
 }
+
 .strain-list-container::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
+
 .strain-list-container::-webkit-scrollbar-track {
-    background: #262626;
+  background: #262626;
 }
+
 .strain-list-container::-webkit-scrollbar-thumb {
-    background-color: #00ff00;
-    border-radius: 20px;
-    border: 2px solid #262626;
+  background-color: #00ff00;
+  border-radius: 20px;
+  border: 2px solid #262626;
 }
-ul {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+
+.strain-list-container ul {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)) !important;
+  gap: 32px !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
+
 li {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 250px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 28px !important;
+  width: auto !important;
+  text-align: left;
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
 }
+
 li:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
-.strain-list-container ul li:hover .strain-name {
-    text-shadow: 0 0 5px #fff, 0 0 10px #00ff00;
+
+li:hover .strain-name {
+  text-shadow: 0 0 5px #fff, 0 0 10px #00ff00;
 }
+
 .fade-out {
-    opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
 .fade-in {
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
 .hidden {
-    display: none !important;
+  display: none !important;
 }
+
 .strain-name {
-    font-weight: bold;
-    font-size: 1.2em;
+  font-weight: bold;
+  font-size: 1.2em;
 }
-.indica-strain .strain-name, .indica-strain .strain-name a { color: #fff !important; }
-.sativa-strain .strain-name, .sativa-strain .strain-name a { color: #fff !important; }
-.hybrid-strain .strain-name, .hybrid-strain .strain-name a { color: #fff !important; }
-.unknown-strain .strain-name, .unknown-strain .strain-name a { color: #000 !important; }
 
 .strain-name a { 
-    text-decoration: none !important; 
-}
-.strain-name a:hover { 
-    text-shadow: 0 0 5px #fff, 0 0 10px #00ff00; 
+  text-decoration: none !important; 
+  color: #fff !important;
 }
 
-    
+.strain-name a:hover { 
+  text-shadow: 0 0 5px #fff, 0 0 10px #00ff00; 
+}
+
 .indica-strain { background-color: blue; }
 .sativa-strain { background-color: red; }
 .hybrid-strain { background-color: green; }
 .unknown-strain { background-color: yellow; }
 
-.legend-item {
-    position: relative;
-    overflow: visible;
-}
 .legend-leaf {
-    position: absolute;
-    width: 30px;
-    height: auto;
-    left: -15px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
-}
-.legend-color {
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    border: 1px solid #e8e8e8;
-    z-index: 1;
-}
-.legend-item span {
-    margin-left: 20px;
-}
-    .legend-item span {
-    margin-left: 20px;
+  position: absolute;
+  width: 30px;
+  height: auto;
+  left: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
 }
 
 .tried-toggle {
-  margin-top: 8px;
-  font-size: 0.9em;
-  color: #333;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 20px !important;  /* Adjust separation: dot left, name right */
+  width: 100% !important;
+  margin-top: 8px !important;
 }
+
+
 
 .tried-toggle input[type="checkbox"] {
   display: none;
 }
 
 .tried-checkmark {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   border: 2px solid #00aa00;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 18px;
   color: #00ff00;
   background-color: #111;
+  z-index: 999;
+  position: relative;
+  flex-shrink: 0;
 }
 
 .tried-toggle.checked .tried-checkmark {
-  background-color: #00aa00;
+  background-color: #20B2AA; /* Vibrant teal */
+  position: relative;
   color: #fff;
 }
 
-.tried-toggle.checked span.tried-label {
+.tried-toggle.checked .tried-checkmark::before {
+  content: '💖'; /* Pink sparkling heart emoji */
+  position: absolute;
+  font-size: 12px;
+  color: #FF69B4; /* Hot pink */
+  text-shadow: 0 0 4px #FF1493; /* Neon glow */
+}
+
+/* FIXED: Separate rules for label states */
+.tried-label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0px !important;
+  justify-content: flex-start;
+  color: inherit;  /* Uses parent color */
+}
+
+.tried-toggle.checked .tried-label {
   font-weight: bold;
-  color: #00aa00;
+  color: #00ffff !important;
 }
-.strain-list-container ul {
-  display: block !important;  /* Kill flex/grid */
-}
+
+
 .strain-list-container li.hidden {
-  display: none !important;  /* FORCE vanish */
+  display: none !important;
   height: 0 !important;
 }
 
-/* Click squish */
 .legend-item:active,
 #randomStrain:active,
 .strain-list-container li:active,
 a.gradient-btn:active {
-    transform: scale(0.96) !important;
-    transition: transform 0.1s !important;
-}
-/* UL GRID FIX - Spaced Out Cards */
-.strain-list-container ul {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
-  gap: 30px !important;
-  max-width: 1400px !important;
-  margin: 0 auto !important;
-  padding: 30px !important;
-  list-style: none !important;
+  transform: scale(0.96) !important;
+  transition: transform 0.1s !important;
 }
 
-@media (max-width: 768px) {
-  .strain-list-container ul {
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
-    padding: 20px !important;
+@media (max-width: 768px) { 
+  .strain-list-container ul { 
+      grid-template-columns: 1fr !important; 
+      gap: 24px !important; 
   }
   .legend {
-    flex-wrap: wrap;
-    gap: 8px;
+      flex-wrap: wrap;
+      gap: 8px;
   }
   #strainInput {
-    width: 100%;
+      width: 100%;
   }
   h1 {
-    font-size: 28px;
+      font-size: 28px;
   }
+  #scrollTopBtn {
+    all: initial !important;
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 30px !important;
+  background: linear-gradient(135deg, #228B22, #006400) !important;
+  color: white !important;
+  border: 2px solid #00ff00 !important;
+  border-radius: 50% !important;
+  width: 60px !important;
+  height: 60px !important;
+  font-size: 24px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(0,255,0,0.3) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: all 0.3s ease !important;
+  z-index: 9999 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  .strain-list-container ul {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 25px !important;
-  }
+#scrollTopBtn.show {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-@media (min-width: 1025px) {
-  .strain-list-container ul {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 30px !important;
-  }
+#scrollTopBtn:hover {
+  box-shadow: 0 0 20px rgba(0,255,0,0.6) !important;
+  transform: scale(1.1) !important;
+}
+
+
+/* Seamless page scrolling */
+html {
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;  /* Prevents bounce conflicts */
+}
+
+body {
+  overscroll-behavior-y: auto;  /* Allows scroll chaining */
+  scrollbar-gutter: stable;
+}
+
+.container {
+  scroll-behavior: auto;
+}
+
+.search-container {
+  overscroll-behavior: contain;  /* Sticky header doesn't trap scroll */
+}
+
+/* Enhanced list scroll chaining */
+.strain-list-container {
+  overscroll-behavior-y: auto !important;  /* Passes scroll to body */
+  scroll-behavior: auto;
+}
+
+li .tried-toggle {
+  justify-content: flex-start !important;
+  text-align: left !important;
+  margin: 8px auto 0 0 !important;  /* Left-align, keep top margin */
+  gap: 15px !important;  /* Dot-to-name space */
+  width: auto !important;
+}
+.tried-label {
+  gap: 16px !important;  /* No extra space in label */
+}
+
+li .strain-content {
+  flex-shrink: 0 !important;
+  margin-right: 15px !important;
+}
+li .tried-label {
+  flex-grow: 1 !important;
+  justify-content: flex-start !important;
+}
 }
 
 </style>
-
 
 </head>
 
@@ -394,12 +492,21 @@ a.gradient-btn:active {
   about each strain.
 </p>
 
+<p class="description">
+  Tip: Use the search bar for strain names, or click Indica / Sativa / Hybrid
+  above to filter the cards.
+</p>
+
 <div class="search-container">
   <label for="strainInput">Search</label>
   <span style="font-size: 18px; color: #a0ffb0;">🔍</span>
-  <input type="text" id="strainInput" oninput="searchStrains()" placeholder="Enter strain name...">
-  <button id="randomStrain" style="background: transparent; border: 2px solid #00ff00; color: #00ff00; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; white-space: nowrap;">Pick random?</button>
+  <input type="text" id="strainInput" placeholder="Enter strain name...">
+
+  <button id="randomStrain" style="background: transparent; border: 2px solid #00ff00; color: #00ff00;">Pick random?</button>
+  <button id="exportTried" class="gradient-btn">💾 Save My Strains</button>
 </div>
+
+
 
 
 
@@ -430,9 +537,9 @@ a.gradient-btn:active {
     <span style="color: #b0e0b0;">Show All (<span id="totalCount"></span>)</span>
   </div>
   <div class="legend-item" data-filter="tried">
-    <div class="legend-color" style="background-color: #00aa00;"></div>
-    <span style="color: #b0e0b0;">Tried (<span id="triedCount">0</span>)</span>
-  </div>
+  <div class="legend-color" style="background-color: #00ffff;"></div>
+  <span style="color: #b0e0b0;">Tried (<span id="triedCount">0</span>)</span>
+</div>
   </div>
 
 
@@ -441,10 +548,6 @@ a.gradient-btn:active {
     💾 <strong>Download list:</strong> Hit "Save My Strains" button to export CSV of your tried strains!
 </p>
 
-<p class="description">
-  Tip: Use the search bar for strain names, or click Indica / Sativa / Hybrid
-  above to filter the cards.
-</p>
 
 <div style="display: flex; justify-content: center; margin: 10px 0 18px 0;">
   <div
@@ -470,15 +573,7 @@ a.gradient-btn:active {
 
 
 
-<button id="exportTried" class="gradient-btn">💾 Save My Strains</button>  
-
-
-
-
-    
-  
-    
-    <div class="strain-list-container">
+<div class="strain-list-container">
         <ul>
 
             
@@ -531,13 +626,13 @@ a.gradient-btn:active {
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/black-kyber-crystal" target="_blank" rel="noopener noreferrer">Black Kyber Crystal</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.allbud.com/marijuana-strains/indica-dominant-hybrid/black-mamba" target="_blank" rel="noopener noreferrer">Black Mamba</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/black-roses" target="_blank" rel="noopener noreferrer">Black Rose</a></span></span></span></li>	
-<li class="unknown-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name">Black Scout</span></span></span></li>	
+<li class="unknown-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name">Black Scout</span></span></span></li>
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/blackberry-cheesecake" target="_blank" rel="noopener noreferrer">Blackberry Cheesecake</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/blackberry-kush" target="_blank" rel="noopener noreferrer">Blackberry Kush</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/blackberry-moonrocks" target="_blank" rel="noopener noreferrer">Blackberry Moonrocks</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://seedfinder.eu/en/strain-info/blood-orange-haze/mephisto-genetics" target="_blank" rel="noopener noreferrer">Blood Orange Haze</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/blue-gelato" target="_blank" rel="noopener noreferrer">Blue Gelato</a></span></span></span></li>	
-<li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/blue-lights" target="_blank" rel="noopener noreferrer">Blue Lights</a></span></span></span></li>	<li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/blue-gelato" target="_blank" rel="noopener noreferrer">Blue Gelato</a></span></span></span></li>
+<li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/blue-lights" target="_blank" rel="noopener noreferrer">Blue Lights</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://wccannabis.cc/product/blue-magoo-cookies-aaaa/" target="_blank" rel="noopener noreferrer">Blue Magoo Cookies</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.allbud.com/marijuana-strains/indica-dominant-hybrid/blue-slushie" target="_blank" rel="noopener noreferrer">Blue Slushie</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/blue-tahoe" target="_blank" rel="noopener noreferrer">Blue Tahoe</a></span></span></span></li>	
@@ -557,8 +652,6 @@ a.gradient-btn:active {
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/bubbas-breath" target="_blank" rel="noopener noreferrer">Bubba Breath</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/bubba-kush" target="_blank" rel="noopener noreferrer">Bubba Kush</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/bubble-bath" target="_blank" rel="noopener noreferrer">Bubble Bath</a></span></span></span></li>	
-<li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/blueberry-kush" target="_blank" rel="noopener noreferrer">Blueberry Kush</a></span></span></span></li>	
-<li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/bubba-kush" target="_blank" rel="noopener noreferrer">Bubba Kush</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/cake-pop" target="_blank" rel="noopener noreferrer">Cake Pop</a></span></span></span></li>	
 <li class="sativa-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/kali-47" target="_blank" rel="noopener noreferrer">Cali 47</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.allbud.com/marijuana-strains/indica-dominant-hybrid/cali-bubba" target="_blank" rel="noopener noreferrer">Cali Bubba</a></span></span></span></li>	
@@ -685,7 +778,8 @@ a.gradient-btn:active {
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/giesel-cookies" target="_blank" rel="noopener noreferrer">Giesel Cookies</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/girl-scout-cookies" target="_blank" rel="noopener noreferrer">Girl Scout Cookies</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/glookies" target="_blank" rel="noopener noreferrer">Glookies</a></span></span></span></li>	
-<li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/gmo-cookies" target="_blank" rel="noopener noreferrer">GMO Cookies</a></span></span></span></li>	
+<li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/gmo-cookies" target="_blank" rel="noopener noreferrer">GMO Cookies</a></span></span></span></li>
+<li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://shopcannabisnl.com/products/big-bag-o-buds-joints-gmo-kush-pre-roll" target="_blank" rel="noopener noreferrer">GMO Kush</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/god-bud" target="_blank" rel="noopener noreferrer">God Bud</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/godfather-og" target="_blank" rel="noopener noreferrer">Godfather OG</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/gods-gift" target="_blank" rel="noopener noreferrer">Gods Gift</a></span></span></span></li>	
@@ -819,10 +913,10 @@ a.gradient-btn:active {
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/northern-lights" target="_blank" rel="noopener noreferrer">Northern Lights</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/notorious-og" target="_blank" rel="noopener noreferrer">Notorious OG</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/nuken" target="_blank" rel="noopener noreferrer">Nuken</a></span></span></span></li>	
-<li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name">Og God</span></span></span></li>	
+<li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://weedmaps.com/strains/god-og" target="_blank" rel="noopener noreferrer">Og God</a></span></span></span></li>
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/og-kush" target="_blank" rel="noopener noreferrer">OG Kush</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/og-shark" target="_blank" rel="noopener noreferrer">OG Shark</a></span></span></span></li>	
-<li class="sativa-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name">Ogopogo Gold</span></span></span></li>	
+<li class="sativa-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.allbud.com/marijuana-strains/sativa-dominant-hybrid/ogopogo-gold" target="_blank" rel="noopener noreferrer">Ogopogo Gold</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name">Okanagan Frost</span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://bulkweedinbox.cc/product/one-punch/" target="_blank" rel="noopener noreferrer">One Punch</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/orange-creamsicle" target="_blank" rel="noopener noreferrer">Orange Creamsicle</a></span></span></span></li>	
@@ -855,12 +949,11 @@ a.gradient-btn:active {
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/pink-gas" target="_blank" rel="noopener noreferrer">Pink Gas</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://wccannabis.cc/product/pink-gas-mask-aaaa-2/" target="_blank" rel="noopener noreferrer">Pink Gas Mask</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/pink-kush" target="_blank" rel="noopener noreferrer">Pink Kush</a></span></span></span></li>	
-<li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name">Pink Kush Mints</span></span></span></li>	
-<li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/brands/greenseal-cannabis-co/products/greenseal-cannabis-co-pink-octane-3-5g-flower-ontario-flower" target="_blank" rel="noopener noreferrer">Pink Octane</a></span></span></span></li>	
+<li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.tncc.ca/product/big-bag-o-buds-pink-kush-mints/" target="_blank" rel="noopener noreferrer">Pink Kush Mints</a></span></span></span></li><li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/brands/greenseal-cannabis-co/products/greenseal-cannabis-co-pink-octane-3-5g-flower-ontario-flower" target="_blank" rel="noopener noreferrer">Pink Octane</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/pink-panties" target="_blank" rel="noopener noreferrer">Pink Panties</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.allbud.com/marijuana-strains/indica-dominant-hybrid/pink-push-pop" target="_blank" rel="noopener noreferrer">Pink Push Pop</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://wccannabis.cc/product/pink-unicorn-aa/" target="_blank" rel="noopener noreferrer">Pink Unicorn</a></span></span></span></li>	
-<li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name">Platinum Death</span></span></span></li>	
+<li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.comparethestrain.ca/death-bubba-vs-platinum-bubba-kush/" target="_blank" rel="noopener noreferrer">Platinum Death</a></span></span></span></li>
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/platinum-girl-scout-cookies" target="_blank" rel="noopener noreferrer">Platimun Girl Scout Cookies</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/brands/gg-strains/products/gg-strains-gg4-aka-gg-4" target="_blank" rel="noopener noreferrer">Platinum Gorilla Glue #4</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/platinum-jelly" target="_blank" rel="noopener noreferrer">Platinum Jelly Breath</a></span></span></span></li>	
@@ -900,7 +993,8 @@ a.gradient-btn:active {
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.allbud.com/marijuana-strains/indica-dominant-hybrid/revolver" target="_blank" rel="noopener noreferrer">Revolver</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/rockstar" target="_blank" rel="noopener noreferrer">Rockstar</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.bulkbuddy.co/product/peanut-butter-rockstar-strain/" target="_blank" rel="noopener noreferrer">Rockstar Peanut Butter</a></span></span></span></li>	
-<li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/romulan" target="_blank" rel="noopener noreferrer">Romulan</a></span></span></span></li>	
+<li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/romulan" target="_blank" rel="noopener noreferrer">Romulan</a></span></span></span></li>
+<li class="sativa-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.cannabis-nb.com/01/all/menu/dried-flower/whole-buds/catch-me-outside-rooster-call-sativa/" target="_blank" rel="noopener noreferrer">Rooster Call</a></span></span></span></li>   
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/royal-gorilla" target="_blank" rel="noopener noreferrer">Royal Gorilla</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/royal-highness" target="_blank" rel="noopener noreferrer">Royal Highness</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://mmjexpress.cc/product/scooby-snacks-aa/" target="_blank" rel="noopener noreferrer">Scooby Snacks</a></span></span></span></li>	
@@ -919,7 +1013,7 @@ a.gradient-btn:active {
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name">Sleepy Joe</span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/slow-lane" target="_blank" rel="noopener noreferrer">Slow Lane</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/slurricane" target="_blank" rel="noopener noreferrer">Slurricane</a></span></span></span></li>	
-<li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name">>Slurricane x Geleto</span></span></span></li>	
+<li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name">Slurricane x Geleto</span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/slurricrasher" target="_blank" rel="noopener noreferrer">Slurry Crasher</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/snoop-dogg-og" target="_blank" rel="noopener noreferrer">Snoop Dogg</a></span></span></span></li>	
 <li class="sativa-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://spinachcannabis.com/strains/sonic-lemon-fuel/" target="_blank" rel="noopener noreferrer">Sonic Lemon Fuel</a></span></span></span></li>	
@@ -1022,7 +1116,10 @@ a.gradient-btn:active {
        
 
 </ul>
-</div> <div id="noResultsPopup">
+</div>
+
+
+<div id="noResultsPopup">
     OoO A NEW ONE!
 </div>
 
@@ -1031,208 +1128,220 @@ a.gradient-btn:active {
 
     
 <script>
-function updateCounts() {
-  document.getElementById('indicaCount').textContent = document.querySelectorAll('.indica-strain:not(.hidden)').length;
-  document.getElementById('sativaCount').textContent = document.querySelectorAll('.sativa-strain:not(.hidden)').length;
-  document.getElementById('hybridCount').textContent = document.querySelectorAll('.hybrid-strain:not(.hidden)').length;
-  document.getElementById('unknownCount').textContent = document.querySelectorAll('.unknown-strain:not(.hidden)').length;
-  document.getElementById('totalCount').textContent = document.querySelectorAll('li:not(.hidden)').length;
-  document.getElementById('triedCount').textContent = document.querySelectorAll('.tried:not(.hidden)').length;
-}
-
-    document.getElementById('randomStrain').addEventListener('click', () => {
-      const visibleStrains = document.querySelectorAll('li:not(.hidden)');
-      if (visibleStrains.length === 0) return;
-      const randomStrain = visibleStrains[Math.floor(Math.random() * visibleStrains.length)];
-      document.querySelectorAll('li').forEach(li => li.classList.remove('random-highlight'));
-      randomStrain.classList.add('random-highlight');
-      randomStrain.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      setTimeout(() => randomStrain.classList.remove('random-highlight'), 3000);
-    });
-    
-    function createFirework(x, y, color, spread = 80, particles = 20) {
-      for (let i = 0; i < particles; i++) {
-        const fw = document.createElement('div');
-        fw.className = 'firework';
-        fw.style.background = color;
-        fw.style.left = x + 'px';
-        fw.style.top = y + 'px';
-        document.body.appendChild(fw);
-        const angle = Math.random() * 2 * Math.PI;
-        const radius = Math.random() * spread;
-        const dx = Math.cos(angle) * radius;
-        const dy = Math.sin(angle) * radius;
-        fw.animate([
-          { transform: `translate(0,0)`, opacity: 1 },
-          { transform: `translate(${dx}px, ${dy}px)`, opacity: 0 }
-        ], { duration: 1500, easing: 'ease-out' });
-        setTimeout(() => fw.remove(), 1500);
-      }
-    }
-    
-    function showMessage() {
-      const popup = document.getElementById('noResultsPopup');
-      popup.style.display = 'flex';
-      popup.classList.add('pulse-glow');
-      const rect = popup.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00', '#ff6600', '#ff0000', '#ffffff'];
-      for (let i = 0; i < 5; i++) {
-        setTimeout(() => createFirework(centerX, centerY, colors[Math.floor(Math.random() * colors.length)], 120, 30), i * 200);
-      }
-      let bursts = 0;
-      const interval = setInterval(() => {
-        const randX = Math.random() * window.innerWidth;
-        const randY = Math.random() * window.innerHeight;
-        createFirework(randX, randY, colors[Math.floor(Math.random() * colors.length)], 100, 25);
-        bursts++;
-        if (bursts > 15) clearInterval(interval);
-      }, 150);
-    }
-    
-    function hideMessage() {
-      const popup = document.getElementById('noResultsPopup');
-      popup.style.display = 'none';
-      popup.classList.remove('pulse-glow');
-    }
-    
-    function hideWithFade(el) {
-      el.classList.remove('fade-in');
-      el.classList.add('fade-out');
-      setTimeout(() => {
-        el.classList.add('hidden');
-        updateCounts();
-      }, 300);
-    }
-    
-    function showWithFade(el) {
-      el.classList.remove('hidden', 'fade-out');
-      el.classList.add('fade-in');
-      updateCounts();
-    }
-    
-    function searchStrains() {
-  const input = document.getElementById('strainInput').value.toLowerCase().trim();
-  const strains = document.querySelectorAll('.strain-list-container ul li');
-  let visibleCount = 0;
-  
-  strains.forEach(strain => {
-    const name = strain.querySelector('.strain-name').textContent.toLowerCase();
-    const words = input.split(/\s+/).filter(w => w.length > 0);
-    const isMatch = words.length === 0 || words.every(word => name.includes(word));
-    
-    if (isMatch) {
-      showWithFade(strain);
-      visibleCount++;
-    } else {
-      hideWithFade(strain);
-    }
-  });
-  
-  visibleCount === 0 ? showMessage() : hideMessage();
-}
-
-    
-    let activeFilter = null;
-
-document.querySelectorAll('.legend-item').forEach(item => {
-  item.addEventListener('click', () => {
-    const filterClass = item.getAttribute('data-filter');
-    const strains = document.querySelectorAll('.strain-list-container ul li');
-    
-    if (filterClass === 'tried') {
-      strains.forEach(strain => {
-        if (strain.classList.contains('tried')) {
-          showWithFade(strain);
-        } else {
-          hideWithFade(strain);
-        }
-      });
-    } else if (filterClass === 'all') {
-      strains.forEach(strain => showWithFade(strain));
-    } else {
-      strains.forEach(strain => {
-        if (strain.classList.contains(filterClass)) {
-          showWithFade(strain);
-        } else {
-          hideWithFade(strain);
-        }
-      });
-    }
-    
-    document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
-    item.classList.add('active');
-    activeFilter = filterClass;
-    updateCounts();
-  });
-});
-
-// Save/load tried checkboxes ← CONNECTS HERE
-
-
-// Click to toggle tried heart
-document.querySelectorAll('.strain-list-container li').forEach(li => {
-    li.addEventListener('click', function(e) {
-        if (e.target.tagName === 'A') return;  // don't toggle on Leafly links
-        this.classList.toggle('tried');
-    });
-});
-
-// CREATE HEARTS + Heart click handlers
-document.querySelectorAll('.strain-list-container li').forEach(li => {
-  if (!li.querySelector('.heart')) {
-    const heart = document.createElement('span');
-    heart.className = 'heart';
-    heart.innerHTML = '🖤';
-    heart.style.cssText = 'position:absolute;top:8px;right:8px;font-size:20px;z-index:3;cursor:pointer;display:none;opacity:0.7;transition:all 0.2s;';
-    li.appendChild(heart);
-    
-    // Heart click toggle
-    heart.addEventListener('click', function(e) {
-      e.stopPropagation();
-      li.classList.toggle('tried');
-      this.innerHTML = li.classList.contains('tried') ? '💚' : '🖤';
-      this.style.opacity = li.classList.contains('tried') ? '1' : '0.7';
-      updateCounts();
-    });
+  function updateCounts() {
+    document.getElementById('indicaCount').textContent = document.querySelectorAll('.indica-strain:not(.hidden)').length;
+    document.getElementById('sativaCount').textContent = document.querySelectorAll('.sativa-strain:not(.hidden)').length;
+    document.getElementById('hybridCount').textContent = document.querySelectorAll('.hybrid-strain:not(.hidden)').length;
+    document.getElementById('unknownCount').textContent = document.querySelectorAll('.unknown-strain:not(.hidden)').length;
+    document.getElementById('totalCount').textContent = document.querySelectorAll('li:not(.hidden)').length;
+    document.getElementById('triedCount').textContent = document.querySelectorAll('.tried:not(.hidden)').length;
   }
+  
+  document.getElementById('randomStrain').addEventListener('click', () => {
+    const visibleStrains = document.querySelectorAll('li:not(.hidden)');
+    if (visibleStrains.length === 0) return;
+    const randomStrain = visibleStrains[Math.floor(Math.random() * visibleStrains.length)];
+    document.querySelectorAll('li').forEach(li => li.classList.remove('random-highlight'));
+    randomStrain.classList.add('random-highlight');
+    randomStrain.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => randomStrain.classList.remove('random-highlight'), 3000);
+  });
+  
+  function createFirework(x, y, color, spread = 80, particles = 20) {
+    for (let i = 0; i < particles; i++) {
+      const fw = document.createElement('div');
+      fw.className = 'firework';
+      fw.style.background = color;
+      fw.style.left = x + 'px';
+      fw.style.top = y + 'px';
+      document.body.appendChild(fw);
+      const angle = Math.random() * 2 * Math.PI;
+      const radius = Math.random() * spread;
+      const dx = Math.cos(angle) * radius;
+      const dy = Math.sin(angle) * radius;
+      fw.animate([
+        { transform: `translate(0,0)`, opacity: 1 },
+        { transform: `translate(${dx}px, ${dy}px)`, opacity: 0 }
+      ], { duration: 1500, easing: 'ease-out' });
+      setTimeout(() => fw.remove(), 1500);
+    }
+  }
+  
+  function showMessage() {
+    const popup = document.getElementById('noResultsPopup');
+    popup.style.display = 'flex';
+    popup.classList.add('pulse-glow');
+    const rect = popup.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00', '#ff6600', '#ff0000', '#ffffff'];
+    for (let i = 0; i < 5; i++) {
+      setTimeout(() => createFirework(centerX, centerY, colors[Math.floor(Math.random() * colors.length)], 120, 30), i * 200);
+    }
+    let bursts = 0;
+    const interval = setInterval(() => {
+      const randX = Math.random() * window.innerWidth;
+      const randY = Math.random() * window.innerHeight;
+      createFirework(randX, randY, colors[Math.floor(Math.random() * colors.length)], 100, 25);
+      bursts++;
+      if (bursts > 15) clearInterval(interval);
+    }, 150);
+  }
+  
+  function hideMessage() {
+    const popup = document.getElementById('noResultsPopup');
+    popup.style.display = 'none';
+    popup.classList.remove('pulse-glow');
+  }
+  
+  function hideWithFade(el) {
+    el.classList.remove('fade-in');
+    el.classList.add('fade-out');
+    setTimeout(() => {
+      el.classList.add('hidden');
+      updateCounts();
+    }, 300);
+  }
+  
+  function showWithFade(el) {
+    el.classList.remove('hidden', 'fade-out');
+    el.classList.add('fade-in');
+    updateCounts();
+  }
+  
+  function searchStrains() {
+    const query = document.getElementById('strainInput').value.toLowerCase().trim();
+    
+    // Reset everything to full view if input is empty
+    if (query === '') {
+      const strains = document.querySelectorAll('.strain-list-container ul li');
+      strains.forEach(strain => showWithFade(strain));
+      
+      // Clear all legend filters
+      document.querySelectorAll('.legend-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      updateCounts();
+      hideMessage();
+      return;
+    }
+    
+    const strains = document.querySelectorAll('.strain-list-container ul li');
+    let visibleCount = 0;
+    
+    strains.forEach(strain => {
+      const name = strain.querySelector('.strain-name').textContent.toLowerCase();
+      const words = query.split(/\s+/).filter(w => w.length > 0);
+      const isMatch = words.every(word => name.includes(word));
+      
+      if (isMatch) {
+        showWithFade(strain);
+        visibleCount++;
+      } else {
+        hideWithFade(strain);
+      }
+    });
+    
+    visibleCount === 0 ? showMessage() : hideMessage();
+  }
+  
+  // Debounced input handler (separate from searchStrains)
+  let searchTimeout;
+  const input = document.getElementById('strainInput');
+  input.addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    if (query.length === 0) {
+      searchStrains(); // Instant reset
+      return;
+    }
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => searchStrains(), 250);
+  });
+  
+  let activeFilter = null;
+  
+  document.querySelectorAll('.legend-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const filterClass = item.getAttribute('data-filter');
+      const strains = document.querySelectorAll('.strain-list-container ul li');
+      
+      if (filterClass === 'tried') {
+        strains.forEach(strain => {
+          if (strain.classList.contains('tried')) {
+            showWithFade(strain);
+          } else {
+            hideWithFade(strain);
+          }
+        });
+      } else if (filterClass === 'all') {
+        strains.forEach(strain => showWithFade(strain));
+      } else {
+        strains.forEach(strain => {
+          if (strain.classList.contains(filterClass)) {
+            showWithFade(strain);
+          } else {
+            hideWithFade(strain);
+          }
+        });
+      }
+      
+      document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      activeFilter = filterClass;
+      updateCounts();
+    });
+  });
+  
+  // Save/load tried checkboxes ← CONNECTS HERE
+
+  // Save/load tried checkboxes
+let triedStrains = JSON.parse(localStorage.getItem('wildcatTriedStrains')) || [];
+
+function toggleTried(li) {
+  const checkbox = li.querySelector('input[type="checkbox"]');
+  const toggle = li.querySelector('.tried-toggle');
+  const name = li.querySelector('.strain-name').textContent.trim();
+  
+  checkbox.checked = !checkbox.checked;
+  li.classList.toggle('tried', checkbox.checked);
+  toggle.classList.toggle('checked', checkbox.checked);
+  
+  if (checkbox.checked) {
+    if (!triedStrains.includes(name)) {
+      triedStrains.push(name);
+    }
+  } else {
+    triedStrains = triedStrains.filter(s => s !== name);
+  }
+  localStorage.setItem('wildcatTriedStrains', JSON.stringify(triedStrains));
+  if (typeof updateCounts === 'function') updateCounts();
+}
+
+// Attach listeners to all checkboxes/toggles
+document.addEventListener('DOMContentLoaded', function() {
+  // Load saved states
+  document.querySelectorAll('.tried-toggle').forEach(toggle => {
+    const li = toggle.closest('li');
+    const name = li.querySelector('.strain-name').textContent.trim();
+    if (triedStrains.includes(name)) {
+      const checkbox = li.querySelector('input[type="checkbox"]');
+      checkbox.checked = true;
+      li.classList.add('tried');
+      toggle.classList.add('checked');
+    }
+    // Make clickable
+    toggle.style.cursor = 'pointer';
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (e.target.tagName === 'A') return;
+      toggleTried(li);
+    });
+  });
+  if (typeof updateCounts === 'function') updateCounts();
 });
 
-    </script>
-    
-
-    <script>
-      // Load saved hearts
-      document.addEventListener('DOMContentLoaded', () => {
-        const saved = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
-        saved.forEach(name => {
-          document.querySelectorAll('li').forEach(li => {
-            if (li.textContent.includes(name)) {
-              li.classList.add('tried');
-              const heart = li.querySelector('.heart');
-              if (heart) {
-                heart.innerHTML = '💚';
-                heart.style.display = 'block';
-                heart.style.opacity = '1';
-              }
-            }
-          });
-        });
-        updateCounts();
-      });
-      
-      // Save on toggle
-      document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('heart')) {
-          setTimeout(() => {
-            const triedNames = Array.from(document.querySelectorAll('.tried')).map(li => li.textContent.trim());
-            localStorage.setItem('wildcatTried', JSON.stringify(triedNames));
-          }, 100);
-        }
-      });
-      
-      // Export tried strains
+  // Export tried strains
       document.getElementById('exportTried').addEventListener('click', () => {
         const tried = Array.from(document.querySelectorAll('li.tried'))
           .map(li => {
@@ -1306,49 +1415,6 @@ document.querySelectorAll('.strain-list-container li').forEach(li => {
     z-index: 9999;
 }
 
-/* Card Layout - Grid + Hover */
-.strain-list-container {
-    display: flex;
-    justify-content: center;
-    padding: 0 16px;
-}
-
-.strain-list-container ul {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
-    gap: 8px !important;
-    padding: 8px 0 !important;
-}
-
-.strain-list-container li {
-    position: relative !important;
-    height: 50px !important;
-    border-radius: 24px !important;
-    padding: 8px 12px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-    transition: all 0.3s !important;
-}
-
-.strain-list-container li:hover {
-    transform: translateY(-4px) !important;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4) !important;
-}
-
-.strain-content {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    width: 100%;
-}
-
-.strain-name {
-    font-weight: bold;
-    font-size: 1.2em;
-}
-
-
 /* Leaf icons before strain name */
 .indica-strain::before,
 .sativa-strain::before,
@@ -1413,31 +1479,9 @@ document.querySelectorAll('.strain-list-container li').forEach(li => {
   50% { box-shadow: 0 0 30px #ffff00, 0 0 60px #ffff00; }
 }
 
-/* Green heart overlay */
-.tried::after {
-    content: "💚";
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    font-size: 20px;
-    z-index: 2;
-    filter: drop-shadow(0 0 4px #00ff00);
-}
 
-.strain-list-container li {
-  position: relative !important;
-  overflow: hidden !important; /* Traps hearts inside each card */
-}
-.tried::after {
-  z-index: 10 !important; /* Hearts above content but contained */
-}
-.tried-checkmark {
-  z-index: 20 !important; /* Circles always clickable over hearts */
-  pointer-events: auto !important;
-}
-.heart {
-  pointer-events: none !important; /* Hearts visual only, no click interference */
-}
+
+
 
 
 .strain-list-container li {
@@ -1464,12 +1508,8 @@ document.querySelectorAll('.strain-list-container li').forEach(li => {
   transform: translateY(-2px) !important;
 }
 
-
-
 </style>
 
-
-</style>
 
 <!-- keep any of your existing JS above this line, e.g. updateCounts(), filter code, etc. -->
 
@@ -1508,9 +1548,7 @@ document.addEventListener('DOMContentLoaded', function() {
     attributeFilter: ['style', 'class'] 
   });
 });
-</script>
 
-<script>
   let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
   
   function toggleTried(li) {
@@ -1546,9 +1584,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     updateCounts();
   });
-  </script>
 
-<script>
   let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
   
   function toggleTried(li) {
@@ -1592,9 +1628,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     if (typeof updateCounts === 'function') updateCounts();
   });
-  </script>
-  
-  <script>
+
     (function() {
       let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
       function initTried() {
@@ -1645,7 +1679,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
     
     <script>
-      // BULLETPROOF TRIED TOGGLE - Overrides everything, no deletes needed
+      // ===== YOUR BULLETPROOF TRIED TOGGLE (UNCHANGED) =====
       document.addEventListener('click', function(e) {
         if (e.target.classList.contains('tried-checkmark')) {
           e.preventDefault(); e.stopPropagation();
@@ -1667,12 +1701,9 @@ document.addEventListener('DOMContentLoaded', function() {
           if (countEl) countEl.textContent = document.querySelectorAll('.tried-toggle.checked').length;
           return false;
         }
-        if (e.target.classList.contains('heart')) {
-          e.stopPropagation(); // Block heart interference
-        }
-      }, true); // Capture phase - highest priority
-      
-      // Restore on load
+       
+      }, true);
+    
       document.addEventListener('DOMContentLoaded', function() {
         const triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
         document.querySelectorAll('.tried-toggle').forEach(toggle => {
@@ -1685,13 +1716,95 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         });
       });
-      </script>
-      <style>
-      /* Anti-bleed */
+    
+     // ===== DUAL SCROLL TO TOP (FULL PAGE + STRAIN LIST) =====
+window.addEventListener('load', function() {
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  const strainList = document.querySelector('.strain-list-container');
+  if (!scrollTopBtn) {
+    console.log('Scroll button NOT found');
+    return;
+  }
+  console.log('Scroll button FOUND');
+  
+  // Show/hide on FULL PAGE scroll
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 400) {
+      scrollTopBtn.classList.add('show');
+    } else {
+      scrollTopBtn.classList.remove('show');
+    }
+  });
+  
+  scrollTopBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('DUAL SCROLL CLICKED');
+    
+    // Scroll FULL PAGE to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // ALSO scroll strain list to top (if exists)
+    if (strainList) {
+      strainList.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+});
+
+    </script>
+    
+    
+    <style>
+      /* SCROLL BUTTON CSS */
+      #scrollTopBtn {
+        position: fixed !important; bottom: 30px !important; right: 30px !important;
+        background: linear-gradient(135deg, #228B22, #006400) !important; color: white !important;
+        border: 2px solid #00ff00 !important; border-radius: 50% !important;
+        width: 60px !important; height: 60px !important; font-size: 24px !important;
+        font-weight: bold !important; cursor: pointer !important;
+        opacity: 0 !important; visibility: hidden !important; transition: all 0.3s !important;
+        z-index: 9999 !important; display: flex !important; align-items: center !important;
+        justify-content: center !important;
+      }
+      #scrollTopBtn.show { opacity: 1 !important; visibility: visible !important; }
+      #scrollTopBtn:hover { transform: scale(1.1) !important; box-shadow: 0 0 20px #00ff00 !important; }
+      
+      /* YELLOW/UNKNOWN BLACK TEXT */
+      .unknown-strain .strain-name, .unknown-strain .strain-name a { color: #000 !important; }
+      
+      /* Your anti-bleed */
       .strain-list-container li { overflow: hidden !important; position: relative !important; }
       .tried-checkmark { z-index: 999 !important; position: relative !important; }
-      </style>
-        
-   
-</body>
-</html>
+
+  /* TOGGLE LAYOUT FIX - ADD THESE */
+
+  .strain-content { display: contents !important; }
+.tried-checkmark { margin-right: 30px !important; }
+.strain-list-container ul { 
+  grid-template-columns: repeat(auto-fit, minmax(390px, 1fr)) !important; 
+}
+
+li { 
+  min-width: 360px !important;  /* Narrower = smaller cards, less overlap */
+  max-width: 420px !important;  /* Max width cap */
+}
+.strain-list-container ul { 
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)) !important;  /* Matches li */
+  gap: 28px !important;  /* Vertical space between cards */
+}
+
+@media (max-width: 768px) { 
+  .strain-list-container ul { 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;  
+    gap: 16px !important;  
+  }
+}
+
+    </style>
+    
+    
+    <button id="scrollTopBtn" title="↑ Top">↑</button>
+    
+    </body>
+    </html>
+    
