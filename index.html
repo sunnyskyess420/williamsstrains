@@ -1812,25 +1812,13 @@ li {
   h1 { font-size: 28px; }
   /* ONLY move/center Save My Strains button */
  #exportTried {
-  margin-top: 16px !important;
-  margin-bottom: -8px !important; /* Pulls up to hug green line from above */
-  align-self: center !important;
-  order: 5 !important; /* Positions after input/random */
-  flex: 0 1 100% !important; /* Full width line break */
-  max-width: 240px !important;
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  top: 280px !important; /* Tunes to red dot spot—adjust ±5px if needed */
+  z-index: 13 !important;
+  min-width: 220px !important;
 }
-.search-container {
-  flex-wrap: wrap !important; /* Allows button to wrap below */
-}
-
-
-
-
-
-
-
-
-
 
 .strain-list-container ul {
   grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)) !important;
