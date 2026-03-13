@@ -388,12 +388,6 @@ a.gradient-btn:active {
   transform: scale(0.96) !important;
   transition: transform 0.1s !important;
 }
-
-@media (max-width: 768px) { 
-  .strain-list-container ul { 
-      grid-template-columns: 1fr !important; 
-      gap: 24px !important; 
-  }
   .legend {
       flex-wrap: wrap;
       gap: 8px;
@@ -495,20 +489,27 @@ li .tried-label {
 <div class="container">
    <h1>Wildcats Wonderful Weed List</h1>
 
-<p class="description">
-  WWWL is a searchable log of every strain Wildcat tried, with quick links to learn
-  about each strain.
-</p>
+   <p class="description" style="color: #00ff00; font-weight: bold;">
+    WWWL is a searchable log of every strain Wildcat tried, with quick links to learn about each strain.
+  </p>
+  
+  
+  
 
-<p class="description">
-  Tip: Use the search bar for strain names, or click Indica / Sativa / Hybrid
-  below to filter the cards.
-</p>
+  <p class="description" style="color: #00ff00; font-weight: bold;">
+    Tip: Use the search bar for strain names, or click Indica / Sativa / Hybrid above to filter the cards.
+  </p>
+  
 
-<div class="search-container">
-  <label for="strainInput">Search</label>
-  <span style="font-size: 18px; color: #a0ffb0;">🔍</span>
-  <input type="text" id="strainInput" placeholder="Enter strain name...">
+  <div class="search-container">
+    <div style="display: flex; align-items: center; gap: 6px; margin-left: auto; flex-shrink: 0;">
+      <label for="strainInput" style="color: #00ff00; font-weight: 600; margin: 0; white-space: nowrap;">Search Strains</label>
+      <span style="font-size: 18px; color: #a0ffb0;">🔍</span>
+    </div>
+    <input type="text" id="strainInput" placeholder="Enter strain name...">
+    <!-- buttons follow -->
+
+
 
   <button id="randomStrain" style="background: transparent; border: 2px solid #00ff00; color: #00ff00;">Pick random?</button>
   <button id="exportTried" class="gradient-btn">💾 Save My Strains</button>
@@ -541,9 +542,13 @@ li .tried-label {
     <span style="color: #b0e0b0;">Unknown (<span id="unknownCount"></span>)</span>
   </div>
   <div class="legend-item" data-filter="all">
-    <div class="legend-color" style="background-color: gray;"></div>
+    <div class="legend-color" style="background: linear-gradient(to right, blue 0% 25%, red 25% 50%, green 50% 75%, yellow 75% 100%)"></div>
     <span style="color: #b0e0b0;">Show All (<span id="totalCount"></span>)</span>
   </div>
+  
+  
+  
+  
   <div class="legend-item" data-filter="tried">
     <div class="legend-color" style="background-color: #00ffff; position: relative; width: 24px; height: 24px;">
       💖
@@ -853,7 +858,7 @@ li .tried-label {
 <li class="sativa-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/jack-frost" target="_blank" rel="noopener noreferrer">Jack Frost</a></span></span></span></li>	
 <li class="indica-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/jager" target="_blank" rel="noopener noreferrer">Jager</a></span></span></span></li>	
 <li class="unknown-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name">Jamacian Gold</span></span></span></li>	
-<li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/jean-guy" target="_blank" rel="noopener noreferrer">Jean Guy</a></span></span></span></li>	
+<li class="sativa-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/jean-guy" target="_blank" rel="noopener noreferrer">Jean Guy</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://weedpedia.ca/product/jelly-cocktail/" target="_blank" rel="noopener noreferrer">Jelly Cocktail</a></span></span></span></li>	
 <li class="sativa-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/jet-fuel" target="_blank" rel="noopener noreferrer">Jet Fuel</a></span></span></span></li>	
 <li class="hybrid-strain tried-toggle"><span class="strain-content"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/juicy-fruit" target="_blank" rel="noopener noreferrer">Juicy Fruit</a></span></span></span></li>	
@@ -1521,7 +1526,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </style>
 
-
 <!-- keep any of your existing JS above this line, e.g. updateCounts(), filter code, etc. -->
 
 <script src="https://readmecodegen.com/view-tracker.js" data-user="user_mlr1poql_rf44cn"></script>
@@ -1759,8 +1763,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     </script>
     
-    
-    
     <style>
       /* SCROLL BUTTON CSS */
       #scrollTopBtn {
@@ -1800,11 +1802,21 @@ li {
   gap: 28px !important;  /* Vertical space between cards */
 }
 
-@media (max-width: 768px) { 
-  .strain-list-container ul { 
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;  
-    gap: 16px !important;  
+@media (max-width: 768px) {
+  .strain-list-container ul { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .legend { flex-wrap: wrap; gap: 8px; }
+  #strainInput { width: 100%; }
+  h1 { font-size: 28px; }
+  /* NEW: Center Save My Strains button below search */
+  #exportTried {
+    display: block !important;
+    margin: 12px auto 16px !important;
+    min-width: 220px !important;
+    width: 90% !important;
+    max-width: 280px !important;
   }
+  /* Keep your other mobile rules here, e.g. */
+  li .tried-toggle { justify-content: flex-start !important; /* etc. */ }
 }
 
 .strain-list-container ul {
