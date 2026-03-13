@@ -145,18 +145,31 @@ h1 {
 }
 
 .search-container {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    display: flex;
-    align-items: center !important;
-    gap: 10px !important;
-    margin-bottom: 16px;  /* CHANGED: was 20px/32px */
-    border-bottom: 2px solid #00ff00;
-    padding: 12px 0;  /* CHANGED: was 10px/16px */
-    position: sticky;
-    top: 0px;
-    background-color: rgba(30, 30, 30, 0.95);
-    z-index: 12;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #00ff00;
+  padding: 12px 0;
+  position: sticky;
+  top: 0px;
+  background-color: rgba(30, 30, 30, 0.95);
+  z-index: 12;
 }
+
+.search-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  justify-content: center !important;
+  width: 100% !important;
+  margin-bottom: 8px !important;
+  flex-shrink: 0 !important;
+}
+
 
 .search-container button,
 .search-container #exportTried,
@@ -177,6 +190,12 @@ h1 {
   box-sizing: border-box !important;
 }
 
+#exportTried {
+  width: 100% !important;
+  max-width: 200px !important;
+  margin: 8px auto !important;
+  flex-shrink: 0 !important;
+}
 
 #randomStrain {
   background: rgba(30,30,30,0.95) !important;
@@ -192,6 +211,7 @@ h1 {
   white-space: nowrap;
   transition: all 0.3s ease;
 }
+
 
 #randomStrain:hover {
   background: #228B22 !important;
@@ -502,12 +522,13 @@ li .tried-label {
   
 
   <div class="search-container">
-    <div style="display: flex; align-items: center; gap: 6px; margin-left: auto; flex-shrink: 0;">
+    <div class="search-header">
       <label for="strainInput" style="color: #00ff00; font-weight: 600; margin: 0; white-space: nowrap;">Search Strains</label>
       <span style="font-size: 18px; color: #a0ffb0;">🔍</span>
     </div>
     <input type="text" id="strainInput" placeholder="Enter strain name...">
     <!-- buttons follow -->
+  
 
 
 
@@ -1806,12 +1827,40 @@ li {
 }
 
 @media (max-width: 768px) {
-  .strain-list-container ul { grid-template-columns: 1fr !important; gap: 24px !important; }
-  .legend { flex-wrap: wrap; gap: 8px; }
-  #strainInput { width: 100%; }
-  h1 { font-size: 28px; }
+  .strain-list-container ul { 
+    grid-template-columns: 1fr !important; 
+    gap: 24px !important; 
+  }
+  .legend { 
+    flex-wrap: wrap; 
+    gap: 8px; 
+  }
+  #strainInput { 
+    width: 100%; 
+  }
+  h1 { 
+    font-size: 28px; 
+  }
   
-  /* Button only—search row stays horizontal */
+  /* Search row stays horizontal + centered */
+  .search-header {
+    width: 100% !important;
+    justify-content: center !important;
+    order: 1 !important;
+  }
+  
+  #strainInput {
+    max-width: 280px !important;
+    order: 2 !important;
+    margin: 0 auto !important;
+  }
+  
+  #randomStrain {
+    order: 3 !important;
+    justify-content: center !important;
+  }
+  
+  /* Save button drops below + centered */
   #exportTried {
     flex-basis: 100% !important;
     margin-top: 12px !important;
@@ -1819,8 +1868,10 @@ li {
     order: 999 !important;
     z-index: 13 !important;
     min-width: 220px !important;
+    max-width: 220px !important;
   }
 }
+
 
 .strain-list-container ul {
   grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)) !important;
