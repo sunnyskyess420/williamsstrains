@@ -210,11 +210,9 @@ h1 {
 }
 
 .strain-list-container {
-  overflow-y: auto !important;
-  max-height: 70vh !important;
-  overscroll-behavior-y: auto !important;
-  padding: 24px !important;
-  padding-right: 15px;
+  overflow-y: auto;
+  max-height: 70vh;
+  padding: 24px 15px;
   scrollbar-width: thin;
   scrollbar-color: #00ff00 #262626;
 }
@@ -228,19 +226,20 @@ h1 {
 }
 
 .strain-list-container::-webkit-scrollbar-thumb {
-  background-color: #00ff00;
+  background: #00ff00;
   border-radius: 20px;
   border: 2px solid #262626;
 }
 
 .strain-list-container ul {
   display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)) !important;
-  gap: 32px !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important; /* Narrower cards; adjust 320px as needed */
+  gap: 24px !important; /* Slightly reduce gap for tighter layout */
   list-style: none !important;
   padding: 0 !important;
   margin: 0 !important;
 }
+
 
 li {
   background-color: #ffffff;
@@ -324,33 +323,38 @@ li:hover .strain-name {
 }
 
 .tried-checkmark {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid #00aa00;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  border: 2px solid #00aa00 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  font-size: 18px;
-  color: #00ff00;
-  background-color: #111;
-  z-index: 999;
-  position: relative;
-  flex-shrink: 0;
+  font-size: 20px !important;
+  color: #00ff00 !important;
+  background-color: #111 !important;
+  z-index: 999 !important;
+  position: relative !important;
+  flex: 0 0 28px !important;
+  min-width: 28px !important;
+  max-width: 28px !important;
+  min-height: 28px !important;
+  max-height: 28px !important;
+  line-height: 1 !important;
+  box-sizing: content-box !important;
 }
 
 .tried-toggle.checked .tried-checkmark {
-  background-color: #20B2AA; /* Vibrant teal */
-  position: relative;
-  color: #fff;
+  background-color: #20B2AA !important;
+  color: #fff !important;
 }
 
 .tried-toggle.checked .tried-checkmark::before {
-  content: '💖'; /* Pink sparkling heart emoji */
-  position: absolute;
-  font-size: 12px;
-  color: #FF69B4; /* Hot pink */
-  text-shadow: 0 0 4px #FF1493; /* Neon glow */
+  content: '💖' !important;
+  position: absolute !important;
+  font-size: 14px !important;
+  color: #FF69B4 !important;
+  text-shadow: 0 0 4px #FF1493 !important;
 }
 
 /* FIXED: Separate rules for label states */
@@ -494,7 +498,7 @@ li .tried-label {
 
 <p class="description">
   Tip: Use the search bar for strain names, or click Indica / Sativa / Hybrid
-  above to filter the cards.
+  below to filter the cards.
 </p>
 
 <div class="search-container">
@@ -544,7 +548,7 @@ li .tried-label {
 
 
   <p class="description" style="color: #00ff00; font-weight: bold;">
-    💚 <strong>Track tried strains:</strong> Click black circle on cards to mark green (tried). Click again to unmark.<br><br>
+    <strong>Track tried strains:</strong> Click black circle on cards to mark teal with 💖 (tried). Click again to unmark.<br><br>
     💾 <strong>Download list:</strong> Hit "Save My Strains" button to export CSV of your tried strains!
 </p>
 
@@ -1701,9 +1705,8 @@ document.addEventListener('DOMContentLoaded', function() {
           if (countEl) countEl.textContent = document.querySelectorAll('.tried-toggle.checked').length;
           return false;
         }
-       
       }, true);
-    
+      
       document.addEventListener('DOMContentLoaded', function() {
         const triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
         document.querySelectorAll('.tried-toggle').forEach(toggle => {
@@ -1716,42 +1719,39 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         });
       });
-    
-     // ===== DUAL SCROLL TO TOP (FULL PAGE + STRAIN LIST) =====
-window.addEventListener('load', function() {
-  const scrollTopBtn = document.getElementById('scrollTopBtn');
-  const strainList = document.querySelector('.strain-list-container');
-  if (!scrollTopBtn) {
-    console.log('Scroll button NOT found');
-    return;
-  }
-  console.log('Scroll button FOUND');
-  
-  // Show/hide on FULL PAGE scroll
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 400) {
-      scrollTopBtn.classList.add('show');
-    } else {
-      scrollTopBtn.classList.remove('show');
-    }
-  });
-  
-  scrollTopBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('DUAL SCROLL CLICKED');
-    
-    // Scroll FULL PAGE to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-    // ALSO scroll strain list to top (if exists)
-    if (strainList) {
-      strainList.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  });
-});
-
+      
+      // ===== DUAL SCROLL TO TOP (FULL PAGE + STRAIN LIST) =====
+      window.addEventListener('load', function() {
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        const strainList = document.querySelector('.strain-list-container');
+        if (!scrollTopBtn) {
+          console.log('Scroll button NOT found');
+          return;
+        }
+        console.log('Scroll button FOUND');
+        
+        function checkScroll() {
+          let shouldShow = false;
+          if (window.scrollY > 400) shouldShow = true;
+          if (strainList && strainList.scrollTop > 200) shouldShow = true;
+          scrollTopBtn.classList.toggle('show', shouldShow);
+        }
+        
+        window.addEventListener('scroll', checkScroll);
+        if (strainList) strainList.addEventListener('scroll', checkScroll);
+        
+        scrollTopBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('DUAL SCROLL CLICKED');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          if (strainList) {
+            strainList.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
+      });
     </script>
+    
     
     
     <style>
@@ -1799,6 +1799,48 @@ li {
     gap: 16px !important;  
   }
 }
+
+.strain-list-container ul {
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)) !important;
+  gap: 20px !important; /* Reduced from 32px */
+}
+
+.strain-list-container li {
+  padding: 16px !important; /* Halved from 28px-32px */
+  min-height: auto !important;
+}
+
+.tried-toggle {
+  gap: 10px !important; /* Halved from 20px */
+  margin-top: 4px !important; /* Halved from 8px */
+}
+
+.tried-checkmark {
+  width: 16px !important; /* Reduced from 24px */
+  height: 16px !important;
+  font-size: 14px !important; /* Reduced from 18px */
+}
+
+.tried-label {
+  gap: 8px !important; /* Reduced from 16px */
+  font-size: 1.1em !important; /* Slightly smaller strain names */
+}
+.strain-list-container ul {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+  gap: 12px !important !important;
+  justify-content: center !important;
+}
+
+.strain-list-container li {
+  min-width: 260px !important;
+  max-width: 320px !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 12px !important;
+  box-sizing: border-box !important;
+}
+
 
     </style>
     
