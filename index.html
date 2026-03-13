@@ -122,7 +122,12 @@ h1 {
   border-radius: 4px;
   border: 1px solid #e8e8e8;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
+
 
 .legend-item span {
   font-size: 14px;
@@ -541,9 +546,12 @@ li .tried-label {
     <span style="color: #b0e0b0;">Show All (<span id="totalCount"></span>)</span>
   </div>
   <div class="legend-item" data-filter="tried">
-  <div class="legend-color" style="background-color: #00ffff;"></div>
-  <span style="color: #b0e0b0;">Tried (<span id="triedCount">0</span>)</span>
-</div>
+    <div class="legend-color" style="background-color: #00ffff; position: relative; width: 24px; height: 24px;">
+      💖
+    </div>
+    <span style="color: #b0e0b0;">Tried (<span id="triedCount">0</span>)</span>
+  </div>
+  
   </div>
 
 
