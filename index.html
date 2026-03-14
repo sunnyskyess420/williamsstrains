@@ -93,8 +93,14 @@ h1 {
 }
 
 .legend.hide {
-  transform: translateY(-100%);
+  opacity: 0 !important;
+  visibility: hidden !important;  /* Instantly invisible, no layout shift */
+  transform: translateY(-100%) !important;
+  transition: all 0.3s ease !important;
+  z-index: 20 !important;
 }
+
+
 
 .legend-item {
     display: flex;
@@ -161,7 +167,7 @@ h1 {
   position: sticky;
   top: 0px;
   background-color: rgba(30, 30, 30, 0.95);
-  z-index: 12;
+  z-index: 5 !important;  /* Above everything, even transitioning legend */
 }
 
 .search-header {
@@ -279,7 +285,8 @@ li {
   text-align: left;
   transition: transform 0.3s ease-in-out;
   position: relative;
-  overflow: hidden;
+  overflow: hidden !important;  /* Already there? Ensure + z-index boost */
+  z-index: 5 !important;       /* Cards below search/legend */
 }
 
 li:hover {
@@ -362,7 +369,6 @@ li:hover .strain-name {
   font-size: 20px !important;
   color: #00ff00 !important;
   background-color: #111 !important;
-  z-index: 999 !important;
   position: relative !important;
   flex: 0 0 28px !important;
   min-width: 28px !important;
@@ -371,6 +377,7 @@ li:hover .strain-name {
   max-height: 28px !important;
   line-height: 1 !important;
   box-sizing: content-box !important;
+  z-index: 1 !important;
 }
 
 .tried-toggle.checked .tried-checkmark {
@@ -478,10 +485,17 @@ body {
   overscroll-behavior: contain;  /* Sticky header doesn't trap scroll */
 }
 
+.clip-zone {  <!-- ADD THESE 3 LINES -->
+  overflow: hidden !important;     /* Chops dots at green line */
+  z-index: 4 !important;
+  position: relative;
+}
+
 /* Enhanced list scroll chaining */
 .strain-list-container {
   overscroll-behavior-y: auto !important;  /* Passes scroll to body */
   scroll-behavior: auto;
+  z-index: 3 !important;
 }
 
 li .tried-toggle {
@@ -503,7 +517,7 @@ li .tried-label {
   flex-grow: 1 !important;
   justify-content: flex-start !important;
 }
-}
+
 
 </style>
 
@@ -536,84 +550,70 @@ li .tried-label {
 
 
 
-  <button id="randomStrain" style="background: transparent; border: 2px solid #00ff00; color: #00ff00;">Pick random?</button>
-  <button id="exportTried" class="gradient-btn">💾 Save My Strains</button>
-</div>
-
-
-
-
-
-
-<div class="legend">
-  <div class="legend-item" data-filter="indica-strain">
-    <img src="images/indica-leaf.png" alt="Indica Leaf" class="legend-leaf">
-    <div class="legend-color" style="background-color: blue;"></div>
-    <span style="color: #b0e0b0;">Indica (<span id="indicaCount"></span>)</span>
-  </div>
-  <div class="legend-item" data-filter="sativa-strain">
-    <img src="images/sativa-leaf.png" alt="Sativa Leaf" class="legend-leaf">
-    <div class="legend-color" style="background-color: red;"></div>
-    <span style="color: #b0e0b0;">Sativa (<span id="sativaCount"></span>)</span>
-  </div>
-  <div class="legend-item" data-filter="hybrid-strain">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Leaf" class="legend-leaf">
-    <div class="legend-color" style="background-color: green;"></div>
-    <span style="color: #b0e0b0;">Hybrid (<span id="hybridCount"></span>)</span>
-  </div>
-  <div class="legend-item" data-filter="unknown-strain">
-    <img src="images/unknown-leaf.png" alt="Unknown Leaf" class="legend-leaf">
-    <div class="legend-color" style="background-color: yellow;"></div>
-    <span style="color: #b0e0b0;">Unknown (<span id="unknownCount"></span>)</span>
-  </div>
-  <div class="legend-item" data-filter="all">
-    <div class="legend-color" style="background: linear-gradient(to right, blue 0% 25%, red 25% 50%, green 50% 75%, yellow 75% 100%)"></div>
-    <span style="color: #b0e0b0;">Show All (<span id="totalCount"></span>)</span>
-  </div>
-  
-  
-  
-  
-  <div class="legend-item" data-filter="tried">
-    <div class="legend-color" style="background-color: #00ffff; position: relative; width: 24px; height: 24px;">
-      💖
+    <button id="randomStrain" style="background: transparent; border: 2px solid #00ff00; color: #00ff00;">Pick random?</button>
+    <button id="exportTried" class="gradient-btn">💾 Save My Strains</button>
+    </div>  <!-- search-container closes -->
+    
+    <div class="legend">
+      <div class="legend-item" data-filter="indica-strain">
+        <img src="images/indica-leaf.png" alt="Indica Leaf" class="legend-leaf">
+        <div class="legend-color" style="background-color: blue;"></div>
+        <span style="color: #b0e0b0;">Indica (<span id="indicaCount"></span>)</span>
+      </div>
+      <div class="legend-item" data-filter="sativa-strain">
+        <img src="images/sativa-leaf.png" alt="Sativa Leaf" class="legend-leaf">
+        <div class="legend-color" style="background-color: red;"></div>
+        <span style="color: #b0e0b0;">Sativa (<span id="sativaCount"></span>)</span>
+      </div>
+      <div class="legend-item" data-filter="hybrid-strain">
+        <img src="images/hybrid-leaf.png" alt="Hybrid Leaf" class="legend-leaf">
+        <div class="legend-color" style="background-color: green;"></div>
+        <span style="color: #b0e0b0;">Hybrid (<span id="hybridCount"></span>)</span>
+      </div>
+      <div class="legend-item" data-filter="unknown-strain">
+        <img src="images/unknown-leaf.png" alt="Unknown Leaf" class="legend-leaf">
+        <div class="legend-color" style="background-color: yellow;"></div>
+        <span style="color: #b0e0b0;">Unknown (<span id="unknownCount"></span>)</span>
+      </div>
+      <div class="legend-item" data-filter="all">
+        <div class="legend-color" style="background: linear-gradient(to right, blue 0% 25%, red 25% 50%, green 50% 75%, yellow 75% 100%)"></div>
+        <span style="color: #b0e0b0;">Show All (<span id="totalCount"></span>)</span>
+      </div>
+      <div class="legend-item" data-filter="tried">
+        <div class="legend-color" style="background-color: #00ffff; position: relative; width: 24px; height: 24px;">
+          💖
+        </div>
+        <span style="color: #b0e0b0;">Tried (<span id="triedCount">0</span>)</span>
+      </div>
     </div>
-    <span style="color: #b0e0b0;">Tried (<span id="triedCount">0</span>)</span>
-  </div>
-  
-  </div>
+    
+    <p class="description" style="color: #00ff00; font-weight: bold;">
+      <strong>Track tried strains:</strong> Click black circle on cards to mark teal with 💖 (tried). Click again to unmark.<br><br>
+      💾 <strong>Download list:</strong> Hit "Save My Strains" button to export CSV of your tried strains!
+    </p>
+    
+    <div style="display: flex; justify-content: center; margin: 10px 0 18px 0;">
+      <div style="
+        background-color: #00aa00;
+        border-radius: 12px;
+        padding: 8px 12px;
+        width: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #00ff00;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      ">
+        <img src="https://visitor-badge.one9x.com/badge?page_id=wildcats-weed-list&left_color=000000&right_color=00ff00&left_text=Stoned Visitor No." alt="Visitors" style="height: 26px; width: auto;" />
+      </div>
+    </div>
 
+<!-- NEW CLIP ZONE: wraps strain-list-container -->
+<div class="clip-zone">
+<div class="strain-list-container">
+        <ul>
 
-  <p class="description" style="color: #00ff00; font-weight: bold;">
-    <strong>Track tried strains:</strong> Click black circle on cards to mark teal with 💖 (tried). Click again to unmark.<br><br>
-    💾 <strong>Download list:</strong> Hit "Save My Strains" button to export CSV of your tried strains!
-</p>
-
-
-<div style="display: flex; justify-content: center; margin: 10px 0 18px 0;">
-  <div
-    style="
-      background-color: #00aa00;
-      border-radius: 12px;
-      padding: 8px 12px;
-      width: 250px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid #00ff00;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    "
-  >
-    <img
-      src="https://visitor-badge.one9x.com/badge?page_id=wildcats-weed-list&left_color=000000&right_color=00ff00&left_text=Stoned Visitor No."
-      alt="Visitors"
-      style="height: 26px; width: auto;"
-    />
-  </div>
-</div>
-
-
-
+            
 <div class="strain-list-container">
         <ul>
 
@@ -1161,299 +1161,196 @@ li .tried-label {
 
 
 <div id="noResultsPopup">
-    OoO A NEW ONE!
+  OoO A NEW ONE!
 </div>
 
 </div>  
 
 
-    
 <script>
-  function updateCounts() {
-    document.getElementById('indicaCount').textContent = document.querySelectorAll('.indica-strain:not(.hidden)').length;
-    document.getElementById('sativaCount').textContent = document.querySelectorAll('.sativa-strain:not(.hidden)').length;
-    document.getElementById('hybridCount').textContent = document.querySelectorAll('.hybrid-strain:not(.hidden)').length;
-    document.getElementById('unknownCount').textContent = document.querySelectorAll('.unknown-strain:not(.hidden)').length;
-    document.getElementById('totalCount').textContent = document.querySelectorAll('li:not(.hidden)').length;
-    document.getElementById('triedCount').textContent = document.querySelectorAll('.tried:not(.hidden)').length;
-  }
+  document.addEventListener('DOMContentLoaded', function() {
+    let triedStrains = JSON.parse(localStorage.getItem('wildcatTriedStrains') || '[]');
   
-  document.getElementById('randomStrain').addEventListener('click', () => {
-    const visibleStrains = document.querySelectorAll('li:not(.hidden)');
-    if (visibleStrains.length === 0) return;
-    const randomStrain = visibleStrains[Math.floor(Math.random() * visibleStrains.length)];
-    document.querySelectorAll('li').forEach(li => li.classList.remove('random-highlight'));
-    randomStrain.classList.add('random-highlight');
-    randomStrain.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    setTimeout(() => randomStrain.classList.remove('random-highlight'), 3000);
-  });
-  
-  function createFirework(x, y, color, spread = 80, particles = 20) {
-    for (let i = 0; i < particles; i++) {
-      const fw = document.createElement('div');
-      fw.className = 'firework';
-      fw.style.background = color;
-      fw.style.left = x + 'px';
-      fw.style.top = y + 'px';
-      document.body.appendChild(fw);
-      const angle = Math.random() * 2 * Math.PI;
-      const radius = Math.random() * spread;
-      const dx = Math.cos(angle) * radius;
-      const dy = Math.sin(angle) * radius;
-      fw.animate([
-        { transform: `translate(0,0)`, opacity: 1 },
-        { transform: `translate(${dx}px, ${dy}px)`, opacity: 0 }
-      ], { duration: 1500, easing: 'ease-out' });
-      setTimeout(() => fw.remove(), 1500);
+    function updateCounts() {
+      document.getElementById('indicaCount').textContent = document.querySelectorAll('.indica-strain:not(.hidden)').length;
+      document.getElementById('sativaCount').textContent = document.querySelectorAll('.sativa-strain:not(.hidden)').length;
+      document.getElementById('hybridCount').textContent = document.querySelectorAll('.hybrid-strain:not(.hidden)').length;
+      document.getElementById('unknownCount').textContent = document.querySelectorAll('.unknown-strain:not(.hidden)').length;
+      document.getElementById('totalCount').textContent = document.querySelectorAll('li:not(.hidden)').length;
+      document.getElementById('triedCount').textContent = document.querySelectorAll('li.tried, li.checked').length;
     }
-  }
   
-  function showMessage() {
-    const popup = document.getElementById('noResultsPopup');
-    popup.style.display = 'flex';
-    popup.classList.add('pulse-glow');
-    const rect = popup.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00', '#ff6600', '#ff0000', '#ffffff'];
-    for (let i = 0; i < 5; i++) {
-      setTimeout(() => createFirework(centerX, centerY, colors[Math.floor(Math.random() * colors.length)], 120, 30), i * 200);
+    function hideWithFade(el) {
+      el.classList.remove('fade-in');
+      el.classList.add('fade-out');
+      setTimeout(() => {
+        el.classList.add('hidden');
+        updateCounts();
+      }, 300);
     }
-    let bursts = 0;
-    const interval = setInterval(() => {
-      const randX = Math.random() * window.innerWidth;
-      const randY = Math.random() * window.innerHeight;
-      createFirework(randX, randY, colors[Math.floor(Math.random() * colors.length)], 100, 25);
-      bursts++;
-      if (bursts > 15) clearInterval(interval);
-    }, 150);
-  }
   
-  function hideMessage() {
-    const popup = document.getElementById('noResultsPopup');
-    popup.style.display = 'none';
-    popup.classList.remove('pulse-glow');
-  }
-  
-  function hideWithFade(el) {
-    el.classList.remove('fade-in');
-    el.classList.add('fade-out');
-    setTimeout(() => {
-      el.classList.add('hidden');
+    function showWithFade(el) {
+      el.classList.remove('hidden', 'fade-out');
+      el.classList.add('fade-in');
       updateCounts();
-    }, 300);
-  }
+    }
   
-  function showWithFade(el) {
-    el.classList.remove('hidden', 'fade-out');
-    el.classList.add('fade-in');
-    updateCounts();
-  }
-  
-  function searchStrains() {
-    const query = document.getElementById('strainInput').value.toLowerCase().trim();
-    
-    // Reset everything to full view if input is empty
-    if (query === '') {
+    function searchStrains() {
+      const query = document.getElementById('strainInput').value.toLowerCase().trim();
       const strains = document.querySelectorAll('.strain-list-container ul li');
-      strains.forEach(strain => showWithFade(strain));
+      let visibleCount = 0;
       
-      // Clear all legend filters
-      document.querySelectorAll('.legend-item').forEach(item => {
-        item.classList.remove('active');
+      if (!query) {
+        strains.forEach(showWithFade);
+        document.querySelectorAll('.legend-item').forEach(item => item.classList.remove('active'));
+        return;
+      }
+      
+      strains.forEach(strain => {
+        const name = strain.querySelector('.strain-name').textContent.toLowerCase();
+        const words = query.split(/\s+/).filter(w => w);
+        const match = words.every(word => name.includes(word));
+        match ? showWithFade(strain) : hideWithFade(strain);
+        if (match) visibleCount++;
       });
-      
-      updateCounts();
-      hideMessage();
-      return;
     }
-    
-    const strains = document.querySelectorAll('.strain-list-container ul li');
-    let visibleCount = 0;
-    
-    strains.forEach(strain => {
-      const name = strain.querySelector('.strain-name').textContent.toLowerCase();
-      const words = query.split(/\s+/).filter(w => w.length > 0);
-      const isMatch = words.every(word => name.includes(word));
-      
-      if (isMatch) {
-        showWithFade(strain);
-        visibleCount++;
-      } else {
-        hideWithFade(strain);
-      }
-    });
-    
-    visibleCount === 0 ? showMessage() : hideMessage();
-  }
   
-  // Debounced input handler (separate from searchStrains)
-  let searchTimeout;
-  const input = document.getElementById('strainInput');
-  input.addEventListener('input', function() {
-    const query = this.value.toLowerCase();
-    if (query.length === 0) {
-      searchStrains(); // Instant reset
-      return;
-    }
-    clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(() => searchStrains(), 250);
-  });
-  
-  let activeFilter = null;
-  
-  document.querySelectorAll('.legend-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const filterClass = item.getAttribute('data-filter');
-      const strains = document.querySelectorAll('.strain-list-container ul li');
-      
-      if (filterClass === 'tried') {
-        strains.forEach(strain => {
-          if (strain.classList.contains('tried')) {
-            showWithFade(strain);
-          } else {
-            hideWithFade(strain);
-          }
-        });
-      } else if (filterClass === 'all') {
-        strains.forEach(strain => showWithFade(strain));
-      } else {
-        strains.forEach(strain => {
-          if (strain.classList.contains(filterClass)) {
-            showWithFade(strain);
-          } else {
-            hideWithFade(strain);
-          }
-        });
-      }
-      
-      document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-      activeFilter = filterClass;
-      updateCounts();
-    });
-  });
-  
-  // Save/load tried checkboxes ← CONNECTS HERE
-
-  // Save/load tried checkboxes
-let triedStrains = JSON.parse(localStorage.getItem('wildcatTriedStrains')) || [];
-
-function toggleTried(li) {
-  const checkbox = li.querySelector('input[type="checkbox"]');
-  const toggle = li.querySelector('.tried-toggle');
-  const name = li.querySelector('.strain-name').textContent.trim();
-  
-  checkbox.checked = !checkbox.checked;
-  li.classList.toggle('tried', checkbox.checked);
-  toggle.classList.toggle('checked', checkbox.checked);
-  
-  if (checkbox.checked) {
-    if (!triedStrains.includes(name)) {
-      triedStrains.push(name);
-    }
-  } else {
-    triedStrains = triedStrains.filter(s => s !== name);
-  }
-  localStorage.setItem('wildcatTriedStrains', JSON.stringify(triedStrains));
-  if (typeof updateCounts === 'function') updateCounts();
-}
-
-// Attach listeners to all checkboxes/toggles
-document.addEventListener('DOMContentLoaded', function() {
-  // Load saved states
-  document.querySelectorAll('.tried-toggle').forEach(toggle => {
-    const li = toggle.closest('li');
-    const name = li.querySelector('.strain-name').textContent.trim();
-    if (triedStrains.includes(name)) {
+    function toggleTried(li) {
       const checkbox = li.querySelector('input[type="checkbox"]');
-      checkbox.checked = true;
-      li.classList.add('tried');
-      toggle.classList.add('checked');
-    }
-    // Make clickable
-    toggle.style.cursor = 'pointer';
-    toggle.addEventListener('click', function(e) {
-      e.stopPropagation();
-      if (e.target.tagName === 'A') return;
-      toggleTried(li);
-    });
-  });
-  if (typeof updateCounts === 'function') updateCounts();
-});
-
-  // Export tried strains
-      document.getElementById('exportTried').addEventListener('click', () => {
-        const tried = Array.from(document.querySelectorAll('li.tried'))
-          .map(li => {
-            const link = li.querySelector('a');
-            const name = link ? link.textContent.trim() : li.textContent.trim();
-            const leafly = link ? link.href : '';
-            let type = 'Unknown';
-            if (li.classList.contains('indica-strain')) type = 'Indica';
-            else if (li.classList.contains('sativa-strain')) type = 'Sativa';
-            else if (li.classList.contains('hybrid-strain')) type = 'Hybrid';
-            return { name, type, leafly };
-          });
-        
-        if (tried.length === 0) {
-          alert('No tried strains yet!');
-          return;
-        }
-        
-        const csv = 'Strain,Type,Leafly\n' + 
-          tried.map(s => `"${s.name}","${s.type}","${s.leafly}"`).join('\n');
-        
-        const blob = new Blob([csv], { type: 'text/csv' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'my-tried-strains.csv';
-        a.click();
-        URL.revokeObjectURL(url);
-      });
-      </script>
+      const toggle = li.querySelector('.tried-toggle');
+      const name = li.querySelector('.strain-name').textContent.trim();
       
+      checkbox.checked = !checkbox.checked;
+      li.classList.toggle('tried', checkbox.checked);
+      toggle.classList.toggle('checked', checkbox.checked);
+      
+      if (checkbox.checked) {
+        if (!triedStrains.includes(name)) triedStrains.push(name);
+      } else {
+        triedStrains = triedStrains.filter(s => s !== name);
+      }
+      localStorage.setItem('wildcatTriedStrains', JSON.stringify(triedStrains));
+      updateCounts();
+    }
+  
+    // Load tried states
+    document.querySelectorAll('.tried-toggle').forEach(toggle => {
+      const li = toggle.closest('li');
+      const name = li.querySelector('.strain-name').textContent.trim();
+      if (triedStrains.includes(name)) {
+        li.querySelector('input[type="checkbox"]').checked = true;
+        toggle.classList.add('checked');
+        li.classList.add('tried');
+      }
+      toggle.style.cursor = 'pointer';
+      toggle.addEventListener('click', e => {
+        if (e.target.tagName !== 'A') toggleTried(li);
+      });
+    });
+  
+    // Legend filters
+    document.querySelectorAll('.legend-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const filter = item.dataset.filter;
+        const strains = document.querySelectorAll('.strain-list-container ul li');
+        document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        
+        strains.forEach(strain => {
+          if (filter === 'all') {
+            showWithFade(strain);
+          } else if (filter === 'tried') {
+            strain.classList.contains('tried') ? showWithFade(strain) : hideWithFade(strain);
+          } else {
+            strain.classList.contains(filter) ? showWithFade(strain) : hideWithFade(strain);
+          }
+        });
+      });
+    });
+  
+    // Search
+    let searchTimeout;
+    document.getElementById('strainInput').addEventListener('input', () => {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(searchStrains, 250);
+    });
+  
+    // Random
+    document.getElementById('randomStrain').addEventListener('click', () => {
+      const visible = document.querySelectorAll('li:not(.hidden)');
+      if (!visible.length) return;
+      const random = visible[Math.floor(Math.random() * visible.length)];
+      document.querySelectorAll('li').forEach(li => li.classList.remove('random-highlight'));
+      random.classList.add('random-highlight');
+      random.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => random.classList.remove('random-highlight'), 3000);
+    });
+  
+    // Export
+    document.getElementById('exportTried').addEventListener('click', () => {
+      const tried = Array.from(document.querySelectorAll('li.tried')).map(li => {
+        const link = li.querySelector('a');
+        const name = link ? link.textContent.trim() : li.textContent.trim();
+        const leafly = link ? link.href : '';
+        const type = li.classList.contains('indica-strain') ? 'Indica' :
+                     li.classList.contains('sativa-strain') ? 'Sativa' :
+                     li.classList.contains('hybrid-strain') ? 'Hybrid' : 'Unknown';
+        return `"${name}","${type}","${leafly}"`;
+      });
+      if (!tried.length) return alert('No tried strains!');
+      const csv = 'Strain,Type,Leafly\n' + tried.join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'my-tried-strains.csv'; a.click();
+      URL.revokeObjectURL(url);
+    });
+  
+    updateCounts(); // Initial load
+  });
+  </script>
+  
+    
 
 <style>
 /* Popup styling */
 #noResultsPopup {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 250px;
-    height: 250px;
-    background-color: rgba(30,30,30,0.95);
-    color: #00ff00;
-    font-size: 1.8em;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 12px;
-    z-index: 10000;
-    box-shadow: 0 0 20px #00ff00;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+  background-color: rgba(30,30,30,0.95);
+  color: #00ff00;
+  font-size: 1.8em;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 12px;
+  z-index: 10000;
+  box-shadow: 0 0 20px #00ff00;
 }
 
 .pulse-glow {
-    animation: pulse 1s infinite;
-    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
+  animation: pulse 1s infinite;
+  text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
 }
 
 @keyframes pulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-50%, -50%) scale(1.1); }
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.1); }
 }
 
 .firework {
-    position: fixed;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
 }
 
 /* Leaf icons before strain name */
@@ -1461,28 +1358,28 @@ document.addEventListener('DOMContentLoaded', function() {
 .sativa-strain::before,
 .hybrid-strain::before,
 .unknown-strain::before {
-    content: "";
-    display: inline-block;
-    width: 40px;
-    height: 48px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    flex-shrink: 0;
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 48px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  flex-shrink: 0;
 }
 
 /* Specific leaf icons */
 .indica-strain::before {
-    background-image: url('images/indica-leaf.png');
+  background-image: url('images/indica-leaf.png');
 }
 .sativa-strain::before {
-    background-image: url('images/sativa-leaf.png');
+  background-image: url('images/sativa-leaf.png');
 }
 .hybrid-strain::before {
-    background-image: url('images/hybrid-leaf.png');
+  background-image: url('images/hybrid-leaf.png');
 }
 .unknown-strain::before {
-    background-image: url('images/unknown-leaf.png');
+  background-image: url('images/unknown-leaf.png');
 }
 
 /* Background colors */
@@ -1490,64 +1387,64 @@ document.addEventListener('DOMContentLoaded', function() {
 .sativa-strain { background-color: red; }
 .hybrid-strain { background-color: green; }
 .unknown-strain {
-    background-color: yellow;
-    color: #000 !important;
+  background-color: yellow;
+  color: #000 !important;
 }
 
 /* Animation classes */
 .fade-out {
-    opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .fade-in {
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .hidden {
-    display: none !important;
+  display: none !important;
 }
 
-    .random-highlight {
-  box-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00 !important;
-  transform: scale(1.05);
-  z-index: 10;
-  animation: pulse 1s infinite;
+  .random-highlight {
+box-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00 !important;
+transform: scale(1.05);
+z-index: 10;
+animation: pulse 1s infinite;
 }
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00; }
-  50% { box-shadow: 0 0 30px #ffff00, 0 0 60px #ffff00; }
+0%, 100% { box-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00; }
+50% { box-shadow: 0 0 30px #ffff00, 0 0 60px #ffff00; }
 }
 
-
-
-
-
-
 .strain-list-container li {
-    position: relative !important;
-    /* your existing height/grid stuff stays */
+  position: relative !important;
+  /* your existing height/grid stuff stays */
 }
 
 #exportTried {
-  display: block !important;
-  margin: 24px auto 0 !important;
-  max-width: 280px;
-  padding: 16px 24px !important;
-  background: linear-gradient(135deg, #228B22, #006400) !important;
-  color: white !important;
-  border: none !important;
-  border-radius: 12px !important;
-  font-weight: bold !important;
-  box-shadow: 0 4px 12px rgba(34,139,34,0.3) !important;
-  cursor: pointer !important;
+display: block !important;
+margin: 24px auto 0 !important;
+max-width: 280px;
+padding: 16px 24px !important;
+background: linear-gradient(135deg, #228B22, #006400) !important;
+color: white !important;
+border: none !important;
+border-radius: 12px !important;
+font-weight: bold !important;
+box-shadow: 0 4px 12px rgba(34,139,34,0.3) !important;
+cursor: pointer !important;
 }
 
 #exportTried:hover {
-  box-shadow: 0 0 20px rgba(34,139,34,0.6) !important;
-  transform: translateY(-2px) !important;
+box-shadow: 0 0 20px rgba(34,139,34,0.6) !important;
+transform: translateY(-2px) !important;
 }
+
+.random-highlight { animation: pulse 1s infinite; border: 3px solid #00ff00 !important; box-shadow: 0 0 20px #00ff00 !important; }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+
 
 </style>
 
@@ -1556,179 +1453,137 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script src="https://readmecodegen.com/view-tracker.js" data-user="user_mlr1poql_rf44cn"></script>
 
-    <audio id="popupSound" preload="auto">
-  <source src="small-fireworks.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
+  <audio id="popupSound" preload="auto">
+<source src="small-fireworks.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
 </audio>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const popup = document.getElementById('noResultsPopup');
-  const sound = document.getElementById('popupSound');
+const popup = document.getElementById('noResultsPopup');
+const sound = document.getElementById('popupSound');
 
-  if (!popup || !sound) return;
+if (!popup || !sound) return;
 
-  const observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-      if (mutation.type === 'attributes' && 
-          (mutation.attributeName === 'style' || mutation.attributeName === 'class')) {
-        // Check if popup is now visible
-        const isVisible = popup.style.display !== 'none' && 
-                          getComputedStyle(popup).visibility !== 'hidden' && 
-                          popup.offsetParent !== null;
-        if (isVisible) {
-          sound.currentTime = 0;  // Restart sound
-          sound.play().catch(e => console.error('Sound play failed:', e));  // Logs errors, handles autoplay blocks
-        }
+const observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+    if (mutation.type === 'attributes' && 
+        (mutation.attributeName === 'style' || mutation.attributeName === 'class')) {
+      // Check if popup is now visible
+      const isVisible = popup.style.display !== 'none' && 
+                        getComputedStyle(popup).visibility !== 'hidden' && 
+                        popup.offsetParent !== null;
+      if (isVisible) {
+        sound.currentTime = 0;  // Restart sound
+        sound.play().catch(e => console.error('Sound play failed:', e));  // Logs errors, handles autoplay blocks
       }
-    });
-  });
-
-  observer.observe(popup, { 
-    attributes: true, 
-    attributeFilter: ['style', 'class'] 
+    }
   });
 });
 
-  let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
-  
-  function toggleTried(li) {
-    const checkbox = li.querySelector('input[type="checkbox"]');
-    const toggle = li.querySelector('.tried-toggle');
-    const name = li.querySelector('.strain-name a') ? li.querySelector('.strain-name a').textContent.trim() : li.querySelector('.strain-name').textContent.trim();
-    checkbox.checked = !checkbox.checked;
-    toggle.classList.toggle('checked');
-    li.classList.toggle('tried'); // For existing heart logic
-    if (checkbox.checked) {
-      triedStrains.push(name);
-    } else {
-      triedStrains = triedStrains.filter(s => s !== name);
-    }
-    localStorage.setItem('wildcatTried', JSON.stringify(triedStrains));
-    updateCounts(); // Your existing function
+observer.observe(popup, { 
+  attributes: true, 
+  attributeFilter: ['style', 'class'] 
+});
+});
+
+function updateTriedCount() {
+const count = document.querySelectorAll('.tried-toggle.checked').length;
+const el = document.getElementById('triedCount');
+if (el) el.textContent = count;
+}
+
+let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
+
+function toggleTried(li) {
+  const checkbox = li.querySelector('input[type="checkbox"]');
+  const toggle = li.querySelector('.tried-toggle');
+  const name = li.querySelector('.strain-name a') ? li.querySelector('.strain-name a').textContent.trim() : li.querySelector('.strain-name').textContent.trim();
+  checkbox.checked = !checkbox.checked;
+  toggle.classList.toggle('checked');
+  li.classList.toggle('tried'); // For existing heart logic
+  if (checkbox.checked) {
+    triedStrains.push(name);
+  } else {
+    triedStrains = triedStrains.filter(s => s !== name);
   }
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    // Load saved states
-    document.querySelectorAll('.tried-toggle').forEach(toggle => {
-      const li = toggle.closest('li');
-      const name = li.querySelector('.strain-name a') ? li.querySelector('.strain-name a').textContent.trim() : li.querySelector('.strain-name').textContent.trim();
-      if (triedStrains.includes(name)) {
-        toggle.classList.add('checked');
-        li.querySelector('input[type="checkbox"]').checked = true;
-        li.classList.add('tried');
-      }
-      toggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleTried(li);
-      });
+  localStorage.setItem('wildcatTried', JSON.stringify(triedStrains));
+  updateCounts(); // Your existing function
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Load saved states
+  document.querySelectorAll('.tried-toggle').forEach(toggle => {
+    const li = toggle.closest('li');
+    const name = li.querySelector('.strain-name a') ? li.querySelector('.strain-name a').textContent.trim() : li.querySelector('.strain-name').textContent.trim();
+    if (triedStrains.includes(name)) {
+      toggle.classList.add('checked');
+      li.querySelector('input[type="checkbox"]').checked = true;
+      li.classList.add('tried');
+    }
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleTried(li);
     });
-    updateCounts();
+  });
+  updateCounts();
+});
+
+let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
+
+function toggleTried(li) {
+  const checkbox = li.querySelector('input[type="checkbox"]');
+  const toggle = li.querySelector('.tried-toggle');
+  const name = li.querySelector('.strain-name a') ? li.querySelector('.strain-name a').textContent.trim() : li.querySelector('.strain-name').textContent.trim();
+  checkbox.checked = !checkbox.checked;
+  li.classList.toggle('tried');
+  toggle.classList.toggle('checked');
+  if (checkbox.checked) {
+    if (!triedStrains.includes(name)) triedStrains.push(name);
+  } else {
+    triedStrains = triedStrains.filter(s => s !== name);
+  }
+  localStorage.setItem('wildcatTried', JSON.stringify(triedStrains));
+  if (typeof updateCounts === 'function') updateCounts();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Re-attach listeners to ALL toggles
+  document.querySelectorAll('.tried-toggle').forEach(toggle => {
+    toggle.style.cursor = 'pointer'; // Ensure clickable
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const li = this.closest('li');
+      toggleTried(li);
+    });
   });
 
-  let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
-  
-  function toggleTried(li) {
-    const checkbox = li.querySelector('input[type="checkbox"]');
-    const toggle = li.querySelector('.tried-toggle');
+  // Load saved states
+  document.querySelectorAll('.tried-toggle').forEach(toggle => {
+    const li = toggle.closest('li');
     const name = li.querySelector('.strain-name a') ? li.querySelector('.strain-name a').textContent.trim() : li.querySelector('.strain-name').textContent.trim();
-    checkbox.checked = !checkbox.checked;
-    li.classList.toggle('tried');
-    toggle.classList.toggle('checked');
-    if (checkbox.checked) {
-      if (!triedStrains.includes(name)) triedStrains.push(name);
-    } else {
-      triedStrains = triedStrains.filter(s => s !== name);
+    if (triedStrains.includes(name)) {
+      const checkbox = li.querySelector('input[type="checkbox"]');
+      checkbox.checked = true;
+      li.classList.add('tried');
+      toggle.classList.add('checked');
     }
-    localStorage.setItem('wildcatTried', JSON.stringify(triedStrains));
-    if (typeof updateCounts === 'function') updateCounts();
-  }
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    // Re-attach listeners to ALL toggles
-    document.querySelectorAll('.tried-toggle').forEach(toggle => {
-      toggle.style.cursor = 'pointer'; // Ensure clickable
-      toggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (e.target.tagName === 'A') return;
-        const li = this.closest('li');
-        toggleTried(li);
-      });
-    });
-  
-    // Load saved states
-    document.querySelectorAll('.tried-toggle').forEach(toggle => {
-      const li = toggle.closest('li');
-      const name = li.querySelector('.strain-name a') ? li.querySelector('.strain-name a').textContent.trim() : li.querySelector('.strain-name').textContent.trim();
-      if (triedStrains.includes(name)) {
-        const checkbox = li.querySelector('input[type="checkbox"]');
-        checkbox.checked = true;
-        li.classList.add('tried');
-        toggle.classList.add('checked');
-      }
-    });
-    if (typeof updateCounts === 'function') updateCounts();
   });
+  if (typeof updateCounts === 'function') updateCounts();
+});
 
-    (function() {
-      let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
-      function initTried() {
-        document.querySelectorAll('.tried-checkmark').forEach(checkmark => {
-          checkmark.style.cursor = 'pointer';
-          checkmark.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            const toggle = this.parentElement.parentElement; // .strain-content > .tried-checkmark -> .tried-toggle (li)
-            const li = toggle.closest('li');
-            const checkbox = toggle.querySelector('input[type="checkbox"]');
-            const name = li.querySelector('.strain-name').textContent.trim();
-            const isChecked = checkbox.checked = !checkbox.checked;
-            toggle.classList.toggle('checked', isChecked);
-            li.classList.toggle('tried', isChecked);
-            if (isChecked) {
-              if (!triedStrains.includes(name)) triedStrains.push(name);
-            } else {
-              triedStrains = triedStrains.filter(s => s !== name);
-            }
-            localStorage.setItem('wildcatTried', JSON.stringify(triedStrains));
-            updateTriedCount();
-          });
-        });
-        // Restore saved
-        document.querySelectorAll('.tried-toggle').forEach(toggle => {
-          const li = toggle.closest('li');
-          const name = li.querySelector('.strain-name').textContent.trim();
-          if (triedStrains.includes(name)) {
-            const checkbox = toggle.querySelector('input');
-            checkbox.checked = true;
-            toggle.classList.add('checked');
-            li.classList.add('tried');
-          }
-        });
-      }
-      function updateTriedCount() {
-        const count = document.querySelectorAll('.tried-toggle.checked').length;
-        const el = document.getElementById('triedCount');
-        if (el) el.textContent = count;
-      }
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initTried);
-      } else {
-        initTried();
-      }
-    })();
-    </script>
-    
-    <script>
-      // ===== YOUR BULLETPROOF TRIED TOGGLE (UNCHANGED) =====
-      document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('tried-checkmark')) {
-          e.preventDefault(); e.stopPropagation();
-          const toggle = e.target.closest('.tried-toggle');
+  (function() {
+    let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
+    function initTried() {
+      document.querySelectorAll('.tried-checkmark').forEach(checkmark => {
+        checkmark.style.cursor = 'pointer';
+        checkmark.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const toggle = this.parentElement.parentElement; // .strain-content > .tried-checkmark -> .tried-toggle (li)
           const li = toggle.closest('li');
           const checkbox = toggle.querySelector('input[type="checkbox"]');
-          const name = li.querySelector('.strain-name').textContent.trim().replace(/\s+/g, ' ').trim();
-          let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
+          const name = li.querySelector('.strain-name').textContent.trim();
           const isChecked = checkbox.checked = !checkbox.checked;
           toggle.classList.toggle('checked', isChecked);
           li.classList.toggle('tried', isChecked);
@@ -1738,195 +1593,239 @@ document.addEventListener('DOMContentLoaded', function() {
             triedStrains = triedStrains.filter(s => s !== name);
           }
           localStorage.setItem('wildcatTried', JSON.stringify(triedStrains));
-          const countEl = document.getElementById('triedCount');
-          if (countEl) countEl.textContent = document.querySelectorAll('.tried-toggle.checked').length;
-          return false;
-        }
-      }, true);
-      
-      document.addEventListener('DOMContentLoaded', function() {
-        const triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
-        document.querySelectorAll('.tried-toggle').forEach(toggle => {
-          const li = toggle.closest('li');
-          const name = li.querySelector('.strain-name').textContent.trim().replace(/\s+/g, ' ').trim();
-          if (triedStrains.includes(name)) {
-            toggle.querySelector('input').checked = true;
-            toggle.classList.add('checked');
-            li.classList.add('tried');
-          }
+          updateTriedCount();
+          if (typeof updateCounts === 'function') updateCounts();
         });
       });
-      
-      // ===== DUAL SCROLL TO TOP (FULL PAGE + STRAIN LIST) =====
-      window.addEventListener('load', function() {
-        const scrollTopBtn = document.getElementById('scrollTopBtn');
-        const strainList = document.querySelector('.strain-list-container');
-        if (!scrollTopBtn) {
-          console.log('Scroll button NOT found');
-          return;
+      // Restore saved
+      document.querySelectorAll('.tried-toggle').forEach(toggle => {
+        const li = toggle.closest('li');
+        const name = li.querySelector('.strain-name').textContent.trim();
+        if (triedStrains.includes(name)) {
+          const checkbox = toggle.querySelector('input');
+          checkbox.checked = true;
+          toggle.classList.add('checked');
+          li.classList.add('tried');
         }
-        console.log('Scroll button FOUND');
-        
-        function checkScroll() {
-          let shouldShow = false;
-          if (window.scrollY > 400) shouldShow = true;
-          if (strainList && strainList.scrollTop > 200) shouldShow = true;
-          scrollTopBtn.classList.toggle('show', shouldShow);
-        }
-        
-        window.addEventListener('scroll', checkScroll);
-        if (strainList) strainList.addEventListener('scroll', checkScroll);
-        
-        scrollTopBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          console.log('DUAL SCROLL CLICKED');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          if (strainList) {
-            strainList.scrollTo({ top: 0, behavior: 'smooth' });
-          }
-        });
       });
-    </script>
-    
-    
-    
-    <style>
-      /* SCROLL BUTTON CSS */
-      #scrollTopBtn {
-        position: fixed !important; bottom: 30px !important; right: 30px !important;
-        background: linear-gradient(135deg, #228B22, #006400) !important; color: white !important;
-        border: 2px solid #00ff00 !important; border-radius: 50% !important;
-        width: 60px !important; height: 60px !important; font-size: 24px !important;
-        font-weight: bold !important; cursor: pointer !important;
-        opacity: 0 !important; visibility: hidden !important; transition: all 0.3s !important;
-        z-index: 9999 !important; display: flex !important; align-items: center !important;
-        justify-content: center !important;
+
+      // ADD THESE 2 LINES HERE:
+updateTriedCount();
+if (typeof updateCounts === 'function') updateCounts();
+    }
+    function updateTriedCount() {
+      const count = document.querySelectorAll('.tried-toggle.checked').length;
+      const el = document.getElementById('triedCount');
+      if (el) el.textContent = count;
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTried);
+    } else {
+      initTried();
+    }
+  })();
+  </script>
+  
+  <script>
+    // ===== YOUR BULLETPROOF TRIED TOGGLE (UNCHANGED) =====
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('tried-checkmark')) {
+        e.preventDefault(); e.stopPropagation();
+        const toggle = e.target.closest('.tried-toggle');
+        const li = toggle.closest('li');
+        const checkbox = toggle.querySelector('input[type="checkbox"]');
+        const name = li.querySelector('.strain-name').textContent.trim().replace(/\s+/g, ' ').trim();
+        let triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
+        const isChecked = checkbox.checked = !checkbox.checked;
+        toggle.classList.toggle('checked', isChecked);
+        li.classList.toggle('tried', isChecked);
+        if (isChecked) {
+          if (!triedStrains.includes(name)) triedStrains.push(name);
+        } else {
+          triedStrains = triedStrains.filter(s => s !== name);
+        }
+        localStorage.setItem('wildcatTried', JSON.stringify(triedStrains));
+        const countEl = document.getElementById('triedCount');
+        if (countEl) countEl.textContent = document.querySelectorAll('.tried-toggle.checked').length;
+        return false;
       }
-      #scrollTopBtn.show { opacity: 1 !important; visibility: visible !important; }
-      #scrollTopBtn:hover { transform: scale(1.1) !important; box-shadow: 0 0 20px #00ff00 !important; }
+    }, true);
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const triedStrains = JSON.parse(localStorage.getItem('wildcatTried') || '[]');
+      document.querySelectorAll('.tried-toggle').forEach(toggle => {
+        const li = toggle.closest('li');
+        const name = li.querySelector('.strain-name').textContent.trim().replace(/\s+/g, ' ').trim();
+        if (triedStrains.includes(name)) {
+          toggle.querySelector('input').checked = true;
+          toggle.classList.add('checked');
+          li.classList.add('tried');
+        }
+      });
+    });
+    
+    // ===== DUAL SCROLL TO TOP (FULL PAGE + STRAIN LIST) =====
+    window.addEventListener('load', function() {
+      const scrollTopBtn = document.getElementById('scrollTopBtn');
+      const strainList = document.querySelector('.strain-list-container');
+      if (!scrollTopBtn) {
+        console.log('Scroll button NOT found');
+        return;
+      }
+      console.log('Scroll button FOUND');
       
-      /* YELLOW/UNKNOWN BLACK TEXT */
-      .unknown-strain .strain-name, .unknown-strain .strain-name a { color: #000 !important; }
+      function checkScroll() {
+        let shouldShow = false;
+        if (window.scrollY > 400) shouldShow = true;
+        if (strainList && strainList.scrollTop > 200) shouldShow = true;
+        scrollTopBtn.classList.toggle('show', shouldShow);
+      }
       
-      /* Your anti-bleed */
-      .strain-list-container li { overflow: hidden !important; position: relative !important; }
-      .tried-checkmark { z-index: 999 !important; position: relative !important; }
+      window.addEventListener('scroll', checkScroll);
+      if (strainList) strainList.addEventListener('scroll', checkScroll);
+      
+      scrollTopBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('DUAL SCROLL CLICKED');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (strainList) {
+          strainList.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+  
+  
+  
+  <style>
+    /* SCROLL BUTTON CSS */
+    #scrollTopBtn {
+      position: fixed !important; bottom: 30px !important; right: 30px !important;
+      background: linear-gradient(135deg, #228B22, #006400) !important; color: white !important;
+      border: 2px solid #00ff00 !important; border-radius: 50% !important;
+      width: 60px !important; height: 60px !important; font-size: 24px !important;
+      font-weight: bold !important; cursor: pointer !important;
+      opacity: 0 !important; visibility: hidden !important; transition: all 0.3s !important;
+      z-index: 9999 !important; display: flex !important; align-items: center !important;
+      justify-content: center !important;
+    }
+    #scrollTopBtn.show { opacity: 1 !important; visibility: visible !important; }
+    #scrollTopBtn:hover { transform: scale(1.1) !important; box-shadow: 0 0 20px #00ff00 !important; }
+    
+    /* YELLOW/UNKNOWN BLACK TEXT */
+    .unknown-strain .strain-name, .unknown-strain .strain-name a { color: #000 !important; }
+    
+    /* Your anti-bleed */
+    .strain-list-container li { overflow: hidden !important; position: relative !important; }
+    .tried-checkmark { z-index: 999 !important; position: relative !important; }
 
-  /* TOGGLE LAYOUT FIX - ADD THESE */
+/* TOGGLE LAYOUT FIX - ADD THESE */
 
-  .strain-content { display: contents !important; }
+.strain-content { display: contents !important; }
 .tried-checkmark { margin-right: 30px !important; }
 .strain-list-container ul { 
-  grid-template-columns: repeat(auto-fit, minmax(390px, 1fr)) !important; 
+grid-template-columns: repeat(auto-fit, minmax(390px, 1fr)) !important; 
 }
 
 li { 
-  min-width: 360px !important;  /* Narrower = smaller cards, less overlap */
-  max-width: 420px !important;  /* Max width cap */
+min-width: 360px !important;  /* Narrower = smaller cards, less overlap */
+max-width: 420px !important;  /* Max width cap */
 }
 .strain-list-container ul { 
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)) !important;  /* Matches li */
-  gap: 28px !important;  /* Vertical space between cards */
+grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)) !important;  /* Matches li */
+gap: 28px !important;  /* Vertical space between cards */
 }
 
 @media (max-width: 768px) {
-  .strain-list-container ul { 
-    grid-template-columns: 1fr !important; 
-    gap: 24px !important; 
-  }
-  .legend { 
-    flex-wrap: wrap; 
-    gap: 8px; 
-  }
-  #strainInput { 
-    width: 100%; 
-  }
-  h1 { 
-    font-size: 28px; 
-  }
-  
-  /* Search row stays horizontal + centered */
-  .search-header {
-    width: 100% !important;
-    justify-content: center !important;
-    order: 1 !important;
-  }
-  
-  #strainInput {
-    max-width: 280px !important;
-    order: 2 !important;
-    margin: 0 auto !important;
-  }
-  
-  #randomStrain {
-    order: 3 !important;
-    justify-content: center !important;
-  }
-  
-  /* Save button drops below + centered */
-  #exportTried {
-    flex-basis: 100% !important;
-    margin-top: 12px !important;
-    align-self: center !important;
-    order: 999 !important;
-    z-index: 13 !important;
-    min-width: 220px !important;
-    max-width: 220px !important;
-  }
+.strain-list-container ul { 
+  grid-template-columns: 1fr !important; 
+  gap: 24px !important; 
+}
+.legend { 
+  flex-wrap: wrap; 
+  gap: 8px; 
+}
+#strainInput { 
+  width: 100%; 
+}
+h1 { 
+  font-size: 28px; 
 }
 
-
-.strain-list-container ul {
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)) !important;
-  gap: 20px !important; /* Reduced from 32px */
+/* Search row stays horizontal + centered */
+.search-header {
+  width: 100% !important;
+  justify-content: center !important;
+  order: 1 !important;
 }
 
-.strain-list-container li {
-  padding: 16px !important; /* Halved from 28px-32px */
-  min-height: auto !important;
+#strainInput {
+  max-width: 280px !important;
+  order: 2 !important;
+  margin: 0 auto !important;
 }
 
-.tried-toggle {
-  gap: 10px !important; /* Halved from 20px */
-  margin-top: 4px !important; /* Halved from 8px */
-}
-
-.tried-checkmark {
-  width: 16px !important; /* Reduced from 24px */
-  height: 16px !important;
-  font-size: 14px !important; /* Reduced from 18px */
-}
-
-.tried-label {
-  gap: 8px !important; /* Reduced from 16px */
-  font-size: 1.1em !important; /* Slightly smaller strain names */
-}
-.strain-list-container ul {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
-  gap: 12px !important !important;
+#randomStrain {
+  order: 3 !important;
   justify-content: center !important;
 }
 
+/* Save button drops below + centered */
+#exportTried {
+  flex-basis: 100% !important;
+  margin-top: 12px !important;
+  align-self: center !important;
+  order: 999 !important;
+  z-index: 13 !important;
+  min-width: 220px !important;
+  max-width: 220px !important;
+}
+}
+
+
+.strain-list-container ul {
+grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)) !important;
+gap: 20px !important; /* Reduced from 32px */
+}
+
 .strain-list-container li {
-  min-width: 260px !important;
-  max-width: 320px !important;
-  width: auto !important;
-  margin: 0 !important;
-  padding: 12px !important;
-  box-sizing: border-box !important;
-}
-.legend.hide {
-  transform: translateY(-100%);
-  transition: transform 0.3s ease;
+padding: 16px !important; /* Halved from 28px-32px */
+min-height: auto !important;
 }
 
-.legend.hide {
-  transform: translateY(-100%);
+.tried-toggle {
+gap: 10px !important; /* Halved from 20px */
+margin-top: 4px !important; /* Halved from 8px */
 }
 
-    </style>
+.tried-checkmark {
+width: 16px !important; /* Reduced from 24px */
+height: 16px !important;
+font-size: 14px !important; /* Reduced from 18px */
+}
+
+.tried-label {
+gap: 8px !important; /* Reduced from 16px */
+font-size: 1.1em !important; /* Slightly smaller strain names */
+}
+.strain-list-container ul {
+display: grid !important;
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+gap: 12px !important !important;
+justify-content: center !important;
+}
+
+.strain-list-container li {
+min-width: 260px !important;
+max-width: 320px !important;
+width: auto !important;
+margin: 0 !important;
+padding: 12px !important;
+box-sizing: border-box !important;
+}
+
+  </style>
 
 
 <button id="scrollTopBtn" title="↑ Top">↑</button>
@@ -1937,14 +1836,14 @@ const legend = document.querySelector('.legend');
 const strainList = document.querySelector('.strain-list-container');
 
 function checkLegendScroll() {
-  let currentScrollY = window.scrollY;
-  if (strainList) currentScrollY += strainList.scrollTop;
-  if (currentScrollY > lastScrollY && currentScrollY > 200) {
-    legend.classList.add('hide');
-  } else {
-    legend.classList.remove('hide');
-  }
-  lastScrollY = currentScrollY;
+let currentScrollY = window.scrollY;
+if (strainList) currentScrollY += strainList.scrollTop;
+if (currentScrollY > lastScrollY && currentScrollY > 200) {
+  legend.classList.add('hide');
+} else {
+  legend.classList.remove('hide');
+}
+lastScrollY = currentScrollY;
 }
 
 window.addEventListener('scroll', checkLegendScroll);
@@ -1953,5 +1852,3 @@ if (strainList) strainList.addEventListener('scroll', checkLegendScroll);
 
 </body>
 </html>
-
-    
