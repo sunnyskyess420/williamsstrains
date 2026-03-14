@@ -253,7 +253,7 @@ h1 {
 }
 
 .strain-list-container::-webkit-scrollbar {
-  width: 8px;
+  display: none;
 }
 
 .strain-list-container::-webkit-scrollbar-track {
@@ -483,10 +483,11 @@ body {
 
 .search-container {
   overscroll-behavior: contain;  /* Sticky header doesn't trap scroll */
+  z-index: 15 !important;  /* Above strain list */
 }
 
+
 .clip-zone {  <!-- ADD THESE 3 LINES -->
-  overflow: hidden !important;     /* Chops dots at green line */
   z-index: 4 !important;
   position: relative;
 }
@@ -607,11 +608,6 @@ li .tried-label {
         <img src="https://visitor-badge.one9x.com/badge?page_id=wildcats-weed-list&left_color=000000&right_color=00ff00&left_text=Stoned Visitor No." alt="Visitors" style="height: 26px; width: auto;" />
       </div>
     </div>
-
-<!-- NEW CLIP ZONE: wraps strain-list-container -->
-<div class="clip-zone">
-<div class="strain-list-container">
-        <ul>
 
             
 <div class="strain-list-container">
@@ -1690,8 +1686,9 @@ if (typeof updateCounts === 'function') updateCounts();
         console.log('DUAL SCROLL CLICKED');
         window.scrollTo({ top: 0, behavior: 'smooth' });
         if (strainList) {
-          strainList.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+  strainList.scrollTop = 0;
+}
+
       });
     });
   </script>
