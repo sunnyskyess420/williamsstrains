@@ -109,15 +109,31 @@ h1 {
     cursor: pointer;
     user-select: none;
     position: relative;
-    overflow: hidden !important;  /* FIXED: Contain dots/borders */
-    border-radius: 24px;
+    overflow: visible !important;
+    border-radius: 0 !important;
     padding: 8px 12px;
-    background: rgba(0,0,0,0.4);
-    border: 1px solid rgba(0,255,0,0.3);
+    background: transparent;
+    border: none;
     margin: 4px;
     transition: all 0.2s;
     font-size: 14px;
 }
+
+.legend-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(0,255,0,0.3);
+    z-index: -1;
+}
+
+
+.legend-item .legend-leaf {
+  overflow: visible !important;
+}
+
 
 .legend-item:hover,
 .legend-item.active {
