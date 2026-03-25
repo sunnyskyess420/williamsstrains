@@ -1,0 +1,131 @@
+/* =============================================================
+   BASE.CSS — Global layout, typography, page-level animations
+   ============================================================= */
+
+/* Smooth scroll + overscroll behaviour */
+html {
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #262626;
+  background-image: url('https://i.imgur.com/0bk5g7X.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 10px;
+  color: #1a1a1a;
+  min-height: 100vh;
+  overscroll-behavior-y: auto;
+  scrollbar-gutter: stable;
+    opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  background-color: rgba(30, 30, 30, 0.3);
+  padding: 20px;
+  overscroll-behavior-y: auto !important;
+  margin: 10px auto;
+  box-shadow: 0 0 15px rgba(0, 128, 0, 0.4);
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+  scroll-behavior: auto;
+}
+
+
+/* ===== HEADINGS ===== */
+h1 {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #00ff00;
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #adff2f, 0 0 30px #006400;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #00ff00, 0 0 20px #adff2f; }
+  to { text-shadow: 0 0 20px #adff2f, 0 0 30px #006400; }
+}
+
+
+/* ===== DESCRIPTION TEXT ===== */
+.description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #e5e5e5;
+  text-align: center;
+  margin-top: 4px;
+  margin-bottom: 24px;
+}
+
+/* ===== UTILITY: VISIBILITY ===== */
+.hidden {
+  display: none !important;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.frosted-section {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  margin: 40px auto;
+  max-width: 1200px;
+  padding: 40px 20px;
+}
+
+#comments-section {
+  background: rgba(0, 50, 0, 0.9) !important;
+  backdrop-filter: blur(10px);
+  border: 2px solid #00ff00;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 750px;
+}
+.header-image {
+  display: block;
+  width: 100%;
+  max-height: 35vh;
+  object-fit: cover;
+  margin: 0 auto 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,255,0,0.3);
+  backdrop-filter: blur(10px); /* Extra frost over image */
+}
+@media (max-width: 768px) { .header-image { max-height: 25vh; } }
+
+.frosted-section img.header-image {
+  width: calc(100% + 40px);  /* Expands beyond padding to fill full container width */
+  max-width: none;
+  margin: -20px -20px 20px;  /* Negative offsets padding, centers vertically */
+  height: calc(100vh * 0.3); /* Matches ~35vh but fills height too */
+  object-fit: cover;
+}
+
