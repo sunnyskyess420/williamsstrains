@@ -2,8 +2,6 @@
 
 > A personal cannabis strain directory with 300+ strains, interactive filtering, strain tracking, and a cyberpunk Matrix-green aesthetic — all running as a static GitHub Pages site.
 
-![Visitors](https://visitor-badge.one9x.co/badge?page_id=wildcats-weed-list&leftColor=000000&rightColor=00ff00&leftText=Stoned+Visitor+No.)
-
 ---
 
 ## ✨ Features
