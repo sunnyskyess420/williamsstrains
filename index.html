@@ -9,10 +9,10 @@
  <!-- Open Graph / Social Preview -->
 <meta property="og:title" content="Wildcats Wonderful Weed List">
 <meta property="og:description" content="300+ cannabis strains: search, filter, random!">
-<meta property="og:image" content="https://sunnyskyess420.github.io/WWWL/images/WWWL_logo.png">
+<meta property="og:image" content="https://sunnyskyess420.github.io/williamsstrains/images/WWWL_logo.png">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="640">
-<meta property="og:url" content="https://sunnyskyess420.github.io/WWWL/">
+<meta property="og:url" content="https://sunnyskyess420.github.io/williamsstrains/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Wildcats Strain List">
 
@@ -664,10 +664,32 @@ document.getElementById('dismissBtn').addEventListener('click', function() {
 <li class="indica-strain"><span class="strain-content tried-toggle"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/zombie-kush" target="_blank" rel="noopener noreferrer">Zombie Kush</a></span></span></span></li>	
 <li class="hybrid-strain"><span class="strain-content tried-toggle"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/zookies" target="_blank" rel="noopener noreferrer">Zookies</a></span></span></span></li>	
 <li class="hybrid-strain"><span class="strain-content tried-toggle"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://doobiecannabis.ca/products/er-what-zsweet" target="_blank" rel="noopener noreferrer">Zsweet</a></span></span></span></li>	
- </ul>
-  <button id="strainScrollTop" class="strain-scroll-btn">↑</button>  <!-- NEW: Left inside scrollbar area -->
+</ul>
+
+<button id="strainScrollTop" class="strain-scroll-btn">↑</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const strainList = document.querySelector('.strain-list-container');
+  const scrollBtn = document.getElementById('strainScrollTop');
+  if (!strainList || !scrollBtn) return;
+  
+  function toggleButton() {
+    const scrolled = strainList.scrollTop > 140;
+    scrollBtn.classList.toggle('show', scrolled);
+  }
+  
+  strainList.addEventListener('scroll', toggleButton);
+  toggleButton();
+  
+  scrollBtn.addEventListener('click', function() {
+    strainList.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+</script>
+
 </div>
-<script src="assets/js/scroll.js"></script> <!-- Moved outside -->
+
 
 
 <!-- Comments - Compact Fit -->
