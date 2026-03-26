@@ -827,4 +827,83 @@ li {
     width: 100% !important;
   }
 }
+@media (max-width: 768px) {
+  .search-container {
+    transition: all 0.3s ease !important;
+  }
+  .search-container.hide {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-100%) !important;
+  }
+}
+.scroll-hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(-20px) !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.header-image.scroll-hidden {
+  transform: translateY(-30px) scale(0.95) !important;
+}
+
+.search-container.scroll-hidden,
+.legend.scroll-hidden {
+  transform: translateY(-100%) !important;
+}
+
+@media (max-width: 768px) {
+  .scroll-hidden {
+    transition-duration: 0.25s !important;
+  }
+}
+/* Strain dots behind sticky search/legend */
+@media (max-width: 768px) {
+  .strain-list-container {
+    z-index: 1 !important;
+  }
+  
+  .search-container,
+  .legend {
+    z-index: 15 !important;  /* Higher than strain list */
+  }
+  
+  .tried-checkmark,
+  .tried-toggle {
+    z-index: 2 !important;   /* Above strain list but below sticky bars */
+  }
+}
+
+/* Ensure header image doesn't interfere */
+.header-image {
+  z-index: 5 !important;
+}
+/* FORCE: Tried dots NEVER show through sticky bars */
+.tried-checkmark,
+.tried-toggle,
+.tried-toggle * {
+  z-index: 2 !important;
+  position: relative !important;
+}
+
+.search-container {
+  z-index: 100 !important;  /* Above everything */
+}
+
+.legend {
+  z-index: 90 !important;   /* Above strain list but below search */
+}
+
+@media (max-width: 768px) {
+  .strain-list-container {
+    z-index: 1 !important;   /* Bottom layer */
+  }
+  
+  .search-container:not(.scroll-hidden),
+  .legend:not(.scroll-hidden) {
+    background-color: rgba(30, 30, 30, 0.98) !important;  /* Opaque backdrop */
+    backdrop-filter: blur(15px) !important;
+  }
+}
 
