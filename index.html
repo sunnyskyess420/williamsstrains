@@ -665,7 +665,7 @@ document.getElementById('dismissBtn').addEventListener('click', function() {
 <li class="indica-strain"><span class="strain-content tried-toggle"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://ganjaexpress.to/shop/buy-marijuana-buds-online/aaa-aaaa/69-oz-zombie-breath/" target="_blank" rel="noopener noreferrer">Zombie Breath</a></span></span></span></li>	
 <li class="indica-strain"><span class="strain-content tried-toggle"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/zombie-kush" target="_blank" rel="noopener noreferrer">Zombie Kush</a></span></span></span></li>	
 <li class="hybrid-strain"><span class="strain-content tried-toggle"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://www.leafly.com/strains/zookies" target="_blank" rel="noopener noreferrer">Zookies</a></span></span></span></li>	
-<li class="hybrid-strain"><span class="strain-content tried-toggle"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://doobiecannabis.ca/products/er-what-zsweet" target="_blank" rel="noopener noreferrer">Zsweet</a></span></span></span></li>	
+<li class="hybrid-strain"><span class="strain-content tried-toggle"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://doobiecannabis.ca/products/er-what-zsweet" target="_blank" rel="noopener noreferrer">Zsweet</a></span></span></span></li>		
 </ul>
 
 <button id="strainScrollTop" class="strain-scroll-btn">↑</button>
@@ -692,32 +692,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </div>
 
+</div><script>
 
 
-<!-- Comments - Compact Fit -->
-<div style="margin: 25px auto; max-width: 750px; border: 2px solid #00ff00; border-radius: 16px; overflow: hidden; background: rgba(30,35,30,0.7);">
-  <h2 style="color: #00ff00; text-align: center; text-shadow: 0 0 10px #00ff00; background: rgba(10,25,10,0.95); margin: 0; padding: 12px 16px; font-size: 20px; border-bottom: 1px solid #228B22;">💬Stoners Comments💬</h2>
-  <div id="comments-section" style="background: none !important; padding: 0 !important; margin: 0 !important;"></div>
-  
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const div = document.createElement('div');
-    div.id = 'cusdis_thread';
-    div.setAttribute('data-host', 'https://cusdis.com');
-    div.setAttribute('data-app-id', 'cc4793b8-50d4-41c9-b37e-1758e18dbb11');
-    div.setAttribute('data-page-url', window.location.href);
-    div.setAttribute('data-page-title', document.title);
-    div.setAttribute('data-page-id', 'main');
-    div.setAttribute('data-theme', 'dark');
-    document.getElementById('comments-section').appendChild(div);
-    
-    const script = document.createElement('script');
-    script.src = 'https://cusdis.com/js/cusdis.es.js';
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
-  });
-// ADD THIS NEW BLOCK HERE (at the very end, before </<script>)
+
   // NEW Strain List Scroll-to-Top Button (Left Side)
   document.addEventListener('DOMContentLoaded', function() {
     const strainList = document.querySelector('.strain-list-container');
@@ -745,6 +723,222 @@ function toggleButton() {
   </script>
 </div>
 
+        <!-- END of your strain list, export button, comments section, etc. -->
+    </div>  <!-- ← This is the closing tag for .container -->
+
+
+    <!-- ========== CHAT GOES HERE — OUTSIDE .container ========== -->
+    <div id="chat-section" class="frosted-section">
+      <h2 style="color:#00ff00; text-shadow:0 0 10px #00ff00; margin-bottom:16px;">💬 The Lit Lobby 💬</h2>
+      <div id="chat-container">
+        <div id="chat-messages"></div>
+        <div id="chat-input-area">
+          <input type="text" id="chatInput" placeholder="Say something..." maxlength="500" autocomplete="off">
+          <button id="chatSend" aria-label="Send message">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+        <div id="chat-status"></div>
+      </div>
+    </div>
+    <!-- ========== END CHAT ========== -->
+
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+    <!-- Chat script -->
+    <script>
+(function() {
+  const firebaseConfig = {
+    apiKey:            "AIzaSyDH1q1n0vYkBgy5P5ma0uwN0aO59WjL_OE",
+    authDomain:        "stonercomments.firebaseapp.com",
+    projectId:         "stonercomments",
+    storageBucket:     "stonercomments.firebasestorage.app",
+    messagingSenderId: "604159949829",
+    appId:             "1:604159949829:web:ca59dbf2427422750bf06c"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db    = firebase.firestore();
+  const auth  = firebase.auth();
+
+  const messagesEl  = document.getElementById('chat-messages');
+  const inputEl     = document.getElementById('chatInput');
+  const sendBtn     = document.getElementById('chatSend');
+  const statusEl    = document.getElementById('chat-status');
+
+  let userId = null, userColor = null, isAtBottom = true;
+
+  function stringToColor(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    return `hsl(${Math.abs(hash) % 360}, 70%, 55%)`;
+  }
+
+  function formatTime(ts) {
+    if (!ts || !ts.toDate) return 'just now';
+    const d = ts.toDate(), now = new Date(), diff = Math.floor((now - d) / 60000);
+    if (diff < 1) return 'just now';
+    if (diff < 60) return `${diff}m ago`;
+    const hr = Math.floor(diff / 60);
+    if (hr < 24) return `${hr}h ago`;
+    return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+  }
+
+  function sanitize(text) {
+    const d = document.createElement('div');
+    d.textContent = text;
+    return d.innerHTML;
+  }
+
+  function createMessageEl(data, docId) {
+    const w = document.createElement('div');
+    w.className = 'chat-bubble-wrapper' + (data.uid === userId ? ' own' : '');
+    const b = document.createElement('div');
+    b.className = 'chat-bubble';
+    const m = document.createElement('div');
+    m.className = 'chat-meta';
+    const dot = document.createElement('span');
+    dot.className = 'chat-user-dot';
+    dot.style.backgroundColor = data.color;
+    const nm = document.createElement('span');
+    nm.className = 'chat-username';
+    nm.textContent = data.displayName || 'Anon';
+    nm.style.color = data.color;
+    const tm = document.createElement('span');
+    tm.className = 'chat-time';
+    tm.textContent = formatTime(data.timestamp);
+    m.append(dot, nm, tm);
+    const body = document.createElement('div');
+    body.className = 'chat-body';
+    body.innerHTML = sanitize(data.text);
+    b.append(m, body);
+    w.appendChild(b);
+    if (docId) w.setAttribute('data-id', docId);
+    return w;
+  }
+
+  function scrollToBottom() { messagesEl.scrollTop = messagesEl.scrollHeight; }
+  messagesEl.addEventListener('scroll', () => {
+    isAtBottom = messagesEl.scrollHeight - messagesEl.scrollTop - messagesEl.clientHeight < 80;
+  });
+
+function listenForMessages() {
+  messagesEl.innerHTML = '';
+  db.collection('chatMessages')
+    .orderBy('timestamp', 'asc')
+    .limit(50)
+    .onSnapshot(snapshot => {
+      snapshot.docChanges().forEach(change => {
+        if (change.type === 'added') {
+          
+          // If it's your own message coming back from the server, just update the ID
+          if (change.doc.data().uid === userId) {
+            const tempEl = messagesEl.querySelector(`[data-id^="temp-"]`);
+            if (tempEl) {
+              tempEl.setAttribute('data-id', change.doc.id);
+              return; // Stop here so it doesn't add a second bubble
+            }
+          }
+
+          // Normal check for duplicates from other people
+          if (messagesEl.querySelector(`[data-id="${change.doc.id}"]`)) return;
+
+          const el = createMessageEl(change.doc.data(), change.doc.id);
+          messagesEl.appendChild(el);
+          scrollToBottom();
+        }
+      });
+    });
+}
+
+  function getChatName() {
+    let name = localStorage.getItem('wildcatChatName');
+    if (!name) {
+      name = prompt('What should we call you in the chat?', '');
+      if (name && name.trim().length > 0) {
+        name = name.trim();
+        localStorage.setItem('wildcatChatName', name);
+      } else {
+        const adj = ['Chill','Faded','Blazing','Cosmic','Groovy','Zen','Epic','Wild','Mellow','Frosty'];
+        const noun = ['Panda','Cat','Owl','Fox','Wolf','Bear','Hawk','Tiger','Llama','Deer'];
+        name = `${adj[Math.floor(Math.random()*adj.length)]}${noun[Math.floor(Math.random()*noun.length)]}${Math.floor(Math.random()*99)}`;
+        localStorage.setItem('wildcatChatName', name);
+      }
+    }
+    return name;
+  }
+
+function sendMessage() {
+  const text = inputEl.value.trim();
+  if (!text || !userId) return;
+
+  if (sendMessage._locked) return;
+  sendMessage._locked = true;
+  sendBtn.disabled = true;
+  sendBtn.style.opacity = '0.4';
+  sendBtn.style.cursor = 'not-allowed';
+
+  inputEl.value = '';
+  inputEl.focus();
+
+  const tempId = 'temp-' + Date.now();
+  const chatName = getChatName();
+
+  const el = createMessageEl({
+    text, uid: userId, color: userColor,
+    displayName: chatName,
+    timestamp: { toDate: () => new Date() }
+  }, tempId);
+  messagesEl.appendChild(el);
+  scrollToBottom();
+
+  db.collection('chatMessages').add({
+    text, uid: userId, color: userColor,
+    displayName: chatName,
+    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    expiresAt: firebase.firestore.FieldValue.serverTimestamp()
+  }).catch(err => {
+    console.error(err);
+    el.remove();
+    statusEl.textContent = 'Failed to send.';
+    setTimeout(() => statusEl.textContent = '', 3000);
+  });
+
+  setTimeout(() => {
+    sendMessage._locked = false;
+    sendBtn.disabled = false;
+    sendBtn.style.opacity = '1';
+    sendBtn.style.cursor = 'pointer';
+  }, 3000);
+}
+
+  sendBtn.addEventListener('click', sendMessage);
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  });
+
+  statusEl.textContent = 'Connecting...';
+  auth.signInAnonymously().then(cred => {
+    userId = cred.user.uid;
+    userColor = stringToColor(userId);
+    statusEl.textContent = '';
+    listenForMessages();
+  }).catch(err => {
+    console.error(err);
+    statusEl.textContent = 'Could not connect. Refresh to retry.';
+  });
+})();
+</script>
+
+</body>
+</html>
 
 <!-- ===== EXTERNAL TRACKER ===== -->
 <script src="https://readmecodegen.com/view-tracker.js" data-user="user_mlr1poql_rf44cn"></script>
@@ -766,6 +960,9 @@ function dismissPopupWithSound() {
   }
 }
 </script>
+
+
+
 </body>
 </html>
 
