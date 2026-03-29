@@ -100,13 +100,7 @@
 
 
 <!-- Visitor Badge -->
-<div style="display:flex;justify-content:center;margin:10px 0 18px 0;">
-  <div style="background-color:#00aa00;border-radius:12px;padding:8px 12px;width:250px;display:flex;justify-content:center;align-items:center;border:1px solid #00ff00;box-shadow:0 4px 8px rgba(0,0,0,0.4);">
-    <div id="visitor-counter" style="color:#ffffff;font-family:monospace;font-size:14px;font-weight:bold;">
-      Loading stoned visitors...
-    </div>
-  </div>
-</div>
+<div id="visitor-counter" style="display:flex;justify-content:center;margin:10px 0 18px 0;"></div>
 
 <script data-goatcounter="https://wwwlcounter.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
@@ -116,24 +110,15 @@ window.addEventListener('load', function () {
   const wait = setInterval(function () {
     if (window.goatcounter && window.goatcounter.visit_count) {
       clearInterval(wait);
-
       window.goatcounter.visit_count({
         append: '#visitor-counter',
-        no_branding: true
+        type: 'svg',
+        no_branding: true,
+        style: `
+          #gcvc-border { fill: #00aa00; stroke: #00ff00; }
+          #gcvc { fill: #ffffff; font-family: monospace; font-weight: bold; }
+        `
       });
-
-      const rewrite = function () {
-        const el = document.getElementById('visitor-counter');
-        const text = el.textContent || '';
-        const num = text.match(/\d+/);
-        if (num) {
-          el.textContent = 'Stoned Visitors: ' + num[0];
-        }
-      };
-
-      setTimeout(rewrite, 800);
-      setTimeout(rewrite, 1600);
-      setTimeout(rewrite, 2500);
     }
   }, 100);
 });
