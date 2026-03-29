@@ -108,8 +108,11 @@
         async src="//gc.zgo.at/count.js"></script>
 
 <script>
-  window.addEventListener('load', function () {
+window.addEventListener('load', function () {
+  const wait = setInterval(function () {
     if (window.goatcounter && window.goatcounter.visit_count) {
+      clearInterval(wait);
+
       window.goatcounter.visit_count({
         append: '#visitor-counter',
         type: 'svg',
@@ -119,8 +122,21 @@
           #gcvc { fill: #ffffff; font-family: monospace; font-weight: bold; }
         `
       });
+
+      setTimeout(function () {
+        const texts = document.querySelectorAll('#visitor-counter svg text');
+        texts.forEach(function(el) {
+          if (el.textContent.includes('Views')) {
+            el.textContent = el.textContent.replace('Views', 'Stoned Visitors');
+          }
+          if (el.textContent.includes('views')) {
+            el.textContent = el.textContent.replace('views', 'Stoned Visitors');
+          }
+        });
+      }, 500);
     }
-  });
+  }, 100);
+});
 </script>
   
 <div id="noResultsPopup" style="display: none !important; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 320px; height: 140px; background: rgba(10, 20, 10, 0.98) !important; backdrop-filter: blur(20px); border: 2px solid #00ff00; border-radius: 20px; font-size: 26px; font-weight: 700; color: #00ff00; text-shadow: 0 0 10px #00ff00; z-index: 10001; box-shadow: 0 20px 60px rgba(0,255,0,0.4), inset 0 0 20px rgba(0,255,0,0.1); text-align: center; animation: pulse-glow 2s infinite; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;">
