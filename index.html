@@ -100,10 +100,16 @@
 
 
 <!-- Visitor Badge -->
-<div style="display:flex;justify-content:center;align-items:center;gap:8px;margin:10px 0 18px 0;background:#00aa00;border:1px solid #00ff00;border-radius:12px;padding:8px 14px;box-shadow:0 4px 8px rgba(0,0,0,0.4);width:max-content;margin-left:auto;margin-right:auto;color:#fff;font-family:monospace;font-size:14px;font-weight:bold;">
+<div style="display:flex;justify-content:center;align-items:center;gap:8px;
+            margin:10px 0 18px 0;background:#00aa00;border:1px solid #00ff00;
+            border-radius:12px;padding:8px 14px;box-shadow:0 4px 8px rgba(0,0,0,0.4);
+            width:max-content;margin-left:auto;margin-right:auto;
+            color:#fff;font-family:monospace;font-size:14px;font-weight:bold;">
   <span>Stoned Visitors:</span>
-  <span id="visitor-counter"></span>
+  <span id="visitor-number">…</span>
 </div>
+
+<div id="gc-hidden" style="position:absolute;left:-9999px;top:-9999px;"></div>
 
 <script data-goatcounter="https://wwwlcounter.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
@@ -113,11 +119,21 @@ window.addEventListener('load', function () {
   const wait = setInterval(function () {
     if (window.goatcounter && window.goatcounter.visit_count) {
       clearInterval(wait);
+
       window.goatcounter.visit_count({
-        append: '#visitor-counter',
-        type: 'html',
+        append: '#gc-hidden',
         no_branding: true
       });
+
+      const pullNumber = function () {
+        const txt = document.getElementById('gc-hidden').textContent || '';
+        const m = txt.match(/\d+/);
+        if (m) document.getElementById('visitor-number').textContent = m[0];
+      };
+
+      setTimeout(pullNumber, 800);
+      setTimeout(pullNumber, 1600);
+      setTimeout(pullNumber, 2500);
     }
   }, 100);
 });
