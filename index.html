@@ -102,7 +102,7 @@
 <!-- Visitor Badge -->
 <div style="width:100%; text-align:center; margin:10px 0 18px 0;">
   <div id="visitor-counter" style="display:inline-block;height:26px;line-height:26px;color:#00ff00;font-family:monospace;font-size:14px;font-weight:bold;text-shadow:0 0 6px #00ff00;">
-    Stoned Visitors: ...
+    Stoned Visitors: 🔥
   </div>
 </div>
 
@@ -110,8 +110,15 @@
         async src="//gc.zgo.at/count.js"></script>
 
 <script>
+// Give GoatCounter 4 seconds to load before giving up
+const goatTimeout = setTimeout(() => {
+  clearInterval(waitForGoat);
+  // If ad-blocked, it stays as the emoji above
+}, 4000);
+
 const waitForGoat = setInterval(() => {
   if (window.goatcounter && window.goatcounter.get_data) {
+    clearTimeout(goatTimeout);
     clearInterval(waitForGoat);
     const path = window.goatcounter.get_data().p;
 
@@ -121,7 +128,8 @@ const waitForGoat = setInterval(() => {
         document.getElementById('visitor-counter').textContent = 'Stoned Visitors: ' + data.count;
       })
       .catch(() => {
-        document.getElementById('visitor-counter').textContent = 'Stoned Visitors: unavailable';
+        // If the API call itself gets blocked, show emoji
+        document.getElementById('visitor-counter').textContent = 'Stoned Visitors: 🔥';
       });
   }
 }, 150);
