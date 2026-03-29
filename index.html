@@ -105,7 +105,25 @@
   var t = setInterval(function() {
     if (window.goatcounter && window.goatcounter.visit_count) {
       clearInterval(t);
-      window.goatcounter.visit_count({append: '#visitor-counter'});
+      window.goatcounter.visit_count({
+        append: '#visitor-counter',
+        no_branding: true,
+        style: `
+          div {
+            border: 1px solid #00ff00;
+            background: #00aa00;
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 8px 12px;
+            width: 250px;
+            margin: 10px auto 18px auto;
+            text-align: center;
+            font-family: monospace;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+          }
+        `
+      });
     }
   }, 100);
 </script>
