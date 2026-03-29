@@ -70,7 +70,7 @@
 /* ===== STRAIN SCROLL BUTTON ===== */
 .strain-scroll-btn {
   position: absolute;
-  bottom:230px !important;  /* Up 2 inches from 20px */
+  bottom:20px !important;  /* Up 2 inches from 20px */
   right: 20px;
   background: rgba(0,255,0,0.9);
   color: #000;
