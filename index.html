@@ -103,7 +103,7 @@
 <div style="display:flex;justify-content:center;margin:10px 0 18px 0;">
   <div style="background-color:#00aa00;border-radius:12px;padding:8px 12px;width:250px;display:flex;justify-content:center;align-items:center;border:1px solid #00ff00;box-shadow:0 4px 8px rgba(0,0,0,0.4);">
     <div id="visitor-counter" style="color:#ffffff;font-family:monospace;font-size:14px;font-weight:bold;">
-      Stoned Visitors: ...
+      Loading stoned visitors...
     </div>
   </div>
 </div>
@@ -119,15 +119,21 @@ window.addEventListener('load', function () {
 
       window.goatcounter.visit_count({
         append: '#visitor-counter',
-        type: 'html',
         no_branding: true
       });
 
-      setTimeout(function () {
+      const rewrite = function () {
         const el = document.getElementById('visitor-counter');
-        const num = (el.textContent.match(/\d+/) || ['0'])[0];
-        el.textContent = 'Stoned Visitors: ' + num;
-      }, 700);
+        const text = el.textContent || '';
+        const num = text.match(/\d+/);
+        if (num) {
+          el.textContent = 'Stoned Visitors: ' + num[0];
+        }
+      };
+
+      setTimeout(rewrite, 800);
+      setTimeout(rewrite, 1600);
+      setTimeout(rewrite, 2500);
     }
   }, 100);
 });
