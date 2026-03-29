@@ -100,9 +100,30 @@
 
 
 <!-- Visitor Badge -->
+<div id="visitor-counter" style="display:inline-block;height:26px;line-height:26px;color:#000;font-family:monospace;font-size:14px;font-weight:bold;">
+  Stoned Visitors: ...
+</div>
 
 <script data-goatcounter="https://stonedvisitors.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
+
+<script>
+const waitForGoat = setInterval(() => {
+  if (window.goatcounter && window.goatcounter.get_data) {
+    clearInterval(waitForGoat);
+    const path = window.goatcounter.get_data().p;
+
+    fetch('https://stonedvisitors.goatcounter.com/counter/' + encodeURIComponent(path) + '.json')
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('visitor-counter').textContent = 'Stoned Visitors: ' + data.count;
+      })
+      .catch(() => {
+        document.getElementById('visitor-counter').textContent = 'Stoned Visitors: unavailable';
+      });
+  }
+}, 150);
+</script>
   
 <div id="noResultsPopup" style="display: none !important; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 320px; height: 140px; background: rgba(10, 20, 10, 0.98) !important; backdrop-filter: blur(20px); border: 2px solid #00ff00; border-radius: 20px; font-size: 26px; font-weight: 700; color: #00ff00; text-shadow: 0 0 10px #00ff00; z-index: 10001; box-shadow: 0 20px 60px rgba(0,255,0,0.4), inset 0 0 20px rgba(0,255,0,0.1); text-align: center; animation: pulse-glow 2s infinite; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;">
   🌿 No strains found! 🌿
