@@ -100,7 +100,13 @@
 
 
 <!-- Visitor Badge -->
-<div id="visitor-counter" style="display:flex;justify-content:center;margin:10px 0 18px 0;"></div>
+<div style="display:flex;justify-content:center;margin:10px 0 18px 0;">
+  <div style="background:#00aa00;border:1px solid #00ff00;border-radius:12px;padding:8px 14px;box-shadow:0 4px 8px rgba(0,0,0,0.4);color:#fff;font-family:monospace;font-size:14px;font-weight:bold;">
+    Stoned Visitors: <span id="visitor-number">...</span>
+  </div>
+</div>
+
+<div id="gc-count" style="position:absolute;left:-9999px;top:-9999px;"></div>
 
 <script data-goatcounter="https://wwwlcounter.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
@@ -110,15 +116,23 @@ window.addEventListener('load', function () {
   const wait = setInterval(function () {
     if (window.goatcounter && window.goatcounter.visit_count) {
       clearInterval(wait);
+
       window.goatcounter.visit_count({
-        append: '#visitor-counter',
-        type: 'svg',
-        no_branding: true,
-        style: `
-          #gcvc-border { fill: #00aa00; stroke: #00ff00; }
-          #gcvc { fill: #ffffff; font-family: monospace; font-weight: bold; }
-        `
+        append: '#gc-count',
+        no_branding: true
       });
+
+      const updateNumber = function () {
+        const text = document.getElementById('gc-count').textContent || '';
+        const match = text.match(/\d+/);
+        if (match) {
+          document.getElementById('visitor-number').textContent = match[0];
+        }
+      };
+
+      setTimeout(updateNumber, 800);
+      setTimeout(updateNumber, 1600);
+      setTimeout(updateNumber, 2500);
     }
   }, 100);
 });
