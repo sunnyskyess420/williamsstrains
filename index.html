@@ -748,11 +748,6 @@ function toggleButton() {
     <!-- ========== END CHAT ========== -->
 
 
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
     <!-- Chat script -->
     <script>
 (function() {
@@ -769,23 +764,9 @@ function toggleButton() {
   const db    = firebase.firestore();
   const auth  = firebase.auth();
 
-    const counterRef = db.collection('site_stats').doc('total_hits');
-  counterRef.set({ count: firebase.firestore.FieldValue.increment(1) }, { merge: true });
-  counterRef.onSnapshot((doc) => {
-    const totalHits = doc.exists ? (doc.data().count || 0) : 0;
-    const counterEl = document.getElementById('visitor-counter');
-    if (counterEl) {
-      counterEl.textContent = 'Stoned Visitors: ' + totalHits;
-    }
-  });
-
-    // ===== REAL-TIME PAGE RELOAD COUNTER =====
+  // ===== REAL-TIME PAGE RELOAD COUNTER =====
   const counterRef = db.collection('site_stats').doc('total_hits');
-
-  // 1. Add +1 every time ANYONE loads/refreshes the page
   counterRef.set({ count: firebase.firestore.FieldValue.increment(1) }, { merge: true });
-
-  // 2. Instantly update the text for EVERYONE looking at the site
   counterRef.onSnapshot((doc) => {
     const totalHits = doc.exists ? (doc.data().count || 0) : 0;
     const counterEl = document.getElementById('visitor-counter');
