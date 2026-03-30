@@ -844,7 +844,7 @@ li {
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
-.header-image.scroll-hidden {
+..scroll-hidden {
   transform: translateY(-30px) scale(0.95) !important;
 }
 
@@ -875,11 +875,12 @@ li {
   }
 }
 
-/* Ensure header image stretches FULL WIDTH and shows completely */
+/* Stretch entire image to fit inside the exact header box */
 .header-image {
   z-index: 5 !important;
   width: 100% !important;
-  height: auto !important;
+  height: 100% !important;
+  object-fit: fill !important; /* Forces the whole image inside the box */
   display: block !important;
   margin: 0 auto 10px auto !important;
   border-radius: 12px !important;
