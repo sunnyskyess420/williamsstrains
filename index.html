@@ -769,8 +769,15 @@ function toggleButton() {
 
   // ===== REAL-TIME PAGE RELOAD COUNTER =====
   const counterRef = db.collection('site_stats').doc('total_hits');
+  
+  // 1. Add +1 in the background
   counterRef.set({ count: firebase.firestore.FieldValue.increment(1) }, { merge: true });
+
+  // 2. Listen for the update, but SKIP the old cached number to prevent flicker
+  let gotRealData = false;
   counterRef.onSnapshot((doc) => {
+    if (!gotRealData && doc.metadata.fromCache) return;
+    gotRealData = true;
     const totalHits = doc.exists ? (doc.data().count || 0) : 0;
     const counterEl = document.getElementById('visitor-counter');
     if (counterEl) {
