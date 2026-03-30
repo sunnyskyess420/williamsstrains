@@ -102,7 +102,7 @@
 <!-- Visitor Badge -->
 <div style="width:100%; text-align:center; margin:10px 0 18px 0;">
   <div id="visitor-counter" style="display:inline-block;height:26px;line-height:26px;color:#00ff00;font-family:monospace;font-size:14px;font-weight:bold;text-shadow:0 0 6px #00ff00;">
-    Stoner Visitors: 0
+    Stoned Visitors: 0
   </div>
 </div>
   
@@ -780,7 +780,7 @@ function toggleButton() {
     const totalHits = doc.exists ? (doc.data().count || 0) : 0;
     const counterEl = document.getElementById('visitor-counter');
     if (counterEl) {
-      counterEl.textContent = 'Stoner Visitors: ' + totalHits;
+      counterEl.textContent = 'Stoned Visitors: ' + totalHits;
     }
   });
   // ===== END COUNTER =====
