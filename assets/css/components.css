@@ -875,10 +875,20 @@ li {
   }
 }
 
-/* Ensure header image doesn't interfere */
+/* Ensure header image doesn't interfere & STRETCHES PERFECTLY */
 .header-image {
   z-index: 5 !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 250px !important; /* Change 250px if you want it taller/shorter */
+  object-fit: cover !important; /* This is the magic stretching line! */
+  object-position: center !important; /* Keeps the text centered */
+  border-radius: 12px !important;
+  display: block !important;
+  margin: 0 auto 10px auto !important;
+  box-shadow: 0 8px 20px rgba(0, 255, 0, 0.15) !important;
 }
+
 /* FORCE: Tried dots NEVER show through sticky bars */
 .tried-checkmark,
 .tried-toggle,
