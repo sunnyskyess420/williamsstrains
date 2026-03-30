@@ -1079,7 +1079,7 @@ li {
   display: flex;
   gap: 8px;
   align-items: center;
-  position: relative; /* Keeps the emoji picker attached to this area */
+  flex-wrap: wrap; /* Lets the emoji grid drop to the next line */
 }
 
 #chatEmojiBtn:hover {
@@ -1087,17 +1087,16 @@ li {
 }
 
 #stoner-picker {
-  display: none; /* Hidden until clicked */
-  position: absolute;
-  bottom: 60px;
-  right: 0;
+  display: none;
+  width: 100%;
+  justify-content: center;
   background: rgba(0, 0, 0, 0.95);
   border: 1px solid rgba(0, 255, 0, 0.3);
   border-radius: 12px;
   padding: 10px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
   z-index: 999;
-  grid-template-columns: repeat(5, 1fr); /* 5 emojis per row */
+  grid-template-columns: repeat(5, 1fr);
   gap: 4px;
 }
 
@@ -1107,12 +1106,14 @@ li {
   text-align: center;
   padding: 6px;
   border-radius: 6px;
-  transition: background 0.2s;
-  display: inline-block;
 }
 
 #stoner-picker span:hover {
   background: rgba(0, 255, 0, 0.2);
+  transform: scale(1.2);
+}
+
+#chatEmojiBtn:hover {
   transform: scale(1.2);
 }
 
