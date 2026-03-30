@@ -336,7 +336,7 @@ li:hover .strain-name {
 .indica-strain  { background-color: #1a1a5e; } /* Dark Indigo/Blue */
 .sativa-strain  { background-color: #5e1a1a; } /* Dark Crimson/Red */
 .hybrid-strain  { background-color: #1a4d1a; } /* Dark Forest Green */
-.unknown-strain { background-color: #4d4d1a; color: #e0e0e0 !important; } /* Dark Olive/Gold */
+.unknown-strain { background-color: #635518; color: #e0e0e0 !important; } /* Dark Olive/Gold */
 
 
 /* ===== STRAIN NAME ===== */
