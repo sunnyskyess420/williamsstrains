@@ -875,16 +875,14 @@ li {
   }
 }
 
-/* Ensure header image doesn't interfere & FITS ENTIRE IMAGE */
+/* Ensure header image stretches FULL WIDTH and shows completely */
 .header-image {
   z-index: 5 !important;
   width: 100% !important;
   height: auto !important;
-  object-fit: contain !important; /* Changed to CONTAIN so nothing gets cropped */
-  object-position: center !important;
-  border-radius: 12px !important;
   display: block !important;
   margin: 0 auto 10px auto !important;
+  border-radius: 12px !important;
   box-shadow: 0 8px 20px rgba(0, 255, 0, 0.15) !important;
 }
 
