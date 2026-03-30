@@ -769,6 +769,22 @@ function toggleButton() {
   const db    = firebase.firestore();
   const auth  = firebase.auth();
 
+    // ===== REAL-TIME PAGE RELOAD COUNTER =====
+  const counterRef = db.collection('site_stats').doc('total_hits');
+
+  // 1. Add +1 every time ANYONE loads/refreshes the page
+  counterRef.set({ count: firebase.firestore.FieldValue.increment(1) }, { merge: true });
+
+  // 2. Instantly update the text for EVERYONE looking at the site
+  counterRef.onSnapshot((doc) => {
+    const totalHits = doc.exists ? (doc.data().count || 0) : 0;
+    const counterEl = document.getElementById('visitor-counter');
+    if (counterEl) {
+      counterEl.textContent = 'Stoned Visitors: ' + totalHits;
+    }
+  });
+  // ===== END COUNTER =====
+
   const messagesEl  = document.getElementById('chat-messages');
   const inputEl     = document.getElementById('chatInput');
   const sendBtn     = document.getElementById('chatSend');
@@ -958,8 +974,6 @@ function dismissPopupWithSound() {
   }
 }
 </script>
-
-<script data-goatcounter="https://wwwlcounter.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
 </body>
 </html>
