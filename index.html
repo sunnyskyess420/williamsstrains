@@ -769,6 +769,16 @@ function toggleButton() {
   const db    = firebase.firestore();
   const auth  = firebase.auth();
 
+    const counterRef = db.collection('site_stats').doc('total_hits');
+  counterRef.set({ count: firebase.firestore.FieldValue.increment(1) }, { merge: true });
+  counterRef.onSnapshot((doc) => {
+    const totalHits = doc.exists ? (doc.data().count || 0) : 0;
+    const counterEl = document.getElementById('visitor-counter');
+    if (counterEl) {
+      counterEl.textContent = 'Stoned Visitors: ' + totalHits;
+    }
+  });
+
     // ===== REAL-TIME PAGE RELOAD COUNTER =====
   const counterRef = db.collection('site_stats').doc('total_hits');
 
