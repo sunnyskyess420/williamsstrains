@@ -52,8 +52,8 @@
 }
 
 .strain-list-container {
-  position: relative !important; /* THIS LOCKS THE BUTTON INSIDE */
-  max-height: 50vh !important;
+  position: relative !important;
+  max-height: 65vh !important;
   min-height: auto !important;
 }
 

@@ -91,6 +91,7 @@ function searchStrains() {
     item.addEventListener('click', () => {
       const filter  = item.dataset.filter;
       const strains = document.querySelectorAll('.strain-list-container ul li');
+      const popup   = document.getElementById('noResultsPopup');
 
       document.querySelectorAll('.legend-item').forEach(i => i.classList.remove('active'));
       item.classList.add('active');
@@ -104,6 +105,19 @@ function searchStrains() {
           strain.classList.contains(filter) ? showWithFade(strain) : hideWithFade(strain);
         }
       });
+
+      // Show message when filter results in zero visible strains
+      const visibleAfter = document.querySelectorAll('li:not(.hidden)');
+      if (visibleAfter.length === 0) {
+        if (filter === 'tried') {
+          popup.innerHTML = '💜 Tap a leaf to mark strains tried!';
+        } else {
+          popup.innerHTML = '🌿 No strains found!';
+        }
+        popup.style.display = 'flex';
+      } else {
+        popup.style.display = 'none';
+      }
     });
   });
 

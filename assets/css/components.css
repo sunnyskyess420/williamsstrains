@@ -229,7 +229,6 @@
 /* ===== STRAIN LIST GRID ===== */
 .strain-list-container {
   overflow-y: auto;
-  max-height: 70vh;
   padding: 24px 15px;
   scrollbar-width: thin;
   scrollbar-color: #00ff00 #262626;
@@ -339,33 +338,35 @@ li:hover .strain-name {
   text-shadow: 0 0 5px #fff, 0 0 10px #00ff00;
 }
 
-/* Strain type background colors */
-.indica-strain  { background-color: #1a1a5e; } /* Dark Indigo/Blue */
-.sativa-strain  { background-color: #5e1a1a; } /* Dark Crimson/Red */
-.hybrid-strain  { background-color: #1a4d1a; } /* Dark Forest Green */
-.unknown-strain { background-color: #635518; color: #e0e0e0 !important; } /* Dark Olive/Gold */
+/* Strain type background colors + subtle borders */
+.indica-strain  { background-color: #1a1a5e; border: 1px solid rgba(100, 100, 255, 0.25); }
+.sativa-strain  { background-color: #5e1a1a; border: 1px solid rgba(255, 100, 100, 0.25); }
+.hybrid-strain  { background-color: #1a4d1a; border: 1px solid rgba(100, 255, 100, 0.25); }
+.unknown-strain { background-color: #635518; border: 1px solid rgba(255, 200, 100, 0.25); }
 
-
-/* ===== STRAIN NAME — always visible, site-matched green ===== */
+/* ===== STRAIN NAME — per-type contrast colors ===== */
 .strain-name {
-  color: #00ff00 !important;
   font-weight: normal;
   font-size: 1.0em;
 }
 
 .strain-name a {
   text-decoration: none !important;
-  color: #00ff00 !important;
 }
+
+.indica-strain .strain-name,
+.indica-strain .strain-name a   { color: #a8b4ff !important; }
+.sativa-strain .strain-name,
+.sativa-strain .strain-name a   { color: #ffb3b3 !important; }
+.hybrid-strain .strain-name,
+.hybrid-strain .strain-name a   { color: #b3ffb3 !important; }
+.unknown-strain .strain-name,
+.unknown-strain .strain-name a  { color: #ffe0a3 !important; }
 
 .strain-name a:hover {
   text-shadow: 0 0 5px #fff, 0 0 10px #00ff00;
 }
 
-.unknown-strain .strain-name,
-.unknown-strain .strain-name a {
-  color: #00ff00 !important;
-}
 
 /* ===== TRIED TOGGLE ===== */
 .tried-toggle {
@@ -385,7 +386,7 @@ li:hover .strain-name {
   width: 24px !important;
   height: 24px !important;
   border-radius: 50% !important;
-  border: 2px solid #00aa00 !important;
+  border: 2px solid #00aa00;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -403,6 +404,11 @@ li:hover .strain-name {
   z-index: 999 !important;
   cursor: pointer;
 }
+
+.indica-strain .tried-checkmark  { border-color: rgba(100, 100, 255, 0.6); }
+.sativa-strain .tried-checkmark  { border-color: rgba(255, 100, 100, 0.6); }
+.hybrid-strain .tried-checkmark  { border-color: rgba(100, 255, 100, 0.6); }
+.unknown-strain .tried-checkmark { border-color: rgba(255, 200, 100, 0.6); }
 
 .tried-toggle.checked .tried-checkmark {
   background-color: #4d1a3d !important;
@@ -436,17 +442,13 @@ li:hover .strain-name {
   height: 0 !important;
 }
 
-.strain-content {
-  display: contents !important;
-}
-
 li .strain-content {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  gap: 2px !important;
-  width: 100% !important;
-  flex-shrink: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2px;
+  width: 100%;
+  flex-shrink: 0;
 }
 
 
@@ -774,23 +776,6 @@ a.gradient-btn:active {
   padding: 12px !important;     /* Minimal wrapper */
 }
 
-li {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  flex-direction: row !important;
-  height: 70px !important;
-  text-align: center !important;
-}
-
-.strain-content {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 4px !important;
-  width: 100% !important;
-}
-
 .tried-label {
   display: flex !important;
   align-items: center !important;
@@ -886,9 +871,6 @@ li {
 /* Stretch entire image to fit inside the exact header box */
 .header-image {
   z-index: 5 !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: fill !important; /* Forces the whole image inside the box */
   display: block !important;
   margin: 0 auto 10px auto !important;
   border-radius: 12px !important;
@@ -1244,10 +1226,13 @@ li {
   box-shadow: none !important;
 }
 
-.search-container.neon-terminal-search #strainInput:focus {
+#strainInput:focus {
   outline: none !important;
   border-bottom: 2px solid #00ff00 !important;
   box-shadow: 0 4px 10px rgba(0, 255, 0, 0.2) !important;
+}
+#strainInput::placeholder {
+  color: rgba(0, 255, 0, 0.35) !important;
 }
 
 .search-container.neon-terminal-search #randomStrain {

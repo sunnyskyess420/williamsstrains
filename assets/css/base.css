@@ -14,18 +14,17 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #262626;
-  background-image: url('https://i.imgur.com/0bk5g7X.png');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-color: #1a1a1a;
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(0,255,0,0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0,100,0,0.04) 0%, transparent 50%);
   margin: 0;
   padding: 10px;
   color: #1a1a1a;
   min-height: 100vh;
   overscroll-behavior-y: auto;
   scrollbar-gutter: stable;
-    opacity: 0;
+  opacity: 0;
   animation: fadeIn 0.6s ease forwards;
 }
 
@@ -38,13 +37,13 @@ body {
 .container {
   width: 90%;
   max-width: 1200px;
-  background-color: rgba(30, 30, 30, 0.3);
+  background-color: rgba(20, 20, 20, 0.92);
   padding: 20px;
   overscroll-behavior-y: auto !important;
   margin: 10px auto;
   box-shadow: 0 0 15px rgba(0, 128, 0, 0.4);
   border-radius: 12px;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(15px);
   scroll-behavior: auto;
 }
 
@@ -114,19 +113,22 @@ h1 {
   display: block;
   width: 100%;
   max-height: 35vh;
-  object-fit: cover;
+  object-fit: contain;
   margin: 0 auto 20px;
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0,255,0,0.3);
-  backdrop-filter: blur(10px); /* Extra frost over image */
 }
 @media (max-width: 768px) { .header-image { max-height: 25vh; } }
 
 .frosted-section img.header-image {
-  width: calc(100% + 40px);  /* Expands beyond padding to fill full container width */
+  width: 100%;
   max-width: none;
-  margin: -20px -20px 20px;  /* Negative offsets padding, centers vertically */
-  height: calc(100vh * 0.3); /* Matches ~35vh but fills height too */
-  object-fit: cover;
+  margin: 0 auto 20px;
+  object-fit: contain;
+}
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll !important;
+  }
 }
 
