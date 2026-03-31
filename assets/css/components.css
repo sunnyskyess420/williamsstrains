@@ -346,15 +346,16 @@ li:hover .strain-name {
 .unknown-strain { background-color: #635518; color: #e0e0e0 !important; } /* Dark Olive/Gold */
 
 
-/* ===== STRAIN NAME ===== */
+/* ===== STRAIN NAME — always visible, site-matched green ===== */
 .strain-name {
+  color: #00ff00 !important;
   font-weight: normal;
   font-size: 1.0em;
 }
 
 .strain-name a {
   text-decoration: none !important;
-  color: #fff !important;
+  color: #00ff00 !important;
 }
 
 .strain-name a:hover {
@@ -363,7 +364,7 @@ li:hover .strain-name {
 
 .unknown-strain .strain-name,
 .unknown-strain .strain-name a {
-  color: #000 !important;
+  color: #00ff00 !important;
 }
 
 /* ===== TRIED TOGGLE ===== */
