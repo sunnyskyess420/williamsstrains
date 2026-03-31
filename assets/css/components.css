@@ -1,7 +1,7 @@
 /* =============================================================
    COMPONENTS.CSS — Legend, Search, Strain Cards, Toggles, Popup
    ============================================================= */
-
+   
 /* ===== LEGEND / FILTER BAR ===== */
 .legend {
   display: flex !important;
@@ -164,18 +164,19 @@
 }
 
 #exportTried {
-  display: block !important;
-  width: 100% !important;
-  max-width: 200px !important;
-  margin: 8px auto !important;
-  flex-shrink: 0 !important;
-  background: linear-gradient(135deg, #228B22, #006400) !important;
-  color: white !important;
-  border: none !important;
-  border-radius: 12px !important;
+  display: flex !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  background: rgba(0, 255, 0, 0.1) !important;
+  border: 1px solid rgba(0, 255, 0, 0.4) !important;
+  border-radius: 20px !important;
+  color: #00ff00 !important;
+  padding: 8px 20px !important;
+  font-size: 14px !important;
   font-weight: bold !important;
-  box-shadow: 0 4px 12px rgba(34, 139, 34, 0.3) !important;
   cursor: pointer !important;
+  flex-shrink: 0 !important;
 }
 
 #exportTried:hover {
@@ -184,16 +185,16 @@
 }
 
 #randomStrain {
-  background: rgba(30, 30, 30, 0.95) !important;
-  border: 2px solid #00ff00 !important;
+  background: rgba(0, 255, 0, 0.1) !important;
+  border: 1px solid rgba(0, 255, 0, 0.4) !important;
+  border-radius: 20px !important;
   color: #00ff00 !important;
-  padding: 14px 24px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
+  padding: 8px 20px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
   cursor: pointer;
   flex-shrink: 0;
-  min-width: 160px;
+  min-width: auto !important;
   white-space: nowrap;
   transition: all 0.3s ease;
 }
@@ -205,13 +206,19 @@
 
 #strainInput {
   flex-grow: 1;
-  padding: 12px;
-  border: 2px solid #00ff00;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.05);
-  color: #e0e0e0;
-  font-size: 16px;
-  transition: box-shadow 0.3s ease;
+  padding: 10px 5px !important;
+  border: none !important;
+  border-bottom: 2px solid rgba(0, 255, 0, 0.5) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #00ff00 !important;
+  font-size: 16px !important;
+  transition: all 0.3s ease !important;
+}
+#strainInput:focus {
+  outline: none !important;
+  border-bottom: 2px solid #00ff00 !important;
+  box-shadow: 0 4px 10px rgba(0, 255, 0, 0.2) !important;
 }
 
 #strainInput:focus {
@@ -844,7 +851,7 @@ li {
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
-..scroll-hidden {
+.scroll-hidden {
   transform: translateY(-30px) scale(0.95) !important;
 }
 
@@ -1187,10 +1194,10 @@ li {
     margin: 20px 10px !important;
   }
 
-  #chat-messages {
+ #chat-messages {
     height: 280px;
     padding: 12px;
-  }
+}
 
   .chat-bubble {
     max-width: 88%;
@@ -1203,4 +1210,95 @@ li {
   #chatInput {
     font-size: 16px; /* Prevents iOS zoom on focus */
   }
+}
+/* ===== SLEEK 1-LINE SEARCH (OVERRIDES OLD STYLES) ===== */
+.search-container.neon-terminal-search {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 12px !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  padding: 10px 0 !important;
+}
+
+.search-container.neon-terminal-search .search-header {
+  display: none !important; 
+}
+
+.search-container.neon-terminal-search #strainInput {
+  flex-grow: 1 !important;
+  min-width: 200px !important; 
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid rgba(0, 255, 0, 0.5) !important;
+  border-radius: 0 !important;
+  color: #00ff00 !important;
+  font-size: 16px !important;
+  padding: 10px 5px !important;
+  text-align: left !important;
+  box-shadow: none !important;
+}
+
+.search-container.neon-terminal-search #strainInput:focus {
+  outline: none !important;
+  border-bottom: 2px solid #00ff00 !important;
+  box-shadow: 0 4px 10px rgba(0, 255, 0, 0.2) !important;
+}
+
+.search-container.neon-terminal-search #randomStrain {
+  background: rgba(0, 255, 0, 0.1) !important;
+  border: 1px solid rgba(0, 255, 0, 0.4) !important;
+  border-radius: 20px !important;
+  color: #00ff00 !important;
+  font-size: 14px !important;
+  padding: 8px 20px !important;
+  min-width: auto !important;
+  min-height: auto !important;
+  height: auto !important;
+  box-shadow: none !important;
+}
+
+.search-container.neon-terminal-search #exportTried {
+  background: rgba(0, 255, 0, 0.1) !important;
+  border: 1px solid rgba(0, 255, 0, 0.4) !important;
+  border-radius: 20px !important;
+  color: #00ff00 !important;
+  font-size: 14px !important;
+  padding: 8px 20px !important;
+  min-width: auto !important;
+  min-height: auto !important;
+  height: auto !important;
+  max-width: none !important;
+  box-shadow: none !important;
+}
+/* ===== FROSTED INSTRUCTIONS PILL ===== */
+.instructions-bar {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin: 0 auto 20px auto !important;
+  padding: 8px 24px !important;
+  background: rgba(10, 10, 10, 0.7) !important; /* Dark translucent background */
+  backdrop-filter: blur(10px) !important; /* Blurs the background behind it */
+  border-radius: 30px !important; /* Pill shape */
+  border: 1px solid rgba(255, 255, 255, 0.05) !important; /* Subtle edge */
+  max-width: 650px !important;
+}
+
+.instructions-bar span {
+  color: #c0c0c0 !important; /* Bright enough to read easily */
+  font-size: 13px !important;
+  white-space: nowrap !important;
+}
+
+.instructions-bar .inst-divider {
+  color: #00ff00 !important; /* Little neon green dot divider */
+  font-size: 10px !important;
+  opacity: 0.5 !important;
 }

@@ -43,17 +43,7 @@
     justify-content: center !important;
   }
 
-  /* Save button drops to its own row */
-  #exportTried {
-    flex-basis: 100% !important;
-    margin-top: 12px !important;
-    align-self: center !important;
-    order: 999 !important;
-    z-index: 13 !important;
-    min-width: 220px !important;
-    max-width: 220px !important;
-  }
-}
+
 
 /* ===== STRAIN SCROLL CONTAINER ===== */
 .strain-scroll-container {
@@ -62,6 +52,7 @@
 }
 
 .strain-list-container {
+  position: relative !important; /* THIS LOCKS THE BUTTON INSIDE */
   max-height: 50vh !important;
   min-height: auto !important;
 }
@@ -69,28 +60,28 @@
 
 /* ===== STRAIN SCROLL BUTTON ===== */
 .strain-scroll-btn {
-  position: absolute;
-  bottom:20px !important;  /* Up 2 inches from 20px */
-  right: 20px;
-  background: rgba(0,255,0,0.9);
-  color: #000;
-  border: none;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  opacity: 0;
-  transition: all 0.3s ease;
-  z-index: 20;
-  box-shadow: 0 4px 15px rgba(0,255,0,0.5);
-  backdrop-filter: blur(10px);
+  position: absolute !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  background: rgba(0,255,0,0.9) !important;
+  color: #000 !important;
+  border: none !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  opacity: 0 !important;
+  transition: all 0.3s ease !important;
+  z-index: 20 !important;
+  box-shadow: 0 4px 15px rgba(0,255,0,0.5) !important;
+  padding: 0 !important;
+  line-height: 50px !important;
+  text-align: center !important;
 }
+
 .strain-scroll-btn.show {
-  opacity: 1;
-  transform: scale(1.05);
-}
-
-
-
+  opacity: 1 !important;
+  transform: scale(1.05) !important;
+}}
