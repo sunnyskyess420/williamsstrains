@@ -36,84 +36,71 @@
 <div class="container">
 
  <!-- Header Image Inside Frosted Container -->
- <!-- Header Image Inside Frosted Container -->
+ <!-- 1. YOUR HEADER IMAGE -->
 <img src="images/headlogo1.png" alt="Wildcats Weed Header" class="header-image" style="margin: 20px auto; display: block;">
 
-
-
-
-
-  <!-- ===== SEARCH BAR ===== -->
-  <div class="search-container">
-    <div class="search-header">
-      <label for="strainInput" style="color: #00ff00; font-weight: 600; margin: 0; white-space: nowrap;">Search Strains</label>
-      <span style="font-size: 18px; color: #a0ffb0;">🔍</span>
-    </div>
-    <input type="text" id="strainInput" placeholder="Enter strain name...">
-    <button id="randomStrain" style="background: transparent; border: 2px solid #00ff00; color: #00ff00;">Pick random?</button>
-    <button id="exportTried" class="gradient-btn">💾 Save My Strains</button>
-  </div>
-
-  <!-- ===== LEGEND / FILTER BAR ===== -->
-  <div class="legend">
-    
-    <div class="legend-item" data-filter="indica-strain">
-      <img src="images/indica-leaf.png" alt="Indica Leaf" class="legend-leaf">
-      <div class="legend-color" style="background-color: #1a1a5e;"></div>
-      <span style="color: #b0e0b0;">Indica (<span id="indicaCount"></span>)</span>
-    </div>
-
-    <div class="legend-item" data-filter="sativa-strain">
-      <img src="images/sativa-leaf.png" alt="Sativa Leaf" class="legend-leaf">
-      <div class="legend-color" style="background-color: #5e1a1a;"></div>
-      <span style="color: #b0e0b0;">Sativa (<span id="sativaCount"></span>)</span>
-    </div>
-
-    <div class="legend-item" data-filter="hybrid-strain">
-      <img src="images/hybrid-leaf.png" alt="Hybrid Leaf" class="legend-leaf">
-      <div class="legend-color" style="background-color: #1a4d1a;"></div>
-      <span style="color: #b0e0b0;">Hybrid (<span id="hybridCount"></span>)</span>
-    </div>
-
-    <div class="legend-item" data-filter="unknown-strain">
-      <img src="images/unknown-leaf.png" alt="Unknown Leaf" class="legend-leaf">
-      <div class="legend-color" style="background-color: #635518;"></div>
-      <span style="color: #b0e0b0;">Unknown (<span id="unknownCount"></span>)</span>
-    </div>
-
-    <div class="legend-item" data-filter="all">
-      <div class="legend-color" style="background: linear-gradient(to right, #1a1a5e 0% 25%, #5e1a1a 25% 50%, #1a4d1a 50% 75%, #635518 75% 100%)"></div>
-      <span style="color: #b0e0b0;"> All (<span id="totalCount"></span>)</span>
-    </div>
-
-    <div class="legend-item" data-filter="tried">
-      <div class="legend-color" style="background-color: #4d1a3d; position: relative; width: 24px; height: 24px;">💖</div>
-      <span style="color: #b0e0b0;">Tried (<span id="triedCount">0</span>)</span>
-    </div>
-
-  </div>
-  <!-- ===== END LEGEND ===== -->
-
- <!-- ===== INSTRUCTIONS ===== -->
-<p class="description" style="color: #00ff00; font-weight: bold; margin-bottom: 8px;">
-  <strong>Track tried strains:</strong> Click black circle on cards to mark teal with 💖 (tried). Click again to unmark.
-</p>
-<p class="description" style="color: #00ff00; font-weight: bold; margin-bottom: 8px;">
-  Tip: Use the search bar for strain names, or click Indica / Sativa / Hybrid to filter the cards.
-</p>
-<p class="description" style="color: #00ff00; font-weight: bold; margin-bottom: 20px;">
-  💾 <strong>Download list:</strong> Hit "Save My Strains" button to export CSV of your tried strains!
-</p>
-
-
-
+<!-- 2. STONED VISITORS -->
 <!-- Visitor Badge -->
 <div style="width:100%; text-align:center; margin:10px 0 18px 0;">
   <div id="visitor-counter" style="display:inline-block;height:26px;line-height:26px;color:#00ff00;font-family:monospace;font-size:14px;font-weight:bold;text-shadow:0 0 6px #00ff00;">
     Stoned Visitors: 🔥
   </div>
 </div>
-  
+
+<!-- 3. SEARCH BAR / CONTROLS -->
+<!-- ===== SEARCH BAR ===== -->
+<div class="search-container">
+  <input type="text" id="strainInput" placeholder="🔍 Search strains...">
+  <button id="randomStrain">🎲 Random</button>
+  <button id="exportTried" class="gradient-btn">💾 Save My Strains</button>
+</div>
+
+<!-- 4. LEGEND / FILTERS -->
+<!-- ===== LEGEND / FILTER BAR ===== -->
+<div class="legend">
+  <div class="legend-item" data-filter="indica-strain">
+    <img src="images/indica-leaf.png" alt="Indica Leaf" class="legend-leaf">
+    <div class="legend-color" style="background-color: #1a1a5e;"></div>
+    <span style="color: #b0e0b0;">Indica (<span id="indicaCount"></span>)</span>
+  </div>
+  <div class="legend-item" data-filter="sativa-strain">
+    <img src="images/sativa-leaf.png" alt="Sativa Leaf" class="legend-leaf">
+    <div class="legend-color" style="background-color: #5e1a1a;"></div>
+    <span style="color: #b0e0b0;">Sativa (<span id="sativaCount"></span>)</span>
+  </div>
+  <div class="legend-item" data-filter="hybrid-strain">
+    <img src="images/hybrid-leaf.png" alt="Hybrid Leaf" class="legend-leaf">
+    <div class="legend-color" style="background-color: #1a4d1a;"></div>
+    <span style="color: #b0e0b0;">Hybrid (<span id="hybridCount"></span>)</span>
+  </div>
+  <div class="legend-item" data-filter="unknown-strain">
+    <img src="images/unknown-leaf.png" alt="Unknown Leaf" class="legend-leaf">
+    <div class="legend-color" style="background-color: #635518;"></div>
+    <span style="color: #b0e0b0;">Unknown (<span id="unknownCount"></span>)</span>
+  </div>
+  <div class="legend-item" data-filter="all">
+    <div class="legend-color" style="background: linear-gradient(to right, #1a1a5e 0% 25%, #5e1a1a 25% 50%, #1a4d1a 50% 75%, #635518 75% 100%)"></div>
+    <span style="color: #b0e0b0;"> All (<span id="totalCount"></span>)</span>
+  </div>
+  <div class="legend-item" data-filter="tried">
+    <div class="legend-color" style="background-color: #4d1a3d; position: relative; width: 24px; height: 24px;">💖</div>
+    <span style="color: #b0e0b0;">Tried (<span id="triedCount">0</span>)</span>
+  </div>
+</div>
+<!-- ===== END LEGEND ===== -->
+
+<!-- 5. INSTRUCTIONS -->
+<!-- ===== SIMPLE INSTRUCTIONS ===== -->
+<div class="instructions-bar">
+  <span>Click black circles on cards to mark as tried 💖</span>
+  <span class="inst-divider">•</span>
+  <span>Hit "Save My Strains" to export your list</span>
+</div>
+
+<!-- THEN YOUR STRAIN LIST STARTS HERE... -->
+
+
+
 <div id="noResultsPopup" style="display: none !important; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 320px; height: 140px; background: rgba(10, 20, 10, 0.98) !important; backdrop-filter: blur(20px); border: 2px solid #00ff00; border-radius: 20px; font-size: 26px; font-weight: 700; color: #00ff00; text-shadow: 0 0 10px #00ff00; z-index: 10001; box-shadow: 0 20px 60px rgba(0,255,0,0.4), inset 0 0 20px rgba(0,255,0,0.1); text-align: center; animation: pulse-glow 2s infinite; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;">
   🌿 No strains found! 🌿
   <button id="dismissBtn" style="background: rgba(0,0,0,0.8); color: #00ff00; border: 1px solid #00ff00; border-radius: 10px; padding: 8px 16px; font-size: 14px; font-weight: 600; cursor: pointer; text-shadow: none; backdrop-filter: blur(10px);">Dismiss</button>
@@ -678,23 +665,18 @@ document.getElementById('dismissBtn').addEventListener('click', function() {
 <li class="hybrid-strain"><span class="strain-content tried-toggle"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://doobiecannabis.ca/products/er-what-zsweet" target="_blank" rel="noopener noreferrer">Zsweet</a></span></span></span></li>		
 </ul>
 
-<button id="strainScrollTop" class="strain-scroll-btn">↑</button>
-
+<button id="strainScrollTop" style="position: absolute !important; bottom: 20px !important; right: 20px !important; background: rgba(0,255,0,0.9) !important; color: #000 !important; border: none !important; width: 50px !important; height: 50px !important; border-radius: 50% !important; font-size: 20px !important; font-weight: bold !important; cursor: pointer !important; transition: all 0.3s ease !important; z-index: 20 !important; box-shadow: 0 4px 15px rgba(0,255,0,0.5) !important; padding: 0 !important; line-height: 50px !important; text-align: center !important;">↑</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const strainList = document.querySelector('.strain-list-container');
   const scrollBtn = document.getElementById('strainScrollTop');
   if (!strainList || !scrollBtn) return;
   
-  function toggleButton() {
-    const scrolled = strainList.scrollTop > 140;
-    scrollBtn.classList.toggle('show', scrolled);
-  }
+  strainList.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('show', strainList.scrollTop > 300);
+  }, { passive: true });
   
-  strainList.addEventListener('scroll', toggleButton);
-  toggleButton();
-  
-  scrollBtn.addEventListener('click', function() {
+  scrollBtn.addEventListener('click', () => {
     strainList.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
@@ -702,35 +684,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </div>
 
-</div><script>
-
-
-
-  // NEW Strain List Scroll-to-Top Button (Left Side)
-  document.addEventListener('DOMContentLoaded', function() {
-    const strainList = document.querySelector('.strain-list-container');
-    const scrollBtn = document.getElementById('strainScrollTop');
-
-    if (!strainList || !scrollBtn) return;
-
-   // In your toggleButton() function, replace with:
-function toggleButton() {
-  const scrolled = strainList.scrollTop;
-  const shouldShow = scrolled > 140;
-  
-  if (shouldShow) {
-    // Position fixed but aligned to strain-list-container
-    const rect = strainList.getBoundingClientRect();
-    scrollBtn.style.right = `${window.innerWidth - rect.right + 20}px`;  // 20px from container right
-    scrollBtn.style.bottom = `${window.innerHeight - rect.bottom + 15}px`; // 15px from container bottom
-  }
-  
-  scrollBtn.classList.toggle('show', shouldShow);
-}
-
-   });
-
-  </script>
+</div>
 </div>
 
         <!-- END of your strain list, export button, comments section, etc. -->
@@ -743,6 +697,7 @@ function toggleButton() {
       <div id="chat-container">
         <div id="chat-messages"></div>
           <div id="chat-input-area">
+            <button id="adminToggle" style="background:none; border:none; cursor:pointer; font-size:16px; padding:0 5px;">🔒</button>
           <input type="text" id="chatInput" placeholder="Say something..." maxlength="500" autocomplete="off">
           <button id="chatSend" aria-label="Send message">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -846,20 +801,33 @@ function toggleButton() {
     body.className = 'chat-body';
     body.innerHTML = sanitize(data.text);
     b.append(m, body);
+
+    // --- ADMIN DELETE BUTTON ---
+    const delBtn = document.createElement('span');
+    delBtn.className = 'admin-delete-btn';
+    delBtn.textContent = '✖';
+    delBtn.onclick = () => {
+      if (confirm('Delete this message?')) {
+        db.collection('chatMessages').doc(docId).delete().catch(err => console.error(err));
+        w.remove();
+      }
+    };
+    b.appendChild(delBtn);
+
     w.appendChild(b);
     if (docId) w.setAttribute('data-id', docId);
     return w;
   }
 
-  function scrollToBottom() { messagesEl.scrollTop = messagesEl.scrollHeight; }
+  function scrollToBottom() { messagesEl.scrollTop = 0; } // 0 means the very top!
   messagesEl.addEventListener('scroll', () => {
-    isAtBottom = messagesEl.scrollHeight - messagesEl.scrollTop - messagesEl.clientHeight < 80;
+    isAtBottom = messagesEl.scrollTop < 80; // Checks if you are near the top
   });
 
 function listenForMessages() {
   messagesEl.innerHTML = '';
   db.collection('chatMessages')
-    .orderBy('timestamp', 'asc')
+    .orderBy('timestamp', 'desc')
     .limit(50)
     .onSnapshot(snapshot => {
       snapshot.docChanges().forEach(change => {
@@ -878,8 +846,8 @@ function listenForMessages() {
           if (messagesEl.querySelector(`[data-id="${change.doc.id}"]`)) return;
 
           const el = createMessageEl(change.doc.data(), change.doc.id);
-          messagesEl.appendChild(el);
-          scrollToBottom();
+          messagesEl.prepend(el);
+          if (isAtBottom) scrollToBottom();
         }
       });
     });
@@ -923,7 +891,7 @@ function sendMessage() {
     displayName: chatName,
     timestamp: { toDate: () => new Date() }
   }, tempId);
-  messagesEl.appendChild(el);
+  messagesEl.prepend(el);
   scrollToBottom();
 
   db.collection('chatMessages').add({
@@ -961,6 +929,21 @@ function sendMessage() {
     console.error(err);
     statusEl.textContent = 'Could not connect. Refresh to retry.';
   });
+
+  // --- ADMIN MODE TOGGLE ---
+  const adminBtn = document.getElementById('adminToggle');
+  if (adminBtn) {
+    adminBtn.addEventListener('click', () => {
+      const pass = prompt("Enter admin password:");
+      if (pass === 'Champion420') { // <--- CHANGE 'champion420' TO WHATEVER PASSWORD YOU WANT!
+        messagesEl.classList.toggle('admin-mode');
+        adminBtn.textContent = messagesEl.classList.contains('admin-mode') ? '🔓' : '🔒';
+      } else if (pass !== null) {
+        alert('Wrong password.');
+      }
+    });
+  }
+
 })();
 </script>
 
