@@ -4,47 +4,48 @@
    
 /* ===== LEGEND / FILTER BAR ===== */
 .legend {
-  display: flex !important;
-  justify-content: center !important;
-  gap: 6px !important; /* Even spacing side-by-side */
-  margin-bottom: 8px !important;
-  padding: 4px 0 !important; /* Thin height */
-  border-bottom: 2px solid #00ff00 !important;
-  flex-wrap: wrap !important; /* Allow wrap only if screen tiny */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 6px 16px;
+  border-bottom: 2px solid #00ff00;
   position: sticky;
   top: 60px;
   background-color: rgba(30, 30, 30, 0.95);
-  z-index: 13 !important;
+  z-index: 90;
   overscroll-behavior: contain;
   font-size: 14px;
   transition: transform 0.3s ease;
 }
 
 .legend.hide {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  transform: translateY(-100%) !important;
-  transition: all 0.3s ease !important;
-  z-index: 20 !important;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-100%);
+  transition: all 0.3s ease;
+  z-index: 20;
 }
 
 .legend-item {
-  display: flex !important;
-  align-items: center !important; /* Vertical center */
-  justify-content: center !important; /* Horizontal center */
-  gap: 4px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   cursor: pointer;
   user-select: none;
   position: relative;
-  border-radius: 6px !important;
-  padding: 6px 8px !important; /* Compact, uniform size */
+  border-radius: 6px;
+  padding: 6px 10px;
   background: transparent;
   border: none;
-  margin: 0 !important; /* NO margins = no stacking */
+  margin: 0;
   transition: all 0.2s;
   font-size: 14px;
-  flex: 0 0 auto !important; /* Width to content */
-  min-height: 28px !important; /* Uniform short height */
+  flex: 0 0 auto;
+  min-height: 30px;
+  white-space: nowrap;
+  overflow: visible;
 }
 
 .legend-item::before {
@@ -57,34 +58,38 @@
   z-index: -1;
 }
 
-.legend-item .legend-leaf {
-  overflow: visible !important;
-}
-
 .legend-item:hover,
 .legend-item.active {
-  background: #228B22 !important;
-  box-shadow: 0 0 12px rgba(34, 139, 34, 0.6) !important;
-  transform: scale(1.05) !important;
+  background: #228B22;
+  box-shadow: 0 0 12px rgba(34, 139, 34, 0.6);
+  transform: scale(1.05);
 }
 
+/* Leaf — normal flex item, sits first */
+.legend-item .legend-leaf {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  overflow: visible;
+  position: static;
+}
+
+/* Color square — normal flex item, sits after leaf */
 .legend-color {
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
   border: 1px solid #e8e8e8;
-  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
   flex-shrink: 0;
 }
 
+/* Text after color */
 .legend-item span {
   font-size: 14px;
-  margin-left: 4px !important; /* Tight gap */
-  flex-shrink: 0;
+  margin-left: 2px;
 }
 
 .legend-item.active span {
@@ -92,28 +97,14 @@
   font-weight: bold;
 }
 
-.legend {
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  gap: 4px !important;
-  padding: 4px 12px !important;
-  margin: 0 !important;
-  justify-content: center !important;
-  align-items: center !important;
+/* All/Tried — slightly wider, still centered */
+.legend-item[data-filter="all"],
+.legend-item[data-filter="tried"] {
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  min-height: 34px;
 }
-
-.legend-item {
-  margin: 0 !important;
-  padding: 6px 10px !important;
-  flex-shrink: 1 !important;
-  max-width: 80px !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis;
-}
-
-
-
 
 /* ===== SEARCH CONTAINER ===== */
 .search-container {
@@ -234,8 +225,7 @@
   scrollbar-color: #00ff00 #262626;
   overscroll-behavior-y: auto !important;
   scroll-behavior: auto;
-  z-index: 3 !important;
-}
+  }
 
 .strain-list-container::-webkit-scrollbar {
   display: block !important;  /* Visible */
@@ -401,7 +391,6 @@ li:hover .strain-name {
   max-height: 24px !important;
   line-height: 1 !important;
   box-sizing: content-box !important;
-  z-index: 999 !important;
   cursor: pointer;
 }
 
@@ -458,8 +447,7 @@ li .strain-content {
   border: 3px solid #00ff00 !important;
   box-shadow: 0 0 20px #00ff00 !important;
   animation: pulseRandom 1s infinite;
-  z-index: 10;
-}
+  }
 
 @keyframes pulseRandom {
   0%, 100% { box-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00; }
@@ -492,7 +480,6 @@ a.gradient-btn:active {
   font-weight: bold;
   text-align: center;
   border-radius: 12px;
-  z-index: 10000;
   box-shadow: 0 0 20px #00ff00;
 }
 
@@ -522,27 +509,6 @@ a.gradient-btn:active {
   z-index: 9999;
 }
 @media (min-width: 400px) {
-  .legend {
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    gap: 8px !important;
-    padding: 6px 16px !important;
-    width: 100% !important;
-    overflow-x: auto !important;
-    scrollbar-width: thin !important;
-  }
-
-  .legend-item {
-    margin: 0 !important;
-    padding: 8px 12px !important;
-    min-width: auto !important;
-    max-width: none !important;
-    width: auto !important;
-    flex: 0 0 auto !important;
-    white-space: nowrap !important;
-    overflow: visible !important;
-    flex-shrink: 0 !important;
-  }
 
   .legend-item span {
     margin-left: 6px !important;
@@ -552,17 +518,7 @@ a.gradient-btn:active {
   }
 }
 
-.legend {
-  gap: 4px !important;
-  padding: 2px 8px !important; /* Much thinner */
-  font-size: 13px !important; /* Smaller text */
-}
 
-.legend-item {
-  padding: 4px 6px !important; /* Tiny */
-  min-height: 22px !important; /* Short */
-  font-size: 13px !important;
-}
 
 .legend-color {
   width: 16px !important;
@@ -574,18 +530,6 @@ a.gradient-btn:active {
   font-size: 13px !important;
 }
 
-/* Types top row, All/Tried bottom */
-.legend-item[data-filter="indica"],
-.legend-item[data-filter="sativa"],
-.legend-item[data-filter="hybrid"],
-.legend-item[data-filter="unknown"] {
-  order: -1; /* Top */
-}
-
-.legend-item[data-filter="all"],
-.legend-item[data-filter="tried"] {
-  order: 1; /* Bottom */
-}
 
 .legend {
   flex-wrap: wrap !important; /* Enable 2 rows */
@@ -603,36 +547,11 @@ a.gradient-btn:active {
   order: -1 !important; /* Force Unknown top */
 }
 
-.legend {
-  gap: 2px 4px !important; /* Tight row/column */
-}
-
-.legend-item[data-filter="indica"],
-.legend-item[data-filter="sativa"],
-.legend-item[data-filter="hybrid"],
-.legend-item[data-filter="unknown"] {
-  flex: 0 0 auto !important;
-  margin-right: 2px !important;
-}
-
 .legend-item[data-filter="all"],
 .legend-item[data-filter="tried"] {
   flex: 1 0 auto !important; /* Grow bottom row */
   max-width: 120px !important;
 }
-.legend-item .legend-leaf {
-  width: 12px !important;
-  height: 12px !important; /* Half size */
-  left: -6px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-}
-
-.legend-color {
-  width: 14px !important;
-  height: 14px !important; /* Match small leaf */
-}
-
 .legend-item {
   padding: 3px 6px !important; /* Shrink box */
   min-height: 20px !important; /* Much shorter */
@@ -650,14 +569,6 @@ a.gradient-btn:active {
   gap: 3px !important;
 }
 
-.legend-item .legend-leaf {
-  width: 22px !important;  /* Nice medium—adjust 16-20px as needed */
-  height: 22px !important;
-  left: -9px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-}
-
 .legend-color {
   width: 18px !important;  /* Match leaf */
   height: 18px !important;
@@ -666,54 +577,6 @@ a.gradient-btn:active {
 .legend-item {
   min-height: 24px !important; /* Slight height bump for icons */
 }
-.legend-item .legend-leaf {
-  position: absolute !important;
-  width: 22px !important;
-  height: 22px !important;
-  left: 8px !important;     /* Start of box + offset */
-  top: 50% !important;
-  transform: translateY(-50%) !important; /* Vertical center */
-  z-index: 3 !important;    /* In front */
-}
-
-.legend-color {
-  margin-left: 26px !important; /* Push color/text right of leaf */
-  width: 18px !important;
-  height: 18px !important;
-}
-
-.legend-item {
-  padding-left: 32px !important; /* Room for leaf */
-  min-height: 26px !important;
-  overflow: visible !important;
-}
-.legend-item {
-  justify-content: flex-start !important; /* Left-align contents */
-  align-items: center !important;
-  padding: 4px 8px !important;
-  min-height: 28px !important; /* Taller for Show All */
-  gap: 4px !important;
-}
-
-.legend-color {
-  flex-shrink: 0 !important;
-  margin-right: 4px !important; /* Space before text */
-}
-
-.legend-item span {
-  flex-grow: 1 !important;
-  text-align: center !important; /* Center name/number */
-  margin-left: 0 !important;
-}
-
-.legend-item[data-filter="all"],
-.legend-item[data-filter="tried"] {
-  justify-content: center !important; /* Full box center */
-  gap: 6px !important;
-  padding: 4px 12px !important;
-  min-height: 30px !important;
-}
-
 .legend-item[data-filter="all"] .legend-color,
 .legend-item[data-filter="tried"] .legend-color {
   order: -1 !important; /* Color left of text */
@@ -855,11 +718,6 @@ a.gradient-btn:active {
 @media (max-width: 768px) {
   .strain-list-container {
     z-index: 1 !important;
-  }
-  
-  .search-container,
-  .legend {
-    z-index: 15 !important;  /* Higher than strain list */
   }
   
   .tried-checkmark,
@@ -1160,6 +1018,25 @@ a.gradient-btn:active {
 
 #chatSend:active {
   transform: scale(0.95);
+}
+
+/* ----- DELETE BUTTONS ----- */
+.admin-delete-btn {
+  display: none !important;
+}
+
+.admin-mode .admin-delete-btn {
+  display: inline-block !important;
+  cursor: pointer;
+  color: #ff4444;
+  margin-left: 8px;
+  font-size: 12px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.admin-mode .admin-delete-btn:hover {
+  opacity: 1;
 }
 
 /* ----- STATUS ----- */

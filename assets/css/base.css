@@ -129,4 +129,12 @@ h1 {
     background-attachment: scroll !important;
   }
 }
-
+/* ===== Z-INDEX STACKING ORDER ===== */
+.strain-list-container { z-index: 1; }
+.tried-checkmark,
+.tried-toggle,
+.tried-toggle * { z-index: 2; position: relative; }
+.legend { z-index: 10; }
+.search-container { z-index: 20; }
+#noResultsPopup { z-index: 1000; }
+#strainScrollTop { z-index: 1001; }
