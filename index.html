@@ -26,6 +26,10 @@
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/utilities.css">
 
+   <!-- ADD THESE TWO LINES FOR FIREBASE -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
 
 </head>
   
@@ -665,7 +669,15 @@ document.getElementById('dismissBtn').addEventListener('click', function() {
 <li class="hybrid-strain"><span class="strain-content tried-toggle"><input type="checkbox"><span class="tried-checkmark"></span><span class="tried-label"><span class="strain-name"><a href="https://doobiecannabis.ca/products/er-what-zsweet" target="_blank" rel="noopener noreferrer">Zsweet</a></span></span></span></li>		
 </ul>
 
-<button id="strainScrollTop" style="position: absolute !important; bottom: 20px !important; right: 20px !important; background: rgba(0,255,0,0.9) !important; color: #000 !important; border: none !important; width: 50px !important; height: 50px !important; border-radius: 50% !important; font-size: 20px !important; font-weight: bold !important; cursor: pointer !important; transition: all 0.3s ease !important; z-index: 20 !important; box-shadow: 0 4px 15px rgba(0,255,0,0.5) !important; padding: 0 !important; line-height: 50px !important; text-align: center !important;">↑</button>
+<button id="strainScrollTop">↑</button>
+
+
+
+</div>
+
+</div>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const strainList = document.querySelector('.strain-list-container');
@@ -681,11 +693,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
-
-</div>
-
-</div>
-</div>
 
         <!-- END of your strain list, export button, comments section, etc. -->
     </div>  <!-- ← This is the closing tag for .container -->
@@ -733,11 +740,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // ===== REAL-TIME PAGE RELOAD COUNTER =====
   const counterRef = db.collection('site_stats').doc('total_hits');
-  
-  // 1. Add +1 in the background
   counterRef.set({ count: firebase.firestore.FieldValue.increment(1) }, { merge: true });
 
-  // 2. Listen for the update, but SKIP the old cached number to prevent flicker
   let gotRealData = false;
   counterRef.onSnapshot((doc) => {
     if (!gotRealData && doc.metadata.fromCache) return;
@@ -819,39 +823,34 @@ document.addEventListener('DOMContentLoaded', function() {
     return w;
   }
 
-  function scrollToBottom() { messagesEl.scrollTop = 0; } // 0 means the very top!
+  function scrollToBottom() { messagesEl.scrollTop = 0; } 
   messagesEl.addEventListener('scroll', () => {
-    isAtBottom = messagesEl.scrollTop < 80; // Checks if you are near the top
+    isAtBottom = messagesEl.scrollTop < 80; 
   });
 
-function listenForMessages() {
-  messagesEl.innerHTML = '';
-  db.collection('chatMessages')
-    .orderBy('timestamp', 'desc')
-    .limit(50)
-    .onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
-        if (change.type === 'added') {
-          
-          // If it's your own message coming back from the server, just update the ID
-          if (change.doc.data().uid === userId) {
-            const tempEl = messagesEl.querySelector(`[data-id^="temp-"]`);
-            if (tempEl) {
-              tempEl.setAttribute('data-id', change.doc.id);
-              return; // Stop here so it doesn't add a second bubble
+  function listenForMessages() {
+    messagesEl.innerHTML = '';
+    db.collection('chatMessages')
+      .orderBy('timestamp', 'desc')
+      .limit(50)
+      .onSnapshot(snapshot => {
+        snapshot.docChanges().forEach(change => {
+          if (change.type === 'added') {
+            if (change.doc.data().uid === userId) {
+              const tempEl = messagesEl.querySelector(`[data-id^="temp-"]`);
+              if (tempEl) {
+                tempEl.setAttribute('data-id', change.doc.id);
+                return; 
+              }
             }
+            if (messagesEl.querySelector(`[data-id="${change.doc.id}"]`)) return;
+            const el = createMessageEl(change.doc.data(), change.doc.id);
+            messagesEl.prepend(el);
+            if (isAtBottom) scrollToBottom();
           }
-
-          // Normal check for duplicates from other people
-          if (messagesEl.querySelector(`[data-id="${change.doc.id}"]`)) return;
-
-          const el = createMessageEl(change.doc.data(), change.doc.id);
-          messagesEl.prepend(el);
-          if (isAtBottom) scrollToBottom();
-        }
+        });
       });
-    });
-}
+  }
 
   function getChatName() {
     let name = localStorage.getItem('wildcatChatName');
@@ -870,49 +869,36 @@ function listenForMessages() {
     return name;
   }
 
-function sendMessage() {
-  const text = inputEl.value.trim();
-  if (!text || !userId) return;
+  function sendMessage() {
+    const text = inputEl.value.trim();
+    if (!text || !userId) return;
 
-  if (sendMessage._locked) return;
-  sendMessage._locked = true;
-  sendBtn.disabled = true;
-  sendBtn.style.opacity = '0.4';
-  sendBtn.style.cursor = 'not-allowed';
+    inputEl.value = '';
+    inputEl.focus();
 
-  inputEl.value = '';
-  inputEl.focus();
+    const tempId = 'temp-' + Date.now();
+    const chatName = getChatName();
 
-  const tempId = 'temp-' + Date.now();
-  const chatName = getChatName();
+    const el = createMessageEl({
+      text, uid: userId, color: userColor,
+      displayName: chatName,
+      timestamp: { toDate: () => new Date() }
+    }, tempId);
+    messagesEl.prepend(el);
+    scrollToBottom();
 
-  const el = createMessageEl({
-    text, uid: userId, color: userColor,
-    displayName: chatName,
-    timestamp: { toDate: () => new Date() }
-  }, tempId);
-  messagesEl.prepend(el);
-  scrollToBottom();
-
-  db.collection('chatMessages').add({
-    text, uid: userId, color: userColor,
-    displayName: chatName,
-    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    expiresAt: firebase.firestore.FieldValue.serverTimestamp()
-  }).catch(err => {
-    console.error(err);
-    el.remove();
-    statusEl.textContent = 'Failed to send.';
-    setTimeout(() => statusEl.textContent = '', 3000);
-  });
-
-  setTimeout(() => {
-    sendMessage._locked = false;
-    sendBtn.disabled = false;
-    sendBtn.style.opacity = '1';
-    sendBtn.style.cursor = 'pointer';
-  }, 3000);
-}
+    db.collection('chatMessages').add({
+      text, uid: userId, color: userColor,
+      displayName: chatName,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      expiresAt: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(err => {
+      console.error(err);
+      el.remove();
+      statusEl.textContent = 'Failed to send.';
+      setTimeout(() => statusEl.textContent = '', 3000);
+    });
+  }
 
   sendBtn.addEventListener('click', sendMessage);
   inputEl.addEventListener('keydown', e => {
@@ -935,7 +921,7 @@ function sendMessage() {
   if (adminBtn) {
     adminBtn.addEventListener('click', () => {
       const pass = prompt("Enter admin password:");
-      if (pass === 'Champion420') { // <--- CHANGE 'champion420' TO WHATEVER PASSWORD YOU WANT!
+      if (pass === 'Champion420') { 
         messagesEl.classList.toggle('admin-mode');
         adminBtn.textContent = messagesEl.classList.contains('admin-mode') ? '🔓' : '🔒';
       } else if (pass !== null) {
@@ -967,6 +953,11 @@ function dismissPopupWithSound() {
   }
 }
 </script>
+
+  <!-- YOUR OTHER SCRIPTS ARE PROBABLY HERE -->
+  <script src="app.js"></script>
+  <script src="scroll.js"></script>
+
 
 </body>
 </html>
