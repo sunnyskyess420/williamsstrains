@@ -1,16 +1,12 @@
-/* =============================================================
-   APP.JS — Core logic: search, filter, tried tracking, export,
-             counts, popup sound observer
-   ============================================================= */
-
 document.addEventListener('DOMContentLoaded', function () {
-
-  /* ----- CACHED DOM REFERENCES ----- */
   const strainInput = document.getElementById('strainInput');
   const noResultsPopup = document.getElementById('noResultsPopup');
+  const popupMessage = document.getElementById('popupMessage');
   const popupSound = document.getElementById('popupSound');
+  const dismissBtn = document.getElementById('dismissBtn');
   const randomStrainButton = document.getElementById('randomStrain');
   const exportTriedButton = document.getElementById('exportTried');
+  const strainList = document.getElementById('strainList');
 
   const counts = {
     indica: document.getElementById('indicaCount'),
@@ -21,20 +17,70 @@ document.addEventListener('DOMContentLoaded', function () {
     tried: document.getElementById('triedCount')
   };
 
-  const strainListContainer = document.querySelector('.strain-list-container');
-  const strainItems = strainListContainer
-    ? Array.from(strainListContainer.querySelectorAll('li'))
-    : [];
   const legendItems = Array.from(document.querySelectorAll('.legend .legend-item'));
-  const triedToggles = strainItems
-    .map((li) => li.querySelector('.tried-toggle'))
-    .filter(Boolean);
 
-  /* ----- STATE ----- */
+  let strainItems = [];
+  let triedToggles = [];
   let triedStrains = JSON.parse(localStorage.getItem('wildcatTriedStrains') || '[]');
   let pendingCountTimer = null;
 
-  /* ----- COUNT DISPLAY ----- */
+  function createStrainItem(strain) {
+    const li = document.createElement('li');
+    li.className = strain.type || 'unknown-strain';
+
+    const safeName = (strain.name || 'Unknown').trim();
+    const safeUrl = (strain.url || '').trim();
+    const nameMarkup = safeUrl
+      ? `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${safeName}</a>`
+      : safeName;
+
+    li.innerHTML = `
+      <span class="strain-content tried-toggle">
+        <input type="checkbox">
+        <span class="tried-checkmark"></span>
+        <span class="tried-label">
+          <span class="strain-name">${nameMarkup}</span>
+        </span>
+      </span>
+    `;
+
+    return li;
+  }
+
+  function renderStrains() {
+    if (!strainList) {
+  console.error('Missing #strainList');
+  return;
+}
+
+if (!Array.isArray(window.STRAINS)) {
+  console.error('STRAINS failed to load');
+  strainList.innerHTML = '<li class="unknown-strain">Strain data failed to load.</li>';
+  return;
+}
+
+    const fragment = document.createDocumentFragment();
+
+    window.STRAINS.forEach((strain) => {
+      fragment.appendChild(createStrainItem(strain));
+    });
+
+    strainList.innerHTML = '';
+    strainList.appendChild(fragment);
+  }
+
+  function cacheStrainReferences() {
+    strainItems = strainList ? Array.from(strainList.querySelectorAll('li')) : [];
+    triedToggles = strainItems
+      .map((li) => li.querySelector('.tried-toggle'))
+      .filter(Boolean);
+  }
+
+  function getStrainName(li) {
+    const nameEl = li.querySelector('.strain-name');
+    return nameEl ? nameEl.textContent.trim().replace(/\s+/g, ' ').trim() : '';
+  }
+
   function updateCounts() {
     let indicaCount = 0;
     let sativaCount = 0;
@@ -72,7 +118,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }, delay);
   }
 
-  /* ----- ANIMATION HELPERS ----- */
   function hideWithFade(el, deferCountUpdate = false) {
     el.classList.remove('fade-in');
     el.classList.add('fade-out');
@@ -88,7 +133,32 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!deferCountUpdate) updateCounts();
   }
 
-  /* ----- SEARCH ----- */
+  function showPopup(message) {
+    if (!noResultsPopup) return;
+    if (popupMessage) popupMessage.textContent = message;
+    noResultsPopup.style.display = 'flex';
+  }
+
+  function hidePopup() {
+    if (!noResultsPopup) return;
+    noResultsPopup.style.display = 'none';
+  }
+
+  function restoreTriedStates() {
+    triedToggles.forEach((toggle) => {
+      const li = toggle.closest('li');
+      if (!li) return;
+
+      const name = getStrainName(li);
+      if (triedStrains.includes(name)) {
+        const checkbox = toggle.querySelector('input[type="checkbox"]');
+        if (checkbox) checkbox.checked = true;
+        toggle.classList.add('checked');
+        li.classList.add('tried');
+      }
+    });
+  }
+
   function searchStrains() {
     if (!strainInput) return;
 
@@ -97,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!query) {
       strainItems.forEach((strain) => showWithFade(strain, true));
       legendItems.forEach((item) => item.classList.remove('active'));
-      if (noResultsPopup) noResultsPopup.style.display = 'none';
+      hidePopup();
       scheduleCountsUpdate();
       return;
     }
@@ -107,8 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let hasHiddenChanges = false;
 
     strainItems.forEach((strain) => {
-      const nameEl = strain.querySelector('.strain-name');
-      const name = nameEl ? nameEl.textContent.toLowerCase() : '';
+      const name = getStrainName(strain).toLowerCase();
       const match = words.every((word) => name.includes(word));
 
       if (match) {
@@ -120,11 +189,10 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    if (noResultsPopup && visibleCount === 0) {
-      noResultsPopup.innerHTML = '🌿 OOO A new one! 🌿';
-      noResultsPopup.style.display = 'flex';
-    } else if (noResultsPopup) {
-      noResultsPopup.style.display = 'none';
+    if (visibleCount === 0) {
+      showPopup('🌿 OOO A new one! 🌿');
+    } else {
+      hidePopup();
     }
 
     scheduleCountsUpdate(hasHiddenChanges ? 300 : 0);
@@ -138,7 +206,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ----- LEGEND FILTER ----- */
   legendItems.forEach((item) => {
     item.addEventListener('click', () => {
       const filter = item.dataset.filter;
@@ -168,68 +235,62 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
 
-      if (noResultsPopup) {
-        if (visibleCount === 0) {
-          noResultsPopup.innerHTML = filter === 'tried'
-            ? '💜 Tap a leaf to mark strains tried!'
-            : '🌿 No strains found!';
-          noResultsPopup.style.display = 'flex';
-        } else {
-          noResultsPopup.style.display = 'none';
-        }
+      if (visibleCount === 0) {
+        showPopup(filter === 'tried'
+          ? '💜 Tap a leaf to mark strains tried!'
+          : '🌿 No strains found!');
+      } else {
+        hidePopup();
       }
 
       scheduleCountsUpdate(hasHiddenChanges ? 300 : 0);
     });
   });
 
-  /* ----- TRIED TOGGLE ----- */
-  document.addEventListener('click', function (e) {
-    if (!e.target.classList.contains('tried-checkmark')) return;
-    e.preventDefault();
-    e.stopPropagation();
-
-    const toggle = e.target.closest('.tried-toggle');
-    if (!toggle) return;
-
-    const li = toggle.closest('li');
+function bindTriedToggles() {
+  document.querySelectorAll('.tried-toggle:not(.bound)').forEach((toggle) => {
+    toggle.classList.add('bound');
     const checkbox = toggle.querySelector('input[type="checkbox"]');
-    if (!li || !checkbox) return;
+    const checkmark = toggle.querySelector('.tried-checkmark');
+    if (!checkbox || !checkmark) return;
 
-    const nameEl = li.querySelector('.strain-name');
-    const name = nameEl ? nameEl.textContent.trim().replace(/\s+/g, ' ').trim() : '';
-
-    const isChecked = checkbox.checked = !checkbox.checked;
-    toggle.classList.toggle('checked', isChecked);
-    li.classList.toggle('tried', isChecked);
-
-    if (isChecked) {
-      if (name && !triedStrains.includes(name)) triedStrains.push(name);
-    } else {
-      triedStrains = triedStrains.filter((strainName) => strainName !== name);
-    }
-
-    localStorage.setItem('wildcatTriedStrains', JSON.stringify(triedStrains));
-    updateCounts();
-  }, true);
-
-  /* Restore saved tried states on page load */
-  triedToggles.forEach((toggle) => {
-    const li = toggle.closest('li');
-    if (!li) return;
-
-    const nameEl = li.querySelector('.strain-name');
-    const name = nameEl ? nameEl.textContent.trim().replace(/\s+/g, ' ').trim() : '';
-
-    if (triedStrains.includes(name)) {
-      const checkbox = toggle.querySelector('input[type="checkbox"]');
-      if (checkbox) checkbox.checked = true;
-      toggle.classList.add('checked');
-      li.classList.add('tried');
-    }
+    checkmark.onclick = (e) => {
+      console.log('CLICK');
+      e.preventDefault();
+      e.stopPropagation();
+      const li = toggle.closest('li');
+      if (!li) return;
+      const name = getStrainName(li);
+      const isChecked = !checkbox.checked;
+      checkbox.checked = isChecked;
+      toggle.classList.toggle('checked', isChecked);
+      li.classList.toggle('tried', isChecked);
+      if (isChecked) {
+        if (name && !triedStrains.includes(name)) triedStrains.push(name);
+      } else {
+        triedStrains = triedStrains.filter((strainName) => strainName !== name);
+      }
+      clearTimeout(window.saveTimeout);
+      window.saveTimeout = setTimeout(() => {
+        localStorage.setItem('wildcatTriedStrains', JSON.stringify(triedStrains));
+      }, 300);
+      updateCounts();
+    };
   });
+}
 
-  /* ----- RANDOM PICKER ----- */
+  if (dismissBtn) {
+    dismissBtn.addEventListener('click', () => {
+      hidePopup();
+
+      if (popupSound) {
+        popupSound.currentTime = 0;
+        popupSound.volume = 0.5;
+        popupSound.play().catch((e) => console.error('Sound failed:', e));
+      }
+    });
+  }
+
   if (randomStrainButton) {
     randomStrainButton.addEventListener('click', () => {
       const visible = strainItems.filter((strain) => !strain.classList.contains('hidden'));
@@ -239,61 +300,78 @@ document.addEventListener('DOMContentLoaded', function () {
       strainItems.forEach((li) => li.classList.remove('random-highlight'));
       random.classList.add('random-highlight');
       random.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
       setTimeout(() => random.classList.remove('random-highlight'), 3000);
     });
   }
 
-  /* ----- CSV EXPORT ----- */
-  if (exportTriedButton) {
-    exportTriedButton.addEventListener('click', () => {
-      const tried = strainItems
-        .filter((li) => li.classList.contains('tried'))
-        .map((li) => {
-          const link = li.querySelector('a');
-          const name = link ? link.textContent.trim() : li.textContent.trim();
-          const leafly = link ? link.href : '';
-          const type = li.classList.contains('indica-strain') ? 'Indica'
-            : li.classList.contains('sativa-strain') ? 'Sativa'
-              : li.classList.contains('hybrid-strain') ? 'Hybrid'
-                : 'Unknown';
-          return `"${name}","${type}","${leafly}"`;
-        });
+if (exportTriedButton) {
+  exportTriedButton.addEventListener('click', () => {
+    const tried = strainItems
+      .filter((li) => li.classList.contains('tried'))
+      .map((li) => {
+        const link = li.querySelector('a');
+        const name = link ? link.textContent.trim() : getStrainName(li);
+        const url = link ? link.href : '';
+        const type = li.classList.contains('indica-strain')
+          ? 'Indica'
+          : li.classList.contains('sativa-strain')
+            ? 'Sativa'
+            : li.classList.contains('hybrid-strain')
+              ? 'Hybrid'
+              : 'Unknown';
 
-      if (!tried.length) return alert('No tried strains!');
+        return `"${name}","${type}","${url}"`;
+      });
 
-      const csv = 'Strain,Type,Leafly\n' + tried.join('\n');
-      const blob = new Blob([csv], { type: 'text/csv' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'my-tried-strains.csv';
-      a.click();
-      URL.revokeObjectURL(url);
-    });
-  }
+    if (!tried.length) {
+      alert('No tried strains!');
+      return;
+    }
 
-  /* ----- POPUP SOUND OBSERVER ----- */
+    const csv = 'Strain,Type,Leafly\n' + tried.join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+
+    a.href = url;
+    a.download = 'my-tried-strains.csv';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+}
+
   if (noResultsPopup && popupSound) {
-    const observer = new MutationObserver(function (mutations) {
-      mutations.forEach(function (mutation) {
-        if (mutation.type === 'attributes') {
-          const isVisible =
-            (noResultsPopup.style.display !== 'none' || getComputedStyle(noResultsPopup).display !== 'none') &&
-            noResultsPopup.offsetParent !== null;
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type !== 'attributes') return;
 
-          if (isVisible) {
-            popupSound.currentTime = 0;
-            popupSound.volume = 0.7;
-            popupSound.play().catch((e) => console.error('Sound play failed:', e));
-          }
+        const isVisible =
+          (noResultsPopup.style.display !== 'none' ||
+            getComputedStyle(noResultsPopup).display !== 'none') &&
+          noResultsPopup.offsetParent !== null;
+
+        if (isVisible) {
+          popupSound.currentTime = 0;
+          popupSound.volume = 0.7;
+          popupSound.play().catch((e) => console.error('Sound play failed:', e));
         }
       });
     });
 
-    observer.observe(noResultsPopup, { attributes: true, attributeFilter: ['style', 'class'] });
+    observer.observe(noResultsPopup, {
+      attributes: true,
+      attributeFilter: ['style', 'class']
+    });
   }
 
-  /* ----- INITIAL RENDER ----- */
+  console.log('strainList exists:', !!strainList);
+console.log('window.STRAINS:', window.STRAINS);
+  renderStrains();
+  cacheStrainReferences();
+  bindTriedToggles();
+  restoreTriedStates();
   updateCounts();
-
 });
