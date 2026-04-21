@@ -424,6 +424,7 @@
   { name: "Royal Gorilla", type: "hybrid-strain", url: "https://www.leafly.com/strains/royal-gorilla" },	
   { name: "Royal Highness", type: "hybrid-strain", url: "https://www.leafly.com/strains/royal-highness" },	
   { name: "Sacre Bleu", type: "sativa-strain", url: "https://www.numocannabis.com/product/erwhat-sacre-bleu-3-5g-dried-flower/" },
+  { name: "Sasquatch Sap", type: "sativa-strain", url: "https://www.leafly.ca/strains/sasquatch-sap"},
   { name: "Scooby Snacks", type: "hybrid-strain", url: "https://mmjexpress.cc/product/scooby-snacks-aa/" },	
   { name: "Scoops", type: "indica-strain", url: "https://www.hytiva.com/strains/hybrid/scoops" },	
   { name: "SFV", type: "hybrid-strain", url: "https://www.leafly.com/strains/sfv-og" },	
