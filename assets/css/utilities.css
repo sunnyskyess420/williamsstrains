@@ -98,3 +98,49 @@
 #strainScrollTop:active {
   transform: scale(0.9) !important;
 }
+/* ===== SCROLL HIDE: COLLAPSE HEADER SPACE ===== */
+.header-image,
+.visitor-counter-wrap,
+.search-container,
+.legend,
+.instructions-bar {
+  transition: opacity 0.25s ease, transform 0.25s ease, max-height 0.25s ease, margin 0.25s ease, padding 0.25s ease;
+  overflow: hidden;
+}
+
+.scroll-hidden {
+  opacity: 0 !important;
+  transform: translateY(-12px) !important;
+  pointer-events: none !important;
+  max-height: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border: 0 !important;
+}
+/* ===== TOP SECTION COLLAPSE WRAPPER ===== */
+.top-controls-wrap {
+  overflow: hidden;
+  max-height: 900px;
+  transform: translateY(0);
+  opacity: 1;
+  will-change: max-height, opacity, transform;
+  transition:
+    max-height 0.42s ease,
+    opacity 0.22s ease,
+    transform 0.28s ease,
+    margin 0.42s ease,
+    padding 0.42s ease;
+}
+
+.top-controls-wrap.scroll-hidden {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  max-height: 0;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}

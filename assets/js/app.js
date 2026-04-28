@@ -137,6 +137,12 @@ if (!Array.isArray(window.STRAINS)) {
     if (!noResultsPopup) return;
     if (popupMessage) popupMessage.textContent = message;
     noResultsPopup.style.display = 'flex';
+
+    if (popupSound) {
+      popupSound.currentTime = 0;
+      popupSound.volume = 0.7;
+      popupSound.play().catch((e) => console.error('Sound play failed:', e));
+    }
   }
 
   function hidePopup() {
@@ -166,7 +172,10 @@ if (!Array.isArray(window.STRAINS)) {
 
     if (!query) {
       strainItems.forEach((strain) => showWithFade(strain, true));
-      legendItems.forEach((item) => item.classList.remove('active'));
+      legendItems.forEach((item) => {
+  item.classList.remove('active');
+  item.setAttribute('aria-pressed', 'false');
+});
       hidePopup();
       scheduleCountsUpdate();
       return;
@@ -206,14 +215,19 @@ if (!Array.isArray(window.STRAINS)) {
     });
   }
 
-  legendItems.forEach((item) => {
-    item.addEventListener('click', () => {
-      const filter = item.dataset.filter;
-      let hasHiddenChanges = false;
-      let visibleCount = 0;
+legendItems.forEach((item) => {
+  item.addEventListener('click', () => {
+    const filter = item.dataset.filter;
+    let hasHiddenChanges = false;
+    let visibleCount = 0;
 
-      legendItems.forEach((legendItem) => legendItem.classList.remove('active'));
-      item.classList.add('active');
+    legendItems.forEach((legendItem) => {
+      legendItem.classList.remove('active');
+      legendItem.setAttribute('aria-pressed', 'false');
+    });
+
+    item.classList.add('active');
+    item.setAttribute('aria-pressed', 'true');
 
       strainItems.forEach((strain) => {
         let shouldShow = false;
@@ -278,16 +292,9 @@ function bindTriedToggles() {
     };
   });
 }
-
   if (dismissBtn) {
     dismissBtn.addEventListener('click', () => {
       hidePopup();
-
-      if (popupSound) {
-        popupSound.currentTime = 0;
-        popupSound.volume = 0.5;
-        popupSound.play().catch((e) => console.error('Sound failed:', e));
-      }
     });
   }
 
@@ -305,70 +312,46 @@ function bindTriedToggles() {
     });
   }
 
-if (exportTriedButton) {
-  exportTriedButton.addEventListener('click', () => {
-    const tried = strainItems
-      .filter((li) => li.classList.contains('tried'))
-      .map((li) => {
-        const link = li.querySelector('a');
-        const name = link ? link.textContent.trim() : getStrainName(li);
-        const url = link ? link.href : '';
-        const type = li.classList.contains('indica-strain')
-          ? 'Indica'
-          : li.classList.contains('sativa-strain')
-            ? 'Sativa'
-            : li.classList.contains('hybrid-strain')
-              ? 'Hybrid'
-              : 'Unknown';
+  if (exportTriedButton) {
+    exportTriedButton.addEventListener('click', () => {
+      const tried = strainItems
+        .filter((li) => li.classList.contains('tried'))
+        .map((li) => {
+          const link = li.querySelector('a');
+          const name = link ? link.textContent.trim() : getStrainName(li);
+          const url = link ? link.href : '';
+          const type = li.classList.contains('indica-strain')
+            ? 'Indica'
+            : li.classList.contains('sativa-strain')
+              ? 'Sativa'
+              : li.classList.contains('hybrid-strain')
+                ? 'Hybrid'
+                : 'Unknown';
 
-        return `"${name}","${type}","${url}"`;
-      });
+          return `"${name}","${type}","${url}"`;
+        });
 
-    if (!tried.length) {
-      alert('No tried strains!');
-      return;
-    }
+      if (!tried.length) {
+        alert('No tried strains!');
+        return;
+      }
 
-    const csv = 'Strain,Type,Leafly\n' + tried.join('\n');
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+      const csv = 'Strain,Type,Leafly\n' + tried.join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
 
-    a.href = url;
-    a.download = 'my-tried-strains.csv';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-  });
-}
-
-  if (noResultsPopup && popupSound) {
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type !== 'attributes') return;
-
-        const isVisible =
-          (noResultsPopup.style.display !== 'none' ||
-            getComputedStyle(noResultsPopup).display !== 'none') &&
-          noResultsPopup.offsetParent !== null;
-
-        if (isVisible) {
-          popupSound.currentTime = 0;
-          popupSound.volume = 0.7;
-          popupSound.play().catch((e) => console.error('Sound play failed:', e));
-        }
-      });
-    });
-
-    observer.observe(noResultsPopup, {
-      attributes: true,
-      attributeFilter: ['style', 'class']
+      a.href = url;
+      a.download = 'my-tried-strains.csv';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
     });
   }
 
   console.log('strainList exists:', !!strainList);
-console.log('window.STRAINS:', window.STRAINS);
+  console.log('window.STRAINS:', window.STRAINS);
   renderStrains();
   cacheStrainReferences();
   bindTriedToggles();

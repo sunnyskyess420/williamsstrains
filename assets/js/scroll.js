@@ -3,38 +3,29 @@ let lastStrainScrollTop = 0;
 let hideTimeout = null;
 
 const strainList = document.querySelector('.strain-list-container');
-const headerImage = document.querySelector('.header-image');
-const searchContainer = document.querySelector('.search-container');
-const legend = document.querySelector('.legend');
-
-const elements = [
-  { el: headerImage, class: 'scroll-hidden', delay: 0 },
-  { el: searchContainer, class: 'scroll-hidden', delay: 100 },
-  { el: legend, class: 'scroll-hidden', delay: 200 }
-].filter(item => item.el);
+const topControlsWrap = document.querySelector('.top-controls-wrap');
 
 if (strainList) {
   function handleStrainScroll() {
-    const scrollingDown = strainList.scrollTop > lastStrainScrollTop && strainList.scrollTop > 50;
-    
+    const currentScrollTop = strainList.scrollTop;
+    const scrollDelta = currentScrollTop - lastStrainScrollTop;
+    const scrollingDown = scrollDelta > 6 && currentScrollTop > 50;
+    const scrollingUp = scrollDelta < -18;
+
     clearTimeout(hideTimeout);
-    
+
+    if (!topControlsWrap) return;
+
     if (scrollingDown) {
-      // Hide in perfect sequence
-      elements.forEach(({ el, class: cls, delay }) => {
-        hideTimeout = setTimeout(() => {
-          el.classList.add(cls);
-        }, delay);
-      });
-    } else {
-      // Show all immediately when scrolling up
-      elements.forEach(({ el }) => {
-        el.classList.remove('scroll-hidden');
-      });
+      hideTimeout = setTimeout(() => {
+        topControlsWrap.classList.add('scroll-hidden');
+      }, 60);
+    } else if (scrollingUp || currentScrollTop <= 10) {
+      topControlsWrap.classList.remove('scroll-hidden');
     }
-    
-    lastStrainScrollTop = strainList.scrollTop;
+
+    lastStrainScrollTop = currentScrollTop;
   }
-  
+
   strainList.addEventListener('scroll', handleStrainScroll, { passive: true });
 }

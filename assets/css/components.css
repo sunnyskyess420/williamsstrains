@@ -104,7 +104,7 @@
   height: 24px;
 }
 
-/* Explicit legend color classes (fallback in case attribute selectors are overridden) */
+
 .legend-color-indica { background-color: #1a1a5e !important; }
 .legend-color-sativa { background-color: #5e1a1a !important; }
 .legend-color-hybrid { background-color: #1a4d1a !important; }
@@ -674,7 +674,6 @@ a.gradient-btn:active {
 #comments-section ::-webkit-scrollbar { display: none !important; }
 #comments-section { scrollbar-width: thin; scrollbar-color: #00ff00 rgba(30,35,30,0.95); }
 
-/* Compact Cusdis - Shorter Height */
 #cusdis_thread,
 .cusdis {
   max-height: 450px !important;  /* Short & scrollable if needed */
@@ -721,16 +720,6 @@ a.gradient-btn:active {
     width: 100% !important;
   }
 }
-@media (max-width: 768px) {
-  .search-container {
-    transition: all 0.3s ease !important;
-  }
-  .search-container.hide {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    transform: translateY(-100%) !important;
-  }
-}
 .scroll-hidden {
   opacity: 0 !important;
   visibility: hidden !important;
@@ -764,7 +753,6 @@ a.gradient-btn:active {
   }
 }
 
-/* Stretch entire image to fit inside the exact header box */
 .header-image {
   z-index: 5 !important;
   display: block !important;
@@ -773,7 +761,6 @@ a.gradient-btn:active {
   box-shadow: 0 8px 20px rgba(0, 255, 0, 0.15) !important;
 }
 
-/* FORCE: Tried dots NEVER show through sticky bars */
 .tried-checkmark,
 .tried-toggle,
 .tried-toggle * {
@@ -860,6 +847,40 @@ a.gradient-btn:active {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.chat-title {
+  color: #00ff00 !important;
+  text-shadow: 0 0 10px #00ff00;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.admin-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 5px;
+  color: #00ff00;
+  line-height: 1;
+}
+
+.chat-title {
+  color: #00ff00 !important;
+  text-shadow: 0 0 10px #00ff00;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.admin-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 5px;
+  color: #00ff00;
+  line-height: 1;
 }
 
 /* ----- MESSAGES AREA ----- */
@@ -1109,36 +1130,35 @@ a.gradient-btn:active {
     font-size: 16px; /* Prevents iOS zoom on focus */
   }
 }
-/* ===== SLEEK 1-LINE SEARCH (OVERRIDES OLD STYLES) ===== */
 .search-container.neon-terminal-search {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: wrap !important;
-  align-items: center !important;
-  gap: 12px !important;
-  background: transparent !important;
-  border: none !important;
-  border-bottom: none !important;
-  box-shadow: none !important;
-  padding: 10px 0 !important;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  border-bottom: none;
+  box-shadow: none;
+  padding: 10px 0;
 }
 
 .search-container.neon-terminal-search .search-header {
-  display: none !important; 
+  display: none;
 }
 
 .search-container.neon-terminal-search #strainInput {
-  flex-grow: 1 !important;
-  min-width: 200px !important; 
-  background: transparent !important;
-  border: none !important;
-  border-bottom: 2px solid rgba(0, 255, 0, 0.5) !important;
-  border-radius: 0 !important;
-  color: #00ff00 !important;
-  font-size: 16px !important;
-  padding: 10px 5px !important;
-  text-align: left !important;
-  box-shadow: none !important;
+  flex-grow: 1;
+  min-width: 200px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(0, 255, 0, 0.5);
+  border-radius: 0;
+  color: #00ff00;
+  font-size: 16px;
+  padding: 10px 5px;
+  text-align: left;
+  box-shadow: none;
 }
 
 #strainInput:focus {
@@ -1164,17 +1184,17 @@ a.gradient-btn:active {
 }
 
 .search-container.neon-terminal-search #exportTried {
-  background: rgba(0, 255, 0, 0.1) !important;
-  border: 1px solid rgba(0, 255, 0, 0.4) !important;
-  border-radius: 20px !important;
-  color: #00ff00 !important;
-  font-size: 14px !important;
-  padding: 8px 20px !important;
-  min-width: auto !important;
-  min-height: auto !important;
-  height: auto !important;
-  max-width: none !important;
-  box-shadow: none !important;
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid rgba(0, 255, 0, 0.4);
+  border-radius: 20px;
+  color: #00ff00;
+  font-size: 14px;
+  padding: 8px 20px;
+  min-width: auto;
+  min-height: auto;
+  height: auto;
+  max-width: none;
+  box-shadow: none;
 }
 /* ===== FROSTED INSTRUCTIONS PILL ===== */
 .instructions-bar {
