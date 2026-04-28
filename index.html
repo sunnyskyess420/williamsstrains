@@ -33,10 +33,18 @@
 
 <!-- ===== MAIN CONTAINER ===== -->
 <div class="container">
-
+<div class="top-controls-wrap"></div>
  <!-- Header Image Inside Frosted Container -->
  <!-- 1. YOUR HEADER IMAGE -->
-<img src="images/headlogo1.png" alt="Wildcats Weed Header" class="header-image header-image-top-spaced">
+<img 
+  fetchpriority="high" 
+  sizes="(max-width: 768px) 100vw, 80vw" 
+  src="images/headlogo1.png" 
+  alt="Wildcats Weed Header" 
+  class="header-image header-image-top-spaced"
+  width="1200" 
+  height="400"
+>
 
 <!-- 2. STONED VISITORS -->
 <!-- Visitor Badge -->
@@ -56,35 +64,35 @@
 
 <!-- 4. LEGEND / FILTERS -->
 <!-- ===== LEGEND / FILTER BAR ===== -->
-<div class="legend">
-  <div class="legend-item" data-filter="indica-strain">
-    <img src="images/indica-leaf.png" alt="Indica Leaf" class="legend-leaf">
-    <div class="legend-color legend-color-indica"></div>
+<div class="legend" role="group" aria-label="Filter strains">
+  <button type="button" class="legend-item" data-filter="indica-strain" aria-pressed="false">
+<img loading="lazy" src="images/indica-leaf.png" alt="Indica Leaf" class="legend-leaf">    <span class="legend-color legend-color-indica" aria-hidden="true"></span>
     <span class="legend-label">Indica (<span id="indicaCount"></span>)</span>
-  </div>
-  <div class="legend-item" data-filter="sativa-strain">
-    <img src="images/sativa-leaf.png" alt="Sativa Leaf" class="legend-leaf">
-    <div class="legend-color legend-color-sativa"></div>
-    <span class="legend-label">Sativa (<span id="sativaCount"></span>)</span>
-  </div>
-  <div class="legend-item" data-filter="hybrid-strain">
-    <img src="images/hybrid-leaf.png" alt="Hybrid Leaf" class="legend-leaf">
-    <div class="legend-color legend-color-hybrid"></div>
+  </button>
+
+  <button type="button" class="legend-item" data-filter="sativa-strain" aria-pressed="false">
+<img loading="lazy" src="images/sativa-leaf.png" alt="Sativa Leaf" class="legend-leaf">    <span class="legend-label">Sativa (<span id="sativaCount"></span>)</span>
+  </button>
+
+  <button type="button" class="legend-item" data-filter="hybrid-strain" aria-pressed="false">
+<img loading="lazy" src="images/hybrid-leaf.png" alt="Hybrid Leaf" class="legend-leaf">    <span class="legend-color legend-color-hybrid" aria-hidden="true"></span>
     <span class="legend-label">Hybrid (<span id="hybridCount"></span>)</span>
-  </div>
-  <div class="legend-item" data-filter="unknown-strain">
-    <img src="images/unknown-leaf.png" alt="Unknown Leaf" class="legend-leaf">
-    <div class="legend-color legend-color-unknown"></div>
+  </button>
+
+  <button type="button" class="legend-item" data-filter="unknown-strain" aria-pressed="false">
+<img loading="lazy" src="images/unknown-leaf.png" alt="Unknown Leaf" class="legend-leaf">    <span class="legend-color legend-color-unknown" aria-hidden="true"></span>
     <span class="legend-label">Unknown (<span id="unknownCount"></span>)</span>
-  </div>
-  <div class="legend-item" data-filter="all">
-    <div class="legend-color legend-color-all"></div>
-    <span class="legend-label"> All (<span id="totalCount"></span>)</span>
-  </div>
-  <div class="legend-item" data-filter="tried">
-    <div class="legend-color legend-color-tried">💖</div>
+  </button>
+
+  <button type="button" class="legend-item" data-filter="all" aria-pressed="false">
+    <span class="legend-color legend-color-all" aria-hidden="true"></span>
+    <span class="legend-label">All (<span id="totalCount"></span>)</span>
+  </button>
+
+  <button type="button" class="legend-item" data-filter="tried" aria-pressed="false">
+    <span class="legend-color legend-color-tried" aria-hidden="true">💖</span>
     <span class="legend-label">Tried (<span id="triedCount">0</span>)</span>
-  </div>
+  </button>
 </div>
 <!-- ===== END LEGEND ===== -->
 
@@ -99,23 +107,13 @@
 <!-- THEN YOUR STRAIN LIST STARTS HERE... -->
 
 
-
+</div>
 <div id="noResultsPopup">
   <div id="popupMessage" class="popup-message">🌿 No strains found! 🌿</div>
   <button id="dismissBtn">Dismiss</button>
 </div>
 
-<script>
-document.getElementById('dismissBtn').addEventListener('click', function() {
-  document.getElementById('noResultsPopup').style.display = 'none';
-  const sound = document.getElementById('popupSound');
-  if (sound) {
-    sound.currentTime = 0;
-    sound.volume = 0.5;
-    sound.play().catch(e => console.error('Sound failed:', e));
-  }
-});
-</script>
+
 
   <!-- Popup Sound - Local File -->
 <audio id="popupSound" preload="auto">
@@ -123,7 +121,7 @@ document.getElementById('dismissBtn').addEventListener('click', function() {
 </audio>
 
 <div class="strain-list-container">
-  <ul id="strainList"></ul>
+  <ul id="strainList" role="list" aria-label="Cannabis strains"></ul>
 </div>
 
 <button id="strainScrollTop">↑</button>
@@ -139,15 +137,25 @@ document.getElementById('dismissBtn').addEventListener('click', function() {
 document.addEventListener('DOMContentLoaded', function() {
   const strainList = document.querySelector('.strain-list-container');
   const scrollBtn = document.getElementById('strainScrollTop');
+
   if (!strainList || !scrollBtn) return;
-  
-  strainList.addEventListener('scroll', () => {
+
+  function updateScrollTopButton() {
     scrollBtn.classList.toggle('show', strainList.scrollTop > 300);
-  }, { passive: true });
-  
-  scrollBtn.addEventListener('click', () => {
-    strainList.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  }
+
+  strainList.addEventListener('scroll', updateScrollTopButton, { passive: true });
+
+scrollBtn.addEventListener('click', () => {
+  const topControlsWrap = document.querySelector('.top-controls-wrap');
+  if (topControlsWrap) {
+    topControlsWrap.classList.remove('scroll-hidden');
+  }
+
+  strainList.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+  updateScrollTopButton();
 });
 </script>
 
@@ -155,31 +163,28 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>  <!-- ← This is the closing tag for .container -->
 
 
-    <!-- ========== CHAT GOES HERE — OUTSIDE .container ========== -->
-    <div id="chat-section" class="frosted-section">
-      <h2 style="color:#00ff00; text-shadow:0 0 10px #00ff00; margin-bottom:16px;">💬 The Lit Lobby 💬</h2>
-      <div id="chat-container">
-        <div id="chat-messages"></div>
-          <div id="chat-input-area">
-            <button id="adminToggle" style="background:none; border:none; cursor:pointer; font-size:16px; padding:0 5px;">🔒</button>
-          <input type="text" id="chatInput" placeholder="Say something..." maxlength="500" autocomplete="off">
-          <button id="chatSend" aria-label="Send message">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="22" y1="2" x2="11" y2="13"></line>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-            </svg>
-          </button>
-        </div>
-        <div id="chat-status"></div>
-      </div>
+<!-- ========== CHAT GOES HERE — OUTSIDE .container ========== -->
+<div id="chat-section" class="frosted-section">
+  <h2 class="chat-title">💬 The Lit Lobby 💬</h2>
+  <div id="chat-container">
+    <div id="chat-messages" role="log" aria-live="polite" aria-relevant="additions" aria-label="Chat messages"></div>
+    <div id="chat-input-area">
+<button id="adminToggle" class="admin-toggle-btn" type="button" aria-label="Toggle admin mode">🔒</button>     <input type="text" id="chatInput" placeholder="Say something..." maxlength="500" autocomplete="off">
+      <button id="chatSend" aria-label="Send message">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
     </div>
-    <!-- ========== END CHAT ========== -->
+    <div id="chat-status" aria-live="polite"></div>
+  </div>
+</div>
+<!-- ========== END CHAT ========== -->
   
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
-        <!-- Chat script -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
     <script>
 (function() {
   const firebaseConfig = {
@@ -373,22 +378,57 @@ document.addEventListener('DOMContentLoaded', function() {
     statusEl.textContent = 'Could not connect. Refresh to retry.';
   });
 
-  // --- ADMIN MODE TOGGLE ---
-  const adminBtn = document.getElementById('adminToggle');
-  if (adminBtn) {
-    adminBtn.addEventListener('click', () => {
-      const pass = prompt("Enter admin password:");
-      if (pass === 'Champion420') { 
-        messagesEl.classList.toggle('admin-mode');
-        adminBtn.textContent = messagesEl.classList.contains('admin-mode') ? '🔓' : '🔒';
-      } else if (pass !== null) {
-        alert('Wrong password.');
-      }
-    });
-  }
+async function resetToAnonymousSession() {
+  const cred = await auth.signInAnonymously();
+  userId = cred.user.uid;
+  userColor = stringToColor(userId);
+  isAdmin = false;
+  messagesEl.classList.remove('admin-mode');
+  adminBtn.textContent = '🔒';
+}
+
+// --- ADMIN MODE TOGGLE ---
+const ADMIN_UID = 'VpDUjQ9NRCgpCktuUH7QXrxJEMC2';
+const adminBtn = document.getElementById('adminToggle');
+let isAdmin = false;
+
+if (adminBtn) {
+  adminBtn.addEventListener('click', async () => {
+   if (isAdmin) {
+  await auth.signOut();
+  await resetToAnonymousSession();
+  return;
+}
+
+    const email = prompt('Admin email:');
+    if (!email) return;
+
+    const pass = prompt('Admin password:');
+    if (!pass) return;
+
+    try {
+      const cred = await auth.signInWithEmailAndPassword(email, pass);
+
+    if (cred.user.uid === ADMIN_UID) {
+  userId = cred.user.uid;
+  userColor = stringToColor(userId);
+  isAdmin = true;
+  messagesEl.classList.add('admin-mode');
+  adminBtn.textContent = '🔓';
+} else {
+  await auth.signOut();
+  await resetToAnonymousSession();
+  alert('Not authorized.');
+}
+    } catch (err) {
+      alert('Login failed: ' + err.message);
+    }
+  });
+}
 
 })();
 </script>
+
 
 
 <!-- ===== EXTERNAL TRACKER ===== -->
@@ -396,23 +436,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-<script>
-function dismissPopupWithSound() {
-  const popup = document.getElementById('noResultsPopup');
-  if (popup) popup.style.display = 'none';
-  const sound = document.getElementById('popupSound');
-  if (sound) {
-    sound.currentTime = 0;
-    sound.volume = 0.5;
-    sound.play().catch(e => console.error('Dismiss sound failed:', e));
-  }
-}
-</script>
+
 
   <!-- YOUR OTHER SCRIPTS ARE PROBABLY HERE -->
-<script src="assets/js/strain.js"></script>
-<script src="assets/js/app.js"></script>
-<script src="assets/js/scroll.js"></script>
+<script defer src="assets/js/strain.js"></script>
+<script defer src="assets/js/app.js"></script>
+<script defer src="assets/js/scroll.js"></script>
 
 </body>
 </html>
