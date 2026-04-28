@@ -170,6 +170,7 @@
   { name: "Fire OG", type: "indica-strain", url: "https://www.leafly.com/strains/fire-og" },	
   { name: "Flo", type: "hybrid-strain", url: "https://www.leafly.com/strains/flo" },	
   { name: "Formula 1", type: "hybrid-strain", url: "https://www.leafly.com/strains/formula-one" },	
+  { name: "French Cookie", type: "sativa-strain", url: "https://thepotshack.ca/product/french-cookies-ritual-green/" },	
   { name: "French Toast", type: "indica-strain", url: "https://www.leafly.com/strains/french-toast" },	
   { name: "Frost’d Flakes", type: "indica-strain", url: "https://weedmaps.com/strains/frosted-flakes" },	
   { name: "Frosted Cherry Cake", type: "indica-strain", url: "https://www.allbud.com/marijuana-strains/indica-dominant-hybrid/frosted-cakes" },	
