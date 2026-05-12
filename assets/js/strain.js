@@ -219,6 +219,7 @@
   { name: "Gorilla Glue", type: "hybrid-strain", url: "https://www.leafly.com/strains/gorilla-glue" },	
   { name: "Gorilla Glue #4", type: "hybrid-strain", url: "https://www.leafly.com/strains/gorilla-glue-4" },	
   { name: "Gorilla Goo", type: "hybrid-strain", url: "https://www.leafly.com/strains/gorilla-goo" },	
+  { name: "Gorilla Milk", type: "sativa-strain", url: "https://puresunfarms.com/strains/gorilla-milk/" },	
   { name: "Gorilla Za", type: "hybrid-strain", url: "https://canna4less.ca/menu/downtown/products/endgame-207578/7g/gorilla-za-2818122/" },
   { name: "Gouda Berry", type: "hybrid-strain", url: "https://www.leafly.com/strains/goudaberry" }, 
   { name: "Grand Daddy Bruce", type: "indica-strain", url: "https://www.leafly.com/strains/grandaddy-bruce" },	
