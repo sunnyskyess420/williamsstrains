@@ -35,7 +35,7 @@ body {
 
 /* ===== CONTAINER ===== */
 .container {
-  width: 90%;
+  width: min(1200px, calc(100% - 32px));
   max-width: 1200px;
   background-color: rgba(20, 20, 20, 0.92);
   padding: 20px;
@@ -45,6 +45,7 @@ body {
   border-radius: 12px;
   backdrop-filter: blur(15px);
   scroll-behavior: auto;
+  box-sizing: border-box;
 }
 
 
