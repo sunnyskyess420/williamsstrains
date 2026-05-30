@@ -1,0 +1,146 @@
+/* =============================================================
+   UTILITIES.CSS — Scroll button, z-index fixes, responsive
+   ============================================================= */
+
+
+/* ===== RESPONSIVE — MOBILE ===== */
+@media (max-width: 768px) {
+  .strain-list-container ul {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .legend {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  #strainInput {
+    width: 100%;
+    max-width: 280px !important;
+    order: 2 !important;
+    margin: 0 auto !important;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .search-header {
+    width: 100% !important;
+    justify-content: center !important;
+    order: 1 !important;
+  }
+
+  #randomStrain {
+    order: 3 !important;
+    justify-content: center !important;
+  }
+}
+
+
+
+/* ===== STRAIN SCROLL CONTAINER ===== */
+.strain-scroll-container {
+  position: relative !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+.strain-list-container {
+  position: relative !important;
+  max-height: 65vh !important;
+  min-height: 300px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  display: block !important;
+}
+
+
+/* ===== STRAIN SCROLL BUTTON ===== */
+#strainScrollTop {
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 30px !important;
+  background: linear-gradient(135deg, #00ff00, #00cc00) !important;
+  color: #000 !important;
+  border: none !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  font-size: 24px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(20px) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 20px rgba(0,255,0,0.6) !important;
+  padding: 0 !important;
+  line-height: 50px !important;
+  text-align: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#strainScrollTop.show {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+#strainScrollTop:hover {
+  transform: translateY(-3px) scale(1.1) !important;
+  box-shadow: 0 6px 25px rgba(0,255,0,0.8) !important;
+}
+
+#strainScrollTop:active {
+  transform: scale(0.9) !important;
+}
+/* ===== SCROLL HIDE: COLLAPSE HEADER SPACE ===== */
+.header-image,
+.visitor-counter-wrap,
+.search-container,
+.legend,
+.instructions-bar {
+  transition: opacity 0.25s ease, transform 0.25s ease, max-height 0.25s ease, margin 0.25s ease, padding 0.25s ease;
+  overflow: hidden;
+}
+
+.scroll-hidden {
+  opacity: 0 !important;
+  transform: translateY(-12px) !important;
+  pointer-events: none !important;
+  max-height: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border: 0 !important;
+}
+/* ===== TOP SECTION COLLAPSE WRAPPER ===== */
+.top-controls-wrap {
+  overflow: hidden;
+  max-height: 900px;
+  transform: translateY(0);
+  opacity: 1;
+  will-change: max-height, opacity, transform;
+  transition:
+    max-height 0.42s ease,
+    opacity 0.22s ease,
+    transform 0.28s ease,
+    margin 0.42s ease,
+    padding 0.42s ease;
+}
+
+.top-controls-wrap.scroll-hidden {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  max-height: 0;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ===== HEAD ===== -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <title>Wildcats Wonderful Weed List</title>
+ <meta name="description" content="Browse 300+ cannabis strains. Search, filter by type, mark strains as tried, and save your personal list.">
+ <link rel="canonical" href="https://sunnyskyess420.github.io/williamsstrains/">
+ <!-- Open Graph / Social Preview -->
+<meta property="og:title" content="Wildcats Wonderful Weed List">
+<meta property="og:description" content="300+ cannabis strains: search, filter, random!">
+<meta property="og:image" content="https://sunnyskyess420.github.io/williamsstrains/images/WWWL_logo.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:url" content="https://sunnyskyess420.github.io/williamsstrains/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wildcats Strain List">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+
+</head>
+  
+
+<body>
+
+<h1 class="sr-only">Wildcats Wonderful Weed List</h1>
+
+<!-- ===== MAIN CONTAINER ===== -->
+<div class="container">
+  <div class="top-controls-wrap">
+    <img
+      fetchpriority="high"
+      sizes="(max-width: 768px) 100vw, 80vw"
+      src="images/headlogo1.png"
+      alt="Wildcats Weed Header"
+      class="header-image header-image-top-spaced"
+      width="1200"
+      height="400"
+    >
+
+    <div class="visitor-counter-wrap">
+      <div id="visitor-counter">Stoned Visitors: 🔥</div>
+    </div>
+
+    <div class="search-container">
+      <input type="text" id="strainInput" placeholder="🔍 Search strains..." aria-label="Search strains">
+      <button id="randomStrain">🎲 Random</button>
+      <button id="exportTried" class="gradient-btn">💾 Save My Strains</button>
+    </div>
+
+    <div class="legend" role="group" aria-label="Filter strains">
+      <button type="button" class="legend-item" data-filter="indica-strain" aria-pressed="false">
+        <img loading="lazy" src="images/indica-leaf.png" alt="Indica Leaf" class="legend-leaf">
+        <span class="legend-color legend-color-indica" aria-hidden="true"></span>
+        <span class="legend-label">Indica (<span id="indicaCount"></span>)</span>
+      </button>
+
+      <button type="button" class="legend-item" data-filter="sativa-strain" aria-pressed="false">
+        <img loading="lazy" src="images/sativa-leaf.png" alt="Sativa Leaf" class="legend-leaf">
+        <span class="legend-color legend-color-sativa" aria-hidden="true"></span>
+        <span class="legend-label">Sativa (<span id="sativaCount"></span>)</span>
+      </button>
+
+      <button type="button" class="legend-item" data-filter="hybrid-strain" aria-pressed="false">
+        <img loading="lazy" src="images/hybrid-leaf.png" alt="Hybrid Leaf" class="legend-leaf">
+        <span class="legend-color legend-color-hybrid" aria-hidden="true"></span>
+        <span class="legend-label">Hybrid (<span id="hybridCount"></span>)</span>
+      </button>
+
+      <button type="button" class="legend-item" data-filter="unknown-strain" aria-pressed="false">
+        <img loading="lazy" src="images/unknown-leaf.png" alt="Unknown Leaf" class="legend-leaf">
+        <span class="legend-color legend-color-unknown" aria-hidden="true"></span>
+        <span class="legend-label">Unknown (<span id="unknownCount"></span>)</span>
+      </button>
+
+      <button type="button" class="legend-item" data-filter="all" aria-pressed="false">
+        <span class="legend-color legend-color-all" aria-hidden="true"></span>
+        <span class="legend-label">All (<span id="totalCount"></span>)</span>
+      </button>
+
+      <button type="button" class="legend-item" data-filter="tried" aria-pressed="false">
+        <span class="legend-color legend-color-tried" aria-hidden="true">💖</span>
+        <span class="legend-label">Tried (<span id="triedCount">0</span>)</span>
+      </button>
+    </div>
+
+    <div class="instructions-bar">
+      <span>Click black circles on cards to mark as tried 💖</span>
+      <span class="inst-divider">•</span>
+      <span>Hit "Save My Strains" to export your list</span>
+    </div>
+  </div>
+
+  <div id="noResultsPopup">
+    <div id="popupMessage" class="popup-message">🌿 No strains found! 🌿</div>
+    <button id="dismissBtn">Dismiss</button>
+  </div>
+
+  <audio id="popupSound" preload="auto">
+    <source src="ooohoo.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="strain-list-container">
+    <ul id="strainList" role="list" aria-label="Cannabis strains"></ul>
+  </div>
+
+  <button id="strainScrollTop">↑</button>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const strainList = document.querySelector('.strain-list-container');
+  const scrollBtn = document.getElementById('strainScrollTop');
+
+  if (!strainList || !scrollBtn) return;
+
+  function updateScrollTopButton() {
+    scrollBtn.classList.toggle('show', strainList.scrollTop > 300);
+  }
+
+  strainList.addEventListener('scroll', updateScrollTopButton, { passive: true });
+
+scrollBtn.addEventListener('click', () => {
+  const topControlsWrap = document.querySelector('.top-controls-wrap');
+  if (topControlsWrap) {
+    topControlsWrap.classList.remove('scroll-hidden');
+  }
+
+  strainList.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+  updateScrollTopButton();
+});
+</script>
+
+        <!-- END of your strain list, export button, comments section, etc. -->
+
+
+<!-- ========== CHAT GOES HERE — OUTSIDE .container ========== -->
+<div id="chat-section" class="frosted-section">
+  <h2 class="chat-title">💬 The Lit Lobby 💬</h2>
+  <div id="chat-container">
+    <div id="chat-messages" role="log" aria-live="polite" aria-relevant="additions" aria-label="Chat messages"></div>
+    <div id="chat-input-area">
+      <input type="text" id="chatInput" placeholder="Say something..." maxlength="500" autocomplete="off" aria-label="Type a chat message">
+      <button id="chatSend" aria-label="Send message">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+    <div id="chat-status" aria-live="polite"></div>
+  </div>
+</div>
+<!-- ========== END CHAT ========== -->
+  
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script>
+(function() {
+  const firebaseConfig = {
+    apiKey:            "AIzaSyDH1q1n0vYkBgy5P5ma0uwN0aO59WjL_OE",
+    authDomain:        "stonercomments.firebaseapp.com",
+    projectId:         "stonercomments",
+    storageBucket:     "stonercomments.firebasestorage.app",
+    messagingSenderId: "604159949829",
+    appId:             "1:604159949829:web:ca59dbf2427422750bf06c"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db    = firebase.firestore();
+  const auth  = firebase.auth();
+
+  // ===== REAL-TIME PAGE RELOAD COUNTER =====
+  const counterRef = db.collection('site_stats').doc('total_hits');
+  counterRef.set({ count: firebase.firestore.FieldValue.increment(1) }, { merge: true });
+
+  let gotRealData = false;
+  counterRef.onSnapshot((doc) => {
+    if (!gotRealData && doc.metadata.fromCache) return;
+    gotRealData = true;
+    const totalHits = doc.exists ? (doc.data().count || 0) : 0;
+    const counterEl = document.getElementById('visitor-counter');
+    if (counterEl) {
+      counterEl.textContent = 'Stoned Visitors: ' + totalHits;
+    }
+  });
+  // ===== END COUNTER =====
+
+  const messagesEl  = document.getElementById('chat-messages');
+  const inputEl     = document.getElementById('chatInput');
+  const sendBtn     = document.getElementById('chatSend');
+  const statusEl    = document.getElementById('chat-status');
+
+  let userId = null, userColor = null, isAtBottom = true;
+
+  function stringToColor(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    return `hsl(${Math.abs(hash) % 360}, 70%, 55%)`;
+  }
+
+  function formatTime(ts) {
+    if (!ts || !ts.toDate) return 'just now';
+    const d = ts.toDate(), now = new Date(), diff = Math.floor((now - d) / 60000);
+    if (diff < 1) return 'just now';
+    if (diff < 60) return `${diff}m ago`;
+    const hr = Math.floor(diff / 60);
+    if (hr < 24) return `${hr}h ago`;
+    return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+  }
+
+  function sanitize(text) {
+    const d = document.createElement('div');
+    d.textContent = text;
+    return d.innerHTML;
+  }
+
+  function createMessageEl(data, docId) {
+    const w = document.createElement('div');
+    w.className = 'chat-bubble-wrapper' + (data.uid === userId ? ' own' : '');
+    const b = document.createElement('div');
+    b.className = 'chat-bubble';
+    const m = document.createElement('div');
+    m.className = 'chat-meta';
+    const dot = document.createElement('span');
+    dot.className = 'chat-user-dot';
+    dot.style.backgroundColor = data.color;
+    const nm = document.createElement('span');
+    nm.className = 'chat-username';
+    nm.textContent = data.displayName || 'Anon';
+    nm.style.color = data.color;
+    const tm = document.createElement('span');
+    tm.className = 'chat-time';
+    tm.textContent = formatTime(data.timestamp);
+    m.append(dot, nm, tm);
+    const body = document.createElement('div');
+    body.className = 'chat-body';
+    body.innerHTML = sanitize(data.text);
+    b.append(m, body);
+
+    // Admin delete removed — moderation should be done via Firebase Console.
+    w.appendChild(b);
+    if (docId) w.setAttribute('data-id', docId);
+    return w;
+  }
+
+  function scrollToBottom() { messagesEl.scrollTop = 0; } 
+  messagesEl.addEventListener('scroll', () => {
+    isAtBottom = messagesEl.scrollTop < 80; 
+  });
+
+  function listenForMessages() {
+    messagesEl.innerHTML = '';
+    db.collection('chatMessages')
+      .orderBy('timestamp', 'desc')
+      .limit(50)
+      .onSnapshot(snapshot => {
+        snapshot.docChanges().forEach(change => {
+          if (change.type === 'added') {
+            if (change.doc.data().uid === userId) {
+              const tempEl = messagesEl.querySelector(`[data-id^="temp-"]`);
+              if (tempEl) {
+                tempEl.setAttribute('data-id', change.doc.id);
+                return; 
+              }
+            }
+            if (messagesEl.querySelector(`[data-id="${change.doc.id}"]`)) return;
+            const el = createMessageEl(change.doc.data(), change.doc.id);
+            messagesEl.prepend(el);
+            if (isAtBottom) scrollToBottom();
+          }
+        });
+      });
+  }
+
+  function getChatName() {
+    let name;
+    try {
+      name = localStorage.getItem('wildcatChatName');
+    } catch (e) {
+      console.warn('Failed to read chat name from localStorage', e);
+      name = null;
+    }
+    if (!name) {
+      name = prompt('What should we call you in the chat?', '');
+      if (name && name.trim().length > 0) {
+        name = name.trim();
+        try {
+          localStorage.setItem('wildcatChatName', name);
+        } catch (e) {
+          console.warn('Failed to save chat name to localStorage', e);
+        }
+      } else {
+        const adj = ['Chill','Faded','Blazing','Cosmic','Groovy','Zen','Epic','Wild','Mellow','Frosty'];
+        const noun = ['Panda','Cat','Owl','Fox','Wolf','Bear','Hawk','Tiger','Llama','Deer'];
+        name = `${adj[Math.floor(Math.random()*adj.length)]}${noun[Math.floor(Math.random()*noun.length)]}${Math.floor(Math.random()*99)}`;
+        try {
+          localStorage.setItem('wildcatChatName', name);
+        } catch (e) {
+          console.warn('Failed to save chat name to localStorage', e);
+        }
+      }
+    }
+    return name;
+  }
+
+  function sendMessage() {
+    const text = inputEl.value.trim();
+    if (!text || !userId) return;
+
+    inputEl.value = '';
+    inputEl.focus();
+
+    const tempId = 'temp-' + Date.now();
+    const chatName = getChatName();
+
+    const el = createMessageEl({
+      text, uid: userId, color: userColor,
+      displayName: chatName,
+      timestamp: { toDate: () => new Date() }
+    }, tempId);
+    messagesEl.prepend(el);
+    scrollToBottom();
+
+    db.collection('chatMessages').add({
+      text, uid: userId, color: userColor,
+      displayName: chatName,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(err => {
+      console.error(err);
+      el.remove();
+      statusEl.textContent = 'Failed to send.';
+      setTimeout(() => statusEl.textContent = '', 3000);
+    });
+  }
+
+  sendBtn.addEventListener('click', sendMessage);
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  });
+
+  statusEl.textContent = 'Connecting...';
+  auth.signInAnonymously().then(cred => {
+    userId = cred.user.uid;
+    userColor = stringToColor(userId);
+    statusEl.textContent = '';
+    listenForMessages();
+  }).catch(err => {
+    console.error(err);
+    statusEl.textContent = 'Could not connect. Refresh to retry.';
+  });
+
+})();
+</script>
+
+
+
+<!-- ===== EXTERNAL TRACKER ===== -->
+
+
+
+
+
+
+  <!-- YOUR OTHER SCRIPTS ARE PROBABLY HERE -->
+<script defer src="assets/js/strain.js"></script>
+<script defer src="assets/js/app.js"></script>
+<script defer src="assets/js/scroll.js"></script>
+
+</body>
+</html>

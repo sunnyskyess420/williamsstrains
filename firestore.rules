@@ -1,0 +1,50 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===== SITE STATS COUNTER =====
+    // Only allow incrementing the counter, no deletion or arbitrary writes
+    match /site_stats/{doc} {
+      allow read: if true;
+      allow write: if request.resource.data.count == resource.data.count + 1
+                    && request.resource.data.keys().hasOnly(['count']);
+    }
+
+    // ===== CHAT MESSAGES =====
+    match /chatMessages/{messageId} {
+      // Allow reading last 50 messages for all authenticated users
+      allow read: if request.auth != null;
+
+      // Allow creating new messages with validation
+      allow create: if request.auth != null
+                    // Text must be present and 1-500 chars
+                    && request.resource.data.text is string
+                    && request.resource.data.text.size() >= 1
+                    && request.resource.data.text.size() <= 500
+                    // Required fields must match auth user
+                    && request.resource.data.uid == request.auth.uid
+                    && request.resource.data.color is string
+                    && request.resource.data.displayName is string
+                    // Timestamp must be server timestamp
+                    && request.resource.data.timestamp == request.time
+                    // Only allowed fields
+                    && request.resource.data.keys().hasOnly(['text', 'uid', 'color', 'displayName', 'timestamp'])
+                    // Rate limit: max 5 messages per minute per user
+                    && existsAfterLimit(request.auth.uid, 5, 60);
+
+      // No updates or deletes — moderation via Firebase Console only
+      allow update, delete: if false;
+    }
+
+    // Helper function for rate limiting
+    // Returns true if user has fewer than `limit` messages in the last `seconds` seconds
+    function existsAfterLimit(uid, limit, seconds) {
+      let cutoff = request.time - duration(seconds, 's');
+      let recentMessages = firestore.collection('chatMessages')
+        .where('uid', '==', uid)
+        .where('timestamp', '>', cutoff)
+        .limit(limit);
+      return recentMessages.size() < limit;
+    }
+  }
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /assets/js/
+Disallow: /firebase/
