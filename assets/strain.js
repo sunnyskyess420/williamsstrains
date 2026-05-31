@@ -120,6 +120,7 @@
   { name: "Crazy Glue", type: "hybrid-strain", url: "https://www.leafly.com/strains/crazy-glue" },	
   { name: "Critical Orange Punch", type: "indica-strain", url: "https://www.leafly.com/strains/critical-orange-punch" },	
   { name: "Critical Purple Kush", type: "indica-strain", url: "https://www.leafly.com/strains/critical-purple-kush" },	
+  { name: "Crumbled Lime", type: "sativa-strain", url: "https://41cannabisco.ca/budtender-reviews-3saints-crumbled-lime/" },	
   { name: "Crypto Chrome", type: "hybrid-strain", url: "https://bulkweedinbox.cc/product/crypto/" },	
   { name: "Crystal Lights", type: "unknown-strain", url: "" },	
   { name: "Crystal Mountain Kush", type: "hybrid-strain", url: "https://www.allbud.com/marijuana-strains/hybrid/crystal-mountain-kush" },	
