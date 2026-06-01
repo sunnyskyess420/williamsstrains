@@ -21,7 +21,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let strainItems = [];
   let triedToggles = [];
-  let triedStrains = JSON.parse(localStorage.getItem('wildcatTriedStrains') || '[]');
+  let triedStrains = [];
+  try {
+    const raw = localStorage.getItem('wildcatTriedStrains');
+    if (raw) triedStrains = JSON.parse(raw);
+  } catch (e) {
+    console.warn('Failed to parse tried strains from localStorage', e);
+    triedStrains = [];
+  }
   let pendingCountTimer = null;
 
   function createStrainItem(strain) {
@@ -35,13 +42,13 @@ document.addEventListener('DOMContentLoaded', function () {
       : safeName;
 
     li.innerHTML = `
-      <span class="strain-content tried-toggle">
-        <input type="checkbox">
+      <label class="strain-content tried-toggle">
+        <input type="checkbox" aria-label="Mark ${safeName.replace(/"/g, '&quot;')} as tried">
         <span class="tried-checkmark"></span>
         <span class="tried-label">
           <span class="strain-name">${nameMarkup}</span>
         </span>
-      </span>
+      </label>
     `;
 
     return li;
@@ -265,18 +272,13 @@ function bindTriedToggles() {
   document.querySelectorAll('.tried-toggle:not(.bound)').forEach((toggle) => {
     toggle.classList.add('bound');
     const checkbox = toggle.querySelector('input[type="checkbox"]');
-    const checkmark = toggle.querySelector('.tried-checkmark');
-    if (!checkbox || !checkmark) return;
+    if (!checkbox) return;
 
-    checkmark.onclick = (e) => {
-      console.log('CLICK');
-      e.preventDefault();
-      e.stopPropagation();
+    checkbox.addEventListener('change', () => {
       const li = toggle.closest('li');
       if (!li) return;
       const name = getStrainName(li);
-      const isChecked = !checkbox.checked;
-      checkbox.checked = isChecked;
+      const isChecked = checkbox.checked;
       toggle.classList.toggle('checked', isChecked);
       li.classList.toggle('tried', isChecked);
       if (isChecked) {
@@ -286,10 +288,14 @@ function bindTriedToggles() {
       }
       clearTimeout(window.saveTimeout);
       window.saveTimeout = setTimeout(() => {
-        localStorage.setItem('wildcatTriedStrains', JSON.stringify(triedStrains));
+        try {
+          localStorage.setItem('wildcatTriedStrains', JSON.stringify(triedStrains));
+        } catch (e) {
+          console.warn('Failed to save tried strains to localStorage', e);
+        }
       }, 300);
       updateCounts();
-    };
+    });
   });
 }
   if (dismissBtn) {
