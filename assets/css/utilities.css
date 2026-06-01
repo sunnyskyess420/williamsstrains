@@ -6,20 +6,28 @@
 /* ===== RESPONSIVE — MOBILE ===== */
 @media (max-width: 768px) {
   .strain-list-container ul {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+    gap: 16px !important;
+    padding: 0 12px !important;
   }
 
   .legend {
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
+    padding: 8px 12px !important;
+    order: 1;
+  }
+
+  .instructions-bar {
+    order: 2;
+    margin-top: 12px !important;
   }
 
   #strainInput {
     width: 100%;
-    max-width: 280px !important;
+    max-width: 100% !important;
     order: 2 !important;
-    margin: 0 auto !important;
+    margin: 0 !important;
   }
 
   h1 {
@@ -35,6 +43,11 @@
   #randomStrain {
     order: 3 !important;
     justify-content: center !important;
+  }
+
+  .search-container {
+    padding: 12px 0 !important;
+    gap: 8px !important;
   }
 }
 
@@ -60,24 +73,24 @@
 /* ===== STRAIN SCROLL BUTTON ===== */
 #strainScrollTop {
   position: fixed !important;
-  bottom: 30px !important;
-  right: 30px !important;
-  background: linear-gradient(135deg, #00ff00, #00cc00) !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  background: rgba(0, 255, 0, 0.8) !important;
   color: #000 !important;
   border: none !important;
-  width: 50px !important;
-  height: 50px !important;
-  border-radius: 50% !important;
-  font-size: 24px !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 8px !important;
+  font-size: 20px !important;
   font-weight: bold !important;
   cursor: pointer !important;
   opacity: 0 !important;
   visibility: hidden !important;
   transform: translateY(20px) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  box-shadow: 0 4px 20px rgba(0,255,0,0.6) !important;
+  box-shadow: 0 2px 12px rgba(0, 255, 0, 0.3) !important;
   padding: 0 !important;
-  line-height: 50px !important;
+  line-height: 44px !important;
   text-align: center !important;
   display: flex !important;
   align-items: center !important;
@@ -91,12 +104,18 @@
 }
 
 #strainScrollTop:hover {
-  transform: translateY(-3px) scale(1.1) !important;
-  box-shadow: 0 6px 25px rgba(0,255,0,0.8) !important;
+  transform: translateY(-2px) !important;
+  background: rgba(0, 255, 0, 1) !important;
+  box-shadow: 0 4px 16px rgba(0, 255, 0, 0.4) !important;
 }
 
 #strainScrollTop:active {
   transform: scale(0.9) !important;
+}
+
+#strainScrollTop:focus {
+  outline: 2px solid #00ff00 !important;
+  outline-offset: 2px !important;
 }
 /* ===== SCROLL HIDE: COLLAPSE HEADER SPACE ===== */
 .header-image,
@@ -110,7 +129,7 @@
 
 .scroll-hidden {
   opacity: 0 !important;
-  transform: translateY(-12px) !important;
+  transform: translateY(-8px) !important;
   pointer-events: none !important;
   max-height: 0 !important;
   margin-top: 0 !important;
