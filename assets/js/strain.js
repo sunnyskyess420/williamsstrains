@@ -192,6 +192,7 @@
   { name: "Gary Payton", type: "hybrid-strain", url: "https://www.leafly.com/strains/gary-payton" },	
   { name: "Gas Chamber", type: "indica-strain", url: "https://www.allbud.com/marijuana-strains/indica-dominant-hybrid/gas-chamber" },	
   { name: "Gas Mask", type: "indica-strain", url: "https://www.leafly.com/strains/gas-mask" },	
+  { name: "Gasberry Kush", type: "indica-strain", url: "https://www.tncc.ca/product/big-bag-o-buds-gasberry-kush/" },
   { name: "Gasberry Pie", type: "indica-strain", url: "https://www.leafly.com/strains/gas-berry" },	
   { name: "Gastro Pop", type: "hybrid-strain", url: "https://www.leafly.com/strains/gastro-pop" },	
   { name: "Gelato", type: "hybrid-strain", url: "https://www.leafly.com/strains/gelato" },	
