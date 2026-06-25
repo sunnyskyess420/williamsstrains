@@ -380,6 +380,7 @@
   { name: "Pink Kush", type: "indica-strain", url: "https://www.leafly.com/strains/pink-kush" },	
   { name: "Pink Kush Mints", type: "indica-strain", url: "https://www.tncc.ca/product/big-bag-o-buds-pink-kush-mints/" },
   { name: "Pink Octane", type: "hybrid-strain", url: "https://www.leafly.com/brands/greenseal-cannabis-co/products/greenseal-cannabis-co-pink-octane-3-5g-flower-ontario-flower" },	
+  { name: "Pink OG", type: "indica-strain", url: "https://getsmokeys.com/products/3779-freedom-pink-og" },
   { name: "Pink Panties", type: "indica-strain", url: "https://www.leafly.com/strains/pink-panties" },	
   { name: "Pink Push Pop", type: "hybrid-strain", url: "https://www.allbud.com/marijuana-strains/indica-dominant-hybrid/pink-push-pop" },	
   { name: "Pink Unicorn", type: "hybrid-strain", url: "https://wccannabis.cc/product/pink-unicorn-aa/" },	
