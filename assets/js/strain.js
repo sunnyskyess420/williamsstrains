@@ -264,6 +264,7 @@
   { name: "I Pot", type: "unknown-strain", url: "" }, 	
   { name: "Ice Cream", type: "hybrid-strain", url: "https://www.leafly.com/strains/ice-cream" },	
   { name: "Ice Cream Cake", type: "indica-strain", url: "https://www.leafly.com/strains/ice-cream-cake" },	
+  { name: "Ice Cream Rntz", type: "indica-strain", url: "https://www.tncc.ca/product/good-supply-ice-cream-rntz/" },	
   { name: "Ice Wine", type: "hybrid-strain", url: "https://www.leafly.com/strains/ice-wine" },	
   { name: "Ice Wreck", type: "hybrid-strain", url: "https://www.leafly.com/strains/ice-wreck" },	
   { name: "Incredible Hulk", type: "sativa-strain", url: "https://www.leafly.com/strains/incredible-hulk" },	
