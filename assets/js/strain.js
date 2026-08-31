@@ -186,7 +186,7 @@
   { name: "Galactic Death Star", type: "indica-strain", url: "https://www.leafly.com/strains/death-star" },	
   { name: "Galactic Glue", type: "hybrid-strain", url: "https://www.leafly.com/strains/galactic-glue" },	
   { name: "Galactic Haze", type: "hybrid-strain", url: "https://www.allbud.com/marijuana-strains/hybrid/galactic-haze" },
-      { name: "Galactic Jack", type: "sativa-strain", url: "https://peicannabiscorp.com/product/lep-back-forty-galactic-jack/" },	
+  { name: "Galactic Jack", type: "sativa-strain", url: "https://peicannabiscorp.com/product/lep-back-forty-galactic-jack/" },	
   { name: "Garlic Breath", type: "indica-strain", url: "https://www.leafly.com/strains/garlic-icing" },	
   { name: "Garlic Cake", type: "sativa-strain", url: "https://www.allbud.com/marijuana-strains/sativa-dominant-hybrid/garlic-cake" },	
   { name: "Garlic Cookies", type: "indica-strain", url: "https://www.leafly.com/strains/gmo-cookies" },	
