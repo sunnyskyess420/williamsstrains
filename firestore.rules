@@ -1,50 +1,75 @@
 rules_version = '2';
+
+// ============================================================
+//  Firestore security rules — Wildcats strain list
+//  Firebase project: stonercomments
+//
+//  Collections used by the site:
+//    site_stats/total_hits   page-load counter  (public read, +1 increments only)
+//    chatMessages/{id}       "The Lit Lobby"     (auth read, validated append-only create)
+//  Everything else is denied.
+//
+//  Deploy (Firebase Console):  Firestore Database -> Rules -> paste this file -> Publish
+//  Deploy (CLI):               npm i -g firebase-tools && firebase login
+//                              firebase deploy --only firestore:rules
+// ============================================================
+
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // ===== SITE STATS COUNTER =====
-    // Only allow incrementing the counter, no deletion or arbitrary writes
+    // ---- Page-load counter -------------------------------------------------
+    // Anyone may read it; anyone may add exactly 1; the doc can never be reset
+    // and can't grow by more than 1 per write. Never deletable.
     match /site_stats/{doc} {
       allow read: if true;
-      allow write: if request.resource.data.count == resource.data.count + 1
-                    && request.resource.data.keys().hasOnly(['count']);
+
+      allow create: if request.resource.data.keys().hasOnly(['count'])
+                    && request.resource.data.count == 1;
+
+      allow update: if request.resource.data.keys().hasOnly(['count'])
+                    && request.resource.data.count == resource.data.count + 1;
+
+      allow delete: if false;
     }
 
-    // ===== CHAT MESSAGES =====
+    // ---- Chat ("The Lit Lobby") -------------------------------------------
+    // Append-only: read by signed-in (anonymous) visitors, create with strict
+    // field/length validation, and *never* update or delete from the client.
+    // Moderation = delete docs in the Firebase Console.
+    //
+    // NOTE on rate limiting: security rules CANNOT count documents in a
+    // collection, so per-user throttling is not possible here (the old
+    // `existsAfterLimit()` helper was invalid and would have broken posting).
+    // Spam control = anonymous auth + validation + immutability below. If you
+    // ever need real throttling, add Firebase App Check and/or a Cloud Function.
     match /chatMessages/{messageId} {
-      // Allow reading last 50 messages for all authenticated users
       allow read: if request.auth != null;
 
-      // Allow creating new messages with validation
       allow create: if request.auth != null
-                    // Text must be present and 1-500 chars
+                    // exactly these fields, no more
+                    && request.resource.data.keys().hasOnly(['text', 'uid', 'color', 'displayName', 'timestamp'])
+                    // author must be the signed-in (anonymous) user
+                    && request.resource.data.uid == request.auth.uid
+                    // message body
                     && request.resource.data.text is string
                     && request.resource.data.text.size() >= 1
-                    && request.resource.data.text.size() <= 500
-                    // Required fields must match auth user
-                    && request.resource.data.uid == request.auth.uid
-                    && request.resource.data.color is string
+                    && request.resource.data.text.size() <= 1000
+                    // display name (client also caps via prompt)
                     && request.resource.data.displayName is string
-                    // Timestamp must be server timestamp
-                    && request.resource.data.timestamp == request.time
-                    // Only allowed fields
-                    && request.resource.data.keys().hasOnly(['text', 'uid', 'color', 'displayName', 'timestamp'])
-                    // Rate limit: max 5 messages per minute per user
-                    && existsAfterLimit(request.auth.uid, 5, 60);
+                    && request.resource.data.displayName.size() >= 1
+                    && request.resource.data.displayName.size() <= 100
+                    // avatar colour token
+                    && request.resource.data.color is string
+                    && request.resource.data.color.size() <= 64
+                    // server-assigned time only (no backdating / client clocks)
+                    && request.resource.data.timestamp == request.time;
 
-      // No updates or deletes — moderation via Firebase Console only
       allow update, delete: if false;
     }
 
-    // Helper function for rate limiting
-    // Returns true if user has fewer than `limit` messages in the last `seconds` seconds
-    function existsAfterLimit(uid, limit, seconds) {
-      let cutoff = request.time - duration(seconds, 's');
-      let recentMessages = firestore.collection('chatMessages')
-        .where('uid', '==', uid)
-        .where('timestamp', '>', cutoff)
-        .limit(limit);
-      return recentMessages.size() < limit;
+    // ---- Everything else: deny -------------------------------------------
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }
