@@ -294,6 +294,7 @@
   { name: "Layer Cake", type: "indica-strain", url: "https://www.leafly.com/strains/layer-cake" },	
   { name: "Lazer Wolf", type: "sativa-strain", url: "https://montrosecannabis.ca/product/lazer-wolf-3-5g/" },	
   { name: "Lazy Berry Blaze", type: "indica-strain", url: "https://www.grassrootswindsor.com/lazy-berry-blaze-twd-indica/" },	
+  { name: "Lemon Cherry Popperz", type: "sativa-strain", url: "https://localcannabisco.ca/product/good-supply-lemon-cherry-popperz/" },	
   { name: "Lemon Haze", type: "sativa-strain", url: "https://www.leafly.com/strains/lemon-haze" },	
   { name: "Lemon Meringue", type: "sativa-strain", url: "https://www.leafly.com/strains/lemon-meringue" },	
   { name: "Lemon OG Kush", type: "hybrid-strain", url: "https://www.leafly.com/strains/lemon-og" },	
