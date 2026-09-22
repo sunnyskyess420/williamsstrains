@@ -1,9 +1,5 @@
-/* =============================================================
-   UTILITIES.CSS — Scroll button, z-index fixes, responsive
-   ============================================================= */
+/* UTILITIES.CSS */
 
-
-/* ===== RESPONSIVE — MOBILE ===== */
 @media (max-width: 768px) {
   .strain-list-container ul {
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
@@ -45,9 +41,6 @@
   }
 }
 
-
-
-/* ===== STRAIN LIST SCROLL CONTAINER ===== */
 .strain-list-container {
   position: relative !important;
   max-height: 65vh !important;
@@ -57,8 +50,6 @@
   display: block !important;
 }
 
-
-/* ===== STRAIN SCROLL BUTTON ===== */
 #strainScrollTop {
   position: fixed !important;
   bottom: 20px !important;
@@ -105,7 +96,7 @@
   outline: 2px solid #00ff00 !important;
   outline-offset: 2px !important;
 }
-/* ===== SCROLL HIDE: COLLAPSE HEADER SPACE ===== */
+
 .header-image,
 .visitor-counter-wrap,
 .search-container,
@@ -126,15 +117,14 @@
   padding-bottom: 0 !important;
   border: 0 !important;
 }
-/* ===== TOP SECTION COLLAPSE WRAPPER ===== */
+
 .top-controls-wrap {
   overflow: hidden;
   max-height: 900px;
   transform: translateY(0);
   opacity: 1;
   will-change: max-height, opacity, transform;
-  transition:
-    max-height 0.42s ease,
+  transition: max-height 0.42s ease,
     opacity 0.22s ease,
     transform 0.28s ease,
     margin 0.42s ease,
