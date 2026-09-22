@@ -321,19 +321,19 @@ li::before {
 }
 
 .indica-strain .tried-toggle::before {
-  background-image: url('/images/indica-leaf.png');
+  background-image: url('../../images/indica-leaf.png');
   background-color: transparent !important;
 }
 .sativa-strain .tried-toggle::before {
-  background-image: url('/images/sativa-leaf.png');
+  background-image: url('../../images/sativa-leaf.png');
   background-color: transparent !important;
 }
 .hybrid-strain .tried-toggle::before {
-  background-image: url('/images/hybrid-leaf.png');
+  background-image: url('../../images/hybrid-leaf.png');
   background-color: transparent !important;
 }
 .unknown-strain .tried-toggle::before {
-  background-image: url('/images/unknown-leaf.png');
+  background-image: url('../../images/unknown-leaf.png');
   background-color: transparent !important;
 }
 
