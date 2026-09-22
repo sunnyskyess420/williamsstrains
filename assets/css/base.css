@@ -75,16 +75,6 @@ h1 {
 }
 
 
-/* ===== DESCRIPTION TEXT ===== */
-.description {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #e5e5e5;
-  text-align: center;
-  margin-top: 4px;
-  margin-bottom: 24px;
-}
-
 /* ===== UTILITY: VISIBILITY ===== */
 .hidden {
   display: none !important;
@@ -112,15 +102,6 @@ h1 {
   padding: 40px 20px;
 }
 
-#comments-section {
-  background: rgba(15, 20, 15, 0.9) !important;
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(0, 255, 0, 0.2);
-  border-radius: 16px;
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 750px;
-}
 .header-image {
   display: block;
   width: 100%;

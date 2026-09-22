@@ -23,14 +23,6 @@
   box-sizing: border-box;
 }
 
-.legend.hide {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-100%);
-  transition: all 0.3s ease;
-  z-index: 20;
-}
-
 .legend-item {
   display: flex;
   align-items: center;
@@ -161,16 +153,6 @@
   background-color: rgba(18, 18, 18, 0.95);
   z-index: 15 !important;
   overscroll-behavior: contain;
-}
-
-.search-header {
-  display: flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  justify-content: center !important;
-  width: 100% !important;
-  margin-bottom: 8px !important;
-  flex-shrink: 0 !important;
 }
 
 /* Shared button height/sizing in search bar */
@@ -399,7 +381,7 @@ li {
   text-shadow: 0 0 10px #00ff00;
   box-shadow: 0 20px 60px rgba(0,255,0,0.4), inset 0 0 20px rgba(0,255,0,0.1);
   text-align: center;
-  animation: pulse-glow 2s infinite;
+  animation: pulseGlow 2s infinite;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -605,26 +587,11 @@ a.gradient-btn:active {
   content: none !important;
 }
 
-.pulse-glow {
-  animation: pulseGlow 1s infinite;
-  text-shadow: 0 0 4px rgba(0, 255, 0, 0.4);
-}
-
-
 @keyframes pulseGlow {
   0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
   50%       { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
 }
 
-/* ===== FIREWORK PARTICLES ===== */
-.firework {
-  position: fixed;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-}
 @media (min-width: 400px) {
 
   .legend-item span {
@@ -652,12 +619,6 @@ a.gradient-btn:active {
   flex-wrap: wrap !important; /* Enable 2 rows */
   gap: 2px 6px !important; /* Vertical/horizontal */
   padding: 3px !important;
-}
-
-.legend-types-row {
-  width: 100%;
-  justify-content: center;
-  margin-bottom: 1px;
 }
 
 .legend-item[data-filter="unknown"] {
@@ -706,55 +667,6 @@ a.gradient-btn:active {
   text-align: center !important;
   margin: 0 !important;
 }
-/* Site-Matched Cusdis Comments */
-#comments-section {
-  background: rgba(30, 35, 30, 0.95) !important;  /* Matches .container */
-  border: 2px solid #00ff00 !important;
-  backdrop-filter: blur(10px) !important;
-  border-radius: 16px !important;
-  padding: 16px !important;
-  margin: 20px auto !important;
-  max-width: 750px !important;
-}
-
-#comments-section .cusdis,
-#comments-section iframe {
-  background: rgba(40, 45, 40, 0.98) !important;  /* Darker match */
-  color: #d0ffd0 !important;  /* Pale green-white */
-}
-
-#comments-section input,
-#comments-section textarea {
-  background: rgba(60, 65, 60, 0.9) !important;
-  border: 1px solid #228B22 !important;
-  color: #e0ffe0 !important;
-}
-
-#comments-section ::-webkit-scrollbar { display: none !important; }
-#comments-section { scrollbar-width: thin; scrollbar-color: #00ff00 rgba(30,35,30,0.95); }
-
-#cusdis_thread,
-.cusdis {
-  max-height: 450px !important;  /* Short & scrollable if needed */
-  font-size: 14px !important;   /* Smaller text */
-}
-
-#cusdis_thread input,
-#cusdis_thread textarea,
-#cusdis_thread .comment-content {
-  font-size: 14px !important;  /* Compact form */
-  padding: 8px 12px !important;
-  line-height: 1.4 !important;
-}
-
-#cusdis_thread .comments-list {
-  max-height: 320px !important;  /* Tight comments area */
-}
-
-#comments-section {
-  padding: 12px !important;     /* Minimal wrapper */
-}
-
 .tried-label {
   display: block !important;
   font-size: 1.1em !important;
@@ -928,33 +840,6 @@ a.gradient-btn:active {
   text-align: center;
 }
 
-.admin-toggle-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 0 5px;
-  color: #00ff00;
-  line-height: 1;
-}
-
-.chat-title {
-  color: #00ff00 !important;
-  text-shadow: 0 0 10px #00ff00;
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-.admin-toggle-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 0 5px;
-  color: #00ff00;
-  line-height: 1;
-}
-
 /* ----- MESSAGES AREA ----- */
 #chat-messages {
   height: 350px;
@@ -1074,41 +959,6 @@ a.gradient-btn:active {
   flex-wrap: wrap; /* Lets the emoji grid drop to the next line */
 }
 
-#chatEmojiBtn:hover {
-  transform: scale(1.2);
-}
-
-#stoner-picker {
-  display: none;
-  width: 100%;
-  justify-content: center;
-  background: rgba(15, 15, 15, 0.95);
-  border: 1px solid rgba(0, 255, 0, 0.15);
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
-  z-index: 999;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 4px;
-}
-
-#stoner-picker span {
-  font-size: 24px;
-  cursor: pointer;
-  text-align: center;
-  padding: 6px;
-  border-radius: 6px;
-}
-
-#stoner-picker span:hover {
-  background: rgba(0, 255, 0, 0.1);
-  transform: scale(1.1);
-}
-
-#chatEmojiBtn:hover {
-  transform: scale(1.2);
-}
-
 #chatInput {
   flex: 1;
   padding: 12px 16px;
@@ -1161,25 +1011,6 @@ a.gradient-btn:active {
   transform: scale(0.95);
 }
 
-/* ----- DELETE BUTTONS ----- */
-.admin-delete-btn {
-  display: none !important;
-}
-
-.admin-mode .admin-delete-btn {
-  display: inline-block !important;
-  cursor: pointer;
-  color: #ff4444;
-  margin-left: 8px;
-  font-size: 12px;
-  opacity: 0.6;
-  transition: opacity 0.2s;
-}
-
-.admin-mode .admin-delete-btn:hover {
-  opacity: 1;
-}
-
 /* ----- STATUS ----- */
 #chat-status {
   text-align: center;
@@ -1212,37 +1043,6 @@ a.gradient-btn:active {
     font-size: 16px; /* Prevents iOS zoom on focus */
   }
 }
-.search-container.neon-terminal-search {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
-  background: transparent;
-  border: none;
-  border-bottom: none;
-  box-shadow: none;
-  padding: 10px 0;
-}
-
-.search-container.neon-terminal-search .search-header {
-  display: none;
-}
-
-.search-container.neon-terminal-search #strainInput {
-  flex-grow: 1;
-  min-width: 200px;
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid rgba(0, 255, 0, 0.5);
-  border-radius: 0;
-  color: #00ff00;
-  font-size: 16px;
-  padding: 10px 5px;
-  text-align: left;
-  box-shadow: none;
-}
-
 #strainInput:focus {
   outline: none !important;
   border-bottom: 2px solid #00ff00 !important;
@@ -1252,32 +1052,6 @@ a.gradient-btn:active {
   color: rgba(0, 255, 0, 0.35) !important;
 }
 
-.search-container.neon-terminal-search #randomStrain {
-  background: rgba(0, 255, 0, 0.1) !important;
-  border: 1px solid rgba(0, 255, 0, 0.4) !important;
-  border-radius: 20px !important;
-  color: #00ff00 !important;
-  font-size: 14px !important;
-  padding: 8px 20px !important;
-  min-width: auto !important;
-  min-height: auto !important;
-  height: auto !important;
-  box-shadow: none !important;
-}
-
-.search-container.neon-terminal-search #exportTried {
-  background: rgba(0, 255, 0, 0.1);
-  border: 1px solid rgba(0, 255, 0, 0.4);
-  border-radius: 20px;
-  color: #00ff00;
-  font-size: 14px;
-  padding: 8px 20px;
-  min-width: auto;
-  min-height: auto;
-  height: auto;
-  max-width: none;
-  box-shadow: none;
-}
 /* ===== FROSTED INSTRUCTIONS PILL ===== */
 .instructions-bar {
   display: flex !important;

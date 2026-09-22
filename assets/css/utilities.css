@@ -34,12 +34,6 @@
     font-size: 28px;
   }
 
-  .search-header {
-    width: 100% !important;
-    justify-content: center !important;
-    order: 1 !important;
-  }
-
   #randomStrain {
     order: 3 !important;
     justify-content: center !important;
@@ -53,13 +47,7 @@
 
 
 
-/* ===== STRAIN SCROLL CONTAINER ===== */
-.strain-scroll-container {
-  position: relative !important;
-  height: 100% !important;
-  overflow: hidden !important;
-}
-
+/* ===== STRAIN LIST SCROLL CONTAINER ===== */
 .strain-list-container {
   position: relative !important;
   max-height: 65vh !important;
