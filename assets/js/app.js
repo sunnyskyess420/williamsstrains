@@ -356,8 +356,6 @@ function bindTriedToggles() {
     });
   }
 
-  console.log('strainList exists:', !!strainList);
-  console.log('window.STRAINS:', window.STRAINS);
   renderStrains();
   cacheStrainReferences();
   bindTriedToggles();
