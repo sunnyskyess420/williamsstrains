@@ -180,6 +180,7 @@
   { name: "Frosted Cherry Cookies", type: "indica-strain", url: "https://www.leafly.com/strains/frosted-cherry-cookies" },	
   { name: "Frosted Cream Puffs", type: "hybrid-strain", url: "https://buylowgreen.com/product/frosted-cream-puffs/" },	
   { name: "Frosted Gumbo", type: "indica-strain", url: "https://www.allbud.com/marijuana-strains/indica-dominant-hybrid/frosted-gumbo" },	
+  { name: "Frosted Rootbeer", type: "sativa-strain", url: "https://rarecannabis.ca/product/big-bag-o-buds-frosted-rootbeer/" },	
   { name: "Fruit Loopz", type: "indica-strain", url: "https://growdiaries.com/strains/fruity-loopz" },	
   { name: "Fruity Chronic Juice", type: "indica-strain", url: "https://www.leafly.com/strains/fruity-chronic-juice" },	
   { name: "Funk Master", type: "indica-strain", url: "https://www.allbud.com/marijuana-strains/indica-dominant-hybrid/funkmaster" },	
