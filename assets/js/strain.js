@@ -461,6 +461,7 @@
   { name: "Sour Cheese", type: "hybrid-strain", url: "https://www.leafly.com/strains/sour-chees" },	
   { name: "Sour Diesel", type: "sativa-strain", url: "https://www.leafly.com/strains/sour-diesel" },	
   { name: "Sour Dream", type: "hybrid-strain", url: "https://www.leafly.com/strains/sour-dream" },	
+  { name: "Sour Dubb", type: "sativa-strain", url: "https://popscannabis.ca/products/sour-dubb-versus-dried-flower" },	
   { name: "Space Age Cake", type: "indica-strain", url: "https://www.leafly.com/brands/phenix-cannabis/products/phenix-cannabis-space-age-cake-flower" },	
   { name: "Space Cake", type: "hybrid-strain", url: "https://www.leafly.com/strains/space-cake" },	
   { name: "Space Goblins", type: "sativa-strain", url: "https://cannacabana.com/products/space-goblins" },	
